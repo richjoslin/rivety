@@ -1,0 +1,80 @@
+
+*
+{
+	color: #333;
+}
+
+a, a:hover, a:visited, a:active
+{
+	color: RoyalBlue;
+}
+
+a.button, a.button:hover, a.button:visited, a.button:active
+{
+	color: #666;
+}
+
+tr.odd
+{
+	background: white;
+}
+tr.even
+{
+	background: #eee;
+}
+
+th
+{
+	background: #999;
+	color: #eee;
+}
+
+#options
+{
+	background: #ddd;
+}
+#options h3
+{
+	color: #999;
+}
+
+div.success
+{
+	background: #beb;
+}
+div.notice
+{
+	background: #eeb;
+}
+div.error
+{
+	background: #ebb;
+}
+div.error-list li
+{
+	background-color: #eee;
+	color: maroon;
+}
+
+a.marked-for-deletion
+{
+	background-color: Red;
+}
+a.marked-for-deletion img
+{
+	border-color: Red;
+	opacity: 0.7;
+}
+a.not-marked-for-deletion img
+{
+	border-color: transparent;
+}
+li.marked-for-deletion span
+{
+	color: #aaa;
+}
+
+a.cms-delete, a.cms-delete:hover, a.cms-delete:active, a.cms-delete:visited
+{
+	color: #c33;
+}

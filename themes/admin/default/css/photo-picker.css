@@ -1,0 +1,39 @@
+
+div.photo-picker-list-item
+{
+	margin: 0 0 6px 0;
+	overflow: hidden;
+}
+div.photo-picker-list-item a,
+div.photo-picker-list-item a:visited
+{
+	border-top-right-radius: 10px;
+	-ms-border-top-right-radius: 10px;
+	-moz-border-top-right-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	-ms-border-bottom-right-radius: 10px;
+	-moz-border-bottom-right-radius: 10px;
+	-webkit-border-bottom-right-radius: 10px;
+	background-color: #eee;
+	display: block;
+	float: left;
+	width: 100%;
+}
+div.photo-picker-list-item a:hover,
+div.photo-picker-list-item a:active
+{
+	background-color: #def;
+}
+div.photo-picker-list-item a img
+{
+	display: block;
+	float: left;
+	margin: 6px;
+}
+div.photo-picker-list-item a span
+{
+	display: block;
+	float: left;
+	margin: 20px 0 0 10px;
+}

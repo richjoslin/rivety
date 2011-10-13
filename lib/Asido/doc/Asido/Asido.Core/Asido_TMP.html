@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>Docs For Class Asido_TMP</title>
+			<link rel="stylesheet" href="../../media/stylesheet.css" />
+						<script src="../../media/lib/classTree.js"></script>
+												<script language="javascript" type="text/javascript">
+				var imgPlus = new Image();
+				var imgMinus = new Image();
+				imgPlus.src = "../../media/images/plus.png";
+				imgMinus.src = "../../media/images/minus.png";
+				
+				function showNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgMinus.src;
+					oTable.style.display = "block";
+				}
+				
+				function hideNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgPlus.src;
+					oTable.style.display = "none";
+				}
+				
+				function nodeIsVisible(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+									break;
+							}
+					return (oTable && oTable.style.display == "block");
+				}
+				
+				function toggleNodeVisibility(Node){
+					if (nodeIsVisible(Node)){
+						hideNode(Node);
+					}else{
+						showNode(Node);
+					}
+				}
+			</script>
+					</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name"><img src="../../media/images/Class_logo.png"
+														alt=" Class"
+														title=" Class"
+														style="vertical-align: middle"> Asido_TMP</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+													</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Asido Temporary Object</p>
+		<p class="notes">
+			Located in <a class="field" href="_class_image_php.html">/class.image.php</a> (line <span class="field">303</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+								<div class="var-title">
+					<img src="../../media/images/Variable.png" alt=" " />
+					<span class="var-type">integer</span>
+					<a href="#$image_height" title="details" class="var-name">$image_height</a>
+				</div>
+								<div class="var-title">
+					<img src="../../media/images/Variable.png" alt=" " />
+					<span class="var-type">integer</span>
+					<a href="#$image_width" title="details" class="var-name">$image_width</a>
+				</div>
+								<div class="var-title">
+					<img src="../../media/images/Variable.png" alt=" " />
+					<span class="var-type">string</span>
+					<a href="#$save" title="details" class="var-name">$save</a>
+				</div>
+								<div class="var-title">
+					<img src="../../media/images/Variable.png" alt=" " />
+					<span class="var-type">mixed</span>
+					<a href="#$source" title="details" class="var-name">$source</a>
+				</div>
+								<div class="var-title">
+					<img src="../../media/images/Variable.png" alt=" " />
+					<span class="var-type">string</span>
+					<a href="#$source_filename" title="details" class="var-name">$source_filename</a>
+				</div>
+								<div class="var-title">
+					<img src="../../media/images/Variable.png" alt=" " />
+					<span class="var-type">mixed</span>
+					<a href="#$target" title="details" class="var-name">$target</a>
+				</div>
+								<div class="var-title">
+					<img src="../../media/images/Variable.png" alt=" " />
+					<span class="var-type">string</span>
+					<a href="#$target_filename" title="details" class="var-name">$target_filename</a>
+				</div>
+							</div>
+		</div>
+	</div>
+
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<span class="disabled">Vars</span>
+						
+			
+								</div>
+		<div class="info-box-body">
+			<a name="var$image_height" id="$image_height"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<img src="../../media/images/Variable.png" />
+		<span class="var-title">
+			<span class="var-type">integer</span>
+			<span class="var-name">$image_height</span>
+						(line <span class="line-number">349</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Image height</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$image_width" id="$image_width"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<img src="../../media/images/Variable.png" />
+		<span class="var-title">
+			<span class="var-type">integer</span>
+			<span class="var-name">$image_width</span>
+						(line <span class="line-number">342</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Image width</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$save" id="$save"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<img src="../../media/images/Variable.png" />
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$save</span>
+						(line <span class="line-number">358</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">MIME-type with which to save the processed file</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$source" id="$source"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<img src="../../media/images/Variable.png" />
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$source</span>
+						(line <span class="line-number">310</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Object for processing the source image</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$source_filename" id="$source_filename"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<img src="../../media/images/Variable.png" />
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$source_filename</span>
+						(line <span class="line-number">317</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Source image filename</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$target" id="$target"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<img src="../../media/images/Variable.png" />
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$target</span>
+						(line <span class="line-number">326</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Object for processing the target image</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$target_filename" id="$target_filename"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<img src="../../media/images/Variable.png" />
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$target_filename</span>
+						(line <span class="line-number">333</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Filename with which to save the processed file</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+						
+		</div>
+	</div>
+	
+
+	
+	<p class="notes" id="credit">
+		Documentation generated on Mon, 09 Apr 2007 23:57:08 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.3.0RC4</a>
+	</p>
+	</div></body>
+</html>

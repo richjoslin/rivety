@@ -1,0 +1,151 @@
+
+table
+{
+	width: 100%;
+}
+
+td
+{
+	padding: 6px 10px;
+}
+
+th
+{
+	padding: 6px 10px;
+}
+
+#main
+{
+	margin: 0 auto;
+	width: 960px;
+}
+
+ul.topnav li, ul.subnav li
+{
+	float: left;
+}
+
+#logout
+{
+	display: block;
+	float: right;
+	margin: 0 0 20px 0;
+}
+
+#site-title1
+{
+	float: left;
+}
+#site-title2
+{
+	clear: left;
+	float: left;
+}
+
+#header
+{
+	float: left; /* float containment hack */
+	margin: 20px 0 0 0;
+}
+
+div.status
+{
+	float: left;
+	padding: 14px 0;
+	width: 960px;
+}
+div.error-list li
+{
+	float: left;
+	margin: 0 10px;
+	padding: 10px 0 10px 20px;
+	width: 920px;
+}
+
+#content
+{
+	float: left;
+	margin: 0 0 20px 0;
+	padding: 0 0 0 0;
+	width: 960px;
+}
+
+#options
+{
+	float: right;
+	margin: 0 0 20px 0;
+	padding: 30px 10px;
+	width: 160px;
+}
+#options h3
+{
+	padding: 0;
+}
+#options li
+{
+	margin: 14px 0 0 0;
+}
+
+#main-column
+{
+	float: left;
+	margin: 0 20px 0 0;
+	width: 760px;
+}
+#main-column h3
+{
+	margin: 30px 0 20px 0;
+}
+#main-column p
+{
+	margin: 20px 0;
+}
+
+#footer
+{
+	clear: both;
+	margin: 0 0 50px 0;
+	padding: 10px 0 0 0;
+}
+
+.right
+{
+	display: block;
+	float: right;
+}
+
+a.marked-for-deletion, a.marked-for-deletion img, a.not-marked-for-deletion, a.not-marked-for-deletion img
+{
+	display: inline-block;
+}
+
+ul.warnings
+{
+	list-style: square;
+}
+ul.warnings li
+{
+	margin: 10px 30px;
+}
+
+div.cms-accordion h5
+{
+	padding: 4px 0 4px 30px;
+}
+
+.ui-accordion-content
+{
+	height: 440px;
+}
+
+span.ui-icon-check
+{
+	margin: 0 auto;
+}
+
+a.image-preview
+{
+	clear: right;
+	display: block;
+	float: right;
+}

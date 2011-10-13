@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>Docs For Class Asido_IMagick</title>
+			<link rel="stylesheet" href="../../media/stylesheet.css" />
+						<script src="../../media/lib/classTree.js"></script>
+												<script language="javascript" type="text/javascript">
+				var imgPlus = new Image();
+				var imgMinus = new Image();
+				imgPlus.src = "../../media/images/plus.png";
+				imgMinus.src = "../../media/images/minus.png";
+				
+				function showNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgMinus.src;
+					oTable.style.display = "block";
+				}
+				
+				function hideNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgPlus.src;
+					oTable.style.display = "none";
+				}
+				
+				function nodeIsVisible(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+									break;
+							}
+					return (oTable && oTable.style.display == "block");
+				}
+				
+				function toggleNodeVisibility(Node){
+					if (nodeIsVisible(Node)){
+						hideNode(Node);
+					}else{
+						showNode(Node);
+					}
+				}
+			</script>
+					</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name"><img src="../../media/images/Class_logo.png"
+														alt=" Class"
+														title=" Class"
+														style="vertical-align: middle"> Asido_IMagick</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+													</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Common file for all &quot;Image Magick&quot; based solutions which stores all the  supported file formats</p>
+		<p class="notes">
+			Located in <a class="field" href="_class_imagick_php.html">/class.imagick.php</a> (line <span class="field">19</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+								<div class="var-title">
+					<img src="../../media/images/Variable.png" alt=" " />
+					<span class="var-type">array</span>
+					<a href="#$__mime" title="details" class="var-name">$__mime</a>
+				</div>
+								<div class="var-title">
+					<img src="../../media/images/Variable.png" alt=" " />
+					<span class="var-type">array</span>
+					<a href="#$__mime_map" title="details" class="var-name">$__mime_map</a>
+				</div>
+							</div>
+		</div>
+	</div>
+
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<span class="disabled">Vars</span>
+						
+			
+								</div>
+		<div class="info-box-body">
+			<a name="var$__mime" id="$__mime"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<img src="../../media/images/Variable.png" />
+		<span class="var-title">
+			<span class="var-type">array</span>
+			<span class="var-name">$__mime</span>
+			 = <span class="var-default">array(<br />	<br />		// support reading<br />		//<br />		'read' =&gt; array(<br />			<br />			// ART<br />			//<br />			'image/art',<br />			<br />			// BMP<br />			//<br />			'image/x-bmp',<br />			'image/x-bitmap',<br />			'image/x-xbitmap',<br />			'image/x-win-bitmap',<br />			'image/x-windows-bmp',<br />			'image/ms-bmp',<br />			'image/x-ms-bmp',<br />			'application/bmp',<br />			'application/x-bmp',<br />			'application/x-win-bitmap',<br />			'image/wbmp',<br />			'image/bmp',<br />			<br />			// CUT<br />			//<br />			'application/x-dr-halo-bitmap',<br />			'image/x-halo-cut',<br />			'zz-application/zz-winassoc-cut',<br />			'image/cut',<br />			'application/x-cut',<br />			'application/cut',<br />			<br />			// DCM<br />			//<br />			'image/dicom',<br />			'image/x-dicom',<br />			'x-lml/x-evm',<br />			<br />			// DCX<br />			//<br />			'image/dcx',<br />			'image/x-dcx',<br />			'image/x-pc-paintbrush',<br />			'image/vnd.swiftview-pcx',<br />			<br />			// DIB<br />			//<br />			'application/dib',<br />			'application/x-dib',<br />			'image/dib',<br />			'image/ms-bmp',<br />			'image/x-bmp',<br />			'image/x-ms-bmp',<br />			'image/x-win-bitmap',<br />			'image/x-xbitmap',<br />			'zz-application/zz-winassoc-dib',<br />			<br />			// DJVU<br />			//<br />			'image/vnd.djvu',<br />			'image/djvu',<br />			'image/x-djvu',<br />			'image/dejavu',<br />			'image/x-dejavu',<br />			'image/djvw',<br />			'image/x.djvu',<br />			<br />			// DNG<br />			//<br />			'application/x-ding',<br /><br />			// DPX<br />			//<br />			'image/dpx',<br />			<br />			// FAX<br />			//<br />			'application/x-fax',<br />			'image/fax',<br />			'image/g3fax',<br />			'image/x-fax',<br /><br />			// FITS<br />			//<br />			'application/x-fits',<br />			'application/fits',<br />			'image/x-fits',<br />			'image/fits',<br /><br />			// GIF<br />			//<br />			'application/x-gif',<br />			'application/gif',<br />			'image/gif',<br />			'image/x-gif',<br />			<br />			// JPEG<br />			//<br />			'application/jpg',<br />			'application/x-jpg',<br />			'image/pjpeg',<br />			'image/pipeg',<br />			'image/jpg',<br />			'image/jpeg',<br /><br />			// ICO<br />			//<br />			'image/x-icon',<br />			'application/ico',<br />			'application/x-ico',<br />			'image/ico',<br />			<br />			// MTV<br />			//<br />			'application/x-mtv',<br />			'image/x-mtv',<br />			<br />			// OTB<br />			//<br />			'image/x-otb',<br />			<br />			// P7<br />			//<br />			'application/x-xv-thumbnail',<br />			<br />			// PALM<br />			//<br />			'application/x-palm',<br />			'image/x-palm',<br />			<br />			// PBM<br />			//<br />			'application/x-portable-bitmap',<br />			'image/x-portable-bitmap',<br />			'image/x-portable-anymap',<br />			'image/x-portable/anymap',<br />			<br />			// PCD<br />			//<br />			'application/pcd',<br />			'application/x-photo-cd',<br />			'image/pcd',<br />			'image/x-photo-cd',<br /><br />			// PCX<br />			//<br />			'image/pcx',<br />			'application/pcx',<br />			'application/x-pcx',<br />			'image/x-pc-paintbrush',<br />			'image/x-pcx',<br />			'zz-application/zz-winassoc-pcx',<br />			<br />			// PGM<br />			//<br />			'image/x-portable-graymap',<br />			'image/x-pgm',<br />			<br />			// PICT<br />			//<br />			'image/pict',<br />			'image/x-macpict',<br />			'image/x-pict',<br />			'image/x-quicktime',<br />			'image/x-quicktime',<br />			<br />			// PNG<br />			//<br />			'application/png',<br />			'application/x-png',<br />			'image/x-png',<br />			'image/png',<br />			<br />			// RLA<br />			//<br />			'application/x-rla-image',<br /><br />			// SVG<br />			//<br />			'image/svg-xml',<br />			'text/xml-svg',<br />			'image/vnd.adobe.svg+xml',<br />			'image/svg-xml',<br />			'image/svg',<br />			<br />			// TGA<br />			//<br />			'application/tga',<br />			'application/x-tga',<br />			'application/x-targa',<br />			'image/tga',<br />			'image/x-tga',<br />			'image/targa',<br />			'image/x-targa',<br /><br />			// TIFF<br />			//<br />			'image/x-tif',<br />			'image/x-tiff',<br />			'application/tif',<br />			'application/x-tif',<br />			'application/tiff',<br />			'application/x-tiff',<br />			'image/tif',<br />			'image/tiff',<br />			<br />			// WPG<br />			//<br />			'application/wpg',<br />			'application/x-wpg',<br />			'image/wpg',<br />			'image/x-wpg',<br />			'image/x-wordperfect-graphics',<br />			'application/x-wpg-viewer',<br />			'zz-application/zz-winassoc-wpg',<br />			<br />			// XPM<br />			//<br />			'image/x-xpixmap',<br />			'image/x-xpm',<br />			<br />			// XBM<br />			//<br />			'image/x-xbitmap',<br />			'image/x-xbm',<br />			<br />			// XCF<br />			//<br />			'application/xcf',<br />			'application/x-xcf',<br />			'image/xcf',<br />			'image/x-xcf',<br />			'application/x-gimp-image',<br /><br />			),// support writing<br />//<br />'write'=&gt;array(// AVS<br />//<br />'application/x-stardent-avs',// BMP<br />//<br />'image/x-bmp','image/x-bitmap','image/x-xbitmap','image/x-win-bitmap','image/x-windows-bmp','image/ms-bmp','image/x-ms-bmp','application/bmp','application/x-bmp','application/x-win-bitmap','image/wbmp','image/bmp',// CIN<br />//<br />'image/x-cin',// CMYK<br />//<br />'image/x-cmyk',// DCX<br />//<br />'image/dcx','image/x-dcx','image/x-pc-paintbrush','image/vnd.swiftview-pcx',// DPX<br />//<br />'image/dpx',// FAX<br />//<br />'application/x-fax','image/fax','image/g3fax','image/x-fax',// FITS<br />//<br />'application/x-fits','application/fits','image/x-fits','image/fits',// GIF<br />//<br />'image/gif',// JPEG<br />//<br />'application/jpg','application/x-jpg','image/pjpeg','image/pipeg','image/jpg','image/jpeg',// MTV<br />//<br />'application/x-mtv','image/x-mtv',// OTB<br />//<br />'image/x-otb',// P7<br />//<br />'application/x-xv-thumbnail',// PALM<br />//<br />'application/x-palm','image/x-palm',// PBM<br />//<br />'application/x-portable-bitmap','image/x-portable-bitmap','image/x-portable-anymap','image/x-portable/anymap',// PCD<br />//<br />'application/pcd','application/x-photo-cd','image/pcd','image/x-photo-cd',// PCX<br />//<br />'image/pcx','application/pcx','application/x-pcx','image/x-pc-paintbrush','image/x-pcx','zz-application/zz-winassoc-pcx',// PDF<br />//<br />'application/pdf','application/x-pdf','application/acrobat','applications/vnd.pdf','text/pdf','text/x-pdf',// PGM<br />//<br />'image/x-portable-graymap','image/x-pgm',// PICT<br />//<br />'image/pict','image/x-macpict','image/x-pict','image/x-quicktime','image/x-quicktime',// PNG<br />//<br />'application/png','application/x-png','image/x-png','image/png',// SVG<br />//<br />'image/svg-xml','text/xml-svg','image/vnd.adobe.svg+xml','image/svg-xml','image/svg',// TGA<br />//<br />'application/tga','application/x-tga','application/x-targa','image/tga','image/x-tga','image/targa','image/x-targa',// TIFF<br />//<br />'image/x-tif','image/x-tiff','application/tif','application/x-tif','application/tiff','application/x-tiff','image/tif','image/tiff',// XPM<br />//<br />'image/x-xpixmap','image/x-xpm',// XBM<br />//<br />'image/x-xbitmap','image/x-xbm',))</span>			(line <span class="line-number">27</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Maps to supported mime types for saving files</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$__mime_map" id="$__mime_map"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<img src="../../media/images/Variable.png" />
+		<span class="var-title">
+			<span class="var-type">array</span>
+			<span class="var-name">$__mime_map</span>
+			 = <span class="var-default">array(<br /><br />		// AVS<br />		//<br />		'application/x-stardent-avs' =&gt; 'AVS',<br /><br />		// CIN<br />		//<br />		'image/x-cin' =&gt; 'CIN',<br />		<br />		// DCX<br />		//<br />		'image/dcx' =&gt; 'DCX',<br />		'image/x-dcx' =&gt; 'DCX',<br />		'image/x-pc-paintbrush' =&gt; 'DCX',<br />		'image/vnd.swiftview-pcx' =&gt; 'DCX',<br />		<br />		// DPX<br />		//<br />		'image/dpx' =&gt; 'DPX',<br />		<br />		// FAX<br />		//<br />		'application/x-fax' =&gt; 'FAX',<br />		'image/fax' =&gt; 'FAX',<br />		'image/g3fax' =&gt; 'FAX',<br />		'image/x-fax' =&gt; 'FAX',<br />		<br />		// FITS<br />		//<br />		'application/x-fits' =&gt; 'FITS',<br />		'application/fits' =&gt; 'FITS',<br />		'image/x-fits' =&gt; 'FITS',<br />		'image/fits' =&gt; 'FITS',<br />		<br />		// MTV<br />		//<br />		'application/x-mtv' =&gt; 'MTV',<br />		'image/x-mtv' =&gt; 'MTV',<br /><br />		// OTB<br />		//<br />		'image/x-otb' =&gt; 'OTB',<br /><br />		// P7<br />		//<br />		'application/x-xv-thumbnail' =&gt; 'P7',<br /><br />		// PALM<br />		//<br />		'application/x-palm' =&gt; 'PALM',<br />		'image/x-palm' =&gt; 'PALM',<br /><br />		// PBM<br />		//<br />		'application/x-portable-bitmap' =&gt; 'PBM',<br />		'image/x-portable-bitmap' =&gt; 'PBM',<br />		'image/x-portable-anymap' =&gt; 'PBM',<br />		'image/x-portable/anymap' =&gt; 'PBM',<br />		<br />		// PCX<br />		//<br />		'image/pcx' =&gt; 'PCX',<br />		'application/pcx' =&gt; 'PCX',<br />		'application/x-pcx' =&gt; 'PCX',<br />		'image/x-pc-paintbrush' =&gt; 'PCX',<br />		'image/x-pcx' =&gt; 'PCX',<br />		'zz-application/zz-winassoc-pcx' =&gt; 'PCX',<br />		<br />		// PDF<br />		//<br />		'application/pdf' =&gt; 'PDF',<br />		'application/x-pdf' =&gt; 'PDF',<br />		'application/acrobat' =&gt; 'PDF',<br />		'applications/vnd.pdf' =&gt; 'PDF',<br />		'text/pdf' =&gt; 'PDF',<br />		'text/x-pdf' =&gt; 'PDF',<br />		<br />		// PGM<br />		//<br />		'image/x-portable-graymap' =&gt; 'PGM',<br />		'image/x-pgm' =&gt; 'PGM',<br />		<br />		// PICT<br />		//<br />		'image/pict' =&gt; 'PICT',<br />		'image/x-macpict' =&gt; 'PICT',<br />		'image/x-pict' =&gt; 'PICT',<br />		'image/x-quicktime' =&gt; 'PICT',<br />		'image/x-quicktime' =&gt; 'PICT',<br /><br />		// TIFF<br />		//<br />		'image/x-tif' =&gt; 'TIFF',<br />		'image/x-tiff' =&gt; 'TIFF',<br />		'application/tif' =&gt; 'TIFF',<br />		'application/x-tif' =&gt; 'TIFF',<br />		'application/tiff' =&gt; 'TIFF',<br />		'application/x-tiff' =&gt; 'TIFF',<br />		'image/tif' =&gt; 'TIFF',<br />		'image/tiff' =&gt; 'TIFF',<br />		<br />		// GIF<br />		//<br />		'image/gif' =&gt; 'GIF',<br />		<br />		// JPEG<br />		//<br />		'application/jpg' =&gt; 'JPEG',<br />		'application/x-jpg' =&gt; 'JPEG',<br />		'image/pjpeg' =&gt; 'JPEG',<br />		'image/pipeg' =&gt; 'JPEG',<br />		'image/jpg' =&gt; 'JPEG',<br />		'image/jpeg' =&gt; 'JPEG',<br /><br />		// BMP<br />		//<br />		'image/x-bmp' =&gt; 'BMP',<br />		'image/x-bitmap' =&gt; 'BMP',<br />		'image/x-xbitmap' =&gt; 'BMP',<br />		'image/x-win-bitmap' =&gt; 'BMP',<br />		'image/x-windows-bmp' =&gt; 'BMP',<br />		'image/ms-bmp' =&gt; 'BMP',<br />		'image/x-ms-bmp' =&gt; 'BMP',<br />		'application/bmp' =&gt; 'BMP',<br />		'application/x-bmp' =&gt; 'BMP',<br />		'application/x-win-bitmap' =&gt; 'BMP',<br />		'image/wbmp' =&gt; 'BMP',<br />		'image/bmp' =&gt; 'BMP',<br /><br />		// SVG<br />		//<br />		'image/svg-xml' =&gt; 'SVG',<br />		'text/xml-svg' =&gt; 'SVG',<br />		'image/vnd.adobe.svg+xml' =&gt; 'SVG',<br />		'image/svg-xml' =&gt; 'SVG',<br />		'image/svg' =&gt; 'SVG',<br /><br />		// ICO<br />		//<br />		'image/x-icon' =&gt; 'ICO',<br />		'application/ico' =&gt; 'ICO',<br />		'application/x-ico' =&gt; 'ICO',<br />		'image/ico' =&gt; 'ICO',<br /><br />		// PSD<br />		//<br />		'image/x-photoshop' =&gt; 'PSD',<br />		'image/psd' =&gt; 'PSD',<br />		'application/photoshop' =&gt; 'PSD',<br />		'application/psd' =&gt; 'PSD',<br />		'image/photoshop' =&gt; 'PSD',<br /><br />		// PNG<br />		//<br />		'application/png' =&gt; 'PNG',<br />		'application/x-png' =&gt; 'PNG',<br />		'image/x-png' =&gt; 'PNG',<br />		'image/png' =&gt; 'PNG',<br /><br />		// XPM<br />		//<br />		'image/x-xpixmap' =&gt; 'XPM',<br />		'image/x-xpm' =&gt; 'XPM',<br />		<br />		// XBM<br />		//<br />		'image/x-xbitmap' =&gt; 'XBM',<br />		'image/x-xbm' =&gt; 'XBM',<br /><br />		)</span>			(line <span class="line-number">456</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">MIME-type to image format map</p>
+<p class="description"><p>This is used for conversion and saving ONLY, so  read-only file formats should not appear here</p></p>
+	
+	
+		
+		
+
+</div>
+						
+		</div>
+	</div>
+	
+
+	
+	<p class="notes" id="credit">
+		Documentation generated on Mon, 09 Apr 2007 23:57:08 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.3.0RC4</a>
+	</p>
+	</div></body>
+</html>

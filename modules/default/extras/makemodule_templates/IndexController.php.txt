@@ -1,0 +1,37 @@
+<?php
+
+/*
+	Class: Index
+
+	About: Author
+		Communitas Module Generator
+
+	About: License
+		<http://communit.as/docs/license>
+	
+	About: See Also
+		<Cts_Controller_Action_Abstract>
+*/
+class MODULE_NAME_UC_IndexController extends Cts_Controller_Action_Abstract {
+
+	/* Group: Instance Methods */
+
+	/*
+		Function: init
+			Invoked automatically when an instance is created.
+			Initializes the current instance.
+			Also initializes the parent object (calls init() on the parent instance).
+	*/
+	function init() {
+		parent::init();
+	}
+
+	/* Group: Actions */
+
+	/*
+		Function: index
+	*/
+	function indexAction() {
+	}
+
+}

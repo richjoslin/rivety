@@ -1,0 +1,1819 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>Docs For Class Asido_Driver</title>
+			<link rel="stylesheet" href="../../media/stylesheet.css" />
+						<script src="../../media/lib/classTree.js"></script>
+												<script language="javascript" type="text/javascript">
+				var imgPlus = new Image();
+				var imgMinus = new Image();
+				imgPlus.src = "../../media/images/plus.png";
+				imgMinus.src = "../../media/images/minus.png";
+				
+				function showNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgMinus.src;
+					oTable.style.display = "block";
+				}
+				
+				function hideNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgPlus.src;
+					oTable.style.display = "none";
+				}
+				
+				function nodeIsVisible(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+									break;
+							}
+					return (oTable && oTable.style.display == "block");
+				}
+				
+				function toggleNodeVisibility(Node){
+					if (nodeIsVisible(Node)){
+						hideNode(Node);
+					}else{
+						showNode(Node);
+					}
+				}
+			</script>
+					</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name"><img src="../../media/images/AbstractClass_logo.png"
+														alt="Abstract Class"
+														title="Abstract Class"
+														style="vertical-align: middle"> Asido_Driver</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+							<a href="#sec-descendents">Descendents</a>
+			|											<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Asido abstract driver</p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_class_driver_php.html">/class.driver.php</a> (line <span class="field">19</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+	<a name="sec-descendents"></a>
+	<div class="info-box">
+		<div class="info-box-title">Direct descendents</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+			<span class="disabled">Descendents</span>
+			|												<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+								|															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<table cellpadding="2" cellspacing="0" class="class-table">
+				<tr>
+					<th class="class-table-header">Class</th>
+					<th class="class-table-header">Description</th>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em; white-space: nowrap">
+						<img src="../../media/images/Class.png"
+								 alt=" class"
+								 title=" class"
+								 style="vertical-align: center"/>
+						<a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html">Asido_Driver_GD</a>
+					</td>
+					<td>
+											Asido GD(GD2) driver
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em; white-space: nowrap">
+						<img src="../../media/images/Class.png"
+								 alt=" class"
+								 title=" class"
+								 style="vertical-align: center"/>
+						<a href="../../Asido/Asido.Driver.Imagick_Extension/Asido_Driver_Imagick_Ext.html">Asido_Driver_Imagick_Ext</a>
+					</td>
+					<td>
+											Asido &quot;Imagick&quot; driver (as extension)
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em; white-space: nowrap">
+						<img src="../../media/images/Class.png"
+								 alt=" class"
+								 title=" class"
+								 style="vertical-align: center"/>
+						<a href="../../Asido/Asido.Driver.Magick_Wand/Asido_Driver_Magick_Wand.html">Asido_Driver_Magick_Wand</a>
+					</td>
+					<td>
+											Asido &quot;Magick Wand&quot; driver
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em; white-space: nowrap">
+						<img src="../../media/images/AbstractClass.png"
+								 alt="Abstract class"
+								 title="Abstract class"
+								 style="vertical-align: center"/>
+						<a href="../../Asido/Asido.Driver/Asido_Driver_Shell.html">Asido_Driver_Shell</a>
+					</td>
+					<td>
+											Common file for all &quot;shell&quot; based solutions
+										</td>
+				</tr>
+							</table>
+		</div>
+	</div>
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendants</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+								<div class="var-title">
+					<img src="../../media/images/Variable.png" alt=" " />
+					<span class="var-type">array</span>
+					<a href="#$__mime" title="details" class="var-name">$__mime</a>
+				</div>
+							</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendants</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+								
+				<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#convert" title="details" class="method-name">convert</a>
+											(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$mime_type</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#copy" title="details" class="method-name">copy</a>
+											(<span class="var-type">Asido_Tmp</span>&nbsp;<span class="var-name">&$tmp</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$applied_image</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$x</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$y</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#crop" title="details" class="method-name">crop</a>
+											(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$x</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$y</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$width</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$height</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#flip" title="details" class="method-name">flip</a>
+											(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#flop" title="details" class="method-name">flop</a>
+											(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#frame" title="details" class="method-name">frame</a>
+											(<span class="var-type">Asido_Tmp</span>&nbsp;<span class="var-name">&$tmp</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$width</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$height</span>, [<span class="var-type"><a href="../../Asido/Asido.Core/Asido_Color.html">Asido_Color</a></span>&nbsp;<span class="var-name">$color</span> = <span class="var-default">null</span>])
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">array</span>
+										<a href="#get_supported_types" title="details" class="method-name">get_supported_types</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$mode</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#grayscale" title="details" class="method-name">grayscale</a>
+											(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/AbstractMethod.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#is_compatible" title="details" class="method-name">is_compatible</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#prepare" title="details" class="method-name">prepare</a>
+											(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_Image.html">Asido_Image</a></span>&nbsp;<span class="var-name">&$image</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#resize" title="details" class="method-name">resize</a>
+											(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$width</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$height</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$mode</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#rotate" title="details" class="method-name">rotate</a>
+											(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>, <span class="var-type">float</span>&nbsp;<span class="var-name">$angle</span>, [<span class="var-type"><a href="../../Asido/Asido.Core/Asido_Color.html">Asido_Color</a></span>&nbsp;<span class="var-name">$color</span> = <span class="var-default">null</span>])
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#save" title="details" class="method-name">save</a>
+											(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_Image.html">Asido_Image</a></span>&nbsp;<span class="var-name">&$image</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#supported" title="details" class="method-name">supported</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$mime_type</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$mode</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#watermark" title="details" class="method-name">watermark</a>
+											(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$watermark_image</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$position</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$scalable</span>, <span class="var-type">float</span>&nbsp;<span class="var-name">$scalable_factor</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/AbstractMethod.png" alt=" "/>
+											<span class="method-result"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+										<a href="#__canvas" title="details" class="method-name">__canvas</a>
+											(<span class="var-type">integer</span>&nbsp;<span class="var-name">$width</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$height</span>, <span class="var-type"><a href="../../Asido/Asido.Core/Asido_Color.html">Asido_Color</a></span>&nbsp;<span class="var-name">$color</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/AbstractMethod.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#__copy" title="details" class="method-name">__copy</a>
+											(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp_target</span>, <span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp_source</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$destination_x</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$destination_y</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/AbstractMethod.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#__crop" title="details" class="method-name">__crop</a>
+											(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$x</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$y</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$width</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$height</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/AbstractMethod.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#__destroy_source" title="details" class="method-name">__destroy_source</a>
+											(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/AbstractMethod.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#__destroy_target" title="details" class="method-name">__destroy_target</a>
+											(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/AbstractMethod.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#__flip" title="details" class="method-name">__flip</a>
+											(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/AbstractMethod.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#__flop" title="details" class="method-name">__flop</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">&$tmp</span>, <span class="var-type"><a href="../../Asido/Asido.Core/Asido_Image.html">Asido_Image</a></span>&nbsp;<span class="var-name">&$image</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/AbstractMethod.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#__grayscale" title="details" class="method-name">__grayscale</a>
+											(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/AbstractMethod.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#__open" title="details" class="method-name">__open</a>
+											(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/AbstractMethod.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#__resize" title="details" class="method-name">__resize</a>
+											(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$width</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$height</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/AbstractMethod.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#__rotate" title="details" class="method-name">__rotate</a>
+											(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>, <span class="var-type">float</span>&nbsp;<span class="var-name">$angle</span>, <span class="var-type"><a href="../../Asido/Asido.Core/Asido_Color.html">Asido_Color</a></span>&nbsp;<span class="var-name">$color</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">string</span>
+										<a href="#__tmpfile" title="details" class="method-name">__tmpfile</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/AbstractMethod.png" alt=" "/>
+											<span class="method-result"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+										<a href="#__tmpimage" title="details" class="method-name">__tmpimage</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">&$handler</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$filename</span> = <span class="var-default">null</span>])
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/AbstractMethod.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#__write" title="details" class="method-name">__write</a>
+											(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_Image.html">Asido_Image</a></span>&nbsp;<span class="var-name">&$image</span>)
+									</div>
+							</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="var$__mime" id="$__mime"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<img src="../../media/images/Variable.png" />
+		<span class="var-title">
+			<span class="var-type">array</span>
+			<span class="var-name">$__mime</span>
+			 = <span class="var-default">array(<br /><br />		// support reading<br />		//<br />		'read' =&gt; array(<br />			),// support writing<br />//<br />'write'=&gt;array(),)</span>			(line <span class="line-number">28</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Maps to supported mime types</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#var$__mime">Asido_Driver_GD::$__mime</a>
+								: Maps to supported mime types
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Extension/Asido_Driver_Imagick_Ext.html#var$__mime">Asido_Driver_Imagick_Ext::$__mime</a>
+								: Maps to supported mime types for saving files
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Magick_Wand/Asido_Driver_Magick_Wand.html#var$__mime">Asido_Driver_Magick_Wand::$__mime</a>
+								: Maps to supported mime types for saving files
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Shell/Asido_Driver_Imagick_Shell.html#var$__mime">Asido_Driver_Imagick_Shell::$__mime</a>
+								: Maps to supported mime types for saving files
+							</li>
+				</ul>
+		
+
+</div>
+						
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodconvert" id="convert"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">convert</span> (line <span class="line-number">168</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Convert an image from one file-type to another</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			convert
+		</span>
+					(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$mime_type</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+				<span class="var-name">&$tmp</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$mime_type</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodcopy" id="copy"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">copy</span> (line <span class="line-number">487</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Resize an image by &quot;framing&quot; it with the provided width and height</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			copy
+		</span>
+					(<span class="var-type">Asido_Tmp</span>&nbsp;<span class="var-name">&$tmp</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$applied_image</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$x</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$y</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">Asido_Tmp</span>
+				<span class="var-name">&$tmp</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$applied_image</span><span class="var-description">: filepath to the image that is going to be copied</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$x</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$y</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodcrop" id="crop"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">crop</span> (line <span class="line-number">533</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Crop the image</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			crop
+		</span>
+					(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$x</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$y</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$width</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$height</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+				<span class="var-name">&$tmp</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$x</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$y</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$width</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$height</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodflip" id="flip"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">flip</span> (line <span class="line-number">544</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Vertically mirror (flip) the image</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			flip
+		</span>
+					(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+				<span class="var-name">&$tmp</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodflop" id="flop"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">flop</span> (line <span class="line-number">555</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Horizontally mirror (flop) the image</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			flop
+		</span>
+					(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+				<span class="var-name">&$tmp</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodframe" id="frame"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">frame</span> (line <span class="line-number">415</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Resize an image by &quot;framing&quot; it with the provided width and height</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			frame
+		</span>
+					(<span class="var-type">Asido_Tmp</span>&nbsp;<span class="var-name">&$tmp</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$width</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$height</span>, [<span class="var-type"><a href="../../Asido/Asido.Core/Asido_Color.html">Asido_Color</a></span>&nbsp;<span class="var-name">$color</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">Asido_Tmp</span>
+				<span class="var-name">&$tmp</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$width</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$height</span>			</li>
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_Color.html">Asido_Color</a></span>
+				<span class="var-name">$color</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodget_supported_types" id="get_supported_types"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">get_supported_types</span> (line <span class="line-number">744</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get supported mime-types</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			get_supported_types
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$mode</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$mode</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodgrayscale" id="grayscale"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">grayscale</span> (line <span class="line-number">380</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Make the image greyscale</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			grayscale
+		</span>
+					(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+				<span class="var-name">&$tmp</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodis_compatible" id="is_compatible"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/AbstractMethod.png" />
+		<span class="method-title">is_compatible</span> (line <span class="line-number">50</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Checks whether the environment is compatible with this driver</p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			is_compatible
+		</span>
+				()
+			</div>
+	
+		
+		
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#methodis_compatible">Asido_Driver_GD::is_compatible()</a>
+								: Checks whether the environment is compatible with this driver
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Extension/Asido_Driver_Imagick_Ext.html#methodis_compatible">Asido_Driver_Imagick_Ext::is_compatible()</a>
+								: Checks whether the environment is compatible with this driver
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Magick_Wand/Asido_Driver_Magick_Wand.html#methodis_compatible">Asido_Driver_Magick_Wand::is_compatible()</a>
+								: Checks whether the environment is compatible with this driver
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Shell/Asido_Driver_Imagick_Shell.html#methodis_compatible">Asido_Driver_Imagick_Shell::is_compatible()</a>
+								: Checks whether the environment is compatible with this driver
+							</li>
+				</ul>
+	</div>
+<a name="methodprepare" id="prepare"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">prepare</span> (line <span class="line-number">568</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Prepare an image for processing it</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			prepare
+		</span>
+					(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_Image.html">Asido_Image</a></span>&nbsp;<span class="var-name">&$image</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_Image.html">Asido_Image</a></span>
+				<span class="var-name">&$image</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodresize" id="resize"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">resize</span> (line <span class="line-number">69</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Resize an image</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			resize
+		</span>
+					(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$width</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$height</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$mode</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+				<span class="var-name">&$tmp</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$width</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$height</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$mode</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodrotate" id="rotate"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">rotate</span> (line <span class="line-number">393</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Rotate the image clockwise</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			rotate
+		</span>
+					(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>, <span class="var-type">float</span>&nbsp;<span class="var-name">$angle</span>, [<span class="var-type"><a href="../../Asido/Asido.Core/Asido_Color.html">Asido_Color</a></span>&nbsp;<span class="var-name">$color</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+				<span class="var-name">&$tmp</span>			</li>
+					<li>
+				<span class="var-type">float</span>
+				<span class="var-name">$angle</span>			</li>
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_Color.html">Asido_Color</a></span>
+				<span class="var-name">$color</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodsave" id="save"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">save</span> (line <span class="line-number">596</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Save an image after being processed</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			save
+		</span>
+					(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_Image.html">Asido_Image</a></span>&nbsp;<span class="var-name">&$image</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_Image.html">Asido_Image</a></span>
+				<span class="var-name">&$image</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodsupported" id="supported"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">supported</span> (line <span class="line-number">780</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returnes whether an image format is supported or not</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			supported
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$mime_type</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$mode</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$mime_type</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$mode</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodwatermark" id="watermark"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">watermark</span> (line <span class="line-number">200</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Watermark an image</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			watermark
+		</span>
+					(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$watermark_image</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$position</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$scalable</span>, <span class="var-type">float</span>&nbsp;<span class="var-name">$scalable_factor</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+				<span class="var-name">&$tmp</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$watermark_image</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$position</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$scalable</span>			</li>
+					<li>
+				<span class="var-type">float</span>
+				<span class="var-name">$scalable_factor</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="method__canvas" id="__canvas"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/AbstractMethod.png" />
+		<span class="method-title">__canvas</span> (line <span class="line-number">679</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get canvas</p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+		<span class="method-name">
+			__canvas
+		</span>
+					(<span class="var-type">integer</span>&nbsp;<span class="var-name">$width</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$height</span>, <span class="var-type"><a href="../../Asido/Asido.Core/Asido_Color.html">Asido_Color</a></span>&nbsp;<span class="var-name">$color</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$width</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$height</span>			</li>
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_Color.html">Asido_Color</a></span>
+				<span class="var-name">$color</span>			</li>
+				</ul>
+		
+		
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__canvas">Asido_Driver_GD::__canvas()</a>
+								: Get canvas
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD_Hack.html#method__canvas">Asido_Driver_GD_Hack::__canvas()</a>
+								: Get canvas
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Extension/Asido_Driver_Imagick_Ext.html#method__canvas">Asido_Driver_Imagick_Ext::__canvas()</a>
+								: Get canvas
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Magick_Wand/Asido_Driver_Magick_Wand.html#method__canvas">Asido_Driver_Magick_Wand::__canvas()</a>
+								: Get canvas
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Shell/Asido_Driver_Imagick_Shell.html#method__canvas">Asido_Driver_Imagick_Shell::__canvas()</a>
+								: Get canvas
+							</li>
+				</ul>
+	</div>
+<a name="method__copy" id="__copy"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/AbstractMethod.png" />
+		<span class="method-title">__copy</span> (line <span class="line-number">613</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Copy one image to another</p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			__copy
+		</span>
+					(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp_target</span>, <span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp_source</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$destination_x</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$destination_y</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+				<span class="var-name">&$tmp_target</span>			</li>
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+				<span class="var-name">&$tmp_source</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$destination_x</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$destination_y</span>			</li>
+				</ul>
+		
+		
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__copy">Asido_Driver_GD::__copy()</a>
+								: Copy one image to another
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Extension/Asido_Driver_Imagick_Ext.html#method__copy">Asido_Driver_Imagick_Ext::__copy()</a>
+								: Copy one image to another
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Magick_Wand/Asido_Driver_Magick_Wand.html#method__copy">Asido_Driver_Magick_Wand::__copy()</a>
+								: Copy one image to another
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Shell/Asido_Driver_Imagick_Shell.html#method__copy">Asido_Driver_Imagick_Shell::__copy()</a>
+								: Copy one image to another
+							</li>
+				</ul>
+	</div>
+<a name="method__crop" id="__crop"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/AbstractMethod.png" />
+		<span class="method-title">__crop</span> (line <span class="line-number">698</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Crop the image</p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			__crop
+		</span>
+					(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$x</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$y</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$width</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$height</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+				<span class="var-name">&$tmp</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$x</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$y</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$width</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$height</span>			</li>
+				</ul>
+		
+		
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__crop">Asido_Driver_GD::__crop()</a>
+								: Crop the image
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Extension/Asido_Driver_Imagick_Ext.html#method__crop">Asido_Driver_Imagick_Ext::__crop()</a>
+								: Crop the image
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Magick_Wand/Asido_Driver_Magick_Wand.html#method__crop">Asido_Driver_Magick_Wand::__crop()</a>
+								: Crop the image
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Shell/Asido_Driver_Imagick_Shell.html#method__crop">Asido_Driver_Imagick_Shell::__crop()</a>
+								: Crop the image
+							</li>
+				</ul>
+	</div>
+<a name="method__destroy_source" id="__destroy_source"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/AbstractMethod.png" />
+		<span class="method-title">__destroy_source</span> (line <span class="line-number">858</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Destroy the source for the provided temporary object</p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			__destroy_source
+		</span>
+					(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+				<span class="var-name">&$tmp</span>			</li>
+				</ul>
+		
+		
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__destroy_source">Asido_Driver_GD::__destroy_source()</a>
+								: Destroy the source for the provided temporary object
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD_Hack.html#method__destroy_source">Asido_Driver_GD_Hack::__destroy_source()</a>
+								: Destroy the source for the provided temporary object
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Extension/Asido_Driver_Imagick_Ext.html#method__destroy_source">Asido_Driver_Imagick_Ext::__destroy_source()</a>
+								: Destroy the source for the provided temporary object
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Magick_Wand/Asido_Driver_Magick_Wand.html#method__destroy_source">Asido_Driver_Magick_Wand::__destroy_source()</a>
+								: Destroy the source for the provided temporary object
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver/Asido_Driver_Shell.html#method__destroy_source">Asido_Driver_Shell::__destroy_source()</a>
+								: Destroy the source for the provided temporary object
+							</li>
+				</ul>
+	</div>
+<a name="method__destroy_target" id="__destroy_target"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/AbstractMethod.png" />
+		<span class="method-title">__destroy_target</span> (line <span class="line-number">873</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Destroy the target for the provided temporary object</p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			__destroy_target
+		</span>
+					(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+				<span class="var-name">&$tmp</span>			</li>
+				</ul>
+		
+		
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__destroy_target">Asido_Driver_GD::__destroy_target()</a>
+								: Destroy the target for the provided temporary object
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD_Hack.html#method__destroy_target">Asido_Driver_GD_Hack::__destroy_target()</a>
+								: Destroy the target for the provided temporary object
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Extension/Asido_Driver_Imagick_Ext.html#method__destroy_target">Asido_Driver_Imagick_Ext::__destroy_target()</a>
+								: Destroy the target for the provided temporary object
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Magick_Wand/Asido_Driver_Magick_Wand.html#method__destroy_target">Asido_Driver_Magick_Wand::__destroy_target()</a>
+								: Destroy the target for the provided temporary object
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver/Asido_Driver_Shell.html#method__destroy_target">Asido_Driver_Shell::__destroy_target()</a>
+								: Destroy the target for the provided temporary object
+							</li>
+				</ul>
+	</div>
+<a name="method__flip" id="__flip"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/AbstractMethod.png" />
+		<span class="method-title">__flip</span> (line <span class="line-number">713</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Vertically mirror (flip) the image</p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			__flip
+		</span>
+					(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+				<span class="var-name">&$tmp</span>			</li>
+				</ul>
+		
+		
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__flip">Asido_Driver_GD::__flip()</a>
+								: Vertically mirror (flip) the image: not supported
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD_Hack.html#method__flip">Asido_Driver_GD_Hack::__flip()</a>
+								: Vertically mirror (flip) the image
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Extension/Asido_Driver_Imagick_Ext.html#method__flip">Asido_Driver_Imagick_Ext::__flip()</a>
+								: Vertically mirror (flip) the image
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Magick_Wand/Asido_Driver_Magick_Wand.html#method__flip">Asido_Driver_Magick_Wand::__flip()</a>
+								: Vertically mirror (flip) the image
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Shell/Asido_Driver_Imagick_Shell.html#method__flip">Asido_Driver_Imagick_Shell::__flip()</a>
+								: Vertically mirror (flip) the image
+							</li>
+				</ul>
+	</div>
+<a name="method__flop" id="__flop"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/AbstractMethod.png" />
+		<span class="method-title">__flop</span> (line <span class="line-number">728</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Horizontally mirror (flop) the image</p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			__flop
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">&$tmp</span>, <span class="var-type"><a href="../../Asido/Asido.Core/Asido_Image.html">Asido_Image</a></span>&nbsp;<span class="var-name">&$image</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_Image.html">Asido_Image</a></span>
+				<span class="var-name">&$image</span>			</li>
+				</ul>
+		
+		
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__flop">Asido_Driver_GD::__flop()</a>
+								: Horizontally mirror (flop) the image: not supported
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD_Hack.html#method__flop">Asido_Driver_GD_Hack::__flop()</a>
+								: Horizontally mirror (flop) the image
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Extension/Asido_Driver_Imagick_Ext.html#method__flop">Asido_Driver_Imagick_Ext::__flop()</a>
+								: Horizontally mirror (flop) the image
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Magick_Wand/Asido_Driver_Magick_Wand.html#method__flop">Asido_Driver_Magick_Wand::__flop()</a>
+								: Horizontally mirror (flop) the image
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Shell/Asido_Driver_Imagick_Shell.html#method__flop">Asido_Driver_Imagick_Shell::__flop()</a>
+								: Horizontally mirror (flop) the image
+							</li>
+				</ul>
+	</div>
+<a name="method__grayscale" id="__grayscale"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/AbstractMethod.png" />
+		<span class="method-title">__grayscale</span> (line <span class="line-number">645</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Make the image greyscale</p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			__grayscale
+		</span>
+					(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+				<span class="var-name">&$tmp</span>			</li>
+				</ul>
+		
+		
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__grayscale">Asido_Driver_GD::__grayscale()</a>
+								: Make the image greyscale: supported only for PHP =&gt; 5.* and PHP =&gt; 4.0.1 except for PHP 4.3.11
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD_Hack.html#method__grayscale">Asido_Driver_GD_Hack::__grayscale()</a>
+								: Make the image greyscale
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Extension/Asido_Driver_Imagick_Ext.html#method__grayscale">Asido_Driver_Imagick_Ext::__grayscale()</a>
+								: Make the image greyscale: not supported
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Extension/Asido_Driver_Imagick_Ext_Hack.html#method__grayscale">Asido_Driver_Imagick_Ext_Hack::__grayscale()</a>
+								: Make the image greyscale: not supported
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Magick_Wand/Asido_Driver_Magick_Wand.html#method__grayscale">Asido_Driver_Magick_Wand::__grayscale()</a>
+								: Make the image greyscale
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Shell/Asido_Driver_Imagick_Shell.html#method__grayscale">Asido_Driver_Imagick_Shell::__grayscale()</a>
+								: Make the image greyscale: not supported
+							</li>
+				</ul>
+	</div>
+<a name="method__open" id="__open"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/AbstractMethod.png" />
+		<span class="method-title">__open</span> (line <span class="line-number">797</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Open the source and target image for processing it</p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			__open
+		</span>
+					(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+				<span class="var-name">&$tmp</span>			</li>
+				</ul>
+		
+		
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__open">Asido_Driver_GD::__open()</a>
+								: Open the source and target image for processing it
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD_Hack.html#method__open">Asido_Driver_GD_Hack::__open()</a>
+								: Open the source and target image for processing it
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Extension/Asido_Driver_Imagick_Ext.html#method__open">Asido_Driver_Imagick_Ext::__open()</a>
+								: Open the source and target image for processing it
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Magick_Wand/Asido_Driver_Magick_Wand.html#method__open">Asido_Driver_Magick_Wand::__open()</a>
+								: Open the source and target image for processing it
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Shell/Asido_Driver_Imagick_Shell.html#method__open">Asido_Driver_Imagick_Shell::__open()</a>
+								: Open the source and target image for processing it
+							</li>
+				</ul>
+	</div>
+<a name="method__resize" id="__resize"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/AbstractMethod.png" />
+		<span class="method-title">__resize</span> (line <span class="line-number">630</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Do the actual resize of an image</p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			__resize
+		</span>
+					(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$width</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$height</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+				<span class="var-name">&$tmp</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$width</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$height</span>			</li>
+				</ul>
+		
+		
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__resize">Asido_Driver_GD::__resize()</a>
+								: Do the actual resize of an image
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Extension/Asido_Driver_Imagick_Ext.html#method__resize">Asido_Driver_Imagick_Ext::__resize()</a>
+								: Do the actual resize of an image
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Magick_Wand/Asido_Driver_Magick_Wand.html#method__resize">Asido_Driver_Magick_Wand::__resize()</a>
+								: Do the actual resize of an image
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Shell/Asido_Driver_Imagick_Shell.html#method__resize">Asido_Driver_Imagick_Shell::__resize()</a>
+								: Do the actual resize of an image
+							</li>
+				</ul>
+	</div>
+<a name="method__rotate" id="__rotate"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/AbstractMethod.png" />
+		<span class="method-title">__rotate</span> (line <span class="line-number">662</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Rotate the image clockwise</p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			__rotate
+		</span>
+					(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>, <span class="var-type">float</span>&nbsp;<span class="var-name">$angle</span>, <span class="var-type"><a href="../../Asido/Asido.Core/Asido_Color.html">Asido_Color</a></span>&nbsp;<span class="var-name">$color</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+				<span class="var-name">&$tmp</span>			</li>
+					<li>
+				<span class="var-type">float</span>
+				<span class="var-name">$angle</span>			</li>
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_Color.html">Asido_Color</a></span>
+				<span class="var-name">$color</span>			</li>
+				</ul>
+		
+		
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__rotate">Asido_Driver_GD::__rotate()</a>
+								: Rotate the image clockwise
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Extension/Asido_Driver_Imagick_Ext.html#method__rotate">Asido_Driver_Imagick_Ext::__rotate()</a>
+								: Rotate the image clockwise: only rectangular rotates are supported (90,180,270)
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Extension/Asido_Driver_Imagick_Ext_Hack.html#method__rotate">Asido_Driver_Imagick_Ext_Hack::__rotate()</a>
+								: Rotate the image clockwise
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Magick_Wand/Asido_Driver_Magick_Wand.html#method__rotate">Asido_Driver_Magick_Wand::__rotate()</a>
+								: Rotate the image clockwise
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Shell/Asido_Driver_Imagick_Shell.html#method__rotate">Asido_Driver_Imagick_Shell::__rotate()</a>
+								: Rotate the image clockwise: not supported
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Shell/Asido_Driver_Imagick_Shell_Hack.html#method__rotate">Asido_Driver_Imagick_Shell_Hack::__rotate()</a>
+								: Rotate the image clockwise
+							</li>
+				</ul>
+	</div>
+<a name="method__tmpfile" id="__tmpfile"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">__tmpfile</span> (line <span class="line-number">826</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return a name for a temporary file</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			__tmpfile
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="method__tmpimage" id="__tmpimage"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/AbstractMethod.png" />
+		<span class="method-title">__tmpimage</span> (line <span class="line-number">841</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Generate a temporary object for the provided argument</p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+		<span class="method-name">
+			__tmpimage
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">&$handler</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$filename</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">&$handler</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$filename</span><span class="var-description">: the filename will be automatically generated     on the fly, but if you want you can use the filename provided by     this argument</span>			</li>
+				</ul>
+		
+		
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__tmpimage">Asido_Driver_GD::__tmpimage()</a>
+								: Generate a temporary object for the provided argument
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD_Hack.html#method__tmpimage">Asido_Driver_GD_Hack::__tmpimage()</a>
+								: Generate a temporary object for the provided argument
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Extension/Asido_Driver_Imagick_Ext.html#method__tmpimage">Asido_Driver_Imagick_Ext::__tmpimage()</a>
+								: Generate a temporary object for the provided argument
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Magick_Wand/Asido_Driver_Magick_Wand.html#method__tmpimage">Asido_Driver_Magick_Wand::__tmpimage()</a>
+								: Generate a temporary object for the provided argument
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Shell/Asido_Driver_Imagick_Shell.html#method__tmpimage">Asido_Driver_Imagick_Shell::__tmpimage()</a>
+								: Generate a temporary object for the provided argument
+							</li>
+				</ul>
+	</div>
+<a name="method__write" id="__write"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/AbstractMethod.png" />
+		<span class="method-title">__write</span> (line <span class="line-number">812</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Write the image after being processed</p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			__write
+		</span>
+					(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_Image.html">Asido_Image</a></span>&nbsp;<span class="var-name">&$image</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_Image.html">Asido_Image</a></span>
+				<span class="var-name">&$image</span>			</li>
+				</ul>
+		
+		
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__write">Asido_Driver_GD::__write()</a>
+								: Write the image after being processed
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD_Hack.html#method__write">Asido_Driver_GD_Hack::__write()</a>
+								: Write the image after being processed
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Extension/Asido_Driver_Imagick_Ext.html#method__write">Asido_Driver_Imagick_Ext::__write()</a>
+								: Write the image after being processed
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Magick_Wand/Asido_Driver_Magick_Wand.html#method__write">Asido_Driver_Magick_Wand::__write()</a>
+								: Write the image after being processed
+							</li>
+					<li>
+				<a href="../../Asido/Asido.Driver.Imagick_Shell/Asido_Driver_Imagick_Shell.html#method__write">Asido_Driver_Imagick_Shell::__write()</a>
+								: Write the image after being processed
+							</li>
+				</ul>
+	</div>
+						
+		</div>
+	</div>
+
+	
+	<p class="notes" id="credit">
+		Documentation generated on Mon, 09 Apr 2007 23:57:07 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.3.0RC4</a>
+	</p>
+	</div></body>
+</html>

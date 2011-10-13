@@ -1,0 +1,31 @@
+
+div.status
+{
+	border-bottom-left-radius: 10px;
+	-ms-border-bottom-left-radius: 10px;
+	-moz-border-bottom-left-radius: 10px;
+	-webkit-border-bottom-left-radius: 10px;
+}
+
+#footer
+{
+	border-top: solid 1px #999;
+}
+
+#options
+{
+	border-bottom-left-radius: 20px;
+	-ms-border-bottom-left-radius: 20px;
+	-moz-border-bottom-left-radius: 20px;
+	-webkit-border-bottom-left-radius: 20px;
+}
+
+a.marked-for-deletion
+{
+	border: none;
+}
+a.marked-for-deletion img, a.not-marked-for-deletion img
+{
+	border-style: solid;
+	border-width: 2px;
+}

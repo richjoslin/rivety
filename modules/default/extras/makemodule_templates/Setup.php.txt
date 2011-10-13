@@ -1,0 +1,56 @@
+<?php
+
+/*
+	Class: MODULE_NAME_UC_Plugins_Setup
+
+	About: Author
+		Communitas Module Generator
+
+	About: License
+		<http://communit.as/docs/license>
+*/
+class MODULE_NAME_UC_Plugins_Setup {
+
+	/* Group: Instance Methods */
+
+	/*
+		Function: install
+	*/
+	function install($params) {
+		$script = new Cts_Db_Script("MODULE_NAME_LOWER", "install");
+		if (!$script) {
+			$params['errors'] = $script->errors;
+		}
+		Cts_Cache::removeByTags(array('navigation'));
+		return $params;
+	}
+
+	/*
+		Function: uninstall
+	*/
+	function uninstall($params) {
+		$script = new Cts_Db_Script("MODULE_NAME_LOWER", "uninstall");
+		if (!$script) {
+			$params['errors'] = $script->errors;
+		}
+		Cts_Cache::removeByTags(array('navigation'));
+		return $params;
+	}
+
+	/*
+		Function: enable
+	*/
+	function enable($params) {
+		Cts_Cache::removeByTags(array('navigation'));
+		return $params;
+	}
+
+	/*
+		Function: disable
+	*/
+	function disable($params) {
+		Cts_Cache::removeByTags(array('navigation'));
+		return $params;
+	}
+
+}

@@ -1,0 +1,20 @@
+<?php
+
+/*
+	Class: MODULE_NAME_UC_Db_Table
+
+	About: Author
+		Communitas Module Generator
+
+	About: License
+		<http://communit.as/docs/license>
+
+	About: See Also
+		- <Cts_Db_Table_Abstract>
+		- Zend_Db_Table
+*/
+abstract class MODULE_NAME_UC_Db_Table extends Cts_Db_Table_Abstract {
+
+	public $_module_id = "MODULE_NAME_LOWER";
+
+}

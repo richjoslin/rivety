@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>File Source for example_04.php</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+											</head>
+		<body>
+						<h1>Source for file example_04.php</h1>
+<p>Documentation is available at <a href="../Asido.Examples/Asido.Examples.Resize/_examples_resize_example_04_php.html">example_04.php</a></p>
+<div class="src-code">
+<pre><ol><li><a name="a1"></a><span class="src-php">&lt;?php</span></li>
+<li><a name="a2"></a><span class="src-doc">/**</span></li>
+<li><a name="a3"></a><span class="src-doc">* Resize Example #04</span></li>
+<li><a name="a4"></a><span class="src-doc">*</span></li>
+<li><a name="a5"></a><span class="src-doc">* This example shows the `fit` resize, which attempts to resize an image</span></li>
+<li><a name="a6"></a><span class="src-doc">* (proportionally) only when it is bigger than a frame set by the provided width</span></li>
+<li><a name="a7"></a><span class="src-doc">* and height - when it is do bigger, it is forced to &quot;fit&quot; inside that frame.</span></li>
+<li><a name="a8"></a><span class="src-doc">*</span></li>
+<li><a name="a9"></a><span class="src-doc">* </span><span class="src-doc-coretag">@filesource</span></li>
+<li><a name="a10"></a><span class="src-doc">* </span><span class="src-doc-coretag">@package</span><span class="src-doc"> Asido.Examples</span></li>
+<li><a name="a11"></a><span class="src-doc">* </span><span class="src-doc-coretag">@subpackage</span><span class="src-doc"> Asido.Examples.Resize</span></li>
+<li><a name="a12"></a><span class="src-doc">*/</span></li>
+<li><a name="a13"></a>&nbsp;</li>
+<li><a name="a14"></a><span class="src-comm">/////////////////////////////////////////////////////////////////////////////</span></li>
+<li><a name="a15"></a>&nbsp;</li>
+<li><a name="a16"></a><span class="src-doc">/**</span></li>
+<li><a name="a17"></a><span class="src-doc">* Include the main Asido class</span></li>
+<li><a name="a18"></a><span class="src-doc">*/</span></li>
+<li><a name="a19"></a><span class="src-inc">include</span><span class="src-sym">(</span><span class="src-str">'./../../class.asido.php'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a20"></a>&nbsp;</li>
+<li><a name="a21"></a><span class="src-doc">/**</span></li>
+<li><a name="a22"></a><span class="src-doc">* Set the correct driver: this depends on your local environment</span></li>
+<li><a name="a23"></a><span class="src-doc">*/</span></li>
+<li><a name="a24"></a><span class="src-id"><a href="../Asido/Asido.Core/Asido.html">Asido</a></span><span class="src-sym">::</span><span class="src-id">Driver</span><span class="src-sym">(</span><span class="src-str">'gd'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a25"></a>&nbsp;</li>
+<li><a name="a26"></a><span class="src-doc">/**</span></li>
+<li><a name="a27"></a><span class="src-doc">* Create an Asido_Image object and provide the name of the source</span></li>
+<li><a name="a28"></a><span class="src-doc">* image, and the name with which you want to save the file</span></li>
+<li><a name="a29"></a><span class="src-doc">*/</span></li>
+<li><a name="a30"></a><span class="src-var">$i1 </span>= <span class="src-id"><a href="../Asido/Asido.Core/Asido.html">Asido</a></span><span class="src-sym">::</span><span class="src-id">Image</span><span class="src-sym">(</span><span class="src-str">'example.png'</span><span class="src-sym">, </span><span class="src-str">'result_04_1.png'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a31"></a><span class="src-var">$i2 </span>= <span class="src-id"><a href="../Asido/Asido.Core/Asido.html">Asido</a></span><span class="src-sym">::</span><span class="src-id">Image</span><span class="src-sym">(</span><span class="src-str">'example.png'</span><span class="src-sym">, </span><span class="src-str">'result_04_2.png'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a32"></a>&nbsp;</li>
+<li><a name="a33"></a><span class="src-doc">/**</span></li>
+<li><a name="a34"></a><span class="src-doc">* Resize the image by fitting it inside the 800x800 frame: in</span></li>
+<li><a name="a35"></a><span class="src-doc">* fact it will not be resized because it is smaller</span></li>
+<li><a name="a36"></a><span class="src-doc">*/</span></li>
+<li><a name="a37"></a><span class="src-id"><a href="../Asido/Asido.Core/Asido.html">Asido</a></span><span class="src-sym">::</span><span class="src-id">Fit</span><span class="src-sym">(</span><span class="src-var">$i1</span><span class="src-sym">, </span><span class="src-num">800</span><span class="src-sym">, </span><span class="src-num">800</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a38"></a>&nbsp;</li>
+<li><a name="a39"></a><span class="src-doc">/**</span></li>
+<li><a name="a40"></a><span class="src-doc">* Resize the image by fitting it inside the 400x400 frame: the image</span></li>
+<li><a name="a41"></a><span class="src-doc">* will do be resized by making it fit inside the 400x400 &quot;mold&quot;</span></li>
+<li><a name="a42"></a><span class="src-doc">*/</span></li>
+<li><a name="a43"></a><span class="src-id"><a href="../Asido/Asido.Core/Asido.html">Asido</a></span><span class="src-sym">::</span><span class="src-id">Fit</span><span class="src-sym">(</span><span class="src-var">$i2</span><span class="src-sym">, </span><span class="src-num">400</span><span class="src-sym">, </span><span class="src-num">400</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a44"></a>&nbsp;</li>
+<li><a name="a45"></a><span class="src-doc">/**</span></li>
+<li><a name="a46"></a><span class="src-doc">* Save the result</span></li>
+<li><a name="a47"></a><span class="src-doc">*/</span></li>
+<li><a name="a48"></a><span class="src-var">$i1</span><span class="src-sym">-&gt;</span><span class="src-id">Save</span><span class="src-sym">(</span><span class="src-id"><a href="../Asido/Asido.Core/_class_asido_php.html#defineASIDO_OVERWRITE_ENABLED">ASIDO_OVERWRITE_ENABLED</a></span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a49"></a><span class="src-var">$i2</span><span class="src-sym">-&gt;</span><span class="src-id">Save</span><span class="src-sym">(</span><span class="src-id"><a href="../Asido/Asido.Core/_class_asido_php.html#defineASIDO_OVERWRITE_ENABLED">ASIDO_OVERWRITE_ENABLED</a></span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a50"></a>&nbsp;</li>
+<li><a name="a51"></a><span class="src-comm">/////////////////////////////////////////////////////////////////////////////</span></li>
+<li><a name="a52"></a>&nbsp;</li>
+<li><a name="a53"></a><span class="src-php">?&gt;</span></li>
+</ol></pre>
+</div>
+	<p class="notes" id="credit">
+		Documentation generated on Mon, 09 Apr 2007 23:57:11 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.3.0RC4</a>
+	</p>
+	</body>
+</html>

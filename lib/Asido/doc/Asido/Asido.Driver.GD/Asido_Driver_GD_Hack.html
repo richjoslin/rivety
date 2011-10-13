@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>Docs For Class Asido_Driver_GD_Hack</title>
+			<link rel="stylesheet" href="../../media/stylesheet.css" />
+						<script src="../../media/lib/classTree.js"></script>
+												<script language="javascript" type="text/javascript">
+				var imgPlus = new Image();
+				var imgMinus = new Image();
+				imgPlus.src = "../../media/images/plus.png";
+				imgMinus.src = "../../media/images/minus.png";
+				
+				function showNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgMinus.src;
+					oTable.style.display = "block";
+				}
+				
+				function hideNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgPlus.src;
+					oTable.style.display = "none";
+				}
+				
+				function nodeIsVisible(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+									break;
+							}
+					return (oTable && oTable.style.display == "block");
+				}
+				
+				function toggleNodeVisibility(Node){
+					if (nodeIsVisible(Node)){
+						hideNode(Node);
+					}else{
+						showNode(Node);
+					}
+				}
+			</script>
+					</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name"><img src="../../media/images/Class_logo.png"
+														alt=" Class"
+														title=" Class"
+														style="vertical-align: middle"> Asido_Driver_GD_Hack</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-vars">Vars</a>
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Asido GD(GD2) driver with some of the unsupported methods hacked via some work-arounds.</p>
+		<p class="notes">
+			Located in <a class="field" href="_class_driver_gd_hack_php.html">/class.driver.gd_hack.php</a> (line <span class="field">25</span>)
+		</p>
+		
+				
+		<pre><a href="../../Asido/Asido.Driver/Asido_Driver.html">Asido_Driver</a>
+   |
+   --<a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html">Asido_Driver_GD</a>
+      |
+      --Asido_Driver_GD_Hack</pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-vars">Vars</a>
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+								
+				<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+										<a href="#__canvas" title="details" class="method-name">__canvas</a>
+											(<span class="var-type">integer</span>&nbsp;<span class="var-name">$width</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$height</span>, <span class="var-type"><a href="../../Asido/Asido.Core/Asido_Color.html">Asido_Color</a></span>&nbsp;<span class="var-name">&$color</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/AbstractMethod.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#__destroy_source" title="details" class="method-name">__destroy_source</a>
+											(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/AbstractMethod.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#__destroy_target" title="details" class="method-name">__destroy_target</a>
+											(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#__flip" title="details" class="method-name">__flip</a>
+											(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#__flop" title="details" class="method-name">__flop</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">&$tmp</span>, <span class="var-type"><a href="../../Asido/Asido.Core/Asido_Image.html">Asido_Image</a></span>&nbsp;<span class="var-name">&$image</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#__grayscale" title="details" class="method-name">__grayscale</a>
+											(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#__open" title="details" class="method-name">__open</a>
+											(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+										<a href="#__tmpimage" title="details" class="method-name">__tmpimage</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">&$handler</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$filename</span> = <span class="var-default">null</span>])
+									</div>
+								
+				<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">boolean</span>
+										<a href="#__write" title="details" class="method-name">__write</a>
+											(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+									</div>
+							</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+										<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html">Asido_Driver_GD</a></span></p>
+					<blockquote>
+													<img src="../../media/images/Variable.png" />
+							<span class="var-title">
+								<span class="var-name"><a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#var$__mime">Asido_Driver_GD::$__mime</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-vars">Vars</a>
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="method__canvas" id="__canvas"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">__canvas</span> (line <span class="line-number">138</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get canvas</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+		<span class="method-name">
+			__canvas
+		</span>
+					(<span class="var-type">integer</span>&nbsp;<span class="var-name">$width</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$height</span>, <span class="var-type"><a href="../../Asido/Asido.Core/Asido_Color.html">Asido_Color</a></span>&nbsp;<span class="var-name">&$color</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$width</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$height</span>			</li>
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_Color.html">Asido_Color</a></span>
+				<span class="var-name">&$color</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__canvas">Asido_Driver_GD::__canvas()</a></dt>
+						<dd>Get canvas</dd>
+					</dl>
+		
+	</div>
+<a name="method__destroy_source" id="__destroy_source"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/AbstractMethod.png" />
+		<span class="method-title">__destroy_source</span> (line <span class="line-number">387</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Destroy the source for the provided temporary object</p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			__destroy_source
+		</span>
+					(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+				<span class="var-name">&$tmp</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__destroy_source">Asido_Driver_GD::__destroy_source()</a></dt>
+						<dd>Destroy the source for the provided temporary object</dd>
+					</dl>
+		
+	</div>
+<a name="method__destroy_target" id="__destroy_target"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/AbstractMethod.png" />
+		<span class="method-title">__destroy_target</span> (line <span class="line-number">399</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Destroy the target for the provided temporary object</p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			__destroy_target
+		</span>
+					(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+				<span class="var-name">&$tmp</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__destroy_target">Asido_Driver_GD::__destroy_target()</a></dt>
+						<dd>Destroy the target for the provided temporary object</dd>
+					</dl>
+		
+	</div>
+<a name="method__flip" id="__flip"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">__flip</span> (line <span class="line-number">77</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Vertically mirror (flip) the image</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			__flip
+		</span>
+					(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+				<span class="var-name">&$tmp</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__flip">Asido_Driver_GD::__flip()</a></dt>
+						<dd>Vertically mirror (flip) the image: not supported</dd>
+					</dl>
+		
+	</div>
+<a name="method__flop" id="__flop"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">__flop</span> (line <span class="line-number">105</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Horizontally mirror (flop) the image</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			__flop
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">&$tmp</span>, <span class="var-type"><a href="../../Asido/Asido.Core/Asido_Image.html">Asido_Image</a></span>&nbsp;<span class="var-name">&$image</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_Image.html">Asido_Image</a></span>
+				<span class="var-name">&$image</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__flop">Asido_Driver_GD::__flop()</a></dt>
+						<dd>Horizontally mirror (flop) the image: not supported</dd>
+					</dl>
+		
+	</div>
+<a name="method__grayscale" id="__grayscale"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">__grayscale</span> (line <span class="line-number">36</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Make the image greyscale</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			__grayscale
+		</span>
+					(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+				<span class="var-name">&$tmp</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__grayscale">Asido_Driver_GD::__grayscale()</a></dt>
+						<dd>Make the image greyscale: supported only for PHP =&gt; 5.* and PHP =&gt; 4.0.1 except for PHP 4.3.11</dd>
+					</dl>
+		
+	</div>
+<a name="method__open" id="__open"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">__open</span> (line <span class="line-number">189</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Open the source and target image for processing it</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			__open
+		</span>
+					(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+				<span class="var-name">&$tmp</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__open">Asido_Driver_GD::__open()</a></dt>
+						<dd>Open the source and target image for processing it</dd>
+					</dl>
+		
+	</div>
+<a name="method__tmpimage" id="__tmpimage"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">__tmpimage</span> (line <span class="line-number">163</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Generate a temporary object for the provided argument</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+		<span class="method-name">
+			__tmpimage
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">&$handler</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$filename</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">&$handler</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$filename</span><span class="var-description">: the filename will be automatically generated     on the fly, but if you want you can use the filename provided by     this argument</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__tmpimage">Asido_Driver_GD::__tmpimage()</a></dt>
+						<dd>Generate a temporary object for the provided argument</dd>
+					</dl>
+		
+	</div>
+<a name="method__write" id="__write"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">__write</span> (line <span class="line-number">334</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Write the image after being processed</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			__write
+		</span>
+					(<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>&nbsp;<span class="var-name">&$tmp</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Asido/Asido.Core/Asido_TMP.html">Asido_TMP</a></span>
+				<span class="var-name">&$tmp</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__write">Asido_Driver_GD::__write()</a></dt>
+						<dd>Write the image after being processed</dd>
+					</dl>
+		
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html">Asido_Driver_GD</a></span></p>
+					<blockquote>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#methodis_compatible">Asido_Driver_GD::is_compatible()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__canvas">Asido_Driver_GD::__canvas()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__copy">Asido_Driver_GD::__copy()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__crop">Asido_Driver_GD::__crop()</a></span><br>
+													<img src="../../media/images/AbstractMethod.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__destroy_source">Asido_Driver_GD::__destroy_source()</a></span><br>
+													<img src="../../media/images/AbstractMethod.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__destroy_target">Asido_Driver_GD::__destroy_target()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__flip">Asido_Driver_GD::__flip()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__flop">Asido_Driver_GD::__flop()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__grayscale">Asido_Driver_GD::__grayscale()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__open">Asido_Driver_GD::__open()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__resize">Asido_Driver_GD::__resize()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__rotate">Asido_Driver_GD::__rotate()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__tmpimage">Asido_Driver_GD::__tmpimage()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver.GD/Asido_Driver_GD.html#method__write">Asido_Driver_GD::__write()</a></span><br>
+											</blockquote>
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../../Asido/Asido.Driver/Asido_Driver.html">Asido_Driver</a></span></p>
+					<blockquote>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#methodconvert">Asido_Driver::convert()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#methodcopy">Asido_Driver::copy()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#methodcrop">Asido_Driver::crop()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#methodflip">Asido_Driver::flip()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#methodflop">Asido_Driver::flop()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#methodframe">Asido_Driver::frame()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#methodget_supported_types">Asido_Driver::get_supported_types()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#methodgrayscale">Asido_Driver::grayscale()</a></span><br>
+													<img src="../../media/images/AbstractMethod.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#methodis_compatible">Asido_Driver::is_compatible()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#methodprepare">Asido_Driver::prepare()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#methodresize">Asido_Driver::resize()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#methodrotate">Asido_Driver::rotate()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#methodsave">Asido_Driver::save()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#methodsupported">Asido_Driver::supported()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#methodwatermark">Asido_Driver::watermark()</a></span><br>
+													<img src="../../media/images/AbstractMethod.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#method__canvas">Asido_Driver::__canvas()</a></span><br>
+													<img src="../../media/images/AbstractMethod.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#method__copy">Asido_Driver::__copy()</a></span><br>
+													<img src="../../media/images/AbstractMethod.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#method__crop">Asido_Driver::__crop()</a></span><br>
+													<img src="../../media/images/AbstractMethod.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#method__destroy_source">Asido_Driver::__destroy_source()</a></span><br>
+													<img src="../../media/images/AbstractMethod.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#method__destroy_target">Asido_Driver::__destroy_target()</a></span><br>
+													<img src="../../media/images/AbstractMethod.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#method__flip">Asido_Driver::__flip()</a></span><br>
+													<img src="../../media/images/AbstractMethod.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#method__flop">Asido_Driver::__flop()</a></span><br>
+													<img src="../../media/images/AbstractMethod.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#method__grayscale">Asido_Driver::__grayscale()</a></span><br>
+													<img src="../../media/images/AbstractMethod.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#method__open">Asido_Driver::__open()</a></span><br>
+													<img src="../../media/images/AbstractMethod.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#method__resize">Asido_Driver::__resize()</a></span><br>
+													<img src="../../media/images/AbstractMethod.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#method__rotate">Asido_Driver::__rotate()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#method__tmpfile">Asido_Driver::__tmpfile()</a></span><br>
+													<img src="../../media/images/AbstractMethod.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#method__tmpimage">Asido_Driver::__tmpimage()</a></span><br>
+													<img src="../../media/images/AbstractMethod.png" alt=" "/>
+							<span class="method-name"><a href="../../Asido/Asido.Driver/Asido_Driver.html#method__write">Asido_Driver::__write()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+
+	
+	<p class="notes" id="credit">
+		Documentation generated on Mon, 09 Apr 2007 23:57:03 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.3.0RC4</a>
+	</p>
+	</div></body>
+</html>

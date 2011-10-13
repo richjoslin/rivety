@@ -1,0 +1,4 @@
+id,recipe_id,sort_key,title,photo,body,created,modified
+1,1,10,"Step 1",dfgdfg.jpg,"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","2011-06-30 04:48:11","2011-06-30 04:48:11"
+2,1,30,"Step Two",sdfsdf.jpg,"This is another step. This is another step. This is another step. This is another step. This is another step. This is another step. This is another step. This is another step. This is another step. This is another step. This is another step.","2011-06-30 04:48:11","2011-06-30 04:48:11"
+3,1,20,"step 1 point five",sdfsdfsdf,<p>sdfgsdfgsdfg</p>,"0000-00-00 00:00:00","0000-00-00 00:00:00"

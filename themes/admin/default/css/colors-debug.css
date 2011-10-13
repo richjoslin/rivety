@@ -1,0 +1,11 @@
+
+body                { background: #dfd; } /* light green   */
+#main               { background: #fdd; } /* light red     */
+#header             { background: #fdf; } /* light fuschia */
+#content            { background: #ddf; } /* light blue    */
+#options            { background: #ffd; } /* light yellow  */
+#main-column        { background: #eff; } /* light teal    */
+#footer             { background: #fdf; } /* light fuschia */
+form div.form-field { background: #ff0; } /* yellow */
+
+div.status          { background: Black; color: White; }

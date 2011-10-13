@@ -1,0 +1,22 @@
+[general]
+name        = MODULE_NAME_UC
+version     = 0.1
+description = This module has been auto-generated.
+author      = Communitas Module Generator
+url         = http://communit.as
+
+[lib_versions]
+zf     = 1.6.2
+smarty = 2.6.19
+asido  = 0.0.0.1
+
+[database_versions]
+MODULE_NAME_LOWER = 0
+
+[plugins]
+filter.MODULE_NAME_LOWER_install   = MODULE_NAME_UC_Plugins_Setup::install
+filter.MODULE_NAME_LOWER_uninstall = MODULE_NAME_UC_Plugins_Setup::uninstall
+filter.MODULE_NAME_LOWER_enable    = MODULE_NAME_UC_Plugins_Setup::enable
+filter.MODULE_NAME_LOWER_disable   = MODULE_NAME_UC_Plugins_Setup::disable
+
+[settings]

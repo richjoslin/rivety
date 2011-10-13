@@ -1,0 +1,76 @@
+
+*
+{
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+a, a:visited, a:active
+{
+	text-decoration: none;
+}
+a:hover
+{
+	text-decoration: underline;
+}
+
+#footer
+{
+	font-size: 11px;
+	text-align: right;
+}
+
+th
+{
+	text-align: left;
+}
+
+td.center, th.center
+{
+	text-align: center;
+}
+
+#main-column h3
+{
+	font-size: 28px;
+	font-weight: normal;
+}
+
+#options
+{
+	text-align: right;
+}
+#options h3
+{
+	font-size: 24px;
+	font-weight: normal;
+}
+#options li
+{
+	font-size: 14px;
+}
+
+div.status
+{
+	text-align: center;
+}
+
+ul.warnings
+{
+	font-size: 12px;
+}
+
+div.error-list li
+{
+	font-size: 14px;
+	text-align: center;
+}
+
+li.marked-for-deletion span
+{
+	text-decoration: line-through;
+}
+
+div.cms-accordion h5
+{
+	font-size: 16px;
+}
