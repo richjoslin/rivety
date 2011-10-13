@@ -5,7 +5,7 @@
 		<title>{$title_prefix}{if isset($pageTitle)} | {$pageTitle}{/if}</title>
 		<link type="text/css" rel="stylesheet" href="{$admin_theme_url}/css/screen.css" />
 		<link rel="stylesheet" type="text/css" href="{$admin_theme_url}/js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
-		<link rel="stylesheet" type="text/css" href="{$admin_theme_url}/css/chosen/chosen.css" media="screen" />
+		<!-- <link rel="stylesheet" type="text/css" href="{$admin_theme_url}/css/chosen/chosen.css" media="screen" /> -->
 		<link rel="stylesheet" type="text/css" href="{$admin_theme_url}/css/jHtmlArea/jHtmlArea.css" media="screen" />
 		{include_css urls=$css_urls}
 	</head>

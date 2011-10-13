@@ -22,7 +22,7 @@ abstract class Cts_Controller_Action_Abstract extends Zend_Controller_Action {
 	protected $_theme_locations;
 
 	/*
-		Variable: 
+		Variable:
 	*/
 	protected $_debug_mode;
 
@@ -68,7 +68,7 @@ abstract class Cts_Controller_Action_Abstract extends Zend_Controller_Action {
 			view_states - An array of key value pairs (stored in the session) representing the state of certain pages.
 				For instance, the last time you viewed the list of users, you were on page 3.
 						isAdminController - a boolean that specifies if this is an admin controller.
-			module_xxxx - If module xxxx is enabled, this will be true. If it's not, this won't exist.						 
+			module_xxxx - If module xxxx is enabled, this will be true. If it's not, this won't exist.
 
 		Plugin Hooks:
 			- *controller_init* (filter) - Allows you to perform additional actions just before the init method terminates.
@@ -82,11 +82,11 @@ abstract class Cts_Controller_Action_Abstract extends Zend_Controller_Action {
 		$modules_table = new Modules();
 		$roles_table = new Roles();
 		$enabled_modules = $modules_table->getEnabledModules();
-		
+
 		foreach ($enabled_modules as $enabled_module) {
 			$this->view->{"module_".$enabled_module} = true;
 		}
-		
+
 		if (!empty($_SERVER['HTTPS'])) {
 			$this->view->is_ssl = true;
 			$this->_is_ssl = true;
@@ -94,14 +94,14 @@ abstract class Cts_Controller_Action_Abstract extends Zend_Controller_Action {
 			$this->view->is_ssl = false;
 			$this->_is_ssl = false;
 		}
-		
+
 		$this->_uri = $_SERVER['REQUEST_URI'];
 		$this->_host_id = Zend_Registry::get('host_id');
 		$this->view->host_id = $this->_host_id;
 		$this->view->session_id = Zend_Session::getId();
 		$this->view->site_url = Cts_Registry::get('site_url');
 		$this->view->site_name = Cts_Registry::get('site_name');
-		$this->registry = Zend_Registry::getInstance();		
+		$this->registry = Zend_Registry::getInstance();
 		$this->session = new Zend_Session_Namespace('Default');
 
 		$this->_debug_mode = ($this->_request->has('debug') && $this->_request->debug == 'dump');
@@ -130,24 +130,24 @@ abstract class Cts_Controller_Action_Abstract extends Zend_Controller_Action {
 			$this->view->loggedInRoleIds = $loggedInRoleIds;
 
 			foreach ($loggedInRoleIds as $role_id) {
-				$role = $roles_table->fetchRow('id = '.$role_id);			
+				$role = $roles_table->fetchRow('id = '.$role_id);
 				if ((boolean)$role->isadmin) {
 					$this->view->isAdmin = true;
 					$this->_identity->isAdmin = true;
 				}
 			}
-			
+
 		} else {
 			$this->_identity = null;
 			$this->view->isLoggedIn = false;
 		}
 		$appNamespace = new Zend_Session_Namespace('Cts_Temp');
 		$this->view->last_login = $appNamespace->last_login;
-		
+
 		$this->_cts_plugin = Cts_Plugin::getInstance();
 
 		$this->_theme_locations = Zend_Registry::get('theme_locations');
-		
+
 		// Theme filter block: Allow plugin's to alter the current theme based on request, locale, etc.
 		$theme_params = array(
 			'request' => $this->_request,
@@ -168,7 +168,7 @@ abstract class Cts_Controller_Action_Abstract extends Zend_Controller_Action {
 			$this->view->setScriptPath($template_path);
 		}
 		// Theme filter block: End.
-		
+
 		$this->view->theme_path = $this->_theme_locations['frontend']['current_theme']['path'];
 		$this->view->theme_url = $this->_theme_locations['frontend']['current_theme']['url'];
 		$this->view->theme_global_path = $this->_theme_locations['frontend']['current_theme']['path']."/global";
@@ -191,7 +191,11 @@ abstract class Cts_Controller_Action_Abstract extends Zend_Controller_Action {
 		$default_locale_code = str_replace('_', '-', trim(strtolower(Cts_Registry::get('default_locale'))));
 		$this->locale_code = $default_locale_code;
 
-		if (Cts_Registry::get('enable_localization') == '1') {
+		$localization_enabled = Cts_Registry::get('enable_localization');
+		$this->view->localization_enabled = $localization_enabled;
+
+		if ($localization_enabled == '1')
+		{
 			// to set the locale code, look in the URL, not in the cookie
 			// the only thing that should check the cookie is the home page and optionally the locale chooser page
 			$locales_table = new Locales();
@@ -210,8 +214,10 @@ abstract class Cts_Controller_Action_Abstract extends Zend_Controller_Action {
 
 			// Load the allowed locales into Smarty for the admin drop down
 			$all_locales = array();
-			foreach ($db_locales_full as $code => $name) {
-				if (in_array($code, $allowed_locales)) {
+			foreach ($db_locales_full as $code => $name)
+			{
+				if (in_array($code, $allowed_locales))
+				{
 					$all_locales[$code] = $name;
 				}
 			}
@@ -219,29 +225,40 @@ abstract class Cts_Controller_Action_Abstract extends Zend_Controller_Action {
 
 			// Get the locales allowed on the frontend in the config
 			$live_locales = explode(',', Cts_Registry::get('live_locales'));
-			if (!empty($live_locales) && (bool)array_filter($live_locales)) {
+			if (!empty($live_locales) && (bool)array_filter($live_locales))
+			{
 				$live_locales = array_map('trim', $live_locales);
 				$live_locales = array_map('strtolower', $live_locales);
 				$live_locales = str_replace('_', '-', $live_locales);
 				$this->live_locales = $live_locales;
-			} else {
+			}
+			else
+			{
 				throw new Exception('Localization is enabled, but no locales are set in `live_locales`');
 			}
 
-			if ($this->_request->has('locale') && $this->_request->locale != '') {
+			if ($this->_request->has('locale') && $this->_request->locale != '')
+			{
 				$locale_code = $this->_request->get('locale');
-				if ($locale_code !== $default_locale_code) {
-					if (ereg("^..-.{2,5}", $locale_code) !== false) {
+				if ($locale_code !== $default_locale_code)
+				{
+					if (ereg("^..-.{2,5}", $locale_code) !== false)
+					{
 						// Get the locales out of the database
-						if ( !in_array($locale_code, $db_locales) || !in_array($locale_code, $allowed_locales)) {
+						if ( !in_array($locale_code, $db_locales) || !in_array($locale_code, $allowed_locales))
+						{
 							$locale_is_valid = false;
 						}
-						if ($this->view->isAdmin !== true) {
-							if (!in_array($locale_code, $this->live_locales)) {
+						if ($this->view->isAdmin !== true)
+						{
+							if (!in_array($locale_code, $this->live_locales))
+							{
 								$locale_is_valid = false;
 							}
 						}
-					} else {
+					}
+					else
+					{
 						$locale_is_valid = false;
 					}
 				}
@@ -249,7 +266,8 @@ abstract class Cts_Controller_Action_Abstract extends Zend_Controller_Action {
 				$locale_params = $this->_cts_plugin->doFilter('validate_locale', $locale_params); // FILTER HOOK
 				$locale_code = $locale_params['locale_code'];
 				$locale_is_valid = $locale_params['locale_is_valid'];
-				if ( $locale_is_valid == true) {
+				if ( $locale_is_valid == true)
+				{
 					// The locale is good.
 					$this->locale_code = $locale_code;
 					$this->default_locale_code = $default_locale_code;
@@ -295,24 +313,11 @@ abstract class Cts_Controller_Action_Abstract extends Zend_Controller_Action {
 		$this->view->custom_metadata = Cts_Registry::get('custom_metadata');
 
 		$language = substr($this->locale_code, 0, strpos($this->locale_code, '-'));
-		// TODO - these should not be hardcoded here
-		switch ($language) {
-			case 'de':
-				$this->view->format_date = "%e. %b. %Y, %l:%M Uhr";
-				$this->view->format_datetime = "%A, %e. %B %Y um %l:%M:%S%p Uhr";
-				$this->view->format_datetime_small = "%e %b %Y, %l:%M%p";
-				break;
-			case 'fr':
-				$this->view->format_date = "%e %b %Y, %l:%M:%S";
-				$this->view->format_datetime = "%A %e %B %Y à %l:%M:%S%p";
-				$this->view->format_datetime_small = "%e %b %Y, %l:%M%p";
-				break;			
-			default:
-				$this->view->format_date = Cts_Registry::get('format_date');
-				$this->view->format_datetime = Cts_Registry::get('format_datetime');
-				$this->view->format_datetime_small = Cts_Registry::get('format_datetime_small');
-				break;
-		}
+
+		$this->view->format_date = Cts_Registry::get('format_date');
+		$this->view->format_datetime = Cts_Registry::get('format_datetime');
+		$this->view->format_datetime_small = Cts_Registry::get('format_datetime_small');
+		// TODO - figure out an awesome way to switch date formats based on locale
 		$this->view->current_year = date("Y");
 
 		// SAVED FOR FUTURE USE - changing the language pack based on locale
@@ -347,22 +352,22 @@ abstract class Cts_Controller_Action_Abstract extends Zend_Controller_Action {
 			$this->my_roles = $roles_table->fetchRolesByUsername($this->_identity->username)->toArray();
 			$username = $this->_identity->username;
 			$this->view->username = $username;
-		} else {			
+		} else {
 			$tmp_ids = array($roles_table->getIdByShortname("guest"));
 			$this->my_roles = array(0 => array(
-				"id" => "1", 
+				"id" => "1",
 				"shortname" => "guest",
-				"description" => "Guest", 
+				"description" => "Guest",
 				"is_admin" => "0",
 				"isguest" => "1",
 				"isdefault" => "0")
 			);
 		}
 		$this->view->my_roles = $this->my_roles;
-		
+
 		// find the parent roles, add the parent role IDs to the nav_role_ids for inheritance.
 
-		$nav_parent_role_ids = array();	
+		$nav_parent_role_ids = array();
 		foreach($tmp_ids as $nav_role){
 			$nav_parent_role_ids = array_merge($nav_parent_role_ids, $roles_table->getAllAncestors($nav_role));
 		}
@@ -370,7 +375,7 @@ abstract class Cts_Controller_Action_Abstract extends Zend_Controller_Action {
 		$nav_role_ids = array_merge($nav_parent_role_ids, $tmp_ids);
 		$unique_ids = array_unique($nav_role_ids);
 		sort($unique_ids);
-		
+
 		$nav_table = new Navigation($unique_ids, $this->locale_code);
 
 		$cache_name = 'navigation_'.$this->locale_code.'-'.md5(implode($unique_ids, "-")); // MD5 The Unique IDs to shorten the cache name

@@ -1,4 +1,5 @@
 <?php
+
 /*
 	File: index.php
 		Also known as the bootstrap.
@@ -12,10 +13,13 @@
 
 $ZZZZ_dump_include_path = @(boolean)$_GET['ZZZZ_dump_include_path'];
 
-if (in_array("xdebug", get_loaded_extensions())) {
+if (in_array("xdebug", get_loaded_extensions()))
+{
 	$xdebug_on = true;
 	ini_set('display_errors', 1);
-} else {
+}
+else
+{
 	$xdebug_on = false;
 }
 
@@ -23,37 +27,50 @@ $basepath = substr($_SERVER['SCRIPT_FILENAME'] , 0, strrpos( $_SERVER['SCRIPT_FI
 set_include_path(get_include_path().PATH_SEPARATOR.$basepath);
 $ip = $_SERVER['REMOTE_ADDR'];
 
-try {
+try
+{
 	require_once('header.php');
-	if ($isInstalled) {
-		if (!(boolean)$config['application']['launched']) {
+	if ($isInstalled)
+	{
+		if (!(boolean)$config['application']['launched'])
+		{
 			$allowed_ips = explode(",", $config['application']['allowed_ips']);
 			$can_see = false;
-			foreach ($allowed_ips as $allowed_ip) {
-				if (strpos($ip, $allowed_ip) === 0) {
+			foreach ($allowed_ips as $allowed_ip)
+			{
+				if (strpos($ip, $allowed_ip) === 0)
+				{
 					$can_see = true;
 				}
 			}
-			if (!$can_see) {
+			if (!$can_see)
+			{
 				header ("Location: ".$config['application']['prelaunch_url']);
 			}
 		}
-		if (Cts_Registry::get('on_screen_errors') === '1') {
+		if (Cts_Registry::get('on_screen_errors') === '1')
+		{
 			ini_set('display_errors', 1);
 			ERROR_REPORTING(E_ALL);
 		}
 	}
 
-	if (Zend_Registry::isRegistered("theme")) {
+	if (Zend_Registry::isRegistered("theme"))
+	{
 		$theme = Zend_Registry::get("theme");
-	} else {
+	}
+	else
+	{
 		Zend_Registry::set("theme", "default");
 		$theme = "default";
 	}
 
-	if (Zend_Registry::isRegistered("admin_theme")) {
+	if (Zend_Registry::isRegistered("admin_theme"))
+	{
 		$admin_theme = Zend_Registry::get("admin_theme");
-	} else {
+	}
+	else
+	{
 		Zend_Registry::set("admin_theme", "default");
 		$admin_theme = "default";
 	}
@@ -73,22 +90,29 @@ try {
 	// Replace the ViewRenderer with Smarty as the default view
 	// args: template dir, smarty paths
 
-	if ($isInstalled) {
+	if ($isInstalled)
+	{
 		$smarty_config = new Zend_Config_Ini($config_file, 'smarty');
 		$smarty_config_array = $smarty_config->config->toArray();
-	} else {
+	}
+	else
+	{
 		$smarty_view_compiles = $basepath."/tmp/view_compiles";
 		$smarty_cache_dir = $basepath."/tmp/cache";
-		if (!file_exists($smarty_view_compiles)) {
+		if (!file_exists($smarty_view_compiles))
+		{
 			throw new Exception("DIR_MISSING Missing directory ".$smarty_view_compiles);
 		}
-		if (!file_exists($smarty_cache_dir)) {
+		if (!file_exists($smarty_cache_dir))
+		{
 			throw new Exception("DIR_MISSING Missing directory ".$smarty_cache_dir);
 		}
-		if (!is_writable($smarty_view_compiles)) {
+		if (!is_writable($smarty_view_compiles))
+		{
 			throw new Exception("CANT_WRITE Can't write to directory ".$smarty_view_compiles);
 		}
-		if (!is_writable($smarty_cache_dir)) {
+		if (!is_writable($smarty_cache_dir))
+		{
 			throw new Exception("CANT_WRITE Can't write to directory ".$smarty_cache_dir);
 		}
 		$smarty_config_array['compile_dir'] = $smarty_view_compiles;
@@ -115,39 +139,48 @@ try {
 		->setViewSuffix('tpl');
 	Zend_Controller_Action_HelperBroker::addHelper($view_renderer);
 
-	if ($isInstalled) {
+	if ($isInstalled)
+	{
 		$front->registerPlugin(new AclPlugin);
 		$cts_plugin->doAction('bootstrap', array('front_controller' => $front)); // ACTION HOOK
-	} else {
+	}
+	else
+	{
 		$front->registerPlugin(new InstallPlugin);
 	}
 
 	$router = new Zend_Controller_Router_Rewrite();
 	$front->setRouter($router);
 
-	if ($isInstalled) {
-		if (Cts_Registry::get('enable_localization') == '1') {
+	if ($isInstalled)
+	{
+		if (Cts_Registry::get('enable_localization') == '1')
+		{
 			$router->addRoute('default', new Zend_Controller_Router_Route(":locale/:module/:controller/:action/*", array(
 				'locale' => '',
 				'module' => "default",
 				'controller' => "index",
 				'action' => "index",
 			)));
-		} else {
+		}
+		else
+		{
 			$router->addRoute('default', new Zend_Controller_Router_Route(":module/:controller/:action/*", array(
 				'module' => "default",
 				'controller' => "index",
 				'action' => "index",
 			)));
 		}
-		if (file_exists($routes_file)) {
+		if (file_exists($routes_file))
+		{
 			$routes = new Zend_Config_Ini($routes_file, 'default');
 			$router->addConfig($routes, 'routes');
 		}
 		$cts_plugin->doAction('bootstrap_routes', array('router' => $router)); // ACTION HOOK
 	}
 
-	if ($ZZZZ_dump_include_path) {
+	if ($ZZZZ_dump_include_path)
+	{
 		$include_paths = explode(":", get_include_path());
 		echo('<pre>');
 		var_dump(var_dump($include_paths, true));
@@ -157,21 +190,32 @@ try {
 
 	$front->dispatch();
 
-} catch (Zend_Db_Statement_Exception $ex) {
-	if (canDebug($ip, $config)) {
+}
+catch (Zend_Db_Statement_Exception $ex)
+{
+	if (canDebug($ip, $config))
+	{
 		d($ex->getMessage());
 		dd($ex);
-	} else {
+	}
+	else
+	{
 		Cts_Log::report("Database error", $ex, Zend_Log::EMERG);
 		header("Location: /errordocuments/error_DB.html");
 	}
-} catch (Exception $ex) {
-	if (!empty($config) && canDebug($ip, $config)) {
+}
+catch (Exception $ex)
+{
+	if (!empty($config) && canDebug($ip, $config))
+	{
 		d($ex->getMessage());
 		dd($ex);
-	} else {
+	}
+	else
+	{
 		$ex_type = trim(substr($ex->getMessage(), 0, strpos($ex->getMessage(), " ")));
-		switch ($ex_type) {
+		switch ($ex_type)
+		{
 			case "MISSING_LIBS":
 				header("Location: /errordocuments/error_LIBS.html");
 				break;
@@ -182,10 +226,13 @@ try {
 				header("Location: /errordocuments/error_DIRMISSING.html");
 				break;
 			default:
-				if ($isInstalled) {
+				if ($isInstalled)
+				{
 					header("Location: /errordocuments/error_500.html");
 					Cts_Log::report("Frontcontroller Error", $ex, Zend_Log::EMERG);
-				} else {
+				}
+				else
+				{
 					d($ex->getMessage());
 					dd($ex);
 				}

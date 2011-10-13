@@ -1,4 +1,5 @@
-{include file="file:$admin_theme_global_path/_header.tpl" pageTitle="Configuration" masthead="Configuration for module `$modid`"}
+{include file="file:$admin_theme_global_path/_header.tpl" pageTitle="Configuration"}
+{* $modid *}
 <div id="options">
 	<h3>{t}Modules{/t}</h3>
 	{if isset($modules)}

@@ -51,9 +51,9 @@ class AdminController extends  Cts_Controller_Action_Admin
 		}
 
 		// // FOR TESTING
-		// $last_publish_datetime = '2011-01-01';
-		// $user_model = new GraziaRecipe();
-		// dd($user_model->dumpDataToJson('modified', $last_publish_datetime));
+		// $last_publish_datetime = '2011-10-08';
+		// $user_model = new PagepartsPages();
+		// dd($user_model->dumpDataToJson('last_modified_on', $last_publish_datetime));
     }
 
 }

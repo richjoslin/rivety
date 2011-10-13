@@ -1,6 +1,6 @@
 {capture name=pageTitle}{if isset($role.id)}Edit Role {$role.shortname}{else}Add New Role{/if}{/capture}
 {include file="file:$admin_theme_global_path/_header.tpl" masthead=$smarty.capture.pageTitle pageTitle=$smarty.capture.pageTitle} 
-<div class="grid_4 sidenav">
+<div id="options">
 	<h3>{t}Options{/t}</h3>
 	<ul>
 		<li><a href="{url}/default/role/index{/url}">{t}Back to Roles{/t}</a></li>
@@ -11,7 +11,7 @@
 		{/if}
 	<ul>
 </div>
-<div class="grid_12">
+<div id="main-column">
 	<form action="{url}/default/role/edit{/url}" method="post">
 		<p>
 		    <label for="shortname">{t}Role Shortname{/t}</label>

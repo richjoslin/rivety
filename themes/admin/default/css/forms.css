@@ -42,10 +42,12 @@ form input[type=text]
 	/*padding: 6px 8px;*/
 }
 
+/*
 form input[type=text], form select
 {
 	width: 300px;
 }
+*/
 
 form textarea
 {

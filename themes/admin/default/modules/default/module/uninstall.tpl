@@ -1,13 +1,14 @@
 {include file="file:$admin_theme_global_path/_header.tpl" mastHead="Uninstall Module" pageTitle="Uninstall Module"}
-<div class="grid_4 sidenav">
+<div id="options">
 	<h3>{t}Options{/t}</h3>
 	<ul>
 		<li><a href="{url}/default/module/index{/url}">{t}Back to list{/t}</a></li>
 	</ul>
 </div>
-<div class="grid_12">
+<div id="main-column">
 	<p>{t}You are about to delete the module{/t} '{$id}'.</p>
-	<p>{t}This will likely result in the deletion of all data associated with this module.{/t}</p>
+	<p>{t}Make sure you have all the data for this module backed up somewhere.{/t}</p>
+	<p>{t}All data related to this module will be deleted.{/t}</p>
 	{capture name="d_url"}
 		{url}/default/module/uninstall/id/{$id}{/url}
 	{/capture}

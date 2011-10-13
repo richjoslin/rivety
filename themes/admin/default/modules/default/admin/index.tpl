@@ -1,5 +1,7 @@
-{include file="file:$admin_theme_global_path/_header.tpl" masthead="Welcome"}
+{include file="file:$admin_theme_global_path/_header.tpl"}
 <div>
-	<p>&nbsp;</p>
+	<p>
+		Replace this, or don't. Your call.
+	</p>
 </div>
 {include file="file:$admin_theme_global_path/_footer.tpl"}

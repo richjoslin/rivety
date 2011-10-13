@@ -10,15 +10,17 @@
 	</div>
 {/if}
 
-{if count($errors) gt 0}
-	<div class="status error">
-		{t}Error{/t}
-	</div>
-	<div class="error-list">
-		<ul>
-			{foreach from=$errors item=error}
-				<li>{$error}</li>
-			{/foreach}
-		</ul>
-	</div>
+{if isset($errors)}
+	{if count($errors) gt 0}
+		<div class="status error">
+			Error
+		</div>
+		<div class="error-list">
+			<ul>
+				{foreach from=$errors item=error}
+					<li>{$error}</li>
+				{/foreach}
+			</ul>
+		</div>
+	{/if}
 {/if}
