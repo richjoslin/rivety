@@ -1,0 +1,19 @@
+Options +FollowSymlinks
+RewriteEngine on
+
+<FilesMatch "\.(htaccess|htpasswd|ini|phps|fla|psd|log|sh|tpl)$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
+ErrorDocument 403 /errordocuments/error_403.html
+ErrorDocument 500 /errordocuments/error_500.html
+
+RewriteRule ^displayimage/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)$ modules/default/direct/images.php?username=$1&type=$2&max_width=$3&max_height=$4&crop=$5&format=$6&filename=$7 [L]
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteRule ^(.+) /index.php [L]
+
+php_flag magic_quotes_gpc Off
+php_value upload_max_filesize 100M
+php_value post_max_size 100M

@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /errordocuments/
+Disallow: /themes/frontend/default/js/
+Disallow: /themes/frontend/default/css/
+Allow: /
