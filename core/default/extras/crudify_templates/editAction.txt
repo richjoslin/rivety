@@ -1,0 +1,52 @@
+$errors = array();
+$TABLE_OBJECT_VAR = new TABLE_CLASSNAME();
+$request = new RivetyCore_Request($this->getRequest());
+$THE_ID = null;
+if ($request->has('THE_ID'))
+{
+	$THE_ID = $request->THE_ID;
+}
+if ($this->getRequest()->isPost())
+{
+	// data validation
+	DATA_VALIDATION
+	if (!$request->isValid())
+	{
+		$errors = array_merge($errors, $request->getValidationErrors());
+	}
+	if (count($errors) == 0)
+	{
+		$data = array(
+			DATA_ARRAY_STRING
+		);
+		if (!is_null($THE_ID))
+		{
+			// this is an update
+			$where = $TABLE_OBJECT_VAR->getAdapter()->quoteInto('THE_ID = ?', $THE_ID);
+			$TABLE_OBJECT_VAR->update($data, $where);
+		}
+		else
+		{
+			// this is an insert
+			$THE_ID = $TABLE_OBJECT_VAR->insert($data);
+		}
+		$this->view->success = $this->_T("Saved.");
+	}
+	else
+	{
+		$this->view->errors = $errors;
+		if (!is_null($THE_ID))
+		{
+			$this->view->THE_ID = $THE_ID;
+		}
+		ERROR_VIEW_VARIABLES
+	}
+}
+if (!is_null($THE_ID) and count($errors) == 0)
+{
+	$ROW_OBJECT_VAR = $TABLE_OBJECT_VAR->fetchRow($TABLE_OBJECT_VAR->select()->where('THE_ID = ?', $THE_ID));
+	if (!is_null($ROW_OBJECT_VAR))
+	{
+		VIEW_VARIABLES
+	}
+}

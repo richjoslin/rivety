@@ -1,0 +1,26 @@
+$errors = array();
+$TABLE_OBJECT_VAR = new TABLE_CLASSNAME();
+$request = new RivetyCore_Request($this->getRequest());
+if ($this->getRequest()->isPost())
+{
+	if ($request->has('delete'))
+	{
+		if ($request->delete == "Yes")
+		{
+			if ($request->has('THE_ID'))
+			{
+				$ROW_OBJECT_VAR = $TABLE_OBJECT_VAR->fetchRow($TABLE_OBJECT_VAR->select()->where('THE_ID = ?', $request->THE_ID));
+				if (!is_null($ROW_OBJECT_VAR))
+				{
+					// this would be a great place to check if the current user is allowed to delete this record.
+					$ROW_OBJECT_VAR->delete();
+				}
+			}
+		}
+	}
+	$this->_redirect('INDEX_URL');
+}
+else
+{
+	$this->view->THE_ID = $request->THE_ID;
+}

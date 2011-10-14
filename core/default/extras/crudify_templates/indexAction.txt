@@ -1,0 +1,27 @@
+$TABLE_OBJECT_VAR = new TABLE_CLASSNAME();
+$request = new RivetyCore_Request($this->getRequest());
+$whereclause = null;
+$params = array();
+$per_page = 10;
+$page = $this->_request->getParam('page', 0);
+$total = $TABLE_OBJECT_VAR->getCountByWhereClause($whereclause);
+$url = "INDEX_URL";
+$select = $TABLE_OBJECT_VAR->select();
+if (!is_null($whereclause))
+{
+	$select->where($whereclause);
+}
+$select->limit($per_page, $per_page * $page);
+$this->makePager($page, $per_page, $total, $url, $params);
+$ROWSET_VAR = $TABLE_OBJECT_VAR->fetchAll($select);
+if (count($ROWSET_VAR) > 0)
+{
+	$ROWSET_VAR_array = array();
+	foreach ($ROWSET_VAR as $row)
+	{
+		$row = $row->toArray();
+		// interact with row as needed
+		$ROWSET_VAR_array[] = $row;
+	}
+	$this->view->ROWSET_VAR = $ROWSET_VAR_array;
+}
