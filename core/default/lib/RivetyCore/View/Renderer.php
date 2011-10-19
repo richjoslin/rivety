@@ -12,7 +12,8 @@
 	About: See Also
 		Zend_View_Interface
 */
-class RivetyCore_View_Renderer implements Zend_View_Interface {
+class RivetyCore_View_Renderer implements Zend_View_Interface
+{
 
 	/* Group: Variables */
 
@@ -31,23 +32,33 @@ class RivetyCore_View_Renderer implements Zend_View_Interface {
 			tmplPath - TBD
 			extraParams - TBD
 	*/
-	public function __construct($tmplPath = null, $extraParams = array()) {
+	public function __construct($tmplPath = null, $extraParams = array())
+	{
 		$this->_smarty = new RivetyCore_View_Smarty;
 
-		if (!is_null($tmplPath)) {
+		if (!is_null($tmplPath))
+		{
 			$this->setScriptPath($tmplPath);
 		}
 
-		foreach ($extraParams as $key => $value) {
-			if($key != "plugins_dir") {
+		foreach ($extraParams as $key => $value)
+		{
+			if ($key != "plugins_dir")
+			{
 				$this->_smarty->$key = $value;
-			} else {
+			}
+			else
+			{
 				$plugin_dirs = array('plugins');
-				if (is_array($value)) {
-					foreach ($value as $plugin_dir) {
+				if (is_array($value))
+				{
+					foreach ($value as $plugin_dir)
+					{
 						$plugin_dirs[] = $plugin_dir;
 					}
-				} else {
+				}
+				else
+				{
 					$plugin_dirs[] = $value;
 				}
 				$this->_smarty->plugins_dir = $plugin_dirs;
@@ -68,7 +79,8 @@ class RivetyCore_View_Renderer implements Zend_View_Interface {
 		Returns:
 			The current Smarty template engine object.
 	*/
-	public function getEngine() {
+	public function getEngine()
+	{
 		return $this->_smarty;
 	}
 
@@ -81,7 +93,8 @@ class RivetyCore_View_Renderer implements Zend_View_Interface {
 
 		Returns: void
 	*/
-	public function setScriptPath($path) {
+	public function setScriptPath($path)
+	{
 		$this->_smarty->template_dir = $path;
 	}
 
@@ -95,7 +108,8 @@ class RivetyCore_View_Renderer implements Zend_View_Interface {
 		Returns:
 			array
 	*/
-	public function getScriptPaths() {
+	public function getScriptPaths()
+	{
 		return array('script' => $this->_smarty->template_dir);
 	}
 
@@ -110,7 +124,8 @@ class RivetyCore_View_Renderer implements Zend_View_Interface {
 		Returns:
 			void
 	*/
-	public function setBasePath($path, $prefix = 'Zend_View') {
+	public function setBasePath($path, $prefix = 'Zend_View')
+	{
 		return $this->setScriptPath($path);
 	}
 
@@ -124,7 +139,10 @@ class RivetyCore_View_Renderer implements Zend_View_Interface {
 		Returns:
 			void
 	*/
-	public function addBasePath($path, $prefix = 'Zend_View') {
+	public function addBasePath($path, $prefix = 'Zend_View')
+	{
+		// this is the first time setScriptPath is called
+
 		return $this->setScriptPath($path);
 	}
 
@@ -139,7 +157,8 @@ class RivetyCore_View_Renderer implements Zend_View_Interface {
 		Returns:
 			void
 	*/
-	public function __set($key, $val) {
+	public function __set($key, $val)
+	{
 		$this->_smarty->assign($key, $val);
 	}
 
@@ -153,7 +172,8 @@ class RivetyCore_View_Renderer implements Zend_View_Interface {
 		Returns:
 			The variable value.
 	*/
-	public function __get($key) {
+	public function __get($key)
+	{
 		return $this->_smarty->get_template_vars($key);
 	}
 
@@ -167,7 +187,8 @@ class RivetyCore_View_Renderer implements Zend_View_Interface {
 		Returns:
 			boolean
 	*/
-	public function __isset($key) {
+	public function __isset($key)
+	{
 		return (null !== $this->_smarty->get_template_vars($key));
 	}
 
@@ -181,7 +202,8 @@ class RivetyCore_View_Renderer implements Zend_View_Interface {
 		Returns:
 			void
 	*/
-	public function __unset($key) {
+	public function __unset($key)
+	{
 		$this->_smarty->clear_assign($key);
 	}
 
@@ -198,8 +220,10 @@ class RivetyCore_View_Renderer implements Zend_View_Interface {
 		Returns:
 			void
 	*/
-	public function assign($spec, $value = null) {
-		if (is_array($spec)) {
+	public function assign($spec, $value = null)
+	{
+		if (is_array($spec))
+		{
 			$this->_smarty->assign($spec);
 			return;
 		}
@@ -216,7 +240,8 @@ class RivetyCore_View_Renderer implements Zend_View_Interface {
 		Returns:
 			void
 	*/
-	public function clearVars() {
+	public function clearVars()
+	{
 		$this->_smarty->clear_all_assign();
 	}
 
@@ -232,46 +257,40 @@ class RivetyCore_View_Renderer implements Zend_View_Interface {
 	*/
 	public function render($name)
 	{
-		// get the complete name of the template
-		$theme_locations = Zend_Registry::get("theme_locations");
-
 		$basepath = Zend_Registry::get("basepath");
 
 		$front = Zend_Controller_Front::getInstance();
 		$request = $front->getRequest();
-		$module_name = $request->getModuleName();  
+		$module_name = $request->getModuleName();
 		$module_views_root = "";
 
-		if($module_name == "default"){
-			$module_views_root = $basepath . "/core/default/views";        	
-		} else {
-			$module_views_root = $basepath . "/modules/".$module_name."/views"; 
-		}
+		if ($module_name == "default") $module_views_root = $basepath . "/core/default/views";
+		else $module_views_root = $basepath . "/modules/" . $module_name . "/views";
 
-		if($this->_smarty->_tpl_vars['isAdminController']){
-			$fallback_path = $module_views_root."/admin/tpl_controllers";
-		} else {
-			$fallback_path = $module_views_root."/frontend/tpl_controllers";
-		}
+		if ($this->_smarty->_tpl_vars['isAdminController']) $fallback_path = $module_views_root."/admin/tpl_controllers";
+		else $fallback_path = $module_views_root."/frontend/tpl_controllers";
 
 		$template_filename = $this->_smarty->template_dir . "/" . $name;
-		//dd($template_filename);
-		// if it exists in the *current* theme, use it, if not, try the default theme
 
-    	if(!file_exists($template_filename)){
-             if(is_readable($fallback_path)){        		
-                        $template_filename = $fallback_path . "/" . $name;
-                        //dd($template_filename);
-        	} else {
-        		// We're out of ideas. Sorry.
-        		throw new Zend_Exception("Provided template path is not valid: ". $path);
-        	}
-    	}
-    	if(array_key_exists("mca",$this->_smarty->_tpl_vars)){
-    	  $mca = $this->_smarty->_tpl_vars['mca'];
-    	  $this->_smarty->compile_id = $mca;
-    	}
-        return $this->_smarty->fetch($template_filename);
+		if (!file_exists($template_filename))
+		{
+			if (is_readable($fallback_path))
+			{
+					$template_filename = $fallback_path . "/" . $name;
+					//dd($template_filename);
+			}
+			else
+			{
+				// We're out of ideas. Sorry.
+				throw new Zend_Exception("Provided template path is not valid: ". $path);
+			}
+		}
+		if (array_key_exists("mca", $this->_smarty->_tpl_vars))
+		{
+			$mca = $this->_smarty->_tpl_vars['mca'];
+			$this->_smarty->compile_id = $mca;
+		}
+		return $this->_smarty->fetch($template_filename);
 	}
 
 	/*
@@ -284,7 +303,8 @@ class RivetyCore_View_Renderer implements Zend_View_Interface {
 		Returns:
 			void
 	*/
-	public function display($name) {
+	public function display($name)
+	{
 		$this->_smarty->display($name);
 	}
 }

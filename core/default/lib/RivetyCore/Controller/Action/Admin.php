@@ -32,36 +32,38 @@ abstract class RivetyCore_Controller_Action_Admin extends RivetyCore_Controller_
             default_admin_theme_module_path - filesystem path to the default admin module template dir
 			current_path - filesystem path to the current theme's controller template path (same as admin_theme_controller_path)
 	*/
-	function init() {
+	function init()
+	{
 	    parent::init();
-		$template_path = $this->_theme_locations['admin']['current_theme']['path']."/tpl_controllers/".$this->getRequest()->getModuleName();
-		$this->view->setScriptPath($template_path);
 		$this->view->isAdminController = true;
+
+		$template_path = $this->_theme_locations['admin']['current_theme']['path']."/tpl_controllers/".$this->getRequest()->getModuleName();
+
+		$this->view->setScriptPath($template_path);
 
 		$this->view->admin_theme_path                     = $this->_theme_locations['admin']['current_theme']['path'];
 		$this->view->admin_theme_url                      = $this->_theme_locations['admin']['current_theme']['url'];
 		$this->view->admin_theme_global_path              = $this->_theme_locations['admin']['current_theme']['path']."/tpl_common";
-		$this->view->admin_theme_controller_path          = $this->_theme_locations['admin']['current_theme']['path'].'/tpl_controllers/'.$this->getRequest()->getModuleName()."/".$this->getRequest()->getControllerName();
-		$this->view->admin_theme_module_path              = $this->_theme_locations['admin']['current_theme']['path'].'/tpl_controllers/'.$this->getRequest()->getModuleName();
+		$this->view->admin_theme_controller_path          = $this->_theme_locations['admin']['current_theme']['path'].'/tpl_controllers/'.$this->getRequest()->getControllerName();
+		$this->view->admin_theme_module_path              = $this->_theme_locations['admin']['current_theme']['path'].'/tpl_controllers';
 
 		$this->view->default_admin_theme_path             = $this->_theme_locations['admin']['default_theme']['path'];
 		$this->view->default_admin_theme_url              = $this->_theme_locations['admin']['default_theme']['url'];
 		$this->view->default_admin_theme_global_path      = $this->_theme_locations['admin']['default_theme']['path']."/tpl_common";
-		$this->view->default_admin_theme_controller_path  = $this->_theme_locations['admin']['default_theme']['path'].'/tpl_controllers/'.$this->getRequest()->getModuleName()."/".$this->getRequest()->getControllerName();
-		$this->view->default_admin_theme_module_path      = $this->_theme_locations['admin']['default_theme']['path'].'/tpl_controllers/'.$this->getRequest()->getModuleName();
+		$this->view->default_admin_theme_controller_path  = $this->_theme_locations['admin']['default_theme']['path'].'/tpl_controllers/'.$this->getRequest()->getControllerName();
+		$this->view->default_admin_theme_module_path      = $this->_theme_locations['admin']['default_theme']['path'].'/tpl_controllers';
 
 		$request = $this->getRequest();
 
-		if ($request->has('dev') && $request->dev == true) {
-			$this->view->isDeveloper = true;
-		}
+		if ($request->has('dev') && $request->dev == true) $this->view->isDeveloper = true;
 
-		$this->view->current_path = $template_path . "/" . $this->getRequest()->getControllerName();                
+		// $this->view->current_path = $template_path . "/" . $this->getRequest()->getControllerName();                
 
 		$roles_table = new Roles();
 		$locale_table = new Locales();
 
-		if ($this->_identity->isAdmin) {
+		if ($this->_identity->isAdmin)
+		{
 			$bypass = array();
 			$globalRoles = explode(",", RivetyCore_Registry::get('global_role_shortnames'));
 			$inherited_roles = array();

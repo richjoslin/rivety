@@ -20,33 +20,50 @@ class RivetyCore_Email {
 		Arguments:
 			template_path - An optional string to override the default template path.
 	*/
-	function RivetyCore_Email($template_path = null, $module = "default") {
+	function RivetyCore_Email($template_path = null, $module = "default")
+	{
 		$this->_smarty = new RivetyCore_View_Smarty();
 		$smarty_config = Zend_Registry::get('smarty_config');
-		foreach ($smarty_config as $key => $value) {
-			if ($key != "plugins_dir") {
+		foreach ($smarty_config as $key => $value)
+		{
+			if ($key != "plugins_dir")
+			{
 				$this->_smarty->$key = $value;
-			} else {
+			}
+			else
+			{
 				$plugin_dirs = array('plugins');
-				if (is_array($value)) {            		
-					foreach ($value as $plugin_dir) {
+				if (is_array($value))
+				{
+					foreach ($value as $plugin_dir)
+					{
 						$plugin_dirs[] = $plugin_dir;
 					}
-				} else {
+				}
+				else
+				{
 					$plugin_dirs[] = $value;
 				}
 				$this->_smarty->plugins_dir = $plugin_dirs;
 			}
 		}
-		if (is_null($template_path)) {
+		if (is_null($template_path))
+		{
+
 			$theme_locations = Zend_Registry::get('theme_locations');
 			$email_path = "/global/email/";
-			if ($module == "default") {
+			if ($module == "default")
+			{
 				$this->_smarty->template_dir = $theme_locations['frontend']['current_theme']['path'] . $email_path;
-			} else {
+			}
+			else
+			{
 				$this->_smarty->template_dir = $theme_locations['frontend']['current_theme']['path'] . "/tpl_controllers/" . $module . $email_path;
 			}
-		} else {
+
+		}
+		else
+		{
 			$this->_smarty->template_dir = $template_path;
 		}
 	}
@@ -94,7 +111,7 @@ class RivetyCore_Email {
           		'username' => $username,
           		'password' => $password,
 				'ssl' => $ssl,
-				'port' => (int)$smtp_port);				
+				'port' => (int)$smtp_port);
 		}
 		try {
           	$mailTransport = new Zend_Mail_Transport_Smtp($smtp, $config); // defines gmail smtp infrastructure as default for any email message originated by Zend_Mail.
@@ -138,8 +155,8 @@ class RivetyCore_Email {
 			subject - The subject line of the email to send.
 			to_address - The recipient email address to send the email to.
 			template - A template file to use for the layout.
-			params (optional) - 
-			to_name (optional) - 
+			params (optional) -
+			to_name (optional) -
 
 		See Also:
 			- <sendEmail>

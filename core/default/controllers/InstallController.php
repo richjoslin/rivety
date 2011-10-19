@@ -40,6 +40,7 @@ class InstallController extends Zend_Controller_Action
 	function init()
 	{
 		parent::init();
+
 		$theme_locations = Zend_Registry::get("theme_locations");
 		$template_path = $theme_locations['admin']['default_theme']['path'] . '/tpl_controllers/' . $this->getRequest()->getModuleName();
 		$this->view->setScriptPath($template_path);
@@ -47,6 +48,7 @@ class InstallController extends Zend_Controller_Action
 		$this->view->default_admin_global_path = $theme_locations['admin']['default_theme']['path'].'/tpl_common';
 		$this->view->default_admin_theme_url = $theme_locations['admin']['default_theme']['url'];
 		$this->view->current_path = $template_path . "/" . $this->getRequest()->getControllerName();
+
         $this->view->isAdminController = true;
 		$this->view->site_name = "communit.as";
 	}
