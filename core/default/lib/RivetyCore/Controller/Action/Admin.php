@@ -11,6 +11,7 @@
 
 	About: See Also
 		Zend_Controller_Action
+		<RivetyCore_Controller_Action_Abstract>
 */
 abstract class RivetyCore_Controller_Action_Admin extends RivetyCore_Controller_Action_Abstract {
 
