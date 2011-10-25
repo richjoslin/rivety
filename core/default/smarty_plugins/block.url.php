@@ -7,7 +7,7 @@
 		Rich Joslin
 
 	About: License
-		<http://communit.as/docs/license>
+		<http://rivety.com/docs/license>
 
 	Function: smarty_block_url
 		Makes predetermined modifications to a URL using the RivetyCore_Common::urlFilter method.

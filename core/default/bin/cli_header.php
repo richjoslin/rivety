@@ -6,11 +6,15 @@
 	About: Author
 		Jaybill McCarthy
 
+	About: Contributors
+		Rich Joslin
+
 	About: License
-		<http://communit.as/docs/license>
+		<http://rivety.com/docs/license>
 */
 
-$location = "/modules";
+$is_cli = true; // cli stuff will use a different log file since cli runs as a different user (for unknown reasons)
+$location = "/core";
 $cur_dir = dirname(__FILE__);
 $basepath = substr($cur_dir, 0, strpos($cur_dir, $location));
-require_once($basepath.'/header.php');
+require_once($basepath . '/header.php');

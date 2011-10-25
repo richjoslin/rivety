@@ -7,13 +7,14 @@
 		Rich Joslin
 
 	About: License
-		<http://communit.as/docs/license>
+		<http://rivety.com/docs/license>
 
 	About: See Also
 		<RivetyCore_Controller_Action_Abstract>
 		<RivetyCore_Controller_Action_Admin>
 */
-class NavigationController extends RivetyCore_Controller_Action_Admin {
+class NavigationController extends RivetyCore_Controller_Action_Admin
+{
 
 	/* Group: Instance Methods */
 
@@ -23,9 +24,10 @@ class NavigationController extends RivetyCore_Controller_Action_Admin {
 			Initializes the current instance.
 			Initializes the parent object (calls init() on the parent instance).
 	*/
-    function init() {
+	function init()
+	{
 		parent::init();
-    }
+	}
 
 	/* Group: Actions */
 
@@ -34,7 +36,8 @@ class NavigationController extends RivetyCore_Controller_Action_Admin {
 			Allows editing of a nav link for a certain role.
 			If no ID is passed in, it is used to create a new link.
 	*/
-	function editAction() {
+	function editAction()
+	{
 		$request = new RivetyCore_Request($this->getRequest());
 		if ($request->has('role_id')) {
 			$nav_id = $request->nav_id;
@@ -54,12 +57,12 @@ class NavigationController extends RivetyCore_Controller_Action_Admin {
 				$short_name = $request->short_name;
 				$link_text = $request->link_text;
 				$url = $request->url;
-    			$data = array(
+				$data = array(
 					'parent_id' => $parent_id,
-    			    'short_name' => $short_name,
+					'short_name' => $short_name,
 					'link_text' => $link_text,
 					'url' => $url,
-    			);
+				);
 				if ($nav_id == 0) {
 					// INSERT
 					$data['role_id'] = $role_id;
@@ -77,7 +80,7 @@ class NavigationController extends RivetyCore_Controller_Action_Admin {
 				$this->_redirect('/default/navigation/editrole/id/' . $role_id);
 			} else {
 				$nav_s = new Navigation($role_id,$this->locale_code);
-				$new_nav = $nav_s->getNavTree();			
+				$new_nav = $nav_s->getNavTree();
 				$this->view->parent_choices = $new_nav;
 				$this->view->role_id = $role_id;
 				if ($nav_id == 0) {
@@ -120,7 +123,8 @@ class NavigationController extends RivetyCore_Controller_Action_Admin {
 		View Variables:
 			nav_items - An array of all nav items (full tree), not just the ones to which this role has access.
 	*/
-    function editroleAction() {
+	function editroleAction()
+	{
 		$request = new RivetyCore_Request($this->getRequest());
 		if ($request->has('id')) {
 			$role_id = $request->id;
@@ -137,7 +141,7 @@ class NavigationController extends RivetyCore_Controller_Action_Admin {
 		} else {
 			$this->_forward('default', 'auth', 'missing'); return;
 		}
-    }
+	}
 
 	/*
 		Function: delete
@@ -154,14 +158,15 @@ class NavigationController extends RivetyCore_Controller_Action_Admin {
 			pagetitle - The title to put in the H1 header.
 			role_id - The id of the role we're editing (mainly for redirect purposes).
 	*/
-	function deleteAction() {
+	function deleteAction()
+	{
 		$request = new RivetyCore_Request($this->getRequest());
 		$role_id = $request->role_id;
 		$nav_table = new Navigation($role_id,$this->locale_code);
 		$nav_id = (int)$request->nav_id;
 		$nav = $nav_table->fetchRow($nav_table->getAdapter()->quoteInto("id = ?", $nav_id));
 		if ($request->has("nav_id") && $request->has("role_id") && !is_null($nav)) {
-			$this->view->nav = $nav->toArray();	
+			$this->view->nav = $nav->toArray();
 			if ($nav_table->hasChildren($nav_id)) {
 				$this->view->can_delete = false;
 				$this->view->notice = 'Sorry, you cannot delete a link that has children.';
@@ -193,7 +198,8 @@ class NavigationController extends RivetyCore_Controller_Action_Admin {
 			parent_id - The ID of the parent of the navigation item to move.
 			role_id - The ID of the role being edited.
 	*/
-	function moveupAction() {
+	function moveupAction()
+	{
 		$request = new RivetyCore_Request($this->getRequest());
 		$this->move($request, -15);
 	}
@@ -208,7 +214,8 @@ class NavigationController extends RivetyCore_Controller_Action_Admin {
 			parent_id - The ID of the parent of the navigation item to move.
 			role_id - The ID of the role being edited.
 	*/
-	function movedownAction() {
+	function movedownAction()
+	{
 		$request = new RivetyCore_Request($this->getRequest());
 		$this->move($request, 15);
 	}
@@ -223,22 +230,29 @@ class NavigationController extends RivetyCore_Controller_Action_Admin {
 			request - An HTTP Rquest object with a GET request containing the nav_id and role_id URL parameters and optional parent_id URL parameter.
 			adjustment - An integer to use to add or subtract to the current position of the navigation item.
 	*/
-	private function move($request, $adjustment) {
-		if ($request->has('nav_id') && $request->has('role_id')) {
+	private function move($request, $adjustment)
+	{
+		if ($request->has('nav_id') && $request->has('role_id'))
+		{
 			$nav_id = $request->nav_id;
 			$role_id = $request->role_id;
 			$class_name = "Navigation";
 			RivetyCore_Sort::adjustSortValue($class_name, $nav_id, $adjustment, 'id', 'sort_order', $params);
-			if ($request->has('parent_id')) {
+			if ($request->has('parent_id'))
+			{
 				$params = array($role_id,$this->locale_code);
 				RivetyCore_Sort::reNumber($class_name, "parent_id = " . $request->parent_id . " and role_id = " . $role_id, 'id', 'sort_order', 10, $params);
-			} else {
+			}
+			else
+			{
 				$params = array($role_id,$this->locale_code);
 				RivetyCore_Sort::reNumber($class_name, "parent_id = 0 and role_id = " . $role_id, 'id', 'sort_order', 10, $params);
 			}
 			RivetyCore_Cache::removeByTags(array('navigation'));
 			$this->_redirect("/default/navigation/editrole/id/" . $role_id);
-		} else {
+		}
+		else
+		{
 			$this->_redirect("/default/auth/missing");
 		}
 	}

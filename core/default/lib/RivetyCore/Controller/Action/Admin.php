@@ -7,7 +7,7 @@
 		Jaybill McCarthy
 
 	About: License
-		<http://communit.as/docs/license>
+		<http://rivety.com/docs/license>
 
 	About: See Also
 		Zend_Controller_Action
@@ -21,7 +21,7 @@ abstract class RivetyCore_Controller_Action_Admin extends RivetyCore_Controller_
 		View Variables:
 			isAdminController - boolean - present and true because anything that inherits this is an admin controller
             admin_theme_path - filesystem path to the current admin theme
-            admin_theme_url - url to the current admin theme 
+            admin_theme_url - url to the current admin theme
             admin_theme_global_path - filesystem path to the current admin theme global folder
             admin_theme_controller_path - filesystem path to the current admin controller template dir
             admin_theme_module_path - filesystem path to the current admin module template dir
@@ -57,7 +57,7 @@ abstract class RivetyCore_Controller_Action_Admin extends RivetyCore_Controller_
 
 		if ($request->has('dev') && $request->dev == true) $this->view->isDeveloper = true;
 
-		// $this->view->current_path = $template_path . "/" . $this->getRequest()->getControllerName();                
+		$this->view->current_path = $this->_theme_locations['admin']['current_theme']['path'] . "/tpl_controllers/" . $this->getRequest()->getControllerName();
 
 		$roles_table = new Roles();
 		$locale_table = new Locales();
@@ -85,7 +85,7 @@ abstract class RivetyCore_Controller_Action_Admin extends RivetyCore_Controller_
 						$bypass[] = $sn['id'];
 					}
 				}
-				
+
 			}
 			$inherited_roles = array_unique($inherited_roles);
 			sort($inherited_roles);
@@ -104,7 +104,7 @@ abstract class RivetyCore_Controller_Action_Admin extends RivetyCore_Controller_
 					$restr[] = $role['id'];
 				}
 				$tmp_ids = array_unique($restr);
-				$nav_parent_role_ids = array();	
+				$nav_parent_role_ids = array();
 				foreach($tmp_ids as $nav_role){
 					$nav_parent_role_ids = array_merge($nav_parent_role_ids, $roles_table->getAllAncestors($nav_role));
 				}
@@ -112,7 +112,7 @@ abstract class RivetyCore_Controller_Action_Admin extends RivetyCore_Controller_
 				$unique_ids = array_unique($nav_role_ids);
 
 				$nav_table = new Navigation($unique_ids, $this->locale_code);
-				
+
 				$cache = new RivetyCore_Cache();
 				$cache_name = 'navigation_admin_'.$this->locale_code.'-'.md5(implode($unique_ids,"-"));	// MD5 The Unique IDs to shorten the cache name
 				$cache_tags = array('navigation', 'admin_navigation', $this->locale_code);
@@ -142,7 +142,7 @@ abstract class RivetyCore_Controller_Action_Admin extends RivetyCore_Controller_
 					}
 				}
 				$this->view->access = $access;
-				
+
 			}
 
 		}
@@ -171,7 +171,7 @@ abstract class RivetyCore_Controller_Action_Admin extends RivetyCore_Controller_
 				foreach ($role_lock as $i) {
 					$shortnames[] = $roles_table->getShortnameById($i); //get the shortnames of the locked roles
 				}
-			}	
+			}
 			$match = array();
 			foreach ($shortnames as $sn) {
 				if(stristr($sn,$resource_locale)){  //we've got an access match to a shortname locale
@@ -207,20 +207,20 @@ abstract class RivetyCore_Controller_Action_Admin extends RivetyCore_Controller_
 			if (count($access) === 0) { //if no access we have to put them somewhere they belong.
 				$allowed = array();
 				foreach ($shortnames as $allowed_locales) {
-					
+
 					$allowed[] = strtolower(substr($allowed_locales, -5));
 				}
 				if (!in_array($this->locale_code,$allowed) && count($allowed) > 0) {
 					$this->locale_code = $allowed[0];
 				}
 				$this->_redirect('/default/admin/index'); // bump to dashboard.
-				
+
 			} else {
 				$this->restricted_role_id = $access;
 				return $access;
 			}
-		} 
-	}	
+		}
+	}
 
 	/*
 		Function: _checkMatch
@@ -233,7 +233,7 @@ abstract class RivetyCore_Controller_Action_Admin extends RivetyCore_Controller_
 		$resource_name = 	$request->getModuleName() . "-" .ucfirst(strtolower($request->getControllerName())) . "-" .$request->getActionName();
 		if(Zend_Registry::isRegistered('acl')){
 			$acl = Zend_Registry::get('acl');
-			
+
 			if($acl->has($resource_name)){
 
 				if($acl->isAllowed($match, $resource_name)){
@@ -242,16 +242,16 @@ abstract class RivetyCore_Controller_Action_Admin extends RivetyCore_Controller_
 
 				$indirect = $roles_table->getAllAncestors($match); //maybe they inherit access
 				$indirect_access = array();
-				
+
 				foreach($indirect as $role){
 					if($acl->isAllowed($role, $resource_name)){
 						$this_access[] = $role;
 						$this_access[] = $match;
 					}
 				}
-				
+
 			}
-					
+
 		}
 		return array_unique($this_access); // in not null, they inherit access
 	}

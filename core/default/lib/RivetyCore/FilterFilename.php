@@ -7,7 +7,7 @@
 		Rich Joslin
 
 	About: License
-		<http://communit.as/docs/license>
+		<http://rivety.com/docs/license>
 
 	About: See Also
 		Zend_Filter_Interface

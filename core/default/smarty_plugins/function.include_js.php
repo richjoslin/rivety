@@ -7,7 +7,7 @@
 		Rich Joslin
 
 	About: License
-		<http://communit.as/docs/license>
+		<http://rivety.com/docs/license>
 
 	Function: smarty_function_include_js
 		Prints script tags based on a space-delimited list of URLs passed in.

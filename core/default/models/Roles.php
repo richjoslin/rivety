@@ -7,7 +7,7 @@
 		Jaybill McCarthy
 
 	About: License
-		<http://communit.as/docs/license>
+		<http://rivety.com/docs/license>
 
 	About: See Also
 		<RivetyCore_Db_Table_Abstract>
@@ -77,7 +77,7 @@ class Roles extends RivetyCore_Db_Table_Abstract {
 	*/
 	function getInheritedRoles($id) {
 		$roles_roles_table = new RolesRoles();
-		$inherited_roles_db = $roles_roles_table->fetchAll($roles_roles_table->select()->where("role_id = ?",$id));
+		$inherited_roles_db = $roles_roles_table->fetchAll($roles_roles_table->select()->where("role_id = ?", $id));
 		$inherited_roles = array();
 		if(count($inherited_roles_db) > 0){
 			

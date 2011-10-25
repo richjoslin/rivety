@@ -7,7 +7,7 @@
 		Jaybill McCarthy
 
 	About: License
-		<http://communit.as/docs/license>
+		<http://rivety.com/docs/license>
 */
 
 if (in_array("xdebug", get_loaded_extensions()))
@@ -28,6 +28,7 @@ $ip = $_SERVER['REMOTE_ADDR'];
 
 try
 {
+	$is_cli = false;
 	require_once ('header.php');
 
 	if ($isInstalled)

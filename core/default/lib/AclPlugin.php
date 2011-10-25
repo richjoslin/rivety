@@ -1,19 +1,19 @@
 <?php
 /**
- * communit.as
+ * Rivety
  * @copyright (C)2008 Jaybill McCarthy, All Rights Reserved.
- * @category communitas
- * @package communitas
+ * @category rivety
+ * @package rivety
  * @author Jaybill McCarthy
- * @link http://communit.as communit.as
- * @license http://communit.as/docs/license License
+ * @link http://rivety.com Rivety
+ * @license http://rivety.com/docs/license License
  */
 
 /**
  *
- * @package communitas
+ * @package rivety
  * @subpackage core_lib
- * @license http://communit.as/docs/license License 
+ * @license http://rivety.com/docs/license License 
  */
  
 class AclPlugin extends Zend_Controller_Plugin_Abstract {

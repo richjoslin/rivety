@@ -7,12 +7,13 @@
 		Jaybill McCarthy
 
 	About: License
-		<http://communit.as/docs/license>
+		<http://rivety.com/docs/license>
 
 	About: See Also
 	 	<RivetyCore_Db_Table_Abstract>
 */
-class Modules extends RivetyCore_Db_Table_Abstract {
+class Modules extends RivetyCore_Db_Table_Abstract
+{
 
 	/* Group: Instance Variables */
 
@@ -61,10 +62,6 @@ class Modules extends RivetyCore_Db_Table_Abstract {
 		parent::__construct();
 	}
 
-	function init()
-	{
-	}
-
 	/* Group: Instance Methods */
 
 	/*
@@ -81,11 +78,15 @@ class Modules extends RivetyCore_Db_Table_Abstract {
 		About: See Also
 			- <isEnabled>
 	*/
-	function exists($module_id) {
+	function exists($module_id)
+	{
 		$where = $this->getAdapter()->quoteInto("id = ?", $module_id);
-		if ($this->getCountByWhereClause($where) > 0) {
+		if ($this->getCountByWhereClause($where) > 0)
+		{
 			return true;
-		} else {
+		}
+		else
+		{
 			return false;
 		}
 	}
@@ -99,15 +100,19 @@ class Modules extends RivetyCore_Db_Table_Abstract {
 
 		Returns: array
 	*/
-	function getEnabledModules($include_default = true) {
+	function getEnabledModules($include_default = true)
+	{
 		$enabled_modules = array();
 		$modules = $this->fetchAll("is_enabled = 1");
-		if (count($modules) > 0) {
-			foreach ($modules as $module) {
+		if (count($modules) > 0)
+		{
+			foreach ($modules as $module)
+			{
 				$enabled_modules[] = $module->id;
 			}
 		}
-		if ($include_default) {
+		if ($include_default)
+		{
 			$enabled_modules[] = "default";
 		}
 		return $enabled_modules;

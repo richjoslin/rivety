@@ -1,6 +1,6 @@
 {include file="file:$current_path/_header.tpl" pageTitle="Installed!"}
 <p>
-	Congratulations! You've successfully installed communit.as!
+	Congratulations! You've successfully installed Rivety!
 </p>
 
 <p>

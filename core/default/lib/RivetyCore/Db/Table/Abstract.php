@@ -7,7 +7,7 @@
 		Jaybill McCarthy and Rich Joslin
 
 	About: License
-		<http://communit.as/docs/license>
+		<http://rivety.com/docs/license>
 
 	About: See Also
 		- Zend_Db_Table
@@ -69,10 +69,7 @@ abstract class RivetyCore_Db_Table_Abstract extends Zend_Db_Table
 	{
 		$db = $this->getAdapter();
 		$sql = "SELECT count(*) FROM " . $this->_name;
-		if (!is_null($whereclause))
-		{
-			$sql .= " where ".$whereclause;
-		}
+		if (!is_null($whereclause)) $sql .= " where ".$whereclause;
 		$total = $db->fetchOne($sql);
 		return $total;
 	}
@@ -391,6 +388,20 @@ abstract class RivetyCore_Db_Table_Abstract extends Zend_Db_Table
 		$tmp_rows = $this->fetchAll($where);
 		if (!is_null($tmp_rows)) return $tmp_rows->toArray();
 		else return array();
+	}
+
+	/*
+		Function: fetchAllAsSmartyHtmlOptionsArray
+	*/
+	function fetchAllAsSmartyHtmlOptionsArray($id_field_name = 'id', $label_field_name = 'name')
+	{
+		$record_array = $this->fetchAllArray();
+		$html_options = array('' => 'None');
+		foreach ($record_array as $record)
+		{
+			$html_options[$record[$id_field_name]] = $record[$label_field_name];
+		}
+		return $html_options;
 	}
 
 }

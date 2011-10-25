@@ -7,7 +7,7 @@
 		Rich Joslin
 
 	About: License
-		<http://communit.as/docs/license>
+		<http://rivety.com/docs/license>
 
 	About: See Also
 	 	- <RivetyCore_Db_Table_Abstract>
@@ -50,10 +50,10 @@ class Navigation extends RivetyCore_Db_Table_Abstract
 			role_id - None of these methods will work without a role ID.
 			config (optional) - Required by parent constructor
 	*/
-	function __construct($role_id, $locale_code = "en-us", $config = null, $restricted = null)
+	function __construct($params = null) //, $role_id, $locale_code = "en-us", $config = null, $restricted = null)
 	{
-		$this->locale_code = $locale_code;
-		$this->role_id = $role_id;
+		$this->role_id = $params['role_id'];
+		$this->locale_code = $params['locale_code'];
 		if (is_array($this->role_id))
 		{
 			$all_roles = $this->role_id;
@@ -65,7 +65,7 @@ class Navigation extends RivetyCore_Db_Table_Abstract
   		$roles_table = new Roles();
 		foreach ($all_roles as $role)
 		{
-			$all_roles = array_merge($all_roles,$roles_table->getAllAncestors($role));
+			$all_roles = array_merge($all_roles, $roles_table->getAllAncestors($role));
 		}
 		$this->all_roles = array_unique($all_roles);
 		return parent::__construct($config);

@@ -7,36 +7,38 @@
 		Rich Joslin
 
 	About: License
-		<http://communit.as/docs/license>
+		<http://rivety.com/docs/license>
 */
-class RivetyCore_Sort {
+class RivetyCore_Sort
+{
 
 	/* Group: Static Methods */
 
-	static function adjustSortValue($class_name, $id_column_value, $adjustment, $id_column_name = 'id', $sort_column_name = 'sort_order',$params = null) {
-		if (is_array($params)) {
-			$params = implode(",",$params);
-		}
+	static function adjustSortValue($class_name, $id_column_value, $adjustment, $id_column_name = 'id', $sort_column_name = 'sort_order', $params = null)
+	{
+		if (is_array($params)) $params = implode(",", $params);
 		$table = new $class_name($params);
 		$where = $table->getAdapter()->quoteInto($id_column_name . ' = ?', $id_column_value);
 		$item_temp = $table->fetchRow($where);
-		if (!is_null($item_temp)) {
+		if (!is_null($item_temp))
+		{
 			$new_sort_order = $item_temp->sort_order + $adjustment;
 			$table->update(array($sort_column_name => $new_sort_order), $where);
 		}
 	}
 
-	static function reNumber($class_name, $where = '', $id_column_name = 'id', $sort_column_name = 'sort_order', $multiplier = 10, $params = null) {
-		if (is_array($params)) {
-			$params = implode(",",$params);
-		}
+	static function reNumber($class_name, $where = '', $id_column_name = 'id', $sort_column_name = 'sort_order', $multiplier = 10, $params = null)
+	{
+		if (is_array($params)) $params = implode(",",$params);
 		
 		$table = new $class_name($params);
 		$items_temp = $table->fetchAll($where, $sort_column_name);
-		if (!is_null($items_temp)) {
+		if (!is_null($items_temp))
+		{
 			$items_temp = $items_temp->toArray();
 			$sort_values = array();
-			foreach ($items_temp as $item_temp) {
+			foreach ($items_temp as $item_temp)
+			{
 				$new_sort_order = $item_temp[$sort_column_name];
 				// the sort order value should be first
 				// that way a simple sort() is all we need to re-sort the array properly
@@ -45,7 +47,8 @@ class RivetyCore_Sort {
 			// re-sort the items
 			sort($sort_values);
 			// re-number the items to lock in the new sort order
-			for ($i = 1; $i <= count($sort_values); $i++) {
+			for ($i = 1; $i <= count($sort_values); $i++)
+			{
 				$sort_values[$i - 1][$sort_column_name] = $i * $multiplier;
 			}
 			// update the database for each record with the new sort order
