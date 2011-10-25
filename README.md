@@ -4,18 +4,19 @@ This system takes the Zend Framework to a place where it can be very quickly dep
 Framework is great, but this gives you a huge development boost.
 
 The following frameworks form the foundation for Rivety:
-- Zend Framework
-- Smarty
-- jQuery
+* Zend Framework
+* Smarty
+* jQuery
+* jQuery UI
 
 Rivety takes the following features of Zend Framework and puts them at your fingertips:
-- Authentication
-- Access Control
-- Model-View-Controller architecture
-- Template rendering (in this case using Smarty)
-- Code Generation
-- - Module Generator
-- - CRUD-ifier - introspects a database table and automatically creates a model and forms to manage the data in that table (similar to Rails scaffolding).
+* Authentication
+* Access Control
+* Model-View-Controller architecture
+* Template rendering (in this case using Smarty)
+* Code Generation
+* * Module Generator
+* * CRUD-ifier - introspects a database table and automatically creates a model and forms to manage the data in that table (similar to Rails scaffolding).
 
 WARNING:
 Rivety has been dialed back to pre-alpha while I rework a few things. It's not yet fully ready for prime-time.
