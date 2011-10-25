@@ -2,16 +2,18 @@
 name        = MODULE_NAME_UC
 version     = 0.1
 description = This module has been auto-generated.
-author      = Communitas Module Generator
-url         = http://communit.as
+author      = Rivety Module Generator
+url         = http://rivety.com
 
 [lib_versions]
-zf     = 1.6.2
+zf = 1.11.6
 smarty = 2.6.19
 asido  = 0.0.0.1
 
 [database_versions]
 MODULE_NAME_LOWER = 0
+
+[routes]
 
 [plugins]
 filter.MODULE_NAME_LOWER_install   = MODULE_NAME_UC_Plugins_Setup::install

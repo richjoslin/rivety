@@ -7,7 +7,7 @@
 		Jaybill McCarthy
 
 	About: License
-		<http://communit.as/docs/license>
+		<http://rivety.com/docs/license>
 
 	Function: smarty_function_tag_cloud
 		Prints a 'tag cloud' generated from the passed parameters.

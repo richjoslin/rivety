@@ -4,16 +4,17 @@
 	Class: MODULE_NAME_UC_Db_Table
 
 	About: Author
-		Communitas Module Generator
+		Rivety Module Generator
 
 	About: License
-		<http://communit.as/docs/license>
+		<http://rivety.com/docs/license>
 
 	About: See Also
 		- <RivetyCore_Db_Table_Abstract>
 		- Zend_Db_Table
 */
-abstract class MODULE_NAME_UC_Db_Table extends RivetyCore_Db_Table_Abstract {
+abstract class MODULE_NAME_UC_Db_Table extends RivetyCore_Db_Table_Abstract
+{
 
 	public $_module_id = "MODULE_NAME_LOWER";
 

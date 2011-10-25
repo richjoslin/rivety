@@ -9,7 +9,7 @@
 		Jaybill McCarthy
 
 	About: License
-		<http://communit.as/docs/license>
+		<http://rivety.com/docs/license>
 
 	About: See Also
 		<InstallPlugin>
@@ -35,7 +35,7 @@ class InstallController extends Zend_Controller_Action
 			default_admin_theme_url - url to the base of the current admin theme
 			isAdminController - boolean set to true (so view uses correct theme)
 			current_path - filesystem path to the template directory for the current controller
-			site_name - set to "communit.as" for installer, used by default installer theme
+			site_name - set to "Rivety" for installer, used by default installer theme
 	*/
 	function init()
 	{
@@ -50,7 +50,7 @@ class InstallController extends Zend_Controller_Action
 		$this->view->current_path = $template_path . "/" . $this->getRequest()->getControllerName();
 
         $this->view->isAdminController = true;
-		$this->view->site_name = "communit.as";
+		$this->view->site_name = "Rivety";
 	}
 
 	/* Group: Actions */
@@ -143,7 +143,7 @@ class InstallController extends Zend_Controller_Action
 
 	/*
 		Function: index
-			Displays the Communitas installer. This action will be called if the /etc/config.ini is missing.
+			Displays the Rivety installer. This action will be called if the /etc/config.ini is missing.
 			It will gather the required installation variables, check that all the file/directory permissions
 			are correct, write the config file and install the database.
 
@@ -223,7 +223,7 @@ class InstallController extends Zend_Controller_Action
 				require_once($zf_version_class);
 				if (Zend_Version::compareVersion($module_cfg['lib_versions']['zf']) > 0)
 				{
-					$errors[] = $this->_T("Communit.as requires Zend Framework %s or higher. The supplied version is %s.", array($module_cfg['lib_versions']['zf'], Zend_Version::VERSION));
+					$errors[] = $this->_T("Rivety requires Zend Framework %s or higher. The supplied version is %s.", array($module_cfg['lib_versions']['zf'], Zend_Version::VERSION));
 				}
 			}
 			if (!file_exists($smarty_class_file))
@@ -244,7 +244,7 @@ class InstallController extends Zend_Controller_Action
 				}
 				if (version_compare($module_cfg['lib_versions']['smarty'],$found_smarty_version) > 0)
 				{
-					$errors[] = $this->_T("Communit.as requires Smarty Template Engine %s or higher. The supplied version is %s.", array($module_cfg['lib_versions']['smarty'], $found_smarty_version));
+					$errors[] = $this->_T("Rivety requires Smarty Template Engine %s or higher. The supplied version is %s.", array($module_cfg['lib_versions']['smarty'], $found_smarty_version));
 				}
 			}
 			if (!file_exists($asido_class_file))
@@ -257,7 +257,7 @@ class InstallController extends Zend_Controller_Action
 				$asido = new Asido();
 				if (version_compare($module_cfg['lib_versions']['asido'], $asido->version()) > 0)
 				{
-					$errors[] = $this->_T("Communit.as requires Asido %s or higher. The supplied version is %s.", array($module_cfg['lib_versions']['asido'], $asido->version()));
+					$errors[] = $this->_T("Rivety requires Asido %s or higher. The supplied version is %s.", array($module_cfg['lib_versions']['asido'], $asido->version()));
 				}
 			}
 			$dir_array = array($etc_dir,
@@ -354,17 +354,17 @@ class InstallController extends Zend_Controller_Action
 				// everything worked out okay, attempt to write the config file
 
 				$config = array(
-					"db.communitas.adapter"         => "PDO_MYSQL", // This should really be configurable, but it isn't yet.
-					"db.communitas.config.host"     => $request->db_host,
-					"db.communitas.config.dbname"   => $request->db_name,
-					"db.communitas.config.username" => $request->db_user,
-					"db.communitas.config.password" => $request->db_pass,
-					"db.communitas.config.port"     => $request->db_port,
-					"db.communitas.config.default"  => "true",
+					"db.rivety.adapter"         => "PDO_MYSQL", // This should really be configurable, but it isn't yet.
+					"db.rivety.config.host"     => $request->db_host,
+					"db.rivety.config.dbname"   => $request->db_name,
+					"db.rivety.config.username" => $request->db_user,
+					"db.rivety.config.password" => $request->db_pass,
+					"db.rivety.config.port"     => $request->db_port,
+					"db.rivety.config.default"  => "true",
 				);
 				if (!is_null($request->db_sock))
 				{
-					$config['db.communitas.config.unix_socket'] = $request->db_sock;
+					$config['db.rivety.config.unix_socket'] = $request->db_sock;
 				}
 				$config_file .= RivetyCore_ConfigFile::makeSection("databases", "Database Settings", "This is the default database.", $config);
 
@@ -440,7 +440,7 @@ class InstallController extends Zend_Controller_Action
 		else
 		{
 			$this->view->db_host         = "localhost";
-			$this->view->db_name         = "communitas";
+			$this->view->db_name         = "rivety";
 			$this->view->db_user         = "root";
 			$this->view->db_pass         = "";
 			$this->view->db_port         = "3306";

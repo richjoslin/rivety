@@ -7,7 +7,7 @@
 		Tyler Vigeant
 
 	About: License
-		<http://communit.as/docs/license>
+		<http://rivety.com/docs/license>
 
 	Function: smarty_block_nbsp
 

@@ -6,14 +6,18 @@
 	About: Author
 		Jaybill McCarthy
 
+	About: Contributors
+		Rich Joslin
+
 	About: License
-		<http://communit.as/docs/license>
+		<http://rivety.com/docs/license>
 
 	About: See Also
 		<RivetyCore_Controller_Action_Abstract>
 		<RivetyCore_Controller_Action_Admin>
 */
-class ResourceController extends RivetyCore_Controller_Action_Admin {
+class ResourceController extends RivetyCore_Controller_Action_Admin
+{
 
 	/* Group: Instance Methods */
 
@@ -23,7 +27,8 @@ class ResourceController extends RivetyCore_Controller_Action_Admin {
 		Initializes the current instance.
 		Initializes the parent object (calls init() on the parent instance).
 	*/
-	function init() {
+	function init()
+	{
 		parent::init();
 	}
 
@@ -47,11 +52,10 @@ class ResourceController extends RivetyCore_Controller_Action_Admin {
 	*/
 	function editAction()
 	{
-
 		$request = new RivetyCore_Request($this->getRequest());
 
 		$modules_table = new Modules('modules');
-		$modules_table_core = new Modules('default');
+		$modules_table_core = new Modules('core');
 
 		$roles_resources_table = new RolesResources();
 		$roles_res_extra_table = new RolesResourcesExtra();
@@ -60,7 +64,7 @@ class ResourceController extends RivetyCore_Controller_Action_Admin {
 		{
 			$role_id = $request->id;
 			$roles_table = new Roles();
-			$role = $roles_table->fetchRow("id = ".$role_id);
+			$role = $roles_table->fetchRow("id = " . $role_id);
 			if (!is_null($role))
 			{
 				$this->view->role = $role->toArray();
@@ -94,7 +98,6 @@ class ResourceController extends RivetyCore_Controller_Action_Admin {
 
 		if ($this->getRequest()->isPost())
 		{
-
 			$resources = $this->getRequest()->getPost('resource');
 
 			// Hose everything for this role and module
@@ -140,11 +143,14 @@ class ResourceController extends RivetyCore_Controller_Action_Admin {
 
 		$resources = array();
 
-		foreach ($db_roles_resources as $resource) {
-			if (!array_key_exists($resource->module, $resources)) {
+		foreach ($db_roles_resources as $resource)
+		{
+			if (!array_key_exists($resource->module, $resources))
+			{
 				$resources[$resource->module] = array();
 			}
-			if (!array_key_exists($resource->controller, $resources[$resource->module])) {
+			if (!array_key_exists($resource->controller, $resources[$resource->module]))
+			{
 				$resources[$resource->module][$resource->controller] = array();
 			}
 			$resources[$resource->module][$resource->controller][] = $resource->action;
@@ -219,7 +225,6 @@ class ResourceController extends RivetyCore_Controller_Action_Admin {
 		$d->close();
 		$this->view->modid = $module_id;
 
-		// TODO: change to rivety
 		if ($module_id == 'default') $mod_cfg = $modules_table_core->parseIni($module_id);
 		else $mod_cfg = $modules_table->parseIni($module_id);
 
@@ -256,14 +261,17 @@ class ResourceController extends RivetyCore_Controller_Action_Admin {
 		Returns:
 			A boolean indicating whether the permissions on the indicated resource are inherited from another role.
 	*/
-	protected function isResourceInherited($module, $controller, $action, $role_id) {
+	protected function isResourceInherited($module, $controller, $action, $role_id)
+	{
 		$inheritsResource = false;
 		$roles_table = new Roles();
 		$roles_roles_table = new RolesRoles();
 		$roles_resources_table = new RolesResources();
 		$inherited_ids = $roles_table->getAllAncestors($role_id);
-		if (count($inherited_ids) > 0) {
-			foreach ($inherited_ids as $inherited_id) {
+		if (count($inherited_ids) > 0)
+		{
+			foreach ($inherited_ids as $inherited_id)
+			{
 				// determine if parent has access to this resource
 				$roles_resource = $roles_resources_table->fetchRow(
 					"role_id=".$inherited_id." and ".
@@ -271,7 +279,8 @@ class ResourceController extends RivetyCore_Controller_Action_Admin {
 					"controller='".$controller."' and ".
 					"action='".$action."' "
 				);
-				if (!is_null($roles_resource)) {
+				if (!is_null($roles_resource))
+				{
 					//parent has it, role is inherited
 					$inheritsResource = true;
 				}
@@ -292,21 +301,25 @@ class ResourceController extends RivetyCore_Controller_Action_Admin {
 		Returns:
 			A boolean indicating whether the permissions on the indicated resource are inherited from another role.
 	*/
-	protected function isExtraResourceInherited($module, $resource, $role_id) {
+	protected function isExtraResourceInherited($module, $resource, $role_id)
+	{
 		$inheritsResource = false;
 		$roles_table = new Roles();
 		$roles_roles_table = new RolesRoles();
 		$roles_res_extra_table = new RolesResourcesExtra();
 		$inherited_ids = $roles_table->getAllAncestors($role_id);
-		if (count($inherited_ids) > 0) {
-			foreach ($inherited_ids as $inherited_id) {
+		if (count($inherited_ids) > 0)
+		{
+			foreach ($inherited_ids as $inherited_id)
+			{
 				// determine if parent has access to this resource
 				$select = $roles_res_extra_table->select();
 				$select->where("role_id = ?", $inherited_id);
 				$select->where("module = ?", $module);
 				$select->where("resource = ?", $resource);
 				$roles_resource = $roles_res_extra_table->fetchRow($select);
-				if (!is_null($roles_resource)) {
+				if (!is_null($roles_resource))
+				{
 					//parent has it, role is inherited
 					$inheritsResource = true;
 				}

@@ -1,28 +1,51 @@
 {* Notice: This template is recursive. *}
-{if is_null($level)} 
+{if is_null($level)}
 	{assign var=level value=0}
 {/if}
-{if count($nav_items) gt 0}	
-	<ul{if $level eq 0} class="editnav"{/if}>
-		{foreach from=$nav_items item=nav_item key=index name=linklist}
-			<li class="level-{$level}">
-				<div class="buttons clearfix">
-					<span class="linkname level-{$level}">{$nav_item.link_text|truncate:30}</span>
-					{if $smarty.foreach.linklist.first}
-						<span class=""></span>
-					{else}
-						<a class="up" href="{url}/default/navigation/moveup/nav_id/{$nav_item.id}/parent_id/{$nav_item.parent_id}/role_id/{$role.id}{/url}">{t}Move Up{/t}</a>
-					{/if}
-					{if $smarty.foreach.linklist.last}
-						<span class=""></span>
-					{else}
-						<a class="down" href="{url}/default/navigation/movedown/nav_id/{$nav_item.id}/parent_id/{$nav_item.parent_id}/role_id/{$role.id}{/url}">{t}Move Down{/t}</a>
-					{/if}
-					<a class="edit" href="{url}/default/navigation/edit/nav_id/{$nav_item.id}/role_id/{$role.id}{/url}">{t}Edit{/t}</a>					
-					<a class="delete" href="{url}/default/navigation/delete/nav_id/{$nav_item.id}/role_id/{$role.id}{/url}">{t}Delete{/t}</a>
-				</div>
-				{include file="file:$current_path/_role_nav_tree.tpl" nav_items=$nav_item.children level=$level+1}
-			</li>
-		{/foreach}
-	</ul>
+{if count($nav_items) gt 0}
+	{foreach from=$nav_items item=nav_item key=index name=linklist}
+
+		<div style="float: left; clear: both; width: 400px; margin: 0 0 8px 0; border-bottom: solid 1px silver;">
+
+			<div style="float: left; margin-left: {math equation="$level * 40"}px;">
+				{if $smarty.foreach.linklist.first}
+					<span class="left ui-icon ui-icon-circle-arrow-n ui-state-disabled">
+						{t}Move Up{/t}
+					</span>
+				{else}
+					<a class="left ui-icon ui-icon-circle-arrow-n"
+						href="{url}/default/navigation/moveup/nav_id/{$nav_item.id}/parent_id/{$nav_item.parent_id}/role_id/{$role.id}{/url}">
+						<span>{t}Move Up{/t}</span>
+					</a>
+				{/if}
+			</div>
+
+			<div style="float: left;">
+				{if $smarty.foreach.linklist.last}
+					<span class="ui-icon ui-icon-circle-arrow-s ui-state-disabled">
+						{t}Move Down{/t}
+					</span>
+				{else}
+					<a class="ui-icon ui-icon-circle-arrow-s"
+						href="{url}/default/navigation/movedown/nav_id/{$nav_item.id}/parent_id/{$nav_item.parent_id}/role_id/{$role.id}{/url}">
+						<span>{t}Move Down{/t}</span>
+					</a>
+				{/if}
+			</div>
+
+			<div style="float: left; margin: 0 0 0 10px;">
+				<span>{$nav_item.link_text}</span>
+			</div>
+
+			<div style="float: right;">
+				<a href="{url}/default/navigation/delete/nav_id/{$nav_item.id}/role_id/{$role.id}{/url}">{t}Delete{/t}</a>
+			</div>
+
+			<div style="float: right; margin: 0 20px 0 0;">
+				<a href="{url}/default/navigation/edit/nav_id/{$nav_item.id}/role_id/{$role.id}{/url}">{t}Edit{/t}</a>
+			</div>
+
+		</div>
+		{include file="file:$current_path/_role_nav_tree.tpl" nav_items=$nav_item.children level=$level+1}
+	{/foreach}
 {/if}

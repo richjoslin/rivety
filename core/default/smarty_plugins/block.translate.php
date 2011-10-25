@@ -8,7 +8,7 @@
 		Rich Joslin
 
 	About: License
-		<http://communit.as/docs/license>
+		<http://rivety.com/docs/license>
 
 	Function: smarty_block_translate
 		Translates a string based on the current user's chosen locale. Uses RivetyCore_Translate::translate.

@@ -2,13 +2,13 @@
 
 /*
 	Class: Module
-		This is how communit.as modules are installed, enabled, disabled and removed.
+		This is how Rivety modules are installed, enabled, disabled and removed.
 		
 	About: Author
 		Jaybill McCarthy
 
 	About: License
-		<http://communit.as/docs/license>
+		<http://rivety.com/docs/license>
 
 	About: See Also
 		<RivetyCore_Controller_Action_Abstract>

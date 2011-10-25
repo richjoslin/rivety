@@ -7,7 +7,7 @@
 		Jaybill McCarthy
 
 	About: License
-		<http://communit.as/docs/license>
+		<http://rivety.com/docs/license>
 */
 error_reporting(E_ALL | E_STRICT);
 /* Group: Global Methods */
@@ -19,11 +19,11 @@ error_reporting(E_ALL | E_STRICT);
 	Arguments:
 		class_name - The name of the class to load (not a filename).
 */
-function __autoload($class_name) 
+function __autoload($class_name)
 {
 	try
 	{
-		if ($class_name == "Smarty") 
+		if ($class_name == "Smarty")
 		{
 			require_once $class_name . '.class.php';
 		}
@@ -33,20 +33,20 @@ function __autoload($class_name)
 			{
 				Zend_Loader::loadClass($class_name);
 			}
-			catch(Zend_Exception $ex) 
+			catch(Zend_Exception $ex)
 			{
 				$places_to_look = explode(PATH_SEPARATOR, get_include_path());
 				$found = false;
-				foreach ($places_to_look as $place_to_look) 
+				foreach ($places_to_look as $place_to_look)
 				{
 					$filename = $place_to_look . DIRECTORY_SEPARATOR . $class_name . ".php";
-					if (file_exists($filename)) 
+					if (file_exists($filename))
 					{
 						require_once $filename;
 						$found = true;
 						break;
 					}
-					if (!$found) 
+					if (!$found)
 					{
 						throw (new Exception("Can't find a class called '" . $class_name . "'. Here's a backtrace: " . print_r(debug_backtrace(), true)));
 					}
@@ -54,7 +54,7 @@ function __autoload($class_name)
 			}
 		}
 	}
-	catch(Exception $e) 
+	catch(Exception $e)
 	{
 		dd($e);
 	}
@@ -69,10 +69,10 @@ function __autoload($class_name)
 	See Also:
 		- Zend_Debug::dump()
 */
-function d($a_var) 
+function d($a_var)
 {
 	global $xdebug_on;
-	if (!$xdebug_on) 
+	if (!$xdebug_on)
 	{
 		echo ("<pre>");
 		ob_start();
@@ -98,7 +98,7 @@ function d($a_var)
 			- Zend_Debug::dump()
 			- die()
 */
-function dd($a_var) 
+function dd($a_var)
 {
 	d($a_var);
 	die();
@@ -106,14 +106,14 @@ function dd($a_var)
 /*
 	Function: var_name
 */
-function var_name(&$var, $scope = false, $prefix = 'unique', $suffix = 'value') 
+function var_name(&$var, $scope = false, $prefix = 'unique', $suffix = 'value')
 {
 	if ($scope) $vals = $scope;
 	else $vals = $GLOBALS;
 	$old = $var;
 	$var = $new = $prefix . rand() . $suffix;
 	$vname = FALSE;
-	foreach ($vals as $key => $val) 
+	foreach ($vals as $key => $val)
 	{
 		if ($val === $new) $vname = $key;
 	}
@@ -124,7 +124,7 @@ function var_name(&$var, $scope = false, $prefix = 'unique', $suffix = 'value')
 	Function: canDebug
 		Read the debug_ips param from the config and determine if the passed ip is one of them
 */
-function canDebug($ip, $config) 
+function canDebug($ip, $config)
 {
 	if (array_key_exists("debug_ips", $config['application'])) $debug_ips = explode(",", $config['application']['debug_ips']);
 	else $debug_ips = array();
@@ -135,7 +135,7 @@ function canDebug($ip, $config)
 $config_file = $basepath . '/etc/config.ini';
 $routes_file = $basepath . '/etc/routes.ini';
 $isInstalled = false;
-if (file_exists($config_file)) 
+if (file_exists($config_file))
 {
 	$isInstalled = true;
 	$config = parse_ini_file($config_file, true);
@@ -151,15 +151,15 @@ else
 	$smarty_path = $basepath . "/lib/Smarty/libs";
 	$asido_path = $basepath . "/lib/Asido";
 }
-if (!file_exists($zf_path . "/Zend/Loader.php")) 
+if (!file_exists($zf_path . "/Zend/Loader.php"))
 {
 	throw new Exception("MISSING_LIBS - Can't find Zend Framework in " . $zf_path);
 }
-if (!file_exists($smarty_path . "/Smarty.class.php")) 
+if (!file_exists($smarty_path . "/Smarty.class.php"))
 {
 	throw new Exception("MISSING_LIBS - Can't find Smarty Template Engine in " . $smarty_path);
 }
-if (!file_exists($asido_path . "/class.asido.php")) 
+if (!file_exists($asido_path . "/class.asido.php"))
 {
 	throw new Exception("MISSING_LIBS - Can't find Asido in " . $asido_path);
 }
@@ -174,13 +174,13 @@ $module_dir = $basepath . "/modules";
 $rivety_dir = $RivetyCore_module_dir . "/default";
 $subdirs = array("models", "plugins", "controllers", "lib");
 // set include paths for default module
-foreach ($subdirs as $subdir) 
+foreach ($subdirs as $subdir)
 {
 	set_include_path(get_include_path() . PATH_SEPARATOR . $rivety_dir . DIRECTORY_SEPARATOR . $subdir);
 }
 // set up default smarty plugins dir as a string
 $smarty_plugins_dirs = $rivety_dir . DIRECTORY_SEPARATOR . 'smarty_plugins';
-if ($isInstalled) 
+if ($isInstalled)
 {
 	$log_level = null;
 
@@ -190,7 +190,9 @@ if ($isInstalled)
 	if (is_null(@$config['application']['host_id'])) $host_id = null;
 	else $host_id = $config['application']['host_id'];
 
-	$log_filename = $config['application']['log_filename'];
+	if ($is_cli) $log_filename = $config['application']['log_filename_cli'];
+	else $log_filename = $config['application']['log_filename'];
+
 	Zend_Registry::set('basepath', $basepath);
 	Zend_Registry::set('config_file', $config_file);
 	Zend_Registry::set('host_id', $host_id);
@@ -210,10 +212,10 @@ if ($isInstalled)
 	set_include_path(get_include_path() . PATH_SEPARATOR . $config['application']['addtl_includes']);
 	$databases = new Zend_Config_Ini($config_file, 'databases');
 	$dbAdapters = array();
-	foreach ($databases->db as $config_name => $db) 
+	foreach ($databases->db as $config_name => $db)
 	{
 		$dbAdapters[$config_name] = Zend_Db::factory($db->adapter, $db->config->toArray());
-		if ((boolean)$db->config->default) 
+		if ((boolean)$db->config->default)
 		{
 			Zend_Db_Table::setDefaultAdapter($dbAdapters[$config_name]);
 		}
@@ -227,7 +229,7 @@ if ($isInstalled)
 	$modules_table->setDefaultConfig("default");
 	$config_table = new Config();
 	$config_array = $config_table->fetchall()->toArray();
-	foreach ($config_array as $config_param) 
+	foreach ($config_array as $config_param)
 	{
 		Zend_Registry::set($config_param['ckey'], $config_param['value']);
 	}
@@ -237,20 +239,20 @@ if ($isInstalled)
 	// Get the list of modules from the db
 	$modules_table = new Modules('modules');
 	$enabled_modules = $modules_table->fetchAll("is_enabled = 1");
-	if (count($enabled_modules) > 0) 
+	if (count($enabled_modules) > 0)
 	{
-		foreach ($enabled_modules as $module) 
+		foreach ($enabled_modules as $module)
 		{
 			$full_dir = $module_dir . "/" . $module->id;
-			if ($modules_table->isEnabled($module->id)) 
+			if ($modules_table->isEnabled($module->id))
 			{
 				$modules_table->setup($module->id);
 				$smarty_plugins_dir = $full_dir . '/smarty_plugins';
 				// if there are any OTHER smarty plugin dirs in other modules, convert smarty_plugin_dirs to an array and add the default
-				if (is_dir($smarty_plugins_dir)) 
+				if (is_dir($smarty_plugins_dir))
 				{
 					$tmp_dir = $smarty_plugins_dirs;
-					if (is_array($smarty_plugins_dirs)) 
+					if (is_array($smarty_plugins_dirs))
 					{
 						$smarty_plugins_dirs[] = $smarty_plugins_dir;
 					}
