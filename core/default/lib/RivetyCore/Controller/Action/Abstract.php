@@ -186,7 +186,7 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 		$this->view->default_theme_controller_path = $this->_theme_locations['frontend']['default_theme']['path'] . '/tpl_controllers/' . $this->module_name . "/" . $this->getRequest()->getControllerName();
 		$this->view->default_theme_module_path = $this->_theme_locations['frontend']['default_theme']['path'] . '/tpl_controllers/' . $this->module_name;
 
-		RivetyCore_Log::report("Current path ".$this->_mca, null, Zend_Log::INFO);
+		RivetyCore_Log::report("Current path " . $this->_mca, null, Zend_Log::INFO);
 
 		$this->view->isAdminController = false;
 
