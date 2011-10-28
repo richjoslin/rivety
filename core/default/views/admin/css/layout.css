@@ -48,20 +48,6 @@ ul.topnav li, ul.subnav li
 	margin: 20px 0 0 0;
 }
 
-div.status
-{
-	float: left;
-	padding: 14px 0;
-	width: 960px;
-}
-div.error-list li
-{
-	float: left;
-	margin: 0 10px;
-	padding: 10px 0 10px 20px;
-	width: 920px;
-}
-
 #content
 {
 	float: left;
@@ -73,8 +59,8 @@ div.error-list li
 #options
 {
 	float: right;
-	margin: 0 0 20px 0;
-	padding: 30px 10px;
+	margin: 0;
+	padding: 12px 8px 8px 8px;
 	width: 160px;
 }
 #options h3
@@ -119,28 +105,9 @@ a.marked-for-deletion, a.marked-for-deletion img, a.not-marked-for-deletion, a.n
 	display: inline-block;
 }
 
-ul.warnings
-{
-	list-style: square;
-}
-ul.warnings li
-{
-	margin: 10px 30px;
-}
-
-div.cms-accordion h5
+div.accordion h5
 {
 	padding: 4px 0 4px 30px;
-}
-
-.ui-accordion-content
-{
-	height: 440px;
-}
-
-span.ui-icon-check
-{
-	margin: 0 auto;
 }
 
 a.image-preview
@@ -148,4 +115,15 @@ a.image-preview
 	clear: right;
 	display: block;
 	float: right;
+}
+
+.button-bar
+{
+	overflow: hidden;
+}
+
+.button-bar input,
+.button-bar a
+{
+	margin: 10px !important;
 }

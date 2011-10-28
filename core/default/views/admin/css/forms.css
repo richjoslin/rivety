@@ -15,46 +15,6 @@ form div.form-field
 	margin: 0 0 16px 0;
 }
 
-/*form div.form-field label
-{
-	display: block;
-}
-*/
-/*
-form h4
-{
-	background: #eee;
-	border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px;
-	clear: both;
-	margin: 20px 0 10px 0;
-	padding: 10px;
-}
-
-form label
-{
-	display: inline-block;
-	width: 200px;
-}
-
-*/
-form input[type=text]
-{
-	/*padding: 6px 8px;*/
-}
-
-/*
-form input[type=text], form select
-{
-	width: 300px;
-}
-*/
-
-form textarea
-{
-	height: 320px;
-	width: 320px;
-}
-
 ul.sortable-list li
 {
 	background: White;
@@ -100,7 +60,7 @@ form div.tip
 
 div.jHtmlArea
 {
-	background: #f5f5f5;
+	background: #f6f6f6;
 	border: solid 1px #ccc;
 	display: inline-block;
 }
@@ -122,4 +82,28 @@ a.list-button, a.list-button:active, a.list-button:hover, a.list-button:visited
 	margin: 0 6px 0 0;
 	padding: 2px 6px;
 	text-decoration: none;
+}
+
+.rivety-form-field
+{
+	width: auto;
+	background-color: #f6f6f6;
+	overflow: hidden;
+	margin: 10px 0;
+	padding: 10px;
+}
+.rivety-form-field label
+{
+	display: block;
+	float: left;
+}
+.rivety-form-field div.buttonset,
+.rivety-form-field input[type=text]
+{
+	float: right;
+}
+
+.rivety-form-field input[type=text]
+{
+	width: 600px;
 }

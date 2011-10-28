@@ -1,10 +1,10 @@
 {include file="file:$admin_theme_global_path/_header.tpl" pageTitle=$pagetitle}
-<div class="grid_4 sidenav">
+<div id="options">
 	<ul>
 		<li><a href="{url}/default/role/index{/url}">{t}Back to Roles{/t}</a></li>
 	</ul>
 </div>
-<div class="grid_12">
+<div id="main-column">
 	<h3>{$pagetitle}</h3>
 	<form action="{url}/default/navigation/edit/nav_id/{$nav_id}/role_id/{$role_id}{/url}" method="post">
 		<p>

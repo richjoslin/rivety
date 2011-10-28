@@ -3,10 +3,7 @@
 	<h3>{t}Options{/t}</h3>
 	<ul>
 		<li><a href="{url}/default/role/index{/url}">{t}Back to Roles{/t}</a></li>	
-		<li>
-			<a title="{t}Add New Link{/t}" href="{url}/default/navigation/edit/nav_id/0/role_id/{$role.id}{/url}">
-				{t}Add New Link{/t}</a>
-		</li>
+		<li><a title="{t}Add New Link{/t}" href="{url}/default/navigation/edit/nav_id/0/role_id/{$role.id}{/url}">{t}Add New Link{/t}</a></li>
 	</ul>
 </div>
 <div id="main-column">

@@ -6,9 +6,7 @@
 @import url("forms.css");
 @import url("dropdownmenu.css");
 @import url("photo-picker.css");
-@import url("jquery-ui/smoothness/jquery-ui-1.8.16.custom.css");
 @import url("chosen/chosen.css");
+@import url("jquery-ui-overrides.css");
 
 /*@import url("colors-debug.css");*/
-
-.ui-widget { font-size: 80%; } /* hack fix for jquery ui and themeroller */
