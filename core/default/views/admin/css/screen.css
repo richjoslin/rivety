@@ -8,5 +8,7 @@
 @import url("photo-picker.css");
 @import url("chosen/chosen.css");
 @import url("jquery-ui-overrides.css");
+@import url("breadcrumbs.css");
+@import url("options-menu.css");
 
 /*@import url("colors-debug.css");*/

@@ -21,4 +21,5 @@
 				</ul>
 			</div>
 			<div id="content">
+				{include file="file:$admin_theme_global_path/_breadcrumbs.tpl"}
 				{include file="file:$admin_theme_global_path/_messages.tpl"}

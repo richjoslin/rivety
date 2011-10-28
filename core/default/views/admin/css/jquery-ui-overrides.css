@@ -15,11 +15,6 @@ fieldset legend.ui-widget-header
 	font-weight: normal;
 }
 
-#options .ui-widget-header
-{
-	padding: 8px;
-}
-
 .ui-accordion-content
 {
 	height: 440px;

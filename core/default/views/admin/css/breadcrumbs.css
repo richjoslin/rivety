@@ -1,0 +1,21 @@
+
+#breadcrumbs
+{
+	height: 2.3em;
+	border: 1px solid #dedede;
+	margin: 0;
+}
+
+#breadcrumbs li
+{
+	float: left;
+	line-height: 2.3em;
+	padding-left: .75em;
+}
+
+#breadcrumbs li a
+{
+	background: url('/core/default/views/admin/img/breadcrumbs.gif') no-repeat right center;
+	display: block;
+	padding: 0 24px 0 0;
+}

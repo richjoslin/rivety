@@ -1,4 +1,5 @@
 <?php
+
 // Caclulate basepath
 $basepath =  substr($_SERVER['SCRIPT_FILENAME'], 0, strrpos( $_SERVER['SCRIPT_FILENAME'], "/core/default/direct" ));
 // Get config files

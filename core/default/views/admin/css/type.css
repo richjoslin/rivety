@@ -35,20 +35,6 @@ td.center, th.center
 	font-weight: normal;
 }
 
-#options
-{
-	/*text-align: right;*/
-}
-#options h3
-{
-	font-size: 1.4em;
-	font-weight: normal;
-}
-#options li
-{
-	font-size: 1.1em;
-}
-
 /*
 
 div.status

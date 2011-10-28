@@ -23,7 +23,7 @@ Rivety takes the following features of Zend Framework and puts them at your fing
 
 ### Model-View-Controller architecture
 
-Template rendering (in this case using Smarty)
+Template rendering (Smarty tpls)
 
 ### Code Generation
 

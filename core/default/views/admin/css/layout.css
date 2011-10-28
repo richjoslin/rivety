@@ -56,22 +56,6 @@ ul.topnav li, ul.subnav li
 	width: 960px;
 }
 
-#options
-{
-	float: right;
-	margin: 0;
-	padding: 12px 8px 8px 8px;
-	width: 160px;
-}
-#options h3
-{
-	padding: 0;
-}
-#options li
-{
-	margin: 14px 0 0 0;
-}
-
 #main-column
 {
 	float: left;

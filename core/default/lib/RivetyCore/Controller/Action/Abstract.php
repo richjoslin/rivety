@@ -38,8 +38,8 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 			site_name - The value of site_name from the registry.
 			admin_role - The name of the admin role. Pulled from the registry.
 			mca - A concatenation of the names of the model, controller, and action.
-			Useful as a body class selector when you want different models,
-			controllers, and/or actions to be styled differently. Does not account for routes. Use gingerly.
+				Useful as a body class selector when you want different models,
+				controllers, and/or actions to be styled differently. Does not account for routes. Use gingerly.
 			controller_name - The name of the current controller.
 			module_name - The name of the current module.
 			action_name - The name of the current action.
@@ -67,7 +67,7 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 			title_prefix - Set in the config. Can be used by themes in the title tag
 			view_states - An array of key value pairs (stored in the session) representing the state of certain pages.
 				For instance, the last time you viewed the list of users, you were on page 3.
-						isAdminController - a boolean that specifies if this is an admin controller.
+			isAdminController - a boolean that specifies if this is an admin controller.
 			module_xxxx - If module xxxx is enabled, this will be true. If it's not, this won't exist.
 
 		Plugin Hooks:
