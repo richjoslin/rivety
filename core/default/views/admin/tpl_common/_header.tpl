@@ -6,12 +6,15 @@
 		<link type="text/css" rel="stylesheet" href="{$admin_theme_url}/css/screen.css" />
 		<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/themes/smoothness/jquery-ui.css" />
 		<link rel="stylesheet" type="text/css" href="{$admin_theme_url}/js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
-		<!-- <link rel="stylesheet" type="text/css" href="{$admin_theme_url}/css/chosen/chosen.css" media="screen" /> -->
 		<link rel="stylesheet" type="text/css" href="{$admin_theme_url}/css/jHtmlArea/jHtmlArea.css" media="screen" />
 		{include_css urls=$css_urls}
+		<script type="text/javascript">
+			var username = "{$username}";
+			var success = {if $success}true{else}false{/if};
+		</script>
 	</head>
 	<body>
-		<!-- <div id="switcher" style="position: absolute; top: 0; left: 500px;"></div> -->
+		<div id="switcher" style="position: absolute; top: 0; left: 500px;"></div>
 		<div id="main">
 			<div id="header">
 				<a id="logout" href="{url}/default/auth/logout{/url}">{t}Log Out{/t}</a>
@@ -23,3 +26,6 @@
 			<div id="content">
 				{include file="file:$admin_theme_global_path/_breadcrumbs.tpl"}
 				{include file="file:$admin_theme_global_path/_messages.tpl"}
+				<div id="page-loader">
+					<img src="{$admin_theme_url}/img/loader-stripes.gif" width="220" height="19" alt="Loading..." />
+				</div>

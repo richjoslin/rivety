@@ -111,3 +111,13 @@ a.image-preview
 {
 	margin: 10px !important;
 }
+
+#page-loader
+{
+	width: 960px;
+}
+#page-loader img
+{
+	display: block;
+	margin: 20px auto;
+}

@@ -110,29 +110,42 @@ a.list-button, a.list-button:active, a.list-button:hover, a.list-button:visited
 	float: right;
 }
 
+.rivety-form-field.half-width  { width: 355px; }
+.rivety-form-field.third-width { width: 226px; }
+
+.rivety-form-field.half-width
+{
+	float: left;
+}
+.rivety-form-field.half-width
+{
+	clear: right;
+	margin: 10px 10px 0 0;
+}
+.rivety-form-field.third-width
+{
+	clear: right;
+	margin: 10px 11px 0 0;
+}
+.rivety-form-field.half-width.right,
+.rivety-form-field.third-width.right
+{
+	margin: 10px 0 0 0;
+}
+
 .rivety-form-field input[type=text],
 .rivety-form-field textarea
 {
 	width: 600px;
 }
-
 .rivety-form-field.half-width input[type=text],
 .rivety-form-field.half-width textarea
 {
 	width: 200px;
 }
 
-.rivety-form-field.half-width.left
+.rivety-form-field.third-width input[type=text],
+.rivety-form-field.third-width textarea
 {
-}
-
-.rivety-form-field.half-width.right
-{
-	clear: right;
-	float: right;
-}
-
-.rivety-form-field.half-width
-{
-	width: 355px;
+	width: 100px;
 }
