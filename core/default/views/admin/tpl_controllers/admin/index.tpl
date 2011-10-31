@@ -1,5 +1,5 @@
 {include file="file:$admin_theme_global_path/_header.tpl"}
-<div>
+<div id="main-column">
 	<p>
 		Replace this, or don't. Your call.
 	</p>

@@ -6,7 +6,7 @@
 		<li><a title="{t}Add New Role{/t}" href="{url}/default/role/edit{/url}">{t}Add New Role{/t}</a></li>
 	</ul>
 </div>
-<div>
+<div id="main-column">
 	{if count($roles) gt 0}
 		<table>
 			<thead>

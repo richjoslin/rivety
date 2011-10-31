@@ -490,7 +490,7 @@ VALUES
 	(1, 0, 3, 'default', NULL, 'main', 'Main', NULL, 0),
 	(2, 1, 3, 'default', NULL, 'main_home', 'Home', '/', 10),
 	(6, 0, 3, 'default', NULL, 'admin_header', 'Admin', NULL, 0),
-	(7, 6, 3, 'default', NULL, 'admin_dashboard', 'Dashboard', '/default/admin/index', 10),
+	(7, 6, 3, 'default', NULL, 'admin_home', 'Home', '/default/admin/index', 10),
 	(8, 6, 3, 'default', NULL, 'admin_useradmin', 'Users', '/default/useradmin/index', 20),
 	(9, 21, 3, 'default', NULL, 'admin_config', 'Config', '/default/config/index', 10),
 	(10, 0, 2, 'default', NULL, 'main', 'Main', NULL, 0),

@@ -214,9 +214,11 @@ abstract class RivetyCore_Controller_Action_Admin extends RivetyCore_Controller_
 				if (!in_array($this->locale_code,$allowed) && count($allowed) > 0) {
 					$this->locale_code = $allowed[0];
 				}
-				$this->_redirect('/default/admin/index'); // bump to dashboard.
+				$this->_redirect('/default/admin/index'); // bump to admin home
 
-			} else {
+			}
+			else
+			{
 				$this->restricted_role_id = $access;
 				return $access;
 			}

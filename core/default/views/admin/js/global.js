@@ -66,7 +66,9 @@ function photoModal()
 			var photoField = $(event.target).data('photoField');
 			var htmlArea = $(event.target).data('htmlArea');
 			var htmlAreaOptions = $(event.target).data('htmlAreaOptions');
-			$.getJSON("/grazia/photoadmin/list/folder/" + photoFolder, function(data){
+
+			$.getJSON("/default/photoadmin/list/folder/" + photoFolder, function(data)
+			{
 				for (var i = 0; i < data.length; i++)
 				{
 					var photoThumb = $("<img />");
@@ -82,7 +84,8 @@ function photoModal()
 					photoListItem.append(photoLink);
 					$("#photo-modal-picker").append(photoListItem);
 				}
-				$("div.photo-picker-list-item a").click(function(event){
+				$("div.photo-picker-list-item a").click(function(event)
+				{
 					event.preventDefault();
 					var imageFileName = $("span", this).html();
 					if (htmlArea)

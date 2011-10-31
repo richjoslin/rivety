@@ -62,6 +62,10 @@ ul.topnav li, ul.subnav li
 	margin: 0 20px 0 0;
 	width: 760px;
 }
+#main-column.full-width
+{
+	width: 960px;
+}
 #main-column h3
 {
 	margin: 30px 0 20px 0;
