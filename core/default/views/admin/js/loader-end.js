@@ -3,6 +3,7 @@ $(function()
 {
 	$('#page-loader').hide();
 	$('#options').show();
-	$('#main-column').css('height', 'auto');
+	// TODO: this breaks the layout sometimes
+	// $('#main-column').css('height', 'auto');
 	// $('#main-column').css('overflow', 'auto');
 });

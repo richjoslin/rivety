@@ -5,6 +5,7 @@ if (document.getElementById('options')) document.getElementById('options').style
 var mainColumn = document.getElementById('main-column');
 if (mainColumn)
 {
-	mainColumn.style.height = 0;
-	mainColumn.style.overflow = 'hidden';
+	// TODO: this breaks the layout sometimes
+	// mainColumn.style.height = 0;
+	// mainColumn.style.overflow = 'hidden';
 }

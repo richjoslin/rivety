@@ -3,9 +3,9 @@
 // Caclulate basepath
 $basepath =  substr($_SERVER['SCRIPT_FILENAME'], 0, strrpos( $_SERVER['SCRIPT_FILENAME'], "/core/default/direct" ));
 // Get config files
-$registry_cache_file = $basepath."/etc/cached_config.ini";
+$registry_cache_file = $basepath . "/etc/cached_config.ini";
 $registry_cache = parse_ini_file($registry_cache_file);
-$config = parse_ini_file($basepath."/etc/config.ini", true);
+$config = parse_ini_file($basepath . "/etc/config.ini", true);
 //die("<pre>".print_r($registry_cache,true)."</pre>");
 $max_height = 1000; // default max height. will be overriden by GET param
 $max_width = (integer)$_GET["max_width"];	
@@ -18,6 +18,7 @@ $missing_image = $registry_cache['default.missing_image'];
 $image = $registry_cache['default.upload_path']."/".$username."/".$type."/".$filename;
 $format = @$_GET["format"]; 
 $crop = @(boolean)$_GET["crop"];
+
 try
 {
 	if (!file_exists($image))

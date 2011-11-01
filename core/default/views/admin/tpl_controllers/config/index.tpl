@@ -10,7 +10,7 @@
 				</li>
 			{/foreach}
 			<li>
-				<a id="save-button" href="#" class="button">
+				<a id="rivety-save-button" href="#" class="button">
 					<span class="ui-icon ui-icon-disk" style="float: left; margin: 0 10px 0 0;"></span>
 					{t}Save{/t}
 				</a>
