@@ -5,6 +5,7 @@ $(function()
 	// $('select').chosen();
 	$('div.cms-accordion').accordion();
 	$('.buttonset').buttonset();
+	$('.chzn-select').chosen();
 	rebuttonify();
 	reapplyFancyboxLinks();
 	photoModal();

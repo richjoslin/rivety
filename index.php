@@ -55,16 +55,45 @@ try
 
 	$theme_locations = array();
 
-	// CUSTOM THEME (or core default)
+	// CORE DEFAULT THEME
+
+	$theme_locations['admin']['default_theme']['path'] = $basepath . "/core/default/views/admin";
+	$theme_locations['admin']['default_theme']['url'] = "/core/default/views/admin";
+
+	$theme_locations['frontend']['default_theme']['path'] = $basepath . "/core/default/views/frontend";
+	$theme_locations['frontend']['default_theme']['url'] = "/core/default/views/frontend";
+
+	// CUSTOM THEME
+
+	if (Zend_Registry::isRegistered("admin_theme"))
+	{
+		$admin_theme = Zend_Registry::get('admin_theme');
+		$current_admin_theme_path = $theme_locations['admin']['default_theme']['path'];
+		$current_admin_theme_url = $theme_locations['admin']['default_theme']['url'];
+		if ($admin_theme != 'default')
+		{
+			$current_admin_theme_path = str_replace('core/default/views', 'themes/' . $admin_theme . '/core/default/views', $current_admin_theme_path);
+			$current_admin_theme_url  = str_replace('core/default/views', 'themes/' . $admin_theme . '/core/default/views', $current_admin_theme_url);
+		}
+		$theme_locations['admin']['current_theme']['path'] = $current_admin_theme_path;
+		$theme_locations['admin']['current_theme']['url'] = $current_admin_theme_url;
+	}
+	else
+	{
+		Zend_Registry::set("admin_theme", "default");
+		$theme_locations['admin']['current_theme']['path'] = $theme_locations['admin']['default_theme']['path'];
+		$theme_locations['admin']['current_theme']['url'] = $theme_locations['admin']['default_theme']['url'];
+	}
 
 	if (Zend_Registry::isRegistered("frontend_theme"))
 	{
 		$frontend_theme = Zend_Registry::get('frontend_theme');
+
 		if ($frontend_theme == 'default')
 		{
 			$theme_locations['frontend']['current_theme']['path'] = $basepath . "/core/default/views/frontend";
 			$theme_locations['frontend']['current_theme']['url'] = "/core/default/views/frontend";
-
+	
 			$theme_locations['frontend']['module_theme']['path'] = $basepath . "/modules/ CURRENT MODULE NAME GOES HERE /views/frontend";
 			$theme_locations['frontend']['module_theme']['url'] = "/modules/ CURRENT MODULE NAME GOES HERE /views/frontend";
 		}
@@ -81,36 +110,6 @@ try
 		$theme_locations['frontend']['current_theme']['path'] = $basepath . "/core/default/views/frontend";
 		$theme_locations['frontend']['current_theme']['url'] = "/core/default/views/frontend";
 	}
-
-	if (Zend_Registry::isRegistered("admin_theme"))
-	{
-		$admin_theme = Zend_Registry::get('admin_theme');
-		if ($admin_theme == 'default')
-		{
-			$theme_locations['admin']['current_theme']['path'] = $basepath . "/core/default/views/admin";
-			$theme_locations['admin']['current_theme']['url'] = "/core/default/views/admin";
-		}
-		else
-		{
-			$theme_locations['admin']['current_theme']['path'] = $basepath . "/themes/admin/" . $admin_theme;
-			$theme_locations['admin']['current_theme']['url'] = "/themes/admin/" . $admin_theme;
-		}
-	}
-	else
-	{
-		Zend_Registry::set("admin_theme", "default");
-		$admin_theme = "default";
-		$theme_locations['admin']['current_theme']['path'] = $basepath . "/core/default/views/admin";
-		$theme_locations['admin']['current_theme']['url'] = "/core/default/views/admin";
-	}
-
-	// CORE DEFAULT THEME
-
-	$theme_locations['frontend']['default_theme']['path'] = $basepath . "/core/default/views/frontend";
-	$theme_locations['frontend']['default_theme']['url'] = "/core/default/views/frontend";
-
-	$theme_locations['admin']['default_theme']['path'] = $basepath . "/core/default/views/admin";
-	$theme_locations['admin']['default_theme']['url'] = "/core/default/views/admin";
 
 	Zend_Registry::set("theme_locations", $theme_locations);
 
