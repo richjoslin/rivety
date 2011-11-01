@@ -20,12 +20,12 @@
 				<a id="logout" href="{url}/default/auth/logout{/url}">{t}Log Out{/t}</a>
 				<h1 id="site-title1">{$site_name} - {t}Administration{/t}</h1>
 				<ul class="topnav">
-					{include file="file:$admin_theme_global_path/_nav_recursive.tpl" items=$nav_items.admin_header.children}
+					{include file="file:$admin_theme_path/tpl_common/_nav_recursive.tpl" items=$nav_items.admin_header.children}
 				</ul>
 			</div>
 			<div id="content">
-				{include file="file:$admin_theme_global_path/_breadcrumbs.tpl"}
-				{include file="file:$admin_theme_global_path/_messages.tpl"}
+				{include file="file:$admin_theme_path/tpl_common/_breadcrumbs.tpl"}
+				{include file="file:$admin_theme_path/tpl_common/_messages.tpl"}
 				<div id="page-loader">
 					<img src="{$admin_theme_url}/img/loader-stripes.gif" width="220" height="19" alt="Loading..." />
 				</div>

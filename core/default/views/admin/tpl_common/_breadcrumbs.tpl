@@ -3,7 +3,7 @@
 	<li>
 		<a href="{url}/default/admin/index{/url}">
 			<span class="ui-icon ui-icon-home" style="float: left; margin: 5px 10px 0 0;"></span>
-			{t}Home{/t}
+			{t}Admin Home{/t}
 		</a>
 	</li>
 	{foreach from=$breadcrumbs item=breadcrumb}

@@ -1,4 +1,4 @@
-{include file="file:$admin_theme_global_path/_header.tpl" pageTitle=$pagetitle}
+{include file="file:$admin_theme_path/tpl_common/_header.tpl" pageTitle=$pagetitle}
 <div id="options">
 	<ul>
 		<li><a href="{url}/default/role/index{/url}">{t}Back to Roles{/t}</a></li>
@@ -33,4 +33,4 @@
 		<p><input type="submit" class="button save" value="{t}Save{/t}" /></p>
 	</form>
 </div>
-{include file="file:$admin_theme_global_path/_footer.tpl"}
+{include file="file:$admin_theme_path/tpl_common/_footer.tpl"}

@@ -2,7 +2,7 @@
 {capture name=css_urls}
 	{$admin_theme_url}/tpl_controllers/photoadmin/index.css
 {/capture}
-{include file="file:$admin_theme_global_path/_header.tpl" pagetitle=$smarty.capture.pagetitle css_urls=$smarty.capture.css_urls}
+{include file="file:$admin_theme_path/tpl_common/_header.tpl" pagetitle=$smarty.capture.pagetitle css_urls=$smarty.capture.css_urls}
 <div id="main-column" class="full-width">
 	<h3 class="index">{$smarty.capture.pagetitle}</h3>
 	<h4>Important:</h4>
@@ -66,4 +66,4 @@
 {capture name=js_urls}
 	{$admin_theme_url}/tpl_controllers/photoadmin/index.js
 {/capture}
-{include file="file:$admin_theme_global_path/_footer.tpl" js_urls=$smarty.capture.js_urls}
+{include file="file:$admin_theme_path/tpl_common/_footer.tpl" js_urls=$smarty.capture.js_urls}

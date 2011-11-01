@@ -1,7 +1,7 @@
-{include file="file:$admin_theme_global_path/_header.tpl"}
+{include file="file:$admin_theme_path/tpl_common/_header.tpl"}
 <div id="main-column">
 	<p>
-		Replace this, or don't. Your call.
+		Put some content here, or don't. Your call.
 	</p>
 </div>
-{include file="file:$admin_theme_global_path/_footer.tpl"}
+{include file="file:$admin_theme_path/tpl_common/_footer.tpl"}

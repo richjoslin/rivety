@@ -1,4 +1,4 @@
-{include file="file:$admin_theme_global_path/_header.tpl" pageTitle="Manage Users" masthead="Manage Users"}
+{include file="file:$admin_theme_path/tpl_common/_header.tpl" pageTitle="Manage Users" masthead="Manage Users"}
 <div id="options">
 	<h3>{t}Search{/t}</h3>
 	<form class="search" action="{url}/default/useradmin/index{/url}" method="post" id="usersearch">
@@ -33,6 +33,6 @@
 	{else}
 		<p>{t}No users found.{/t}</p>
 	{/if}
-	{include file="file:$admin_theme_global_path/_pager.tpl"}
+	{include file="file:$admin_theme_path/tpl_common/_pager.tpl"}
 </div>
-{include file="file:$admin_theme_global_path/_footer.tpl"}
+{include file="file:$admin_theme_path/tpl_common/_footer.tpl"}

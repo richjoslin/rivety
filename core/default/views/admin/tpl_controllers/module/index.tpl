@@ -1,5 +1,5 @@
-{include file="file:$admin_theme_global_path/_header.tpl" pageTitle="Manage Modules"}
-<div id="main-column">
+{include file="file:$admin_theme_path/tpl_common/_header.tpl" pageTitle="Manage Modules"}
+<div id="main-column full-width">
 	{if count($modules) gt 0}
 		<table>
 			<thead>
@@ -36,13 +36,13 @@
 						<td>{$module.general.description}</td>
 						<td>
 							{if $module.available}
-								<a href="{url}/default/module/index/id/{$module.id}/perform/install{/url}" title="{t}Install{/t}">{t}Install{/t}</a>
+								<a class="button" href="{url}/default/module/index/id/{$module.id}/perform/install{/url}" title="{t}Install{/t}">{t}Install{/t}</a>
 							{elseif $module.is_enabled eq 1}
-								<a href="{url}/default/module/index/id/{$module.id}/perform/disable{/url}" title="{t}Disable{/t}">{t}Disable{/t}</a>
-								<a href="{url}/default/module/uninstall/id/{$module.id}{/url}" title="{t}Uninstall{/t}">{t}Uninstall{/t}</a>
+								<a class="button" href="{url}/default/module/index/id/{$module.id}/perform/disable{/url}" title="{t}Disable{/t}">{t}Disable{/t}</a>
+								<a class="button" href="{url}/default/module/uninstall/id/{$module.id}{/url}" title="{t}Uninstall{/t}">{t}Uninstall{/t}</a>
 							{elseif $module.is_enabled eq 0}
-								<a href="{url}/default/module/index/id/{$module.id}/perform/enable{/url}" title="{t}Enable{/t}">{t}Enable{/t}</a>
-								<a href="{url}/default/module/uninstall/id/{$module.id}{/url}" title="{t}Uninstall{/t}">{t}Uninstall{/t}</a>
+								<a class="button" href="{url}/default/module/index/id/{$module.id}/perform/enable{/url}" title="{t}Enable{/t}">{t}Enable{/t}</a>
+								<a class="button" href="{url}/default/module/uninstall/id/{$module.id}{/url}" title="{t}Uninstall{/t}">{t}Uninstall{/t}</a>
 							{/if}
 						</td>
 					</tr>
@@ -51,4 +51,4 @@
 		</table>
 	{/if}
 </div>
-{include file="file:$admin_theme_global_path/_footer.tpl"}
+{include file="file:$admin_theme_path/tpl_common/_footer.tpl"}

@@ -1,5 +1,5 @@
 {capture name=pagetitle}{t}Manage Roles{/t}{/capture}
-{include file="file:$admin_theme_global_path/_header.tpl" pagetitle=$smarty.capture.pagetitle}
+{include file="file:$admin_theme_path/tpl_common/_header.tpl" pagetitle=$smarty.capture.pagetitle}
 <div id="options">
 	<h3>{t}Options{/t}</h3>
 	<ul>		
@@ -28,4 +28,4 @@
 		</table>
 	{/if}
 </div>
-{include file="file:$admin_theme_global_path/_footer.tpl"}
+{include file="file:$admin_theme_path/tpl_common/_footer.tpl"}

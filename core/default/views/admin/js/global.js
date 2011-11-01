@@ -8,6 +8,16 @@ $(function()
 	rebuttonify();
 	reapplyFancyboxLinks();
 	photoModal();
+
+	// if JavaScript is active,
+	// hide the semantic save button
+	// and wire up the sidebar save button which lives outside the form
+	$('#rivety-admin-form input[type="submit"]').hide();
+	$('#rivety-save-button').live('click', function(event)
+	{
+		event.preventDefault();
+		$('#rivety-admin-form').submit();
+	});
 });
 
 function rebuttonify()

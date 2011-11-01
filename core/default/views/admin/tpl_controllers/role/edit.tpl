@@ -1,5 +1,5 @@
 {capture name=pageTitle}{if isset($role.id)}Edit Role {$role.shortname}{else}Add New Role{/if}{/capture}
-{include file="file:$admin_theme_global_path/_header.tpl" masthead=$smarty.capture.pageTitle pageTitle=$smarty.capture.pageTitle} 
+{include file="file:$admin_theme_path/tpl_common/_header.tpl" masthead=$smarty.capture.pageTitle pageTitle=$smarty.capture.pageTitle} 
 <div id="options">
 	<h3>{t}Options{/t}</h3>
 	<ul>
@@ -55,4 +55,4 @@
 		</p>
 	</form>
 </div>	
-{include file="file:$admin_theme_global_path/_footer.tpl"}
+{include file="file:$admin_theme_path/tpl_common/_footer.tpl"}

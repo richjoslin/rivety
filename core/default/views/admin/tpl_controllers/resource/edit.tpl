@@ -1,4 +1,4 @@
-{include file="file:$admin_theme_global_path/_header.tpl" pageTitle="$module_title Resources for Role: $roleshortname"}
+{include file="file:$admin_theme_path/tpl_common/_header.tpl" pageTitle="$module_title Resources for Role: $roleshortname"}
 <div id="options">
 	<h3>{t}Modules{/t}</h3>
 	<ul>
@@ -50,4 +50,4 @@
 		</div>
 	</form>
 </div>
-{include file="file:$admin_theme_global_path/_footer.tpl"}
+{include file="file:$admin_theme_path/tpl_common/_footer.tpl"}

@@ -1,4 +1,4 @@
-{include file="file:$admin_theme_global_path/_header.tpl"
+{include file="file:$admin_theme_path/tpl_common/_header.tpl"
 	pageTitle="Delete User `$username`" masthead="Delete User `$username`"}
 <div class="grid_4 sidenav">
 	<h3>{t}Options{/t}</h3>
@@ -15,9 +15,9 @@
 		{capture name="d_url"}
 			{url}/default/useradmin/delete/username/{$username}{/url}
 		{/capture}
-		{include file="file:$admin_theme_global_path/_deleteform.tpl" d_url=$smarty.capture.d_url}
+		{include file="file:$admin_theme_path/tpl_common/_deleteform.tpl" d_url=$smarty.capture.d_url}
 	{else}
 		<p>&nbsp;</p>
 	{/if}
 </div>
-{include file="file:$admin_theme_global_path/_footer.tpl"}
+{include file="file:$admin_theme_path/tpl_common/_footer.tpl"}

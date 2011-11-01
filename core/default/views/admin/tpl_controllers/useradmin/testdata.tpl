@@ -1,4 +1,4 @@
-{include file="file:$admin_theme_global_path/_header.tpl" pageTitle="Load Test Data" masthead="Load Test Data"}
+{include file="file:$admin_theme_path/tpl_common/_header.tpl" pageTitle="Load Test Data" masthead="Load Test Data"}
 <div class="grid_16">
 	<form method="post" class="adminform" action="{url}/default/useradmin/testdata{/url}" enctype="multipart/form-data">
 		<p>
@@ -12,4 +12,4 @@
 		<p class="clearfix"><input type="submit" class="button load" value="{t}Load{/t}" /></p>
 	</form>
 </div>
-{include file="file:$admin_theme_global_path/_footer.tpl"}
+{include file="file:$admin_theme_path/tpl_common/_footer.tpl"}

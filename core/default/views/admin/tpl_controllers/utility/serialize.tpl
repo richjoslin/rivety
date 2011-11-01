@@ -1,4 +1,4 @@
-{include file="file:$admin_theme_global_path/_header.tpl"
+{include file="file:$admin_theme_path/tpl_common/_header.tpl"
 	masthead=$page_title pageTitle=$page_title current="default_admin_serialize"}
 <div class="grid_16">
 	{if $result ne null}
@@ -35,4 +35,4 @@
 		</form>
 	{/if}
 </div>
-{include file="file:$admin_theme_global_path/_footer.tpl"}
+{include file="file:$admin_theme_path/tpl_common/_footer.tpl"}

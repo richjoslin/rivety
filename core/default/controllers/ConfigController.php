@@ -13,7 +13,8 @@
 		<RivetyCore_Controller_Action_Abstract>
 		<RivetyCore_Controller_Action_Admin>
 */
-class ConfigController extends  RivetyCore_Controller_Action_Admin {
+class ConfigController extends RivetyCore_Controller_Action_Admin
+{
 
 	/* Group: Instance Methods */
 
@@ -23,7 +24,8 @@ class ConfigController extends  RivetyCore_Controller_Action_Admin {
 			Initializes the current instance.
 			Also initializes the parent object (calls init() on the parent instance).
 	*/
-	function init(){
+	function init()
+	{
 		Zend_Loader::loadClass('Config');
 		parent::init();
 	}
@@ -47,30 +49,28 @@ class ConfigController extends  RivetyCore_Controller_Action_Admin {
 			current - the module id of the module currently being shown
 			modid	- the module id of the module currently being shown
 	*/
-	function indexAction() {
+	function indexAction()
+	{
 		$config_table = new Config();
 		$modules_table = new Modules('core');
 		$request = new RivetyCore_Request($this->getRequest());
-		if ($request->has('modid')) {
-			$modid = $request->modid;
-		} else {
-			$modid = 'default';
-		}
-		if ($this->_request->isPost()) {
-			//we are posting
+		$modid = $request->has('modid') ? $request->modid : 'default';
+		if ($this->_request->isPost())
+		{
 			$config_params = $this->_request->getParams();
 			foreach ($config_params as $ckey => $value)
 			{
 				$data = array('value' => $value);
-				$config_table->update($data, "ckey = '".$ckey."' and module='".$modid."'");
+				$config_table->update($data, "ckey = '" . $ckey . "' and module = '" . $modid . "'");
 			}
 			$this->view->success = $this->_T('Configuration Updated.');
 			$config_table->cache();
 			$params = array();
-			$this->_rivety_plugin->doAction($this->_mca.'_post_save', $params); // ACTION HOOK
+			$this->_rivety_plugin->doAction($this->_mca . '_post_save', $params); // ACTION HOOK
 		}
 		$config = $config_table->fetchAll($config_table->select()->where('module = ?', $modid));
-		if (count($config) > 0) {
+		if (count($config) > 0)
+		{
 			$config = $config->toArray();
 			sort($config);
 			$this->view->config = $config;
@@ -80,6 +80,8 @@ class ConfigController extends  RivetyCore_Controller_Action_Admin {
 		$this->view->modules = $modules;
 		$this->view->current = $modid;
 		$this->view->modid = $modid;
+
+		$this->view->breadcrumbs = array(array('text' => 'Core Config'));
 	}
 
 }

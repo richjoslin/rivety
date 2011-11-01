@@ -1,4 +1,4 @@
-{include file="file:$admin_theme_global_path/_header.tpl" mastHead="Uninstall Module" pageTitle="Uninstall Module"}
+{include file="file:$admin_theme_path/tpl_common/_header.tpl" mastHead="Uninstall Module" pageTitle="Uninstall Module"}
 <div id="options">
 	<h3>{t}Options{/t}</h3>
 	<ul>
@@ -12,6 +12,6 @@
 	{capture name="d_url"}
 		{url}/default/module/uninstall/id/{$id}{/url}
 	{/capture}
-	{include file="file:$admin_theme_global_path/_deleteform.tpl" d_url=$smarty.capture.d_url}
+	{include file="file:$admin_theme_path/tpl_common/_deleteform.tpl" d_url=$smarty.capture.d_url}
 </div>
-{include file="file:$admin_theme_global_path/_footer.tpl"}
+{include file="file:$admin_theme_path/tpl_common/_footer.tpl"}

@@ -5,7 +5,7 @@
 {capture name=js_urls}
 	{$admin_theme_url}/js/jq-picker.js
 {/capture}
-{include file="file:$admin_theme_global_path/_header.tpl"
+{include file="file:$admin_theme_path/tpl_common/_header.tpl"
 	pageTitle="Edit User `$user.username`" masthead="Edit User `$user.username`"
 	pageTitle=$page_title masthead=$page_title
 	js_urls=$smarty.capture.js_urls css_urls=$smarty.capture.css_urls}
@@ -76,4 +76,4 @@
 		</form>
 	{/if}
 </div>
-{include file="file:$admin_theme_global_path/_footer.tpl"}
+{include file="file:$admin_theme_path/tpl_common/_footer.tpl"}
