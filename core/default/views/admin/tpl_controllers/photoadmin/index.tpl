@@ -9,7 +9,7 @@
 	<ul class="warnings">
 		<li>Photo filenames should only contain letters, numbers, hyphens, underscores, and periods.</li>
 		<li>Photo filenames containing anything other than those characters will have the offending characters automatically replaced with hyphens.</li>
-		<li>Photos uploaded with the same filename as an existing photo will automatically overwrite the old photo.</li>
+		<!-- <li>Photos uploaded with the same filename as an existing photo will automatically overwrite the old photo.</li> -->
 	</ul>
 	<div id="photo-tabs" style="width: 950px;">
 		<ul>

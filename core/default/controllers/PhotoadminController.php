@@ -124,12 +124,13 @@ class PhotoadminController extends RivetyCore_Controller_Action_Admin
 		}
 		$this->view->uploads = $uploads;
 
-		$this->view->breadcrumbs = array(
-			array('text' => 'Photos'),
-		);
+		$this->view->notice = 'Warning: Photos uploaded with the same filename as an existing photo will automatically overwrite the old photo.';
+
+		$this->view->breadcrumbs = array(array('text' => 'Manage Photos'));
 	}
 
-	public function listAction() {
+	public function listAction()
+	{
 		// default is json but more formats could be added
 		$request = new RivetyCore_Request($this->getRequest());
 		$base_path = RivetyCore_Registry::get('upload_path') . "/" . $this->_identity->username;
