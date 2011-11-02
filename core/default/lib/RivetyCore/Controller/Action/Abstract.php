@@ -402,7 +402,8 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 		$navparams = array('nav_items' => $nav_items_temp, 'request' => $this->_request, 'locale_code' => $this->locale_code);
 		$navparams = $this->_rivety_plugin->doFilter('controller_nav', $navparams); // FILTER HOOK
 		$this->view->nav_items = $navparams['nav_items'];
-		// TODO - Rich fix this
+
+		// TODO - Rich fix this - it was working and now it's not
 		// // VIEW STATES
 		// if (!$this->session->view_states) {
 		// 	$this->session->view_states = array();

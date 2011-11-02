@@ -584,6 +584,9 @@ class UserController extends RivetyCore_Controller_Action_Abstract {
 			$user['email'] = $request->email;
 			$user['password'] = $request->password;
 			$user['confirm'] = $request->confirm;
+
+			// TODO: remove anything relating to birthday
+
 			if ($request->has('Birthday_Day') && $request->has('Birthday_Month') && $request->has('Birthday_Year')) {
 				$user['birthday'] = strtotime($request->Birthday_Day ." ". $request->Birthday_Month ." ". $request->Birthday_Year);
 			} else {

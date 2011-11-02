@@ -13,7 +13,7 @@
 				<div id="nav">
 					<ul>
 						{foreach from=$nav_items.main.children item=link key=index}
-							<li{if $current eq $link.short_name} class="current"{/if}>
+							<li>
 								<a href="{if isset($link.url)}{$link.url}{else}#{/if}">{$link.link_text}</a>
 							</li>
 						{/foreach}
@@ -28,7 +28,7 @@
 						<a href="{url}/default/auth/logout{/url}" title="{t}Logout{/t}">{t}Logout{/t}</a>
 					{else}
 						<a href="{url}/default/auth/login{/url}" title="{t}Login{/t}">{t}Login{/t}</a>
-						<!-- <a href="{url}/default/user/register{/url}" title="{t}Register for an account{/t}" class="alt">{t}Register{/t}</a> -->
+						{*<a href="{url}/default/user/register{/url}" title="{t}Register for an account{/t}">{t}Register{/t}</a>*}
 					{/if}
 				</div>
 			</div>

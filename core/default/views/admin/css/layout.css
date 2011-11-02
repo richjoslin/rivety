@@ -16,8 +16,10 @@ th
 
 #main
 {
+	height: auto;
 	margin: 0 auto;
-	width: 960px;
+	overflow: hidden;
+	width: 1000px;
 }
 
 ul.topnav li, ul.subnav li
@@ -42,6 +44,10 @@ ul.topnav li, ul.subnav li
 	float: left;
 }
 
+#header  { padding: 0 20px 0 20px; }
+#content { padding: 0 20px 0 20px; }
+#foother { padding: 0 20px 20px 20px; }
+
 #header
 {
 	float: left; /* float containment hack */
@@ -52,7 +58,6 @@ ul.topnav li, ul.subnav li
 {
 	float: left;
 	margin: 0 0 20px 0;
-	padding: 0 0 0 0;
 	width: 960px;
 }
 

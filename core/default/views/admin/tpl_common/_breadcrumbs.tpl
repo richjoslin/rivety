@@ -2,7 +2,7 @@
 <ul id="breadcrumbs">
 	<li>
 		<a href="{url}/default/admin/index{/url}">
-			<span class="ui-icon ui-icon-home" style="float: left; margin: 5px 10px 0 0;"></span>
+			<span class="ui-icon ui-icon-home"></span>
 			{t}Admin Home{/t}
 		</a>
 	</li>

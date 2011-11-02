@@ -1,4 +1,14 @@
 
+body
+{
+	background-color: silver;
+}
+
+#main
+{
+	background-color: white;
+}
+
 tr.odd
 {
 	background: white;
@@ -7,7 +17,6 @@ tr.even
 {
 	background: #eee;
 }
-
 th
 {
 	background: #999;
