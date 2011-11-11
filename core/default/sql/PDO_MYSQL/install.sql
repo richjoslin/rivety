@@ -45,6 +45,16 @@ CREATE TABLE `default_database_versions` (
 	PRIMARY KEY  (`id`)
 );
 
+CREATE TABLE `default_images` (
+	`id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+	`username` VARCHAR( 50 ) NOT NULL ,
+	`path` TEXT NOT NULL ,
+	`filename` TEXT NOT NULL ,
+	`metadata` TEXT NULL ,
+	`uploaded` DATETIME NOT NULL ,
+	`replaced` DATETIME NOT NULL
+);
+
 CREATE TABLE `default_locales` (
 	`country_code` varchar(6) character set utf8 NOT NULL,
 	`language_code` varchar(2) NOT NULL,

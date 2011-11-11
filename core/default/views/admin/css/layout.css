@@ -27,9 +27,8 @@ ul.topnav li, ul.subnav li
 	float: left;
 }
 
-#logout
+#account-links
 {
-	display: block;
 	float: right;
 	margin: 0 0 20px 0;
 }

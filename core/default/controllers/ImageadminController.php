@@ -1,6 +1,6 @@
 <?php
 
-class PhotoadminController extends RivetyCore_Controller_Action_Admin
+class ImageadminController extends RivetyCore_Controller_Action_Admin
 {
 
 	var $_allowed_extensions;
@@ -50,7 +50,6 @@ class PhotoadminController extends RivetyCore_Controller_Action_Admin
 			$uploader = new Zend_File_Transfer_Adapter_Http();
 			$uploader->setDestination($base_path . "/" . $upload_to_folder);
 			$uploader->addValidator('IsImage', true);
-			// $uploader->addValidator('Extension', false, "jpg");
 			$width = RivetyCore_Registry::get("photo_dims_" . $upload_to_folder . "_width");
 			$height = RivetyCore_Registry::get("photo_dims_" . $upload_to_folder . "_height");
 			$dimLimits = array();

@@ -128,7 +128,8 @@ a.list-button, a.list-button:active, a.list-button:hover, a.list-button:visited
 	margin: 10px 11px 0 0;
 }
 .rivety-form-field.half-width.right,
-.rivety-form-field.third-width.right
+.rivety-form-field.third-width.right,
+.rivety-form-field.two-thirds-width.right
 {
 	margin: 10px 0 0 0;
 }
@@ -163,4 +164,54 @@ a.list-button, a.list-button:active, a.list-button:hover, a.list-button:visited
 .rivety-form-field.third-width > .jHtmlArea
 {
 	margin: 10px 0 0 0;
+}
+
+.rivety-form-field.two-thirds-width
+{
+	clear: right;
+	float: left;
+	margin: 10px 10px 0 0;
+	width: 484px;
+}
+
+.rivety-form-field.two-thirds-width.right
+{
+	margin: 10px 0 0 0;
+}
+
+.rivety-form-field.two-thirds-width input[type=text],
+.rivety-form-field.two-thirds-width textarea
+{
+	width: 340px;
+}
+
+.third-width-rowspanning-field
+{
+	background-color: #eee;
+	/*color: #ddd;*/
+	float: left;
+	margin: 10px 10px 0 0;
+	padding: 10px;
+	width: 226px;
+}
+.third-width-rowspanning-field label
+{
+	float: left;
+	margin: 0 0 6px 0;
+}
+.third-width-rowspanning-field img
+{
+	clear: both;
+	display: block;
+	float: left;
+}
+.third-width-rowspanning-field input[type=text]
+{
+	margin: 2px 0 0 0;
+	width: 220px;
+}
+.third-width-rowspanning-field .button
+{
+	margin: 6px 0 0 0;
+	width: 224px;
 }

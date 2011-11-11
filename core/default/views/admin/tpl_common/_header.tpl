@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<title>{$title_prefix}{if isset($pageTitle)} | {$pageTitle}{/if}</title>
-		<link type="text/css" rel="stylesheet" href="{$admin_theme_url}/css/screen.css" />
-		<link type="text/css" rel="stylesheet" href="{$admin_theme_url}/css/jquery-ui/smoothness/jquery-ui-1.8.16.custom.css" />
-		<link rel="stylesheet" type="text/css" href="{$admin_theme_url}/js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
-		<link rel="stylesheet" type="text/css" href="{$admin_theme_url}/css/jHtmlArea/jHtmlArea.css" media="screen" />
+		<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
+		<title>{$title_prefix|escape} {if isset($pagetitle)}| {$pagetitle|escape}{/if}</title>
+		<link type="text/css" rel="stylesheet" media="screen" href="{$admin_theme_url}/css/screen.css" />
+		<link type="text/css" rel="stylesheet" media="screen" href="{$admin_theme_url}/css/jquery-ui/smoothness/jquery-ui-1.8.16.custom.css" />
+		<link type="text/css" rel="stylesheet" media="screen" href="{$admin_theme_url}/js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+		<link type="text/css" rel="stylesheet" media="screen" href="{$admin_theme_url}/css/jHtmlArea/jHtmlArea.css" media="screen" />
 		{include_css urls=$css_urls}
 		<script type="text/javascript">
 			var username = "{$username}";
@@ -17,7 +17,9 @@
 		<div id="switcher" style="position: absolute; top: 0; left: 500px;"></div>
 		<div id="main">
 			<div id="header">
-				<a id="logout" href="{url}/default/auth/logout{/url}">{t}Log Out{/t}</a>
+				<div id="account-links">
+					<a href="{url}/default/auth/logout{/url}">{t}Log Out{/t}</a>
+				</div>
 				<h1 id="site-title1">{$site_name} - {t}Administration{/t}</h1>
 				<ul class="topnav">
 					{include file="file:$admin_theme_path/tpl_common/_nav_recursive.tpl" items=$nav_items.admin_header.children}

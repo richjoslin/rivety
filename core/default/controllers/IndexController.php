@@ -2,18 +2,19 @@
 
 /*
 	Class: Index
-	
+
 	About: Author
 	Jaybill McCarthy
 
 	About: License
 	<http://rivety.com/docs/license>
-	
+
 	About: See Also
 		<RivetyCore_Controller_Action_Abstract>
-		
+
 */
-class IndexController extends RivetyCore_Controller_Action_Abstract {
+class IndexController extends RivetyCore_Controller_Action_Abstract
+{
 
 	/* Group: Instance Methods */
 
@@ -23,7 +24,8 @@ class IndexController extends RivetyCore_Controller_Action_Abstract {
 			Initializes the current instance.
 			Also initializes the parent object (calls init() on the parent instance).
 	*/
-	function init(){
+	function init()
+	{
 		parent::init();
 	}
 
@@ -31,7 +33,7 @@ class IndexController extends RivetyCore_Controller_Action_Abstract {
 
 	/*
 		Function: index
-			This is the web application homepage. It doesn't really do anything by itself. Because everyone 
+			This is the web application homepage. It doesn't really do anything by itself. Because everyone
 			wants something different on the front page, you can add stuff to this page via a filter hook.
 			It will also correctly redirect to the default locale instance if none is set.
 
@@ -44,7 +46,8 @@ class IndexController extends RivetyCore_Controller_Action_Abstract {
 		View Variables:
 			params - All params in the param arrays for filters get turned into view variables automatically.
 	*/
-	function indexAction() {
+	function indexAction()
+	{
 		$params = array(
 			'locale_code' => $this->locale_code,
 			'request' => $this->getRequest(),
@@ -54,10 +57,10 @@ class IndexController extends RivetyCore_Controller_Action_Abstract {
 		} else {
 			$params['is_admin'] = false;
 		}
-	    $additional = $this->_rivety_plugin->doFilter($this->_mca, $params); // FILTER HOOK
-	    foreach($additional as $key => $value) {
-	    	$this->view->$key = $value;
-	    }
+		$additional = $this->_rivety_plugin->doFilter($this->_mca, $params); // FILTER HOOK
+		foreach($additional as $key => $value) {
+			$this->view->$key = $value;
+		}
 
 		// $this->view->welcome = $this->_T("Welcome!");
 		// TODO - find out if there is a valid cookie
@@ -77,6 +80,8 @@ class IndexController extends RivetyCore_Controller_Action_Abstract {
 				$this->_redirect("/");
 			}
 		}
+
+// $nav_items
 	}
 
 }

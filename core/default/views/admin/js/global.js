@@ -1,8 +1,7 @@
 
 $(function()
 {
-	// $('form').addClass("ui-widget");
-	// $('select').chosen();
+	$('form').addClass("ui-widget");
 	$('div.cms-accordion').accordion();
 	$('.buttonset').buttonset();
 	$('.chzn-select').chosen();
@@ -14,7 +13,7 @@ $(function()
 	// hide the semantic save button
 	// and wire up the sidebar save button which lives outside the form
 	$('#rivety-admin-form input[type="submit"]').hide();
-	$('#rivety-save-button').live('click', function(event)
+	$('#rivety-save-button, #rivety-save-button').live('click', function(event)
 	{
 		event.preventDefault();
 		$('#rivety-admin-form').submit();
@@ -78,7 +77,7 @@ function photoModal()
 			var htmlArea = $(event.target).data('htmlArea');
 			var htmlAreaOptions = $(event.target).data('htmlAreaOptions');
 
-			$.getJSON("/default/photoadmin/list/folder/" + photoFolder, function(data)
+			$.getJSON("/default/imageadmin/list/folder/" + photoFolder, function(data)
 			{
 				for (var i = 0; i < data.length; i++)
 				{

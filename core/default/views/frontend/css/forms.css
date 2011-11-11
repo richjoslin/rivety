@@ -1,0 +1,219 @@
+
+form legend
+{
+	font-size: 28px;
+	margin: 30px 0 20px 0;
+}
+
+form div.form-field ul.sortable-list
+{
+	width: 500px;
+}
+
+form div.form-field
+{
+	margin: 0 0 16px 0;
+}
+
+ul.sortable-list li
+{
+	background: White;
+	padding: 4px;
+}
+ul.sortable-list li img.icon-sort
+{
+	margin-right: 4px;
+	cursor: move;
+}
+
+.validateTips
+{
+	border: 1px solid transparent;
+	padding: 0.3em;
+}
+
+form div.final-actions
+{
+	background: #ccc;
+	border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px;
+	margin: 10px 0;
+	overflow: hidden;
+	width: 100%;
+}
+form div.final-actions div.button-bar
+{
+	float: right;
+	margin: 10px;
+}
+
+form .button.right
+{
+	margin: 0 0 20px 0;
+}
+
+form div.tip
+{
+	color: #999;
+	font-size: 12px;
+	margin: 0 0 10px 0;
+}
+
+div.jHtmlArea
+{
+	background: #f6f6f6;
+	border: solid 1px #ccc;
+	display: inline-block;
+}
+div.jHtmlArea iframe
+{
+	background: White;
+	border: solid 1px #ccc;
+}
+
+div.wiki-section-viewport
+{
+	height: 320px;
+	overflow-y: auto;
+	width: 340px;
+}
+
+a.list-button, a.list-button:active, a.list-button:hover, a.list-button:visited
+{
+	margin: 0 6px 0 0;
+	padding: 2px 6px;
+	text-decoration: none;
+}
+
+.rivety-form-field
+{
+	width: auto;
+	background-color: #eee;
+	float: left;
+	clear: both;
+	width: 740px;
+	margin: 10px 0 0 0;
+	padding: 10px;
+}
+
+.rivety-form-field > label
+{
+	display: block;
+	float: left;
+}
+
+.rivety-form-field > div.buttonset,
+.rivety-form-field > input[type=text],
+.rivety-form-field > input[type=password],
+.rivety-form-field > textarea,
+.rivety-form-field > .chzn-container,
+.rivety-form-field > .jHtmlArea
+{
+	float: right;
+}
+
+.rivety-form-field.half-width  { width: 355px; }
+.rivety-form-field.third-width { width: 226px; }
+
+.rivety-form-field.half-width
+{
+	float: left;
+}
+.rivety-form-field.half-width
+{
+	clear: right;
+	margin: 10px 10px 0 0;
+}
+.rivety-form-field.third-width
+{
+	clear: right;
+	margin: 10px 11px 0 0;
+}
+.rivety-form-field.half-width.right,
+.rivety-form-field.third-width.right,
+.rivety-form-field.two-thirds-width.right
+{
+	margin: 10px 0 0 0;
+}
+
+.rivety-form-field input[type=text],
+.rivety-form-field input[type=password],
+.rivety-form-field textarea
+{
+	width: 600px;
+}
+.rivety-form-field.half-width input[type=text],
+.rivety-form-field.half-width textarea
+{
+	width: 200px;
+}
+
+.rivety-form-field.third-width > label,
+.rivety-form-field.third-width > div.buttonset,
+.rivety-form-field.third-width > input[type=text],
+.rivety-form-field.third-width > textarea,
+.rivety-form-field.third-width > .chzn-container,
+.rivety-form-field.third-width > .jHtmlArea
+{
+	display: block;
+	float: none;
+	text-align: center;
+}
+
+.rivety-form-field.third-width > div.buttonset,
+.rivety-form-field.third-width > input[type=text],
+.rivety-form-field.third-width > textarea,
+.rivety-form-field.third-width > .chzn-container,
+.rivety-form-field.third-width > .jHtmlArea
+{
+	margin: 10px 0 0 0;
+}
+
+.rivety-form-field.two-thirds-width
+{
+	clear: right;
+	float: left;
+	margin: 10px 10px 0 0;
+	width: 484px;
+}
+
+.rivety-form-field.two-thirds-width.right
+{
+	margin: 10px 0 0 0;
+}
+
+.rivety-form-field.two-thirds-width input[type=text],
+.rivety-form-field.two-thirds-width textarea
+{
+	width: 340px;
+}
+
+.third-width-rowspanning-field
+{
+	background-color: #eee;
+	/*color: #ddd;*/
+	float: left;
+	margin: 10px 10px 0 0;
+	padding: 10px;
+	width: 226px;
+}
+.third-width-rowspanning-field label
+{
+	float: left;
+	margin: 0 0 6px 0;
+}
+.third-width-rowspanning-field img
+{
+	clear: both;
+	display: block;
+	float: left;
+}
+.third-width-rowspanning-field input[type=text]
+{
+	margin: 2px 0 0 0;
+	width: 220px;
+}
+.third-width-rowspanning-field .button
+{
+	margin: 6px 0 0 0;
+	width: 224px;
+}

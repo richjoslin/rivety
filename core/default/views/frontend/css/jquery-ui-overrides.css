@@ -1,0 +1,52 @@
+
+body
+{
+	font-size: 80%;
+}
+
+fieldset.ui-widget-content
+{
+	padding: 20px;
+}
+
+fieldset legend.ui-widget-header
+{
+	font-size: 1.2em;
+	font-weight: normal;
+}
+
+.ui-accordion-content
+{
+	height: 440px;
+}
+
+span.ui-icon-check
+{
+	margin: 0 auto;
+}
+
+#messages div.ui-state-highlight,
+#messages div.ui-state-error
+{
+	margin: 10px;
+}
+
+#messages div.ui-state-highlight,
+#messages div.ui-state-error
+{
+	overflow: hidden;
+}
+
+#messages .ui-state-highlight span.ui-icon,
+#messages .ui-state-error span.ui-icon
+{
+	float: left;
+	margin: 7px 0 0 10px;
+}
+
+#messages .ui-state-highlight p,
+#messages .ui-state-error p
+{
+	float: left;
+	margin: 10px 0 7px 10px;
+}

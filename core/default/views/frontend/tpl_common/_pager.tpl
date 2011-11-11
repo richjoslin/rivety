@@ -1,11 +1,12 @@
 {if count($pages) gt 1}
-<div class="pager{if isset($class)} {$class}{/if}">	
-		{if isset($first)}<a title="First Page" class="pager-first" href="{$pager_url}/page/{$first}">First</a>{/if}
-		{if isset($prev)}<a title="Previous Page" class="pager-previous" href="{$pager_url}/page/{$prev}">Previous</a>{/if}
-		<span class="pager-info">Page {$display_page} of {$total_pages}</span>
-		{if isset($next)}<a title="Next Page" class="pager-next" href="{$pager_url}/page/{$next}">Next</a>{/if}
-		{if isset($last)}<a title="Last Page" class="pager-last" href="{$pager_url}/page/{$last}">Last</a>{/if}
-		<span class="pager-total">{$total} {if isset($items_label)}{$items_label}{else}results{/if}</span>
-		<br />	
-</div>
+	<p class="pager">	
+		{if isset($first)}<a title="First Page" class="pager-first" href="{url}{$pager_url}/page/{$first}{/url}">{t}First{/t}</a>{/if}
+		{if isset($prev)}<a title="Previous Page" class="pager-previous" href="{url}{$pager_url}/page/{$prev}{/url}">{t}Previous{/t}</a>{/if}
+		{if isset($next)}<a title="Next Page" class="pager-next" href="{url}{$pager_url}/page/{$next}{/url}">{t}Next{/t}</a>{/if}
+		{if isset($last)}<a title="Last Page" class="pager-last" href="{url}{$pager_url}/page/{$last}{/url}">{t}Last{/t}</a>{/if}
+	</p>
+	<p class="pager">	
+		<span class="pager-info">{t}Page{/t} {$display_page} {t}of{/t} {$total_pages}</span>
+		<span class="pager-total">{$total} {t}results{/t}</span>
+	</p>
 {/if}

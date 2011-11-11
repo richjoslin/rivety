@@ -1,0 +1,28 @@
+
+#breadcrumbs
+{
+	height: 29px;
+	border: 1px solid #dedede;
+	margin: 0;
+}
+
+#breadcrumbs li
+{
+	float: left;
+	line-height: 29px;
+	padding-left: .75em;
+}
+
+#breadcrumbs li a
+{
+	background: url('/core/default/views/admin/img/breadcrumbs.gif') no-repeat right center;
+	display: block;
+	height: 29px;
+	padding: 0 24px 0 0;
+}
+
+#breadcrumbs li a span.ui-icon-home
+{
+	float: left;
+	margin: 5px 8px 0 0;
+}

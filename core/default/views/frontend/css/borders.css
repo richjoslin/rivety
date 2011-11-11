@@ -1,0 +1,15 @@
+
+#footer
+{
+	border-top: solid 1px #999;
+}
+
+a.marked-for-deletion
+{
+	border: none;
+}
+a.marked-for-deletion img, a.not-marked-for-deletion img
+{
+	border-style: solid;
+	border-width: 2px;
+}

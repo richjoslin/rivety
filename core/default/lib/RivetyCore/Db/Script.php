@@ -4,15 +4,16 @@
 	Class: RivetyCore_Db_Script
 */
 
-class RivetyCore_Db_Script{            
+class RivetyCore_Db_Script
+{
 
-	public $errors = null;        
+	public $errors = null;
 
 	/*
 		Function: RivetyCore_Db_Script
 	*/
-	function RivetyCore_Db_Script($module = null, $scriptname = null, $dbAdapter = null){
-
+	function RivetyCore_Db_Script($module = null, $scriptname = null, $dbAdapter = null)
+	{
 		$this->errors = array();
 
 		if( is_null($dbAdapter) ){
@@ -65,15 +66,15 @@ class RivetyCore_Db_Script{
 				foreach ($queries as $query)
 				{
 					if (trim($query) != "")
-					{						
+					{
 						$this->_db->query($query);
 					}
 				}
 				$success = true;
 			}
 			catch (Exception $e)
-			{				
-				$this->errors[] = $e->getMessage();				
+			{
+				$this->errors[] = $e->getMessage();
 			}
 		}
 		else
