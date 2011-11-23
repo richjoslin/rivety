@@ -1,6 +1,6 @@
 {include file="file:$theme_global/_header.tpl"}
 
-{include file="file:$theme_global/_messages.tpl"}
+{include file="file:$theme_global/_screen_alerts.tpl"}
 
 
 

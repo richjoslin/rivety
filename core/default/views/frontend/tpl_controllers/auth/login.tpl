@@ -1,5 +1,5 @@
 {include file="file:$theme_global/_header.tpl"}
-{include file="file:$theme_global/_messages.tpl"}
+{include file="file:$theme_global/_screen_alerts.tpl"}
 <div>
 	<h3>{t}Log In{/t}</h3>
 	<form action="{url}/default/auth/login{/url}" method="post">

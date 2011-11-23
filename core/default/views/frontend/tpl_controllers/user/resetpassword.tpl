@@ -6,7 +6,7 @@
 	<div class="main">
 		<div class="sec">
 			<div class="inner">
-				{include file="file:$theme_global/_messages.tpl"}
+				{include file="file:$theme_global/_screen_alerts.tpl"}
 				<p>You can use this form to reset your password.</p>
 				<form method="post" action="{url}/user/resetpassword/code/{$code}/email/{$email}{/url}" enctype="multipart/form-data">
 					<fieldset>

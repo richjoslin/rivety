@@ -1,5 +1,5 @@
 {include file="file:$theme_global/_header.tpl"}
-{include file="file:$theme_global/_messages.tpl"}
+{include file="file:$theme_global/_screen_alerts.tpl"}
 <div class="grid_12 alpha">
 <h3>{t}Cancel Account{/t}</h3>
 

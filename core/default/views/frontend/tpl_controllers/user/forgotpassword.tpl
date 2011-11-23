@@ -6,7 +6,7 @@
 	<div class="main">
 		<div class="sec">
 			<div class="inner">
-				{include file="file:$theme_global/_messages.tpl"}
+				{include file="file:$theme_global/_screen_alerts.tpl"}
 				{if $showForm}
 					<p>No problem. Happens to everyone. Just enter your email or your username below and we'll send you a link to change your password.</p>
 					<form method="post" action="{url}/default/user/forgotpassword{/url}" enctype="multipart/form-data">

@@ -17,4 +17,4 @@
 				</ul>
 			</div>
 			<div id="main-column">
-				{include file="file:$admin_theme_path/tpl_common/_messages.tpl"}
+				{include file="file:$admin_theme_path/tpl_common/_screen_alerts.tpl"}

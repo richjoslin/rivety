@@ -12,7 +12,8 @@
 	About: See Also
 		Zend_Controller_Action
 */
-abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Action {
+abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Action
+{
 
 	/* Group: Instance Variables */
 
@@ -77,7 +78,8 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 				param nav_items - The array of links returned by the Navigation model class.
 				param request - The HTTP Request object.
 	*/
-	function init() {
+	function init()
+	{
 		$params = array('username' => null);
 		$modules_table = new Modules('core');
 		$roles_table = new Roles();
@@ -113,13 +115,15 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 		$this->view->module_name = $this->_request->getModuleName();
 		$this->view->action_name = $this->_request->getActionName();
 		$this->_auth = Zend_Auth::getInstance();
-		if ($this->_auth->hasIdentity()) {
+		if ($this->_auth->hasIdentity())
+		{
 			$this->_identity = $this->_auth->getIdentity();
 			$this->view->isLoggedIn = true;
 			$params['username'] = $this->_identity->username;
 			$users_table = new Users();
 			$loggedInUser = $users_table->fetchByUsername($this->_identity->username);
-			if (!is_null($loggedInUser)) {
+			if (!is_null($loggedInUser))
+			{
 				$this->_loggedInUser = $loggedInUser;
 				$this->view->loggedInUser = $loggedInUser->toArray();
 			}
@@ -129,15 +133,18 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 			$loggedInRoleIds = $roles_table->getRoleIdsByUsername($this->_identity->username);
 			$this->view->loggedInRoleIds = $loggedInRoleIds;
 
-			foreach ($loggedInRoleIds as $role_id) {
+			foreach ($loggedInRoleIds as $role_id)
+			{
 				$role = $roles_table->fetchRow('id = '.$role_id);
-				if ((boolean)$role->isadmin) {
+				if ((boolean)$role->isadmin)
+				{
 					$this->view->isAdmin = true;
 					$this->_identity->isAdmin = true;
 				}
 			}
-
-		} else {
+		}
+		else
+		{
 			$this->_identity = null;
 			$this->view->isLoggedIn = false;
 		}
@@ -209,11 +216,14 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 
 			// Get the locales allowed in the config
 			$allowed_locales = explode(',', RivetyCore_Registry::get('allowed_locales'));
-			if (!empty($allowed_locales) && (bool)array_filter($allowed_locales)) {
+			if (!empty($allowed_locales) && (bool)array_filter($allowed_locales))
+			{
 				$allowed_locales = array_map('trim', $allowed_locales);
 				$allowed_locales = array_map('strtolower', $allowed_locales);
 				$allowed_locales = str_replace('_', '-', $allowed_locales);
-			} else {
+			}
+			else
+			{
 				throw new Exception('Localization is enabled, but no locales are set in `allowed_locales`');
 			}
 
@@ -280,36 +290,54 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 					$this->view->default_locale_code = $default_locale_code;
 					$this->view->request_locale = $locale_code;
 					$this->view->default_locale_code = $default_locale_code;
-				} else {
-					if (strtolower($locale_code) !== $locale_code) {
+				}
+				else
+				{
+					if (strtolower($locale_code) !== $locale_code)
+					{
 						// The locale is probably just upper case. Try lower case.
 						$this->locale_code = strtolower($locale_code);
 						$url = str_replace("/{$locale_code}/", '/', $_SERVER['REDIRECT_URL']); // See Apache Quirks: http://framework.zend.com/manual/en/zend.controller.request.html
 						$this->_redirect($url, array('code' => 301));
-					} else {
+					}
+					else
+					{
 						// This locale is just bad.
 						$this->locale_code = $default_locale_code;
 						$this->view->locale_code = $default_locale_code;
 
 						// Checking hasIdentity() here would be incorrect, as guests do not have identities, but may have access to this action
-						if (@RivetyCore_ResourceCheck::isAllowed("choose", "default", $this->_identity->username, 'Locale')) {
+						if (@RivetyCore_ResourceCheck::isAllowed("choose", "default", $this->_identity->username, 'Locale'))
+						{
 							$this->_redirect("/default/locale/choose/");
-						} else {
-							if (empty($this->_request->locale)) {
+						}
+						else
+						{
+							if (empty($this->_request->locale))
+							{
 								$this->_redirect("/", array('code' => 301));
-							} else {
+							}
+							else
+							{
 								$this->_redirect("/default/auth/missing/");
 							}
 						}
 					}
 				}
-			} elseif ($this->_mca == "default_index_index" && isset($_COOKIE['locale_code'])) {
-				$this->_redirect("/".$_COOKIE['locale_code']."/", array(), false);
-			} else {
+			}
+			elseif ($this->_mca == "default_index_index" && isset($_COOKIE['locale_code']))
+			{
+				$this->_redirect("/" . $_COOKIE['locale_code'] . "/", array(), false);
+			}
+			else
+			{
 				// Checking hasIdentity() here would be incorrect, as guests do not have identities, but may have access to this action
-				if (@RivetyCore_ResourceCheck::isAllowed("choose", "default", $this->_identity->username, 'Locale')) {
+				if (@RivetyCore_ResourceCheck::isAllowed("choose", "default", $this->_identity->username, 'Locale'))
+				{
 					$this->_redirect($default_locale_code."/default/locale/choose/");
-				} else {
+				}
+				else
+				{
 					$this->_redirect($default_locale_code."/default/auth/missing/");
 				}
 			}
@@ -338,10 +366,12 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 		// }
 
 		// this is a way to force the browser to reload some scripts
-		if (RivetyCore_Registry::get('uncache_css_js_version')) {
+		if (RivetyCore_Registry::get('uncache_css_js_version'))
+		{
 			$this->view->uncache_version = "?v=".RivetyCore_Registry::get('uncache_css_js_version');
 		}
-		if (RivetyCore_Registry::get('uncache_flash_version') ){
+		if (RivetyCore_Registry::get('uncache_flash_version') )
+		{
 			$this->view->uncache_flash = "?v=".RivetyCore_Registry::get('uncache_flash_version');
 		}
 
@@ -352,12 +382,15 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 
 		// check for role of identity, if we don't have one, use guest.
 		// TODO - move this to the place where role is determined, there should only be one place
-		if ($this->_auth->hasIdentity()) {
+		if ($this->_auth->hasIdentity())
+		{
 			$tmp_ids = $loggedInRoleIds;
 			$this->my_roles = $roles_table->fetchRolesByUsername($this->_identity->username)->toArray();
 			$username = $this->_identity->username;
 			$this->view->username = $username;
-		} else {
+		}
+		else
+		{
 			$tmp_ids = array($roles_table->getIdByShortname("guest"));
 			$this->my_roles = array(0 => array(
 				"id" => "1",
@@ -373,7 +406,8 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 		// find the parent roles, add the parent role IDs to the nav_role_ids for inheritance.
 
 		$nav_parent_role_ids = array();
-		foreach($tmp_ids as $nav_role){
+		foreach($tmp_ids as $nav_role)
+		{
 			$nav_parent_role_ids = array_merge($nav_parent_role_ids, $roles_table->getAllAncestors($nav_role));
 		}
 		$nav_role_ids = array();
@@ -386,15 +420,19 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 		$cache_name = 'navigation_'.$this->locale_code.'-'.md5(implode($unique_ids, "-")); // MD5 The Unique IDs to shorten the cache name
 		$cache_tags = array('navigation', $this->locale_code);
 		$nav_items_temp = false;
-		if (RivetyCore_Registry::get('enable_navigation_cache') == '1') {
+		if (RivetyCore_Registry::get('enable_navigation_cache') == '1')
+		{
 			$nav_items_temp = RivetyCore_Cache::load($cache_name);
 		}
-		if ($nav_items_temp === false || !isset($nav_items_temp)) {
+		if ($nav_items_temp === false || !isset($nav_items_temp))
+		{
 			$nav_items_temp = array();
-			foreach ($unique_ids as $nav_role_id) {
+			foreach ($unique_ids as $nav_role_id)
+			{
 				$nav_items_temp = array_merge($nav_items_temp, $nav_table->getNavTree($nav_role_id));
 			}
-			if (RivetyCore_Registry::get('enable_navigation_cache') == '1') {
+			if (RivetyCore_Registry::get('enable_navigation_cache') == '1')
+			{
 				RivetyCore_Cache::save($nav_items_temp, $cache_name, $cache_tags);
 			}
 		}
@@ -421,10 +459,12 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 		$params['session'] = $this->session;
 		$additional = $this->_rivety_plugin->doFilter('controller_init', $params); // FILTER HOOK
 		unset($additional['request']); // we don't want to send the request to the view
-		if( isset($additional['filter_redirect']) ){
+		if (isset($additional['filter_redirect']))
+		{
 			$this->_redirect($additional['filter_redirect']);
 		}
-		foreach ($additional as $key => $value) {
+		foreach ($additional as $key => $value)
+		{
 			$this->view->$key = $value;
 		}
 	}
@@ -434,7 +474,8 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 	/*
 		Function: _T
 	*/
-	protected function _T($key, $replace = null, $do_translate = true) {
+	protected function _T($key, $replace = null, $do_translate = true)
+	{
 		return RivetyCore_Translate::translate($this->locale_code, 'default', $key, $replace, $do_translate);
 	}
 
@@ -467,7 +508,8 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 			total_pages - The total number of pages in the entire collection.
 			pages - An array of integers, one for each page in the entire collection. (1-based)
 	*/
-	protected function makePager($page, $per_page, $total, $url, $params = null) {
+	protected function makePager($page, $per_page, $total, $url, $params = null)
+	{
 		if (!is_null($params)) {
 		  	foreach ($params as $key => $val) {
 		  		if (!is_null($val)) {
@@ -508,9 +550,33 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 	}
 
 	/*
+		Function: queueScreenAlert
+			Saves a message in the database to be displayed later on either the next page that is loaded, or the module-controller-action specified.
+			And expiration timestamp can be provided to prevent stale messages from appearing long after they were relevant.
+	*/
+	function queueScreenAlert($type, $message, $expires = null, $mca = null)
+	{
+		// VALID MESSAGE TYPE STRINGS:
+		//    error, notice, success
+		//        (custom message type strings can be passed in but it's up to the implementer to make sure it gets recognized on the way out)
+
+		$alerts_model = new ScreenAlerts();
+		$data = array(
+			'username' => $this->_identity->username,
+			'type' => $type,
+			'message' => $message,
+			'mca' => $mca,
+			'created' => date(DB_DATETIME_FORMAT),
+			'expires' => date(DB_DATETIME_FORMAT, $expires),
+		);
+		$alerts_model->insert($data);
+	}
+
+	/*
 		Function: _redirect
 	*/
-	protected function _redirect($url, array $options = array(), $auto_add_locale = true) {
+	protected function _redirect($url, array $options = array(), $auto_add_locale = true)
+	{
 		if ($auto_add_locale) {
 			$urlfilter_params = array('locale_code' => $this->locale_code);
 		}
@@ -518,7 +584,8 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 		return parent::_redirect($url_filter->filter($url, $urlfilter_params), $options);
 	}
 
-	protected function debug($var_name, $var) {
+	protected function debug($var_name, $var)
+	{
 		if ($this->_debug_mode === true)
 		{
 			echo("\$" . $var_name . " =");

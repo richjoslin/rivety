@@ -27,7 +27,7 @@
 			</div>
 			<div id="content">
 				{include file="file:$admin_theme_path/tpl_common/_breadcrumbs.tpl"}
-				{include file="file:$admin_theme_path/tpl_common/_messages.tpl"}
+				{include file="file:$admin_theme_path/tpl_common/_screen_alerts.tpl"}
 				<div id="page-loader">
 					<img src="{$admin_theme_url}/img/loader-stripes.gif" width="220" height="19" alt="Loading..." />
 				</div>

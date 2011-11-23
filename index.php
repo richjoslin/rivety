@@ -93,14 +93,11 @@ try
 		{
 			$theme_locations['frontend']['current_theme']['path'] = $basepath . "/core/default/views/frontend";
 			$theme_locations['frontend']['current_theme']['url'] = "/core/default/views/frontend";
-	
-			$theme_locations['frontend']['module_theme']['path'] = $basepath . "/modules/ CURRENT MODULE NAME GOES HERE /views/frontend";
-			$theme_locations['frontend']['module_theme']['url'] = "/modules/ CURRENT MODULE NAME GOES HERE /views/frontend";
 		}
 		else
 		{
-			$theme_locations['frontend']['current_theme']['path'] = $basepath . "/themes/frontend/" . $frontend_theme;
-			$theme_locations['frontend']['current_theme']['url'] = "/themes/frontend/" . $frontend_theme;
+			$theme_locations['frontend']['current_theme']['path'] = $basepath . "/themes/" . $frontend_theme . '/core/default/views/frontend';
+			$theme_locations['frontend']['current_theme']['url'] = "/themes/" . $frontend_theme . '/core/default/views/frontend';
 		}
 	}
 	else
