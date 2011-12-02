@@ -6,6 +6,9 @@
 	About: Author
 		Jaybill McCarthy
 
+	About: Contributors
+		Rich Joslin
+
 	About: License
 		<http://rivety.com/docs/license>
 
@@ -85,14 +88,18 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 		$roles_table = new Roles();
 		$enabled_modules = $modules_table->getEnabledModules();
 
-		foreach ($enabled_modules as $enabled_module) {
-			$this->view->{"module_".$enabled_module} = true;
+		foreach ($enabled_modules as $enabled_module)
+		{
+			$this->view->{"module_" . $enabled_module} = true;
 		}
 
-		if (!empty($_SERVER['HTTPS'])) {
+		if (!empty($_SERVER['HTTPS']))
+		{
 			$this->view->is_ssl = true;
 			$this->_is_ssl = true;
-		} else {
+		}
+		else
+		{
 			$this->view->is_ssl = false;
 			$this->_is_ssl = false;
 		}
@@ -106,9 +113,12 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 		$this->registry = Zend_Registry::getInstance();
 		$this->session = new Zend_Session_Namespace('Default');
 
-		$this->_debug_mode = ($this->_request->has('debug') && $this->_request->debug == 'dump');
+		// $this->_debug_mode = ($this->_request->has('debug') && $this->_request->debug == 'dump');
 
-		$this->_mca = $this->_request->getModuleName()."_".$this->_request->getControllerName()."_".$this->_request->getActionName();
+		// $this->format = 'default';
+		// if ($this->_request->has('format') && !empty($this->_request->format)) $this->format = $this->_request->format;
+
+		$this->_mca = $this->_request->getModuleName() . "_" . $this->_request->getControllerName() . "_" . $this->_request->getActionName();
 		$this->view->mca = str_replace("_", "-", $this->_mca);
 		$this->view->controller_name = $this->_request->getControllerName();
 		$this->module_name = $this->_request->getModuleName();
@@ -135,7 +145,7 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 
 			foreach ($loggedInRoleIds as $role_id)
 			{
-				$role = $roles_table->fetchRow('id = '.$role_id);
+				$role = $roles_table->fetchRow('id = ' . $role_id);
 				if ((boolean)$role->isadmin)
 				{
 					$this->view->isAdmin = true;
@@ -370,7 +380,7 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 		{
 			$this->view->uncache_version = "?v=".RivetyCore_Registry::get('uncache_css_js_version');
 		}
-		if (RivetyCore_Registry::get('uncache_flash_version') )
+		if (RivetyCore_Registry::get('uncache_flash_version'))
 		{
 			$this->view->uncache_flash = "?v=".RivetyCore_Registry::get('uncache_flash_version');
 		}
@@ -398,7 +408,8 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 				"description" => "Guest",
 				"is_admin" => "0",
 				"isguest" => "1",
-				"isdefault" => "0")
+				"isdefault" => "0",
+				)
 			);
 		}
 		$this->view->my_roles = $this->my_roles;
@@ -442,16 +453,18 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 		$this->view->nav_items = $navparams['nav_items'];
 
 		// TODO - Rich fix this - it was working and now it's not
-		// // VIEW STATES
-		// if (!$this->session->view_states) {
-		// 	$this->session->view_states = array();
-		// }
-		// // TODO - allow use of regular expressions such as /auth/*
-		// $last_visited_pages_filter = explode('|', RivetyCore_Registry::get('last_visited_pages_filter'));
-		// if (!in_array($this->_uri, $last_visited_pages_filter)) {
-		// 	$this->session->view_states['last_visited'] = $this->_uri;
-		// }
-		// $this->view->view_states = $this->session->view_states;
+		// VIEW STATES
+		if (!$this->session->view_states)
+		{
+			$this->session->view_states = array();
+		}
+		// TODO - allow use of regular expressions such as /auth/*
+		$last_visited_pages_filter = explode('|', RivetyCore_Registry::get('last_visited_pages_filter'));
+		if (!in_array($this->_uri, $last_visited_pages_filter))
+		{
+			$this->session->view_states['last_visited'] = $this->_uri;
+		}
+		$this->view->view_states = $this->session->view_states;
 
 		// CONTROLLER INIT HOOK
 		$params['request'] = $this->_request;
@@ -467,6 +480,41 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 		{
 			$this->view->$key = $value;
 		}
+	}
+
+	function preDispatch()
+	{
+		// RESPONSE FORMAT
+		$this->format = 'default';
+		if ($this->_request->has('format') && !empty($this->_request->format)) $this->format = $this->_request->format;
+
+		// SCREEN ALERTS
+		$this->screen_alerts = array();
+
+		// DEBUG MODE
+		$this->_debug_mode = ($this->_request->has('debug') && $this->_request->debug == 'dump');
+	}
+
+	function postDispatch()
+	{
+		// SCREEN ALERTS
+		$screen_alerts_dbtable = new ScreenAlerts();
+		$where_clause = $screen_alerts_dbtable->getAdapter()->quoteInto('username = ?', $this->_identity->username);
+		$where_clause .= $screen_alerts_dbtable->getAdapter()->quoteInto(' and mca = ?', $this->_mca);
+		$where_clause .= ' and expires < now()';
+		$screen_alert_records = $screen_alerts_dbtable->fetchAllArray($where_clause);
+		foreach ($screen_alert_records as $alert)
+		{
+			$where_clause = $screen_alerts_dbtable->getAdapter()->quoteInto('id = ?', $alert['id']);
+			$screen_alerts_dbtable->delete();
+			// TODO: based on a system setting, either delete the record, or just update it to mark it as successfully displayed
+			// TODO: it might be better to move this part into a Smarty plugin and delete each record as it is rendered
+		}
+		$this->screen_alerts = array_merge($this->screen_alerts, $screen_alert_records);
+		$this->view->screen_alerts = $this->screen_alerts;
+
+		// DEBUG MODE
+		if ($this->_debug_mode) die("debug mode output complete");
 	}
 
 	/* Group: Private or Protected Methods */
@@ -550,26 +598,21 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 	}
 
 	/*
-		Function: queueScreenAlert
-			Saves a message in the database to be displayed later on either the next page that is loaded, or the module-controller-action specified.
-			And expiration timestamp can be provided to prevent stale messages from appearing long after they were relevant.
+		Function: immediateScreenAlert
 	*/
-	function queueScreenAlert($type, $message, $expires = null, $mca = null)
+	function screenAlert($type, $message)
 	{
-		// VALID MESSAGE TYPE STRINGS:
-		//    error, notice, success
-		//        (custom message type strings can be passed in but it's up to the implementer to make sure it gets recognized on the way out)
+		$screen_alert = new RivetyCore_ScreenAlert($this->_identity->username, $type, $message);
+		$this->screen_alerts[] = $screen_alert;
+	}
 
-		$alerts_model = new ScreenAlerts();
-		$data = array(
-			'username' => $this->_identity->username,
-			'type' => $type,
-			'message' => $message,
-			'mca' => $mca,
-			'created' => date(DB_DATETIME_FORMAT),
-			'expires' => date(DB_DATETIME_FORMAT, $expires),
-		);
-		$alerts_model->insert($data);
+	/*
+		Function: queueScreenAlert
+	*/
+	function screenAlertQueued($type, $message, $expires = null, $mca = null)
+	{
+		$screen_alert = new RivetyCore_ScreenAlert($this->_identity->username, $type, $message, $expires, $mca);
+		$screen_alert->queue();
 	}
 
 	/*
@@ -593,9 +636,9 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 		}
 	}
 
-	protected function actionFinish()
-	{
-		if ($this->_debug_mode) die("debug mode output complete");
-	}
+	// protected function actionFinish()
+	// {
+	// 	if ($this->_debug_mode) die("debug mode output complete");
+	// }
 
 }

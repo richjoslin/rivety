@@ -64,7 +64,7 @@ class ImageadminController extends RivetyCore_Controller_Action_Admin
 				$dimLimits["maxheight"] = $height;
 			}
 			$uploader->addValidator('ImageSize', false, $dimLimits);
-			$uploader->addValidator('FilesSize', false, array('min' => '1B', 'max' => '1MB'));
+			$uploader->addValidator('FilesSize', false, array('min' => '1B', 'max' => '100MB'));
 			if ($uploader->isValid())
 			{
 				umask(0);
