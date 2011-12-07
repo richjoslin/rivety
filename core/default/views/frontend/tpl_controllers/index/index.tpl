@@ -12,7 +12,7 @@
 				<label for="txtPassword">{t}Password{/t}</label><br />
 				<input tabindex="2" type="password" name="password" id="txtPassword" value="" />
 			</div>
-			<input class="button" type="submit" value="{t}Login{/t}" />
+			<input class="button" type="submit" value="{t}Log In{/t}" />
 		</form>
 	{/if}
 </div>

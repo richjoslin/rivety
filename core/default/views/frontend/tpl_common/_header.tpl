@@ -12,17 +12,28 @@
 		<div id="main">
 			<div id="header">
 				<div id="account-links">
-					{if $isLoggedIn}
-						{if $isAdmin}
-							<a href="{url}/default/admin/index{/url}" title="{t}Administration{/t}">{t}Admin{/t}</a>
+					<ul>
+						{if $isLoggedIn}
+							<li>
+								{t}Welcome{/t}, <a href="{url}/default/user/profile/username/{$loggedInUsername}/{/url}" title="{$loggedInUsername}">{$loggedInFullName}</a>
+							</li>
+							{if $isAdmin}
+								<li>
+									<a href="{url}/default/admin/index{/url}" title="{t}Go to Administration Tools{/t}">{t}View Admin{/t}</a>
+								</li>
+							{/if}
+							<li>
+								<a href="{url}/default/auth/logout{/url}" title="{t}Log Out{/t}">{t}Log Out{/t}</a>
+							</li>
+						{else}
+							<li>
+								<a href="{url}/default/user/register{/url}" title="{t}Register for an account{/t}">{t}Register{/t}</a>
+							</li>
+							<li>
+								<a href="{url}/default/auth/login{/url}" title="{t}Log In{/t}">{t}Log In{/t}</a>
+							</li>
 						{/if}
-						{t}Welcome{/t}, <a href="{url}/default/user/profile/username/{/url}{$loggedInUsername}" title="{$loggedInUsername}">{$loggedInFullName}</a>
-						<a href="{url}/default/auth/logout{/url}" title="{t}Logout{/t}">{t}Logout{/t}</a>
-					{else}
-						<a href="{url}/default/auth/login{/url}" title="{t}Login{/t}">{t}Login{/t}</a>
-						–
-						<a href="{url}/default/user/register{/url}" title="{t}Register for an account{/t}">{t}Register{/t}</a>
-					{/if}
+					</ul>
 				</div>
 				<h1 id="site-title1">{$site_name}</h1>
 				<ul class="topnav">

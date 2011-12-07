@@ -26,8 +26,8 @@
 						Click a thumbnail to see the full-sized photo and filename.
 					</p>
 					{foreach from=$folder.filenames item=filename}
-						<a href="/uploads/admin/{$folder_name}/{$filename}" target="_blank" title="{$filename}" class="fancybox">
-							<img src="/displayimage/{$username}/{$folder_name}/80/80/1/jpg/{$filename}" alt="{$filename}" id="{$folder_name}_{$filename}" />
+						<a href="/uploads/rivetycommon/{$folder_name}/{$filename}" target="_blank" title="{$filename}" class="fancybox">
+							<img src="/displayimage/rivetycommon/{$folder_name}/80/80/1/jpg/{$filename}" alt="{$filename}" id="{$folder_name}_{$filename}" />
 						</a>
 					{/foreach}
 				</div>

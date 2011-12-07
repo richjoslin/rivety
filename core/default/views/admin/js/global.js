@@ -62,7 +62,7 @@ function photoModal()
 	$("#photo-modal-picker").dialog(
 	{
 		autoOpen: false,
-		width: 300,
+		width: 400,
 		height: 700,
 		modal: true,
 		buttons:
@@ -77,12 +77,12 @@ function photoModal()
 			var htmlArea = $(event.target).data('htmlArea');
 			var htmlAreaOptions = $(event.target).data('htmlAreaOptions');
 
-			$.getJSON("/default/imageadmin/list/folder/" + photoFolder, function(data)
+			$.getJSON("/default/imageadmin/list/folder/" + photoFolder + "/format/json/", function(data)
 			{
 				for (var i = 0; i < data.length; i++)
 				{
 					var photoThumb = $("<img />");
-					photoThumb.attr("src", "/displayimage/" + username + "/" + photoFolder + "/80/80/1/jpg/" + data[i]);
+					photoThumb.attr("src", "/displayimage/rivetycommon/" + photoFolder + "/80/80/1/jpg/" + data[i]);
 					var filenameSpan = $("<span />");
 					filenameSpan.html(data[i]);
 					var photoLink = $("<a />");
@@ -105,7 +105,7 @@ function photoModal()
 							// TODO: use the options to build the displayimage URL
 						}
 						// insert image - resized to width of 280 - maintain aspect ratio - do not crop - jpg extension
-						htmlArea.image('/displayimage/' + username + '/' + photoFolder + '/280/0/0/jpg/' + imageFileName);
+						htmlArea.image('/displayimage/rivetycommon/' + photoFolder + '/280/0/0/jpg/' + imageFileName);
 					}
 					else
 					{

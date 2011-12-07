@@ -7,7 +7,7 @@
 {/capture}
 {include file="file:$admin_theme_path/tpl_common/_header.tpl"
 	pageTitle="Edit User `$user.username`" masthead="Edit User `$user.username`"
-	pageTitle=$page_title masthead=$page_title
+	pageTitle=$page_title
 	js_urls=$smarty.capture.js_urls css_urls=$smarty.capture.css_urls}
 <div id="options">
 	<h3>{t}Options{/t}</h3>

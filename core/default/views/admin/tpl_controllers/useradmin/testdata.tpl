@@ -1,5 +1,5 @@
-{include file="file:$admin_theme_path/tpl_common/_header.tpl" pageTitle="Load Test Data" masthead="Load Test Data"}
-<div class="grid_16">
+{include file="file:$admin_theme_path/tpl_common/_header.tpl" pageTitle="Load Test Data"}
+<div id="main-column">
 	<form method="post" class="adminform" action="{url}/default/useradmin/testdata{/url}" enctype="multipart/form-data">
 		<p>
 			<label for="data_path">{t}Path to Test Data{/t}</label>

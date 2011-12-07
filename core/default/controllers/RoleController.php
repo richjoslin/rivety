@@ -6,6 +6,9 @@
 	About: Author
 		Jaybill McCarthy
 
+	About: Contributors
+		Rich Joslin
+
 	About: License
 		<http://rivety.com/docs/license>
 
@@ -42,10 +45,7 @@ class RoleController extends RivetyCore_Controller_Action_Admin
 	{
 		$roles = new Roles();
 		$this->view->roles = $roles->fetchAll($roles->select()->order('shortname asc'))->toArray();
-
-		$this->view->breadcrumbs = array(
-			array('text' => 'Roles'),
-		);
+		$this->view->breadcrumbs = array(array('text' => 'Roles'));
 	}
 
 	/*
@@ -138,8 +138,6 @@ class RoleController extends RivetyCore_Controller_Action_Admin
 					'description' => $description,
 					'isadmin' => $isadmin,
 				);
-
-				//If we have an id, this is an update.
 				$id = (int)$this->_request->getPost('id');
 				if ($id != 0)
 				{
@@ -148,7 +146,6 @@ class RoleController extends RivetyCore_Controller_Action_Admin
 				}
 				else
 				{
-					//We don't, this is an insert.
 					$id = $roles_table->insert($data);
 				}
 				$roles_table->removeInheritedRole($id);
@@ -156,7 +153,7 @@ class RoleController extends RivetyCore_Controller_Action_Admin
 				{
 					$roles_table->setInheritedRole($id,$in_id);
 				}
-				$this->_redirect("/default/role");
+				$this->_redirect("/default/role/index");
 			}
 			else
 			{
@@ -165,9 +162,7 @@ class RoleController extends RivetyCore_Controller_Action_Admin
 		}
 		if ($request->has('id'))
 		{
-			// this is an edit
 			$id = $request->id;
-
 			if ($id > 0)
 			{
 				$this->view->role = $roles_table->fetchRow('id = ' . $id)->toArray();
@@ -184,8 +179,8 @@ class RoleController extends RivetyCore_Controller_Action_Admin
 		}
 
 		$this->view->breadcrumbs = array(
-			array('text' => 'Roles', 'url' => '/default/roles/index'),
-			array('text' => $id < 1 ? 'New Role' : 'Edit Role: ' . $role['shortname']),
+			array('text' => 'Roles', 'url' => '/default/role/index'),
+			array('text' => ($request->has('id') && !empty($request->id)) ? 'Edit Role: ' . $role['shortname'] : 'New Role'),
 		);
 	}
 
@@ -256,7 +251,6 @@ class RoleController extends RivetyCore_Controller_Action_Admin
 			{
 				$error = $this->_T("This role is inherited by role(s) ");
 				$firstpass = true;
-
 				foreach ($inherited_by as $role_i)
 				{
 					if ($firstpass)

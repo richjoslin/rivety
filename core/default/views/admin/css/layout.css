@@ -32,6 +32,21 @@ ul.topnav li, ul.subnav li
 	float: right;
 	margin: 0 0 20px 0;
 }
+#account-links > ul > li
+{
+	border-left: 1px solid silver;
+	float: left;
+	margin: 0;
+	padding: 4px 10px;
+}
+#account-links > ul > li:first-child
+{
+	border: none;
+}
+#account-links > ul > li:last-child
+{
+	padding: 4px 0 4px 10px;
+}
 
 #site-title1
 {

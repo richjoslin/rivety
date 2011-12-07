@@ -1,6 +1,5 @@
-{include file="file:$admin_theme_path/tpl_common/_header.tpl"
-	masthead=$page_title pageTitle=$page_title current="default_admin_serialize"}
-<div class="grid_16">
+{include file="file:$admin_theme_path/tpl_common/_header.tpl" pageTitle=$page_title current="default_admin_serialize"}
+<div class="main-column">
 	{if $results ne null}
 		<ul>
 			{foreach from=$results item=result key=index}

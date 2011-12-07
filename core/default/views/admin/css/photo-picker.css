@@ -18,7 +18,8 @@ div.photo-picker-list-item a:visited
 	background-color: #eee;
 	display: block;
 	float: left;
-	width: 100%;
+	overflow: hidden;
+	width: 354px;
 }
 div.photo-picker-list-item a:hover,
 div.photo-picker-list-item a:active

@@ -9,7 +9,8 @@
 	About: License
 		<http://rivety.com/docs/license>
 */
-class RivetyCore_Common {
+class RivetyCore_Common
+{
 
 	/* Group: Static Methods */
 
@@ -23,48 +24,58 @@ class RivetyCore_Common {
 		Returns:
 			timezones - array continaing a list of timezones suitable for an html select tag
 	*/
-	static function getTimeZonesArray($choose_one = null) {
+	static function getTimeZonesArray($choose_one = null)
+	{
 		$timezones = array();
 		
-		if(function_exists("timezone_name_from_abbr")){
-			if (!is_null($choose_one)) {
+		if (function_exists("timezone_name_from_abbr"))
+		{
+			if (!is_null($choose_one))
+			{
 				$timezones[null] = $choose_one;
 			}
-			for ($x = -12; $x <= 14; $x++) {
+			for ($x = -12; $x <= 14; $x++)
+			{
 				$tz_name = timezone_name_from_abbr("", ($x * 60 * 60), 0);
-				if ($tz_name != "") {
+				if ($tz_name != "")
+				{
 					$timezones[$tz_name] = "[GMT";
-					if ($x > 0) {
+					if ($x > 0)
+					{
 						$timezones[$tz_name] .= " +" . $x;
-					} elseif ($x < 0) {
+					}
+					elseif ($x < 0)
+					{
 						$timezones[$tz_name] .= " " . $x;
 					}
 					$timezones[$tz_name] .= "] ";
 					$timezones[$tz_name] .= str_replace("_", " ", $tz_name);
 				}
 			}
-		} else {
+		}
+		else
+		{
 			$timezones = array (
-			  'Pacific/Apia' => '[GMT -11] Pacific/Apia',
-			  'Pacific/Honolulu' => '[GMT -10] Pacific/Honolulu',
-			  'America/Anchorage' => '[GMT -9] America/Anchorage',
-			  'America/Los_Angeles' => '[GMT -8] America/Los Angeles',
-			  'America/Denver' => '[GMT -7] America/Denver',
-			  'America/Chicago' => '[GMT -6] America/Chicago',
-			  'America/New_York' => '[GMT -5] America/New York',
-			  'America/Halifax' => '[GMT -4] America/Halifax',
-			  'America/Sao_Paulo' => '[GMT -3] America/Sao Paulo',
-			  'Atlantic/Azores' => '[GMT -1] Atlantic/Azores',
-			  'Europe/London' => '[GMT] Europe/London',
-			  'Europe/Paris' => '[GMT +1] Europe/Paris',
-			  'Europe/Helsinki' => '[GMT +2] Europe/Helsinki',
-			  'Europe/Moscow' => '[GMT +3] Europe/Moscow',
-			  'Asia/Dubai' => '[GMT +4] Asia/Dubai',
-			  'Asia/Karachi' => '[GMT +5] Asia/Karachi',
-			  'Asia/Krasnoyarsk' => '[GMT +7] Asia/Krasnoyarsk',
-			  'Asia/Tokyo' => '[GMT +9] Asia/Tokyo',
-			  'Australia/Melbourne' => '[GMT +10] Australia/Melbourne',
-			  'Pacific/Auckland' => '[GMT +12] Pacific/Auckland',
+				'Pacific/Apia' => '[GMT -11] Pacific/Apia',
+				'Pacific/Honolulu' => '[GMT -10] Pacific/Honolulu',
+				'America/Anchorage' => '[GMT -9] America/Anchorage',
+				'America/Los_Angeles' => '[GMT -8] America/Los Angeles',
+				'America/Denver' => '[GMT -7] America/Denver',
+				'America/Chicago' => '[GMT -6] America/Chicago',
+				'America/New_York' => '[GMT -5] America/New York',
+				'America/Halifax' => '[GMT -4] America/Halifax',
+				'America/Sao_Paulo' => '[GMT -3] America/Sao Paulo',
+				'Atlantic/Azores' => '[GMT -1] Atlantic/Azores',
+				'Europe/London' => '[GMT] Europe/London',
+				'Europe/Paris' => '[GMT +1] Europe/Paris',
+				'Europe/Helsinki' => '[GMT +2] Europe/Helsinki',
+				'Europe/Moscow' => '[GMT +3] Europe/Moscow',
+				'Asia/Dubai' => '[GMT +4] Asia/Dubai',
+				'Asia/Karachi' => '[GMT +5] Asia/Karachi',
+				'Asia/Krasnoyarsk' => '[GMT +7] Asia/Krasnoyarsk',
+				'Asia/Tokyo' => '[GMT +9] Asia/Tokyo',
+				'Australia/Melbourne' => '[GMT +10] Australia/Melbourne',
+				'Pacific/Auckland' => '[GMT +12] Pacific/Auckland',
 			);
 		}
 		return $timezones;

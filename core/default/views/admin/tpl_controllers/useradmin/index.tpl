@@ -1,20 +1,14 @@
-{include file="file:$admin_theme_path/tpl_common/_header.tpl" pageTitle="Manage Users" masthead="Manage Users"}
-<div id="options">
-	<h3>{t}Search{/t}</h3>
-	<form class="search" action="{url}/default/useradmin/index{/url}" method="post" id="usersearch">
-		<p><input type="text" id="searchterm" name="searchterm" value="{$searchterm}"/></p>
-		<p><input type="submit" value="{t}Search{/t}" class="button"/></p>
-	</form>
-	<h3>{t}Options{/t}</h3>
-	<ul>
-		<li><a href="{url}/default/useradmin/edit{/url}">{t}Create New User{/t}</a></li>
-	</ul>
-</div>
+{capture name=pagetitle}{t}Manage All Users{/t}{/capture}
+{capture name=css_urls}
+	/core/default/views/admin/tpl_controllers/useradmin/index.css
+{/capture}
+{include file="file:$admin_theme_path/tpl_common/_header.tpl" pageTitle=$smarty.capture.pagetitle css_urls=$smarty.capture.css_urls}
 <div id="main-column">
+	<h3>{$smarty.capture.pagetitle}</h3>
 	{if count($users) gt 0}
-		<table>
+		<table class="ui-widget">
 			<thead>
-				<tr>
+				<tr class="ui-widget-header">
 					<th>{t}Username{/t}</th>
 					<th>{t}Full Name{/t}</th>
 					<th>{t}Last Login{/t}</th>
@@ -34,5 +28,23 @@
 		<p>{t}No users found.{/t}</p>
 	{/if}
 	{include file="file:$admin_theme_path/tpl_common/_pager.tpl"}
+</div>
+<div id="options">
+	{*
+	<h3>{t}Search{/t}</h3>
+	<form class="search" action="{url}/default/useradmin/index{/url}" method="post" id="usersearch">
+		<p><input type="text" id="searchterm" name="searchterm" value="{$searchterm}"/></p>
+		<p><input type="submit" value="{t}Search{/t}" class="button"/></p>
+	</form>
+	*}
+	<h3>{t}Options{/t}</h3>
+	<ul>
+		<li>
+			<a href="{url}/default/useradmin/edit{/url}" class="button">
+				<span class="ui-icon ui-icon-plus" style="float: left; margin: 0 10px 0 0;">{t}Add{/t}</span>
+				{t}User{/t}
+			</a>
+		</li>
+	</ul>
 </div>
 {include file="file:$admin_theme_path/tpl_common/_footer.tpl"}

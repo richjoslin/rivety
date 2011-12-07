@@ -244,6 +244,12 @@ class ResourceController extends RivetyCore_Controller_Action_Admin
 			}
 		}
 		$this->view->extra_resources = $extra_resources;
+
+		$this->view->breadcrumbs = array(
+			array('text' => 'Roles', 'url' => '/default/role/index'),
+			array('text' => $role['shortname'], 'url' => '/default/role/edit/id/' . $role['id']),
+			array('text' => 'Resources'),
+		);
 	}
 
 	/* Group: Private or Protected Methods */

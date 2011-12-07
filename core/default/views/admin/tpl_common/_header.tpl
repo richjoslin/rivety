@@ -18,7 +18,17 @@
 		<div id="main">
 			<div id="header">
 				<div id="account-links">
-					<a href="{url}/default/auth/logout{/url}">{t}Log Out{/t}</a>
+					<ul>
+						<li>
+							{t}Welcome{/t}, <a href="{url}/default/user/profile/username/{$loggedInUsername}/{/url}" title="{$loggedInUsername}">{$loggedInFullName}</a>
+						</li>
+						<li>
+							<a href="{url}/{/url}">{t}View Frontend{/t}</a>
+						</li>
+						<li>
+							<a href="{url}/default/auth/logout{/url}">{t}Log Out{/t}</a>
+						</li>
+					</ul>
 				</div>
 				<h1 id="site-title1">{$site_name} - {t}Administration{/t}</h1>
 				<ul class="topnav">

@@ -15,7 +15,8 @@ class ImageadminController extends RivetyCore_Controller_Action_Admin
 	{
 		$errors = array();
 		$request = new RivetyCore_Request($this->getRequest());
-		$base_path = RivetyCore_Registry::get('upload_path') . "/" . $this->_identity->username;
+		// $base_path = RivetyCore_Registry::get('upload_path') . "/" . $this->_identity->username;
+		$base_path = RivetyCore_Registry::get('upload_path') . "/rivetycommon";
 
 		/* PROCESS DELETE */
 
@@ -132,7 +133,10 @@ class ImageadminController extends RivetyCore_Controller_Action_Admin
 	{
 		// default is json but more formats could be added
 		$request = new RivetyCore_Request($this->getRequest());
-		$base_path = RivetyCore_Registry::get('upload_path') . "/" . $this->_identity->username;
+
+		// $base_path = RivetyCore_Registry::get('upload_path') . "/" . $this->_identity->username;
+		$base_path = RivetyCore_Registry::get('upload_path') . "/rivetycommon";
+
 		if (!$request->has("folder") || empty($request->folder)) die("error - folder is empty or doesn't exist");
 		$photos = array();
 		$dir = new DirectoryIterator($base_path . "/" . $request->folder);
@@ -144,7 +148,9 @@ class ImageadminController extends RivetyCore_Controller_Action_Admin
 				$photos[] = $file_info->__toString();
 			}
 		}
-		die(Zend_Json::encode($photos));
+		natsort($photos);
+		$photos = array_values($photos);
+		if ($this->format == 'json') die(Zend_Json::encode($photos));
 	}
 
 }

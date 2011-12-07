@@ -499,18 +499,25 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 	{
 		// SCREEN ALERTS
 		$screen_alerts_dbtable = new ScreenAlerts();
-		$where_clause = $screen_alerts_dbtable->getAdapter()->quoteInto('username = ?', $this->_identity->username);
-		$where_clause .= $screen_alerts_dbtable->getAdapter()->quoteInto(' and mca = ?', $this->_mca);
-		$where_clause .= ' and expires < now()';
-		$screen_alert_records = $screen_alerts_dbtable->fetchAllArray($where_clause);
-		foreach ($screen_alert_records as $alert)
+
+		// TODO: if the URL has a response format specified, convert screen alerts to something that can be included in the output automatically
+
+		// TODO: change username to session id so that even non-logged-in users can get queued screen alerts
+		if ($this->_auth->hasIdentity()) // lame
 		{
-			$where_clause = $screen_alerts_dbtable->getAdapter()->quoteInto('id = ?', $alert['id']);
-			$screen_alerts_dbtable->delete();
-			// TODO: based on a system setting, either delete the record, or just update it to mark it as successfully displayed
-			// TODO: it might be better to move this part into a Smarty plugin and delete each record as it is rendered
+			$where_clause = $screen_alerts_dbtable->getAdapter()->quoteInto('username = ?', $this->_identity->username);
+			$where_clause .= $screen_alerts_dbtable->getAdapter()->quoteInto(' and mca = ?', $this->_mca);
+			$where_clause .= ' and expires < now()';
+			$screen_alert_records = $screen_alerts_dbtable->fetchAllArray($where_clause);
+			foreach ($screen_alert_records as $alert)
+			{
+				$where_clause = $screen_alerts_dbtable->getAdapter()->quoteInto('id = ?', $alert['id']);
+				$screen_alerts_dbtable->delete();
+				// TODO: based on a system setting, either delete the record, or just update it to mark it as successfully displayed
+				// TODO: it might be better to move this part into a Smarty plugin and delete each record as it is rendered
+			}
+			$this->screen_alerts = array_merge($this->screen_alerts, $screen_alert_records);
 		}
-		$this->screen_alerts = array_merge($this->screen_alerts, $screen_alert_records);
 		$this->view->screen_alerts = $this->screen_alerts;
 
 		// DEBUG MODE
@@ -602,8 +609,11 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 	*/
 	function screenAlert($type, $message)
 	{
-		$screen_alert = new RivetyCore_ScreenAlert($this->_identity->username, $type, $message);
-		$this->screen_alerts[] = $screen_alert;
+		// $screen_alert = new RivetyCore_ScreenAlert($this->_identity->username, $type, $message);
+		$this->screen_alerts[] = array(
+			'type' => $type,
+			'message' => $message,
+		);
 	}
 
 	/*
