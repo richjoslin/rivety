@@ -124,7 +124,7 @@ class ImageadminController extends RivetyCore_Controller_Action_Admin
 		}
 		$this->view->uploads = $uploads;
 
-		$this->view->notice = 'Warning: Photos uploaded with the same filename as an existing photo will automatically overwrite the old photo.';
+		// $this->view->notice = 'Warning: Photos uploaded with the same filename as an existing photo will automatically overwrite the old photo.';
 
 		$this->view->breadcrumbs = array(array('text' => 'Manage Photos'));
 	}

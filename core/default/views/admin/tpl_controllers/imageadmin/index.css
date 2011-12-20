@@ -1,4 +1,16 @@
-#photo-tabs ul.ui-tabs-nav li
+
+#photo-tabs
 {
-	font-size: 11px;
+	float: left;
+}
+
+ul#warnings
+{
+	float: left;
+	margin: 0 0 20px 20px;
+	width: 830px;
+}
+ul#warnings > li
+{
+	margin: 0 0 10px 0;
 }

@@ -5,14 +5,19 @@
 	border: 1px solid #dedede;
 	margin: 0;
 }
-
 #breadcrumbs li
 {
 	float: left;
 	line-height: 29px;
 	padding-left: .75em;
 }
-
+#breadcrumbs li:first-child
+{
+	background: url('/core/default/views/admin/img/breadcrumbs.gif') no-repeat right center;
+	display: block;
+	height: 29px;
+	padding: 0;
+}
 #breadcrumbs li a
 {
 	background: url('/core/default/views/admin/img/breadcrumbs.gif') no-repeat right center;
@@ -20,9 +25,21 @@
 	height: 29px;
 	padding: 0 24px 0 0;
 }
+#breadcrumbs li a.no-bg
+{
+	background: transparent;
+}
+#breadcrumbs li a.no-bg:hover
+{
+	text-decoration: none;
+}
 
 #breadcrumbs li a span.ui-icon-home
 {
 	float: left;
-	margin: 5px 8px 0 0;
+	margin: 5px -17px 0 4px;
+}
+#breadcrumbs li:first-child a:hover
+{
+	text-decoration: none;
 }

@@ -511,8 +511,7 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 			$screen_alert_records = $screen_alerts_dbtable->fetchAllArray($where_clause);
 			foreach ($screen_alert_records as $alert)
 			{
-				$where_clause = $screen_alerts_dbtable->getAdapter()->quoteInto('id = ?', $alert['id']);
-				$screen_alerts_dbtable->delete();
+				$screen_alerts_dbtable->delete($screen_alerts_dbtable->getAdapter()->quoteInto('id = ?', $alert['id']));
 				// TODO: based on a system setting, either delete the record, or just update it to mark it as successfully displayed
 				// TODO: it might be better to move this part into a Smarty plugin and delete each record as it is rendered
 			}
@@ -617,7 +616,7 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 	}
 
 	/*
-		Function: queueScreenAlert
+		Function: screenAlertQueued
 	*/
 	function screenAlertQueued($type, $message, $expires = null, $mca = null)
 	{

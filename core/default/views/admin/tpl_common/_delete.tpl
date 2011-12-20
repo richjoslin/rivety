@@ -14,13 +14,13 @@
 	<h3>{t}Options{/t}</h3>
 	<ul>
 		<li>
+			<a id="rivety-save-button" href="#" class="shiny-red button">{t}Confirm Delete{/t}</a>
+		</li>
+		<li>
 			<a href="{$delete_form_cancel_url}" class="button">
 				<span class="ui-icon ui-icon-close" style="float: left; margin: 0 10px 0 0;"></span>
 				{t}Cancel{/t}
 			</a>
-		</li>
-		<li>
-			<a id="rivety-save-button" href="#" class="shiny-red button">{t}Confirm Delete{/t}</a>
 		</li>
 	</ul>
 </div>

@@ -4,14 +4,14 @@
 {/capture}
 {include file="file:$admin_theme_path/tpl_common/_header.tpl" pagetitle=$smarty.capture.pagetitle css_urls=$smarty.capture.css_urls}
 <div id="main-column" class="full-width">
-	<h3 class="index">{$smarty.capture.pagetitle}</h3>
+	<h3>{$smarty.capture.pagetitle}</h3>
 	<h4>Important:</h4>
-	<ul class="warnings">
+	<ul id="warnings">
 		<li>Photo filenames should only contain letters, numbers, hyphens, underscores, and periods.</li>
 		<li>Photo filenames containing anything other than those characters will have the offending characters automatically replaced with hyphens.</li>
-		<!-- <li>Photos uploaded with the same filename as an existing photo will automatically overwrite the old photo.</li> -->
+		<li>Photos uploaded with the same filename as an existing photo will automatically overwrite the old photo.</li>
 	</ul>
-	<div id="photo-tabs" style="width: 950px;">
+	<div id="photo-tabs">
 		<ul>
 			{foreach from=$uploads item=folder key=folder_name}
 				<li><a href="#{$folder_name}">{$folder.friendly_name}</a></li>
@@ -27,7 +27,7 @@
 					</p>
 					{foreach from=$folder.filenames item=filename}
 						<a href="/uploads/rivetycommon/{$folder_name}/{$filename}" target="_blank" title="{$filename}" class="fancybox">
-							<img src="/displayimage/rivetycommon/{$folder_name}/80/80/1/jpg/{$filename}" alt="{$filename}" id="{$folder_name}_{$filename}" />
+							<img src="/displayimage/rivetycommon/{$folder_name}/80/0/0/png/{$filename}" alt="{$filename}" id="{$folder_name}_{$filename}" />
 						</a>
 					{/foreach}
 				</div>
