@@ -83,11 +83,13 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 	*/
 	function init()
 	{
-		$params = array('username' => null);
-		$modules_table = new Modules('core');
-		$roles_table = new Roles();
-		$enabled_modules = $modules_table->getEnabledModules();
+		$this->_auth = Zend_Auth::getInstance();
 
+		$params = array('username' => null);
+		$roles_table = new Roles();
+
+		$modules_table = new Modules('core');
+		$enabled_modules = $modules_table->getEnabledModules();
 		foreach ($enabled_modules as $enabled_module)
 		{
 			$this->view->{"module_" . $enabled_module} = true;
@@ -124,7 +126,7 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 		$this->module_name = $this->_request->getModuleName();
 		$this->view->module_name = $this->_request->getModuleName();
 		$this->view->action_name = $this->_request->getActionName();
-		$this->_auth = Zend_Auth::getInstance();
+
 		if ($this->_auth->hasIdentity())
 		{
 			$this->_identity = $this->_auth->getIdentity();
@@ -480,6 +482,21 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 		{
 			$this->view->$key = $value;
 		}
+
+		// FLASH MESSENGERS
+
+		// not yet in use
+
+		// $this->_errorMessenger = new Zend_Controller_Action_Helper_FlashMessenger();
+		// $this->_errorMessenger->setActionController($this)->init();
+		// $this->_errorMessenger->setNamespace('error');
+		// 
+		// $this->_noticeMessenger = new Zend_Controller_Action_Helper_FlashMessenger();
+		// $this->_noticeMessenger->setActionController($this)->init();
+		// $this->_noticeMessenger->setNamespace('notice');
+		// 
+		// $this->view->errors = $this->_errorMessenger->getMessages();
+		// $this->view->notices = $this->_noticeMessenger->getMessages();
 	}
 
 	function preDispatch()
@@ -495,6 +512,9 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 		$this->_debug_mode = ($this->_request->has('debug') && $this->_request->debug == 'dump');
 	}
 
+	/*
+		Function: postDispatch
+	*/
 	function postDispatch()
 	{
 		// SCREEN ALERTS
@@ -644,10 +664,5 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 			d($var);
 		}
 	}
-
-	// protected function actionFinish()
-	// {
-	// 	if ($this->_debug_mode) die("debug mode output complete");
-	// }
 
 }

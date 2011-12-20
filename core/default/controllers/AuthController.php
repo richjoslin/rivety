@@ -6,6 +6,9 @@
 	About: Author
 		Jaybill McCarthy
 
+	About: Contributors
+		Rich Joslin
+
 	About: License
 		<http://rivety.com/docs/license>
 
@@ -13,7 +16,8 @@
 		<RivetyCore_Controller_Action_Abstract>
 
 */
-class AuthController extends RivetyCore_Controller_Action_Abstract {
+class AuthController extends RivetyCore_Controller_Action_Abstract
+{
 
 	/* Group: Actions */
 
@@ -22,8 +26,7 @@ class AuthController extends RivetyCore_Controller_Action_Abstract {
 			Either displays a login form, processes a login request, or
 			automatically logs someone in (if auto_login in the app variables is set to true).
 
-
-		Plugin Hooks: 
+		Plugin Hooks:
 			- *auth_login_login_success* (action) - Deprecated. Same as auth_login_success.
 			- *auth_login_success* (action) - Enables you to perform custom actions before the browser is redirected if the login attempt succeeds.
 				param username - The username of the user logging in.
@@ -32,9 +35,9 @@ class AuthController extends RivetyCore_Controller_Action_Abstract {
 			- *auth_login_login_failure* (action) - Deprecated. Same as auth_login_failure.
 			- *auth_login_failure* (action) - Enables you to perform custom actions if the login attempt failed.
 				param username - The username of the user logging in.
-				
+
 		HTTP GET or POST Parameters:
-			url - the URL that will be redirected to on successful login. must be base64 encoded.				
+			url - the URL that will be redirected to on successful login. must be base64 encoded.
 
 		View Variables:
 			errors - An array of error messages. Only present if errors occurred.
@@ -43,34 +46,40 @@ class AuthController extends RivetyCore_Controller_Action_Abstract {
 			url_param_decoded - requested_url decoded from base64
 
 	*/
-	function loginAction() {
+	function loginAction()
+	{
 		$appNamespace = new Zend_Session_Namespace('RivetyCore_Temp');
 
 		$frontcontroller = Zend_Controller_Front::getInstance();
 		$request = $frontcontroller->getRequest();
 
-		if ($request->has('url')) {
-			$url_param = strip_tags($request->url);
-			$this->view->requested_url = $url_param;
-			$this->view->url_param = $url_param;
+		if ($request->has('ourl'))
+		{
+			$url_param = strip_tags($request->ourl);
+			$this->view->ourl = $url_param;
+			// $this->view->url_param = $url_param;
 			$url_param = base64_decode($url_param);
-			$this->view->url_param_decoded = $url_param;
+			// $this->view->url_param_decoded = $url_param;
 		}
 
 		$params = array('request' => $this->getRequest());
-		$params = $this->_rivety_plugin->doFilter($this->_mca.'_before', $params); // FILTER HOOK
-		foreach ($params as $key => $value) {
-			if ($key != 'request') {
+		$params = $this->_rivety_plugin->doFilter($this->_mca . '_before', $params); // FILTER HOOK
+		foreach ($params as $key => $value)
+		{
+			if ($key != 'request')
+			{
 				$this->view->$key = $value;
 			}
 		}
 		unset($params);
 
-		if ($this->getRequest()->isPost() or $appNamespace->autoLogin) {
+		if ($this->getRequest()->isPost() or $appNamespace->autoLogin)
+		{
 			// collect the data from the user
 			$filter = new Zend_Filter_StripTags();
 			$appNamespace = new Zend_Session_Namespace('RivetyCore_Temp');
-		   if ($appNamespace->autoLogin) {
+			if ($appNamespace->autoLogin)
+			{
 				$autologin = true;
 				$username = $appNamespace->autoLoginUsername;
 				$plain_password = $appNamespace->autoLoginPassword;
@@ -79,7 +88,9 @@ class AuthController extends RivetyCore_Controller_Action_Abstract {
 				$appNamespace->autoLoginUsername = null;
 				$appNamespace->autoLoginPassword = null;
 				$appNamespace->autoLoginPasswordHash = null;
-			} else {
+			}
+			else
+			{
 				$username = $filter->filter($this->_request->getPost('username'));
 				$plain_password = $filter->filter($this->_request->getPost('password'));
 				$password = md5($plain_password);
@@ -98,10 +109,12 @@ class AuthController extends RivetyCore_Controller_Action_Abstract {
 
 			// do the authentication
 			$auth = Zend_Auth::getInstance();
-			try {
+			try
+			{
 				$result = $auth->authenticate($authAdapter);
 
-				if ($result->isValid()) {
+				if ($result->isValid())
+				{
 					$appNamespace->last_login = $username;
 					// success : store database row to auth's storage system
 					// (not the password though!)
@@ -109,7 +122,7 @@ class AuthController extends RivetyCore_Controller_Action_Abstract {
 					$auth->getStorage()->write($data);
 					Zend_Loader::loadClass('Zend_Session');
 					$defaultNamespace = new Zend_Session_Namespace('Zend_Auth');
-					$defaultNamespace->setExpirationSeconds(86400);
+					$defaultNamespace->setExpirationSeconds((int)RivetyCore_Registry::get('session_timeout'));
 
 					//update user last_login_on
 					$users_table = new Users();
@@ -121,68 +134,80 @@ class AuthController extends RivetyCore_Controller_Action_Abstract {
 						'locale_code' => $this->locale_code,
 					);
 
-					if (!empty($url_param)) {
+					if (!empty($url_param))
+					{
 						$params['requested_url'] = $url_param;
-					} else {
+					}
+					else
+					{
 						$params['requested_url'] = null;
 					}
 
-					$this->_rivety_plugin->doAction($this->_mca.'_success', $params); // ACTION HOOK
-					$this->_rivety_plugin->doAction($this->_mca.'_login_success', $params); // ACTION HOOK (deprecated)
-					
-					if ($this->_request->isXmlHttpRequest()) {
+					$this->_rivety_plugin->doAction($this->_mca . '_success', $params); // ACTION HOOK
+					$this->_rivety_plugin->doAction($this->_mca . '_login_success', $params); // ACTION HOOK (deprecated)
+
+					if ($this->_request->isXmlHttpRequest())
+					{
 						$user = $users_table->fetchByUsername($username)->toArray();
 						$this->view->json = Zend_Json::encode($user);
 						$this->_forward('loginajax', $request->controller, $request->module);
 						return;
 					}
 
-					if (!empty($params['requested_url'])) {
-						$this->_redirect( $params['requested_url'] );
-					} else {
-						// get the last viewed page, or default to the logged in user's profile page
-						// TODO - fix view states
-						// $this->_redirect(RivetyCore_Common::getViewState($this->session, 'last_visited', "/profile/" . $username));
-						$this->_redirect("/default/auth/loginredirect");
-					}
-				} else {
+					// TODO - fix view states
+					// $redirect_url = RivetyCore_Common::getViewState($this->session, 'last_visited', "/profile/" . $username);
+
+					$redirect_url = '/default/auth/loginredirect/';
+					if (!empty($params['requested_url'])) $redirect_url = $params['requested_url'];
+					$this->_redirect($redirect_url);
+				}
+				else
+				{
 					// failure: clear database row from session
 					$appNamespace->last_login = null;
 					$this->view->errors = array($this->_T('Login failed.'));
 					$params = array('username' => $username);
-					$this->_rivety_plugin->doAction($this->_mca.'_failure', $params); // ACTION HOOK
-					$this->_rivety_plugin->doAction($this->_mca.'_login_failure', $params); // ACTION HOOK (deprecated)
+					$this->_rivety_plugin->doAction($this->_mca . '_failure', $params); // ACTION HOOK
+					$this->_rivety_plugin->doAction($this->_mca . '_login_failure', $params); // ACTION HOOK (deprecated)
 				}
-			} catch (Exception $e) {
+			}
+			catch (Exception $e)
+			{
 				$appNamespace->last_login = null;
 				$this->view->errors = array($e->getMessage());
 			}
 		}
-		
-		if ($this->_request->isXmlHttpRequest() && !empty($this->view->errors)) {
+
+		if ($this->_request->isXmlHttpRequest() && !empty($this->view->errors))
+		{
 			$json = array('errors' => $this->view->errors);
 			$this->view->json = Zend_Json::encode($json);
 			$this->_forward('loginajax', $request->controller, $request->module);
 			return;
 		}
-		
+
 		$this->view->last_login = $appNamespace->last_login;
 	}
-	
+
 	/*
 		Function: loginajax
 	*/
-	function loginajaxAction() {
+	function loginajaxAction()
+	{
 		return;
 	}
 
 	/*
 		Function: loginredirect
 	*/
-	function loginredirectAction() {
-		if ($this->_identity->isAdmin) {
+	function loginredirectAction()
+	{
+		if ($this->_identity->isAdmin)
+		{
 			$this->_redirect(RivetyCore_Registry::get('login_redirect_admins'));
-		} else {
+		}
+		else
+		{
 			$this->_redirect(RivetyCore_Registry::get('login_redirect_non_admins'));
 		}
 	}
@@ -196,9 +221,11 @@ class AuthController extends RivetyCore_Controller_Action_Abstract {
 			- *auth_denied* (action) - Allows you to perform actions just before the page renders.
 				param username - The username of the logged-in user. Only exists if there is a logged-in user.
 	*/
-	function deniedAction() {
+	function deniedAction()
+	{
 		$params = array();
-		if ($this->_auth->hasIdentity()) {
+		if ($this->_auth->hasIdentity())
+		{
 			$params['username'] = $this->_identity->username;
 		}
 		$this->_rivety_plugin->doAction($this->_mca, $params); // ACTION HOOK
@@ -213,25 +240,29 @@ class AuthController extends RivetyCore_Controller_Action_Abstract {
 			- *auth_missing* (action) - Allows you to perform actions just before the page renders.
 				param username - The username of the logged-in user. Only exists if there is a logged-in user.
 	*/
-	function missingAction() {
-		header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found"); 
+	function missingAction()
+	{
+		header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
 		$params = array();
 		$params['request'] = new RivetyCore_Request($this->getRequest());
 		$params['username'] = null;
-		if ($this->_auth->hasIdentity()) {
+		if ($this->_auth->hasIdentity())
+		{
 			$users_table = new Users();
 			$user = $users_table->fetchByUsername($this->_identity->username);
-			if (!is_null($user)) {
+			if (!is_null($user))
+			{
 				$this->view->user = $user->toArray();
 				$params['username'] = $user->username;
 			}
 		}
-		
+
 		$params = $this->_rivety_plugin->doFilter($this->_mca, $params); // FILTER HOOK
 		$this->_rivety_plugin->doAction($this->_mca, $params); // ACTION HOOK
-		
+
 		unset($params['request'], $params['username']);
-		foreach ($params as $key => $value) {
+		foreach ($params as $key => $value)
+		{
 			$this->view->$key = $value;
 		}
 	}
@@ -246,12 +277,14 @@ class AuthController extends RivetyCore_Controller_Action_Abstract {
 			- *auth_logout_post* (action) - Allows you to perform actions after the user is logged out and before the page is redirected. You could override the redirect here.
 				param username - The username of the logged-in user. Only exists if there is a logged-in user.
 	*/
-	function logoutAction() {
-		$appNamespace = new Zend_Session_Namespace('RivetyCore_Temp');
-		$appNamespace->requestedUrl = null;
+	function logoutAction()
+	{
+		// $appNamespace = new Zend_Session_Namespace('RivetyCore_Temp');
+		// $appNamespace->requestedUrl = null;
 		$params = array();
 		$params['username'] = null;
-		if ($this->_auth->hasIdentity()) {
+		if ($this->_auth->hasIdentity())
+		{
 			$params['username'] = $this->_identity->username;
 		}
 		$this->_rivety_plugin->doAction($this->_mca . '_pre', $params); // ACTION HOOK
@@ -266,7 +299,8 @@ class AuthController extends RivetyCore_Controller_Action_Abstract {
 		Plugin Hooks:
 			- *auth_error* (action) - Allows you to perform an action any time an error occurs.
 	*/
-	function errorAction() {
+	function errorAction()
+	{
 		$this->_rivety_plugin->doAction($this->_mca, array()); // ACTION HOOK
 	}
 

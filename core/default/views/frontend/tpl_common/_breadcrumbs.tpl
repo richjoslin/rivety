@@ -1,7 +1,7 @@
 
 <ul id="breadcrumbs">
 	<li>
-		<a href="{url}/default/admin/index{/url}">
+		<a href="{url}/{/url}">
 			<span class="ui-icon ui-icon-home"></span>
 			{t}Home{/t}
 		</a>

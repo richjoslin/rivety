@@ -332,6 +332,17 @@ abstract class RivetyCore_Db_Table_Abstract extends Zend_Db_Table
 		return $where;
 	}
 
+	public function delete($where)
+	{
+		$params['where'] = $where;
+		$params = $this->_rivety_plugin->doFilter('rivetycore_db_table_abstract_before_delete', $params); // FILTER HOOK
+		$where = $params['where'];
+		$output = parent::delete($where);
+		$params['output'] = $output;
+		$this->_rivety_plugin->doAction('rivetycore_db_table_abstract_after_delete', $params); // ACTION HOOK
+		return $output;
+	}
+
 	/*
 		Function: deleteById
 			Deletes one row using an ID, assuming the table's ID is a single column named "id".
@@ -341,10 +352,9 @@ abstract class RivetyCore_Db_Table_Abstract extends Zend_Db_Table
 
 		Returns: void
 	*/
-	function deleteById($id)
+	function deleteById($id, $pk_field_name = 'id') // TODO: account for tables with compound primary keys by being able to pass in an array of column name strings
 	{
-		$where = $this->getAdapter()->quoteInto("id = ?", $id);
-		$this->delete($where);
+		$this->delete($this->getAdapter()->quoteInto($pk_field_name . ' = ?', $id));
 	}
 
 	/* Group: Private or Protected Methods */
@@ -393,10 +403,10 @@ abstract class RivetyCore_Db_Table_Abstract extends Zend_Db_Table
 	/*
 		Function: fetchAllAsSmartyHtmlOptionsArray
 	*/
-	function fetchAllAsSmartyHtmlOptionsArray($id_field_name = 'id', $label_field_name = 'name')
+	function fetchAllAsSmartyHtmlOptionsArray($default_option = array('' => ''), $id_field_name = 'id', $label_field_name = 'name')
 	{
 		$record_array = $this->fetchAllArray();
-		$html_options = array('' => 'None');
+		$html_options = $default_option;
 		foreach ($record_array as $record)
 		{
 			$html_options[$record[$id_field_name]] = $record[$label_field_name];

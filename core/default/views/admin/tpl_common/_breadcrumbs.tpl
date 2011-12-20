@@ -1,7 +1,7 @@
 {if !empty($breadcrumbs)}
 	<ul id="breadcrumbs">
 		<li>
-			<a href="{url}/default/admin/index{/url}"><span class="ui-icon ui-icon-home"></span>&nbsp;</a>
+			<a href="{url}/default/admin/index/{/url}"><span class="ui-icon ui-icon-home"></span>&nbsp;</a>
 		</li>
 		{foreach from=$breadcrumbs item=breadcrumb}
 			<li>
