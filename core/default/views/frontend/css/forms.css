@@ -217,3 +217,20 @@ a.list-button, a.list-button:active, a.list-button:hover, a.list-button:visited
 	margin: 6px 0 0 0;
 	width: 224px;
 }
+
+a.shiny-red
+{
+	background: #ff0000;
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #990000), color-stop(0.5, #ff0000), color-stop(1.0, #ff9999));
+	background-image: -webkit-linear-gradient(center bottom, #990000 0%, #ff0000 50%, #ff9999 100%);
+	background-image: -moz-linear-gradient(center bottom, #990000 0%, #ff0000 50%, #ff9999 100%);
+	background-image: -o-linear-gradient(top, #990000 0%, #ff0000 50%, #ff9999 100%);
+	background-image: -ms-linear-gradient(top, #990000 0%, #ff0000 50%, #ff9999 100%);
+	background-image: linear-gradient(top, #990000 0%, #ff0000 50%, #ff9999 100%);
+	border-color: Black;
+	color: white;
+}
+a.shiny-red:hover
+{
+	border-color: #ff0000;
+}

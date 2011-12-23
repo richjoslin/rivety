@@ -46,7 +46,7 @@ class RivetyCore_Request {
 				}
 			} else {
 				$this->$name = $param;
-			} 
+			}
 		}
 	}
 
@@ -80,14 +80,11 @@ class RivetyCore_Request {
 		Returns:
 			boolean
 	*/
-	function has($var) {
-		if (array_key_exists($var, get_object_vars($this))) {
-			return true;
-		} else {
-			return false;
-		}
+	function has($var)
+	{
+		return (array_key_exists($var, get_object_vars($this)));
 	}
-	
+
 	/*
 		Function: getStartsWith
 			returns an array of field names that start with $starts_with if any are present
@@ -98,20 +95,24 @@ class RivetyCore_Request {
 		Returns:
 			array of strings that are field names
 	*/
-	
-	function getStartsWith($starts_with){
-		$vars = get_object_vars($this);		
+
+	function getStartsWith($starts_with)
+	{
+		$vars = get_object_vars($this);
 		$out = array();
-		foreach($vars as $var => $val){
-			if(!is_array($var)){				
-				if(substr($var,0,strlen($starts_with)) == $starts_with){
+		foreach($vars as $var => $val)
+		{
+			if (!is_array($var))
+			{
+				if (substr($var,0,strlen($starts_with)) == $starts_with)
+				{
 					$out[] = $var;
 				}
 			}
 		}
 		return($out);
-	}	
-	
+	}
+
 
 	/*
 		Function: checkbox
@@ -120,13 +121,10 @@ class RivetyCore_Request {
 		Arguments:
 			var - checkbox value to evaluate
 	*/
-	function checkbox($var) {
+	function checkbox($var)
+	{
 		$out = false;
-		if ($this->has($var)) {
-			if ((boolean)$var) {
-				$out = true;
-			}
-		}
+		if ($this->has($var) && (boolean)$var) $out = true;
 		return $out;
 	}
 
@@ -140,16 +138,10 @@ class RivetyCore_Request {
 
 		Returns: void
 	*/
-	function addValidator($field_name, $message = null, $type = null) {
-		
-		if (is_null($message)) {
-				$message = "Please fill out the required field: ".$field_name;
-		}
-		
-		if(is_null($type)){
-			$type = "required";
-		}
-		
+	function addValidator($field_name, $message = null, $type = null)
+	{
+		if (is_null($message)) $message = "Please fill out the required field: ".$field_name;
+		if (is_null($type)) $type = "required";
 		$this->_validators[] = array("field_name" => $field_name, "message" => $message, "type" => $type);
 	}
 
@@ -162,13 +154,19 @@ class RivetyCore_Request {
 
 		Returns: boolean
 	*/
-	function isValid() {
-		foreach ($this->_validators as $validator) {
-			switch ($validator['type']) {
+	function isValid()
+	{
+		foreach ($this->_validators as $validator)
+		{
+			switch ($validator['type'])
+			{
 				case "required":
-					if (!$this->has($validator['field_name']) || trim($this->{$validator['field_name']}) == "") {
+					if (!$this->has($validator['field_name']) || trim($this->{$validator['field_name']}) == "")
+					{
 						$this->_validation_errors[] = $validator['message'];
 					}
+					break;
+				default:
 					break;
 			}
 		}

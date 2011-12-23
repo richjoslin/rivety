@@ -34,12 +34,12 @@
 
 		<div class="rivety-form-field ui-corner-all">
 			<label for="full_name">{t}Full Name{/t}</label><br />
-			<input maxlength="{$full_name_length}" type="text" value="{$user.full_name}" name="full_name" id="full_name" class="text{if count($errors.full_name) gt 0} LV_invalid_field{/if}" />
+			<input maxlength="{$full_name_length}" type="text" value="{$user.full_name}" name="full_name" id="full_name" />
 		</div>
 
 		<div class="rivety-form-field ui-corner-all">
 			<label for="email">{t}Email{/t}</label><br />
-			<input type="text" value="{$user.email}" name="email" id="email" class="text" />
+			<input type="text" value="{$user.email}" name="email" id="email" />
 		</div>
 
 		<h4>{t}About Me{/t}</h4>
@@ -54,15 +54,15 @@
 
 		<div class="rivety-form-field ui-corner-all">
 			<label for="newpassword">New Password</label><br />
-			<input type="password" value="" name="newpassword" id="newpassword" class="text" />
+			<input type="password" value="" name="newpassword" id="newpassword" />
 		</div>
 
 		<div class="rivety-form-field ui-corner-all">
 			<label for="confirm">New Password (again)</label><br />
-			<input type="password" value="" name="confirm" id="confirm" class="text" />
+			<input type="password" value="" name="confirm" id="confirm" />
 		</div>
 
-		<input type="submit" class="button" value="{t}Submit{/t}" />
+		<input type="submit" value="{t}Submit{/t}" />
 
 	</form>
 </div>

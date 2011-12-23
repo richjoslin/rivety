@@ -52,15 +52,15 @@
 	<h3>{t}Options{/t}</h3>
 	<ul>
 		<li>
-			<a href="{url}/default/role/index{/url}" class="button">
-				<span class="ui-icon ui-icon-close" style="float: left; margin: 0 10px 0 0;"></span>
-				{t}Cancel{/t}
-			</a>
-		</li>
-		<li>
 			<a id="rivety-save-button" href="#" class="button" style="width: 158px;">
 				<span class="ui-icon ui-icon-disk" style="float: left; margin: 0 10px 0 0;"></span>
 				{t}Save{/t}
+			</a>
+		</li>
+		<li>
+			<a href="{url}/default/role/index{/url}" class="button">
+				<span class="ui-icon ui-icon-close" style="float: left; margin: 0 10px 0 0;"></span>
+				{t}Cancel{/t}
 			</a>
 		</li>
 	</ul>
