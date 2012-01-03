@@ -69,11 +69,18 @@ class ImageadminController extends RivetyCore_Controller_Action_Admin
 			if ($uploader->isValid())
 			{
 				umask(0);
+				$config = parse_ini_file(str_replace('/index.php', '/etc/config.ini', $_SERVER['SCRIPT_FILENAME']));
+				$cache_dir = $config['image_cache_dir'] . "/rivetycommon";
 				foreach ($uploader->getFileInfo() as $info)
 				{
 					$new_filename = str_replace(" ", "-", strtolower($info['name']));
 					$new_filename = preg_replace("/[^\w\.-]/", "", $new_filename);
 					$uploader->addFilter("Rename", array("source" => $info['tmp_name'], "target" => $new_filename, "overwrite" => true));
+					// clear the image cache for anything with a similar filename
+					foreach (glob($cache_dir . '/*' . $new_filename . '*') as $filename)
+					{
+						unlink($filename);
+					}
 					if (!$uploader->receive($info["name"]))
 					{
 						$errors = array_merge($errors, $uploader->getMessages());
