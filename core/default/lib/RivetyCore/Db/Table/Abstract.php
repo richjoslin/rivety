@@ -318,7 +318,7 @@ abstract class RivetyCore_Db_Table_Abstract extends Zend_Db_Table
 	*/
 	function getWhereClauseForKeywords($keywords)
 	{
-		$keywords = split(" ", $keywords);
+		$keywords = explode(" ", $keywords);
 		$where = "1 = 1";
 		foreach ($keywords as $word)
 		{

@@ -39,16 +39,20 @@
 			{include_css urls=$css_urls}
 		(end example)
 */
-function smarty_function_include_css($params, &$smarty) {
+function smarty_function_include_css($params, &$smarty)
+{
 	$urls = $params['urls'];
 	$urls = str_replace(array("\t", "\n"), array(" ", " "), $urls);
-	while (stripos($urls, "  ") !== false) {
+	while (stripos($urls, "  ") !== false)
+	{
 		$urls = str_replace("  ", " ", $urls);
 	}
-	$urls = split(" ", $urls);
+	$urls = explode(' ', $urls);
 	$output = "";
-	foreach ($urls as $url) {
-		if (trim($url) != "") {
+	foreach ($urls as $url)
+	{
+		if (trim($url) != "")
+		{
 			$output .= "<link rel=\"stylesheet\" href=\"".trim($url)."\" type=\"text/css\" media=\"screen, projection\" />\n";
 
 		}

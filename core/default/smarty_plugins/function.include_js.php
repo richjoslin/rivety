@@ -39,18 +39,19 @@
 			{include_js urls=$js_urls}
 		(end example)
 */
-function smarty_function_include_js($params, &$smarty) {
+function smarty_function_include_js($params, &$smarty)
+{
 	$urls = $params['urls'];
 	$urls = str_replace(array("\t", "\n"), array(" ", " "), $urls);
-	while (stripos($urls, "  ") !== false) {
+	while (stripos($urls, "  ") !== false)
+	{
 		$urls = str_replace("  ", " ", $urls);
 	}
-	$urls = split(" ", $urls);
+	$urls = explode(' ', $urls);
 	$output = "";
-	foreach ($urls as $url) {
-		if (trim($url) != "") {
-			$output .= "<script type=\"text/javascript\" src=\"".trim($url)."\"></script>\n";
-		}
+	foreach ($urls as $url)
+	{
+		if (trim($url) != "") $output .= "<script type=\"text/javascript\" src=\"" . trim($url) . "\"></script>\n";
 	}
 	return $output;
 }

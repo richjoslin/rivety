@@ -28,7 +28,7 @@ class ImageadminController extends RivetyCore_Controller_Action_Admin
 			&& !empty($request->delete_from_folder)
 		)
 		{
-			$files_to_delete = split(",", $request->files_to_delete);
+			$files_to_delete = explode(',', $request->files_to_delete);
 			$delete_from_folder = $request->delete_from_folder;
 			foreach ($files_to_delete as $filename)
 			{
