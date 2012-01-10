@@ -49,7 +49,7 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 			action_name - The name of the current action.
 			isLoggedIn - Indicates whether the current user is logged in. (boolean)
 			loggedInUsername - The username of the current user if they are logged in, or null otherwise.
-			loggedInFullName - The full name of the current user if they are logged in, or null otherwise.
+			// loggedInFullName - The full name of the current user if they are logged in, or null otherwise.
 			loggedInRoleId - The role ID of the current user if they are logged in, or null otherwise.
 			loggedInUser - Array containing the data from the row in the user table of the logged in user. Does not exist if user is not logged in.
 			isAdmin - Indicates whether the current user is a member of the administrator role. (boolean)
@@ -140,7 +140,7 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 				$this->view->loggedInUser = $loggedInUser->toArray();
 			}
 			$this->view->loggedInUsername = $this->_identity->username;
-			$this->view->loggedInFullName = $this->_identity->full_name;
+			// $this->view->loggedInFullName = $this->_identity->full_name;
 
 			$loggedInRoleIds = $roles_table->getRoleIdsByUsername($this->_identity->username);
 			$this->view->loggedInRoleIds = $loggedInRoleIds;

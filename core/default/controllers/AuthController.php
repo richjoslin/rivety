@@ -48,10 +48,8 @@ class AuthController extends RivetyCore_Controller_Action_Abstract
 	*/
 	function loginAction()
 	{
-		$appNamespace = new Zend_Session_Namespace('RivetyCore_Temp');
-
-		$frontcontroller = Zend_Controller_Front::getInstance();
-		$request = $frontcontroller->getRequest();
+		$errors = array();
+		$request = new RivetyCore_Request($this->getRequest());
 
 		if ($request->has('ourl'))
 		{
@@ -62,16 +60,15 @@ class AuthController extends RivetyCore_Controller_Action_Abstract
 			// $this->view->url_param_decoded = $url_param;
 		}
 
-		$params = array('request' => $this->getRequest());
+		$params = array('request' => $request);
 		$params = $this->_rivety_plugin->doFilter($this->_mca . '_before', $params); // FILTER HOOK
 		foreach ($params as $key => $value)
 		{
-			if ($key != 'request')
-			{
-				$this->view->$key = $value;
-			}
+			if ($key != 'request') $this->view->$key = $value;
 		}
 		unset($params);
+
+		$appNamespace = new Zend_Session_Namespace('RivetyCore_Temp');
 
 		if ($this->getRequest()->isPost() or $appNamespace->autoLogin)
 		{
@@ -112,7 +109,6 @@ class AuthController extends RivetyCore_Controller_Action_Abstract
 			try
 			{
 				$result = $auth->authenticate($authAdapter);
-
 				if ($result->isValid())
 				{
 					$appNamespace->last_login = $username;
@@ -134,14 +130,8 @@ class AuthController extends RivetyCore_Controller_Action_Abstract
 						'locale_code' => $this->locale_code,
 					);
 
-					if (!empty($url_param))
-					{
-						$params['requested_url'] = $url_param;
-					}
-					else
-					{
-						$params['requested_url'] = null;
-					}
+					if (!empty($url_param)) $params['requested_url'] = $url_param;
+					else $params['requested_url'] = null;
 
 					$this->_rivety_plugin->doAction($this->_mca . '_success', $params); // ACTION HOOK
 					$this->_rivety_plugin->doAction($this->_mca . '_login_success', $params); // ACTION HOOK (deprecated)
@@ -157,15 +147,18 @@ class AuthController extends RivetyCore_Controller_Action_Abstract
 					// TODO - fix view states
 					// $redirect_url = RivetyCore_Common::getViewState($this->session, 'last_visited', "/profile/" . $username);
 
-					$redirect_url = '/default/auth/loginredirect/';
-					if (!empty($params['requested_url'])) $redirect_url = $params['requested_url'];
-					$this->_redirect($redirect_url);
+					if ($this->format != 'json')
+					{
+						$redirect_url = '/default/auth/loginredirect/';
+						if (!empty($params['requested_url'])) $redirect_url = $params['requested_url'];
+						$this->_redirect($redirect_url);
+					}
 				}
 				else
 				{
 					// failure: clear database row from session
 					$appNamespace->last_login = null;
-					$this->view->errors = array($this->_T('Login failed.'));
+					$errors[] = $this->_T('Login failed.');
 					$params = array('username' => $username);
 					$this->_rivety_plugin->doAction($this->_mca . '_failure', $params); // ACTION HOOK
 					$this->_rivety_plugin->doAction($this->_mca . '_login_failure', $params); // ACTION HOOK (deprecated)
@@ -174,19 +167,31 @@ class AuthController extends RivetyCore_Controller_Action_Abstract
 			catch (Exception $e)
 			{
 				$appNamespace->last_login = null;
-				$this->view->errors = array($e->getMessage());
+				$errors = array($e->getMessage());
 			}
 		}
 
-		if ($this->_request->isXmlHttpRequest() && !empty($this->view->errors))
+		if ($this->_request->isXmlHttpRequest() && !empty($errors))
 		{
-			$json = array('errors' => $this->view->errors);
+			$json = array('errors' => $errors);
 			$this->view->json = Zend_Json::encode($json);
 			$this->_forward('loginajax', $request->controller, $request->module);
 			return;
 		}
 
 		$this->view->last_login = $appNamespace->last_login;
+
+		foreach ($errors as $error)
+		{
+			$this->screenAlert('error', $error);
+		}
+		$errors = null;
+
+		switch ($this->format)
+		{
+			case 'json': die(!empty($this->screen_alerts) ? json_encode(array('messages' => $this->screen_alerts)) : '200 OK');
+			default: break;
+		}
 	}
 
 	/*
@@ -202,14 +207,8 @@ class AuthController extends RivetyCore_Controller_Action_Abstract
 	*/
 	function loginredirectAction()
 	{
-		if ($this->_identity->isAdmin)
-		{
-			$this->_redirect(RivetyCore_Registry::get('login_redirect_admins'));
-		}
-		else
-		{
-			$this->_redirect(RivetyCore_Registry::get('login_redirect_non_admins'));
-		}
+		if ($this->_identity->isAdmin) $this->_redirect(RivetyCore_Registry::get('login_redirect_admins'));
+		else                           $this->_redirect(RivetyCore_Registry::get('login_redirect_non_admins'));
 	}
 
 	/*
@@ -224,11 +223,20 @@ class AuthController extends RivetyCore_Controller_Action_Abstract
 	function deniedAction()
 	{
 		$params = array();
-		if ($this->_auth->hasIdentity())
-		{
-			$params['username'] = $this->_identity->username;
-		}
+		if ($this->_auth->hasIdentity()) $params['username'] = $this->_identity->username;
 		$this->_rivety_plugin->doAction($this->_mca, $params); // ACTION HOOK
+	}
+
+	/*
+		Function: unauthorized
+	*/
+	function unauthorizedAction()
+	{
+		header($_SERVER["SERVER_PROTOCOL"] . " 401 Unauthorized");
+		$params = array();
+		if ($this->_auth->hasIdentity()) $params['username'] = $this->_identity->username;
+		$this->_rivety_plugin->doAction($this->_mca, $params); // ACTION HOOK
+		die('401 Unauthorized');
 	}
 
 	/*
@@ -279,18 +287,20 @@ class AuthController extends RivetyCore_Controller_Action_Abstract
 	*/
 	function logoutAction()
 	{
-		// $appNamespace = new Zend_Session_Namespace('RivetyCore_Temp');
-		// $appNamespace->requestedUrl = null;
 		$params = array();
 		$params['username'] = null;
 		if ($this->_auth->hasIdentity())
 		{
 			$params['username'] = $this->_identity->username;
+			$this->_rivety_plugin->doAction($this->_mca . '_pre', $params); // ACTION HOOK
+			Zend_Auth::getInstance()->clearIdentity();
+			$this->_rivety_plugin->doAction($this->_mca . '_post', $params); // ACTION HOOK
 		}
-		$this->_rivety_plugin->doAction($this->_mca . '_pre', $params); // ACTION HOOK
-		Zend_Auth::getInstance()->clearIdentity();
-		$this->_rivety_plugin->doAction($this->_mca . '_post', $params); // ACTION HOOK
-		$this->_redirect('/');
+		switch ($this->format)
+		{
+			case 'json': die('200 OK');
+			default: $this->_redirect('/'); break;
+		}
 	}
 
 	/*

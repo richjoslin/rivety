@@ -113,17 +113,17 @@ class UseradminController extends RivetyCore_Controller_Action_Admin
 			If the username is invalid, the browser is redirected to '/auth/missing' (currently hardcoded).
 
 		HTTP GET or POST Parameters:
-			aboutme - description text for this user
-			Birthday_Day - The user's birth day.
-			Birthday_Month - The user's birth month.
-			Birthday_Year - The user's birth year.
-			country_code - The user's country code.
+			// aboutme - description text for this user
+			// Birthday_Day - The user's birth day.
+			// Birthday_Month - The user's birth month.
+			// Birthday_Year - The user's birth year.
+			// country_code - The user's country code.
 			email - The user's email address.
-			gender - User's gender, if chosen
+			// gender - User's gender, if chosen
 			newpassword - if both this and confirm are set and match, password will be changed
 			confirm - see newpassword
 			role_ids - array of role ids of the user being edited
-			tags - string containing comma seperated tag list
+			// tags - string containing comma seperated tag list
 			username - username of user being editied
 
 		Plugin Hooks:
@@ -134,14 +134,14 @@ class UseradminController extends RivetyCore_Controller_Action_Admin
 
 		View Variabes:
 			countries - And array of all countries pulled from the database.
-			end_year - the last year a birthday can have. uses the minimum age param in the registry
+			// end_year - the last year a birthday can have. uses the minimum age param in the registry
 			errors - An array of error messages. Only exists if errors occurred.
-			genders - array of gender options
+			// genders - array of gender options
 			params - All params in the param arrays for filters get turned into view variables automatically.
 			roles - array of roles this user could have
 			success - success message, if there is one
 			errors - array of errors, if there are any
-			tags - comma separated list of tags for this user
+			// tags - comma separated list of tags for this user
 			user - The user object to be edited
 	*/
 	function editAction()
@@ -151,8 +151,8 @@ class UseradminController extends RivetyCore_Controller_Action_Admin
 		$users_roles_table = new UsersRoles();
 		$request = new RivetyCore_Request($this->getRequest());
 
-		$countries_table = new Countries();
-		$this->view->countries = $countries_table->getCountriesArray('Choose a country...');
+		// $countries_table = new Countries();
+		// $this->view->countries = $countries_table->getCountriesArray('Choose a country...');
 
 		$roles_table = new Roles();
 		$roles = $roles_table->fetchAll(NULL,"shortname ASC");
@@ -193,8 +193,8 @@ class UseradminController extends RivetyCore_Controller_Action_Admin
 		{
 			// defaults for form fields
 			$user['username'] = "";
-			$user['full_name'] = "";
-			$user['aboutme'] = "";
+			// $user['full_name'] = "";
+			// $user['aboutme'] = "";
 		}
 
 		$pre_render = $this->_rivety_plugin->doFilter($this->_mca."_pre_render", array('user' => $user, 'request' => $this->_request)); // FILTER HOOK
@@ -214,17 +214,17 @@ class UseradminController extends RivetyCore_Controller_Action_Admin
 		{
 			$errors = array();
 
-			$request->stripTags(array('full_name', 'email', 'newpassword', 'confirm'));
+			$request->stripTags(array('email', 'newpassword', 'confirm'));
 			// $request->stripTags(array('full_name', 'email', 'newpassword', 'confirm', 'aboutme'));
 			$user['username'] = $request->username;
 			$user['email'] = $request->email;
 			$user['password'] = $request->newpassword;
 			$user['confirm'] = $request->confirm;
-			$user['full_name'] = $request->full_name;
-			$user['birthday'] = $birthday = strtotime($request->Birthday_Day.$request->Birthday_Month.$request->Birthday_Year);
-			$user['gender'] = $request->gender;
-			$user['country_code'] = $request->country_code;
-			$user['aboutme'] = $request->aboutme;
+			// $user['full_name'] = $request->full_name;
+			// $user['birthday'] = $birthday = strtotime($request->Birthday_Day.$request->Birthday_Month.$request->Birthday_Year);
+			// $user['gender'] = $request->gender;
+			// $user['country_code'] = $request->country_code;
+			// $user['aboutme'] = $request->aboutme;
 
 			// validate username
 			$username_validator = new Zend_Validate();
@@ -274,8 +274,8 @@ class UseradminController extends RivetyCore_Controller_Action_Admin
 				}
 			}
 
-			// convert birthday_ts to mysql date
-			$birthday = date("Y-m-d H:i:s", $user['birthday']);
+			// // convert birthday_ts to mysql date
+			// $birthday = date("Y-m-d H:i:s", $user['birthday']);
 
 			$params = array(
 				'request' => $request,
@@ -283,36 +283,36 @@ class UseradminController extends RivetyCore_Controller_Action_Admin
 				'errors' => $errors,
 			);
 
-			// upload new avatar image if present
-			if (array_key_exists('filedata', $_FILES))
-			{
-				if ($_FILES['filedata']['tmp_name'] != '')
-				{
-					$destination_path = RivetyCore_Registry::get('upload_path') . "/" . $user['username'] . "/original";
-					if (!is_dir($destination_path))
-					{
-						mkdir($destination_path, 0777, true);
-						RivetyCore_Log::report("Creating user folder at " . $destination_path, null, Zend_Log::DEBUG);
-					}
-					if (file_exists($destination_path . "/avatar"))
-					{
-						unlink($destination_path . "/avatar");
-						RivetyCore_Log::report("Deleted existing user avatar from " . $destination_path, null, Zend_Log::DEBUG);
-					}
-					else
-					{
-						RivetyCore_Log::report("User avatar did not exist in " . $destination_path, null, Zend_Log::DEBUG);
-					}
-					move_uploaded_file($_FILES['filedata']['tmp_name'], $destination_path . "/avatar");
-					Users::clearUserCache($user['username']);
-					RivetyCore_Log::report("User avatar uploaded to " . $destination_path, null, Zend_Log::DEBUG);
-					$params['user']['hasnewfile'] = true;
-				}
-				else
-				{
-					$params['user']['hasnewfile'] = false;
-				}
-			}
+			// // upload new avatar image if present
+			// if (array_key_exists('filedata', $_FILES))
+			// {
+			// 	if ($_FILES['filedata']['tmp_name'] != '')
+			// 	{
+			// 		$destination_path = RivetyCore_Registry::get('upload_path') . "/" . $user['username'] . "/original";
+			// 		if (!is_dir($destination_path))
+			// 		{
+			// 			mkdir($destination_path, 0777, true);
+			// 			RivetyCore_Log::report("Creating user folder at " . $destination_path, null, Zend_Log::DEBUG);
+			// 		}
+			// 		if (file_exists($destination_path . "/avatar"))
+			// 		{
+			// 			unlink($destination_path . "/avatar");
+			// 			RivetyCore_Log::report("Deleted existing user avatar from " . $destination_path, null, Zend_Log::DEBUG);
+			// 		}
+			// 		else
+			// 		{
+			// 			RivetyCore_Log::report("User avatar did not exist in " . $destination_path, null, Zend_Log::DEBUG);
+			// 		}
+			// 		move_uploaded_file($_FILES['filedata']['tmp_name'], $destination_path . "/avatar");
+			// 		Users::clearUserCache($user['username']);
+			// 		RivetyCore_Log::report("User avatar uploaded to " . $destination_path, null, Zend_Log::DEBUG);
+			// 		$params['user']['hasnewfile'] = true;
+			// 	}
+			// 	else
+			// 	{
+			// 		$params['user']['hasnewfile'] = false;
+			// 	}
+			// }
 
 			$additional = $this->_rivety_plugin->doFilter($this->_mca . "_pre_save", $params); // FILTER HOOK
 			$errors = $additional['errors'];
@@ -327,20 +327,8 @@ class UseradminController extends RivetyCore_Controller_Action_Admin
 
 			if (count($errors) == 0)
 			{
-				/**********  Commented out due to Plug-in compatibility issues.
-				$data = array(
-					'email' => $user['email'],
-					'birthday' => $birthday,
-					'aboutme' => nl2br($user['aboutme']),
-					'gender' => $user['gender'],
-					'full_name' => $user['full_name'],
-					'country_code' => $user['country_code'],
-					'last_modified_on' => date(DB_DATETIME_FORMAT),
-				);
-				**********/
-
-				$user['birthday'] = $birthday;
-				$user['aboutme'] = nl2br($user['aboutme']);
+				// $user['birthday'] = $birthday;
+				// $user['aboutme'] = nl2br($user['aboutme']);
 				$user['last_modified_on'] = date(DB_DATETIME_FORMAT);
 
 				// This is a hold-over value from the form.
@@ -355,6 +343,7 @@ class UseradminController extends RivetyCore_Controller_Action_Admin
 					unset($user['password']);
 				}
 
+				$screen_alert_message = 'The user was created succcessfully.';
 				if ($is_new)
 				{
 					$filter_hook_params = array(
@@ -369,16 +358,16 @@ class UseradminController extends RivetyCore_Controller_Action_Admin
 					// $data['created_on'] = date(DB_DATETIME_FORMAT);
 					$user['created_on'] = date(DB_DATETIME_FORMAT);
 					$users_table->insert($user);
-					$this->view->success = "Profile created.";
 				}
 				else
 				{
+					$screen_alert_message = 'Changes to the user were saved succcessfully.';
 					$where = $users_table->getAdapter()->quoteInto('username = ?', $user['username']);
 					// $users_table->update($data, $where);
 					$users_table->update($user, $where);
-
-					$this->view->success = "Profile updated.";
 				}
+				$this->screenAlertQueued('success', $screen_alert_message, date(DB_DATETIME_FORMAT, time() + 30), 'default_useradmin_index');
+				$this->_redirect('/default/useradmin/index/');
 			}
 			else
 			{
@@ -386,8 +375,8 @@ class UseradminController extends RivetyCore_Controller_Action_Admin
 			}
 		}
 		$this->view->end_year = -(RivetyCore_Registry::get('minimum_registration_age'));
-		$this->view->genders = RivetyCore_Common::getGenderArray();
-		$user['aboutme'] = RivetyCore_Common::br2nl($user['aboutme']);
+		// $this->view->genders = RivetyCore_Common::getGenderArray();
+		// $user['aboutme'] = RivetyCore_Common::br2nl($user['aboutme']);
 		$this->view->user = $user;
 	}
 
@@ -501,25 +490,25 @@ class UseradminController extends RivetyCore_Controller_Action_Admin
 				foreach ($users as $user) {
 					$tmp_user = array();
 					foreach ($user as $key => $value) {
-						if ($key != "avatar") {
-							$tmp_user[$key] = $value;
-						}
+						$tmp_user[$key] = $value;
+						// if ($key != "avatar") {
+						// }
 					}
 
 					$tmp_user['email'] = strtolower($tmp_user['username'] . "@" . $email_domain);
 					$tmp_user['password'] = "password";
 
-					$destination_path = $users_table->getAvatarPath($user['username']);
-					$destination_filename = $users_table->getAvatarPath($user['username'], true);
-					if (!is_dir($destination_path)) {
-						mkdir($destination_path, 0777, true);
-					}
-					if (file_exists($destination_filename)) {
-						unlink($destination_filename);
-					}
+					// $destination_path = $users_table->getAvatarPath($user['username']);
+					// $destination_filename = $users_table->getAvatarPath($user['username'], true);
+					// if (!is_dir($destination_path)) {
+					// 	mkdir($destination_path, 0777, true);
+					// }
+					// if (file_exists($destination_filename)) {
+					// 	unlink($destination_filename);
+					// }
+					// $source_image = $image_dir."/".$user['avatar'];
+					// copy($source_image, $destination_filename);
 
-					$source_image = $image_dir."/".$user['avatar'];
-					copy($source_image, $destination_filename);
 					$role_data = array("username" => $tmp_user['username'],"role_id" => $tmp_user['role_id']);
 					$users_roles_table->insert($role_data);
 					unset($tmp_user['role_id']);

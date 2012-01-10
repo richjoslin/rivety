@@ -1,1 +1,0 @@
-<img src="/displayimage/{$user.username}/original/188/1000/0/jpg/avatar" width="188" alt="" />

@@ -15,7 +15,7 @@
 					<ul>
 						{if $isLoggedIn}
 							<li>
-								{t}Welcome{/t}, <a href="{url}/default/user/profile/username/{$loggedInUsername}/{/url}" title="{$loggedInUsername}">{$loggedInFullName}</a>
+								{t}Welcome{/t}, <a href="{url}/default/user/profile/username/{$loggedInUsername}/{/url}" title="{$loggedInUsername}">{$loggedInUsername}</a>
 							</li>
 							{if $isAdmin}
 								<li>

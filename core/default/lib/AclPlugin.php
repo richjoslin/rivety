@@ -122,10 +122,23 @@ class AclPlugin extends Zend_Controller_Plugin_Abstract
 						// $appNamespace->requestedUrl = $url;
 					}
 
-					// send on to the login script
-					$request->setModuleName('default');
-					$request->setControllerName('auth');
-					$request->setActionName('login');
+					$blockedActions = RivetyCore_Registry::get('disable_login_redirect');
+					if (!empty($blockedActions)) $blockedActions = explode(',', $blockedActions);
+					$mca = $request->getModuleName() . "_" . $request->getControllerName() . "_" . $request->getActionName();
+					if (is_array($blockedActions) && in_array($mca, $blockedActions))
+					{
+						// forward to the 401 Unauthorized page
+						$request->setModuleName('default');
+						$request->setControllerName('auth');
+						$request->setActionName('unauthorized');
+					}
+					else
+					{
+						// forward to the login script
+						$request->setModuleName('default');
+						$request->setControllerName('auth');
+						$request->setActionName('login');
+					}
 				}
 				else
 				{
@@ -160,4 +173,5 @@ class AclPlugin extends Zend_Controller_Plugin_Abstract
 			}
 		}
 	}
+
 }
