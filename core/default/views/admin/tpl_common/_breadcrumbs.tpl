@@ -3,12 +3,12 @@
 		<li>
 			<a href="{url}/default/admin/index/{/url}"><span class="ui-icon ui-icon-home"></span>&nbsp;</a>
 		</li>
-		{foreach from=$breadcrumbs item=breadcrumb}
+		{foreach from=$breadcrumbs item=url key=label}
 			<li>
-				{if $breadcrumb.url}
-					<a href="{$breadcrumb.url}">{$breadcrumb.text}</a>
+				{if empty($url)}
+					{$label}
 				{else}
-					{$breadcrumb.text}
+					<a href="{$url}">{$label}</a>
 				{/if}
 			</li>
 		{/foreach}

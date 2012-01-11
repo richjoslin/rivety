@@ -18,19 +18,6 @@
 class RoleController extends RivetyCore_Controller_Action_Admin
 {
 
-	/* Group: Instance Methods */
-
-	/*
-		Function: init
-			Invoked automatically when an instance is created.
-			Initializes the current instance.
-			Also initializes the parent object (calls init() on the parent instance).
-	*/
-	function init()
-	{
-		parent::init();
-	}
-
 	/* Group: Actions */
 
 	/*
@@ -39,13 +26,12 @@ class RoleController extends RivetyCore_Controller_Action_Admin
 
 		View Variables:
 			roles - array containing all roles from the db. Uses <RolesIndex> view.
-
 	*/
 	function indexAction()
 	{
 		$roles = new Roles();
 		$this->view->roles = $roles->fetchAll($roles->select()->order('shortname asc'))->toArray();
-		$this->view->breadcrumbs = array(array('text' => 'Roles'));
+		$this->view->breadcrumbs = array('Roles' => null);
 	}
 
 	/*
@@ -64,7 +50,6 @@ class RoleController extends RivetyCore_Controller_Action_Admin
 
 		View Variables:
 			$view_var - Description of variable that gets passed to view
-
 	*/
 	function editAction()
 	{
@@ -177,10 +162,9 @@ class RoleController extends RivetyCore_Controller_Action_Admin
 			}
 			$this->view->role_choices = $role_choices;
 		}
-
 		$this->view->breadcrumbs = array(
-			array('text' => 'Roles', 'url' => '/default/role/index'),
-			array('text' => ($request->has('id') && !empty($request->id)) ? 'Edit Role: ' . $role['shortname'] : 'New Role'),
+			'Roles' => '/default/role/index',
+			($request->has('id') && !empty($request->id)) ? 'Edit Role: ' . $role['shortname'] : 'New Role' => null,
 		);
 	}
 
@@ -284,6 +268,10 @@ class RoleController extends RivetyCore_Controller_Action_Admin
 			}
 		}
 		$this->view->role = $role->toArray();
+		$this->view->breadcrumbs = array(
+			'Roles' => '/default/role/index',
+			'Delete Role: ' . $role['shortname'] => null,
+		);
 	}
 
 }

@@ -17,6 +17,8 @@
 			<input type="password" name="password" id="txtPassword" value="" />
 		</div>
 
+		{*
+		<!-- FORMAT CHOOSER - USEFUL FOR DEBUGGING -->
 		<div class="rivety-form-field ui-corner-all">
 			<label>Response Format</label>
 			<div class="buttonset">
@@ -24,6 +26,7 @@
 				<input type="radio" name="format" id="format_json" value="json" /><label for="format_json">JSON</label>
 			</div>
 		</div>
+		*}
 
 		<input id="login" type="submit" value="{t}Log In{/t}"/>
 

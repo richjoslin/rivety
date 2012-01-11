@@ -6,6 +6,9 @@
 	About: Author
 		Jaybill McCarthy
 
+	About: Contributors
+		Rich Joslin
+
 	About: License
 		<http://rivety.com/docs/license>
 
@@ -52,7 +55,9 @@ class ConfigController extends RivetyCore_Controller_Action_Admin
 	function indexAction()
 	{
 		$config_table = new Config();
-		$modules_table = new Modules('core');
+		// $modules_table = new Modules('core');
+		$modules_table = new Modules('modules');
+		$modules_table_core = new Modules('core');
 		$request = new RivetyCore_Request($this->getRequest());
 		$modid = $request->has('modid') ? $request->modid : 'default';
 		if ($this->_request->isPost())
@@ -75,13 +80,15 @@ class ConfigController extends RivetyCore_Controller_Action_Admin
 			sort($config);
 			$this->view->config = $config;
 		}
-		$modules = $modules_table->getEnabledModules();
+		$modules = $modules_table_core->getEnabledModules();
 		sort($modules);
 		$this->view->modules = $modules;
 		$this->view->current = $modid;
 		$this->view->modid = $modid;
-
-		$this->view->breadcrumbs = array(array('text' => 'Core Config'));
+		if ($modid == 'default') $mod_cfg = $modules_table_core->parseIni($modid);
+		else $mod_cfg = $modules_table->parseIni($modid);
+		$this->view->module_title = $mod_cfg['general']['name'];
+		$this->view->breadcrumbs = array('Module Config' => null);
 	}
 
 }

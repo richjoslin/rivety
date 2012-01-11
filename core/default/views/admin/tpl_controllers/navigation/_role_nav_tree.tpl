@@ -5,7 +5,7 @@
 {if count($nav_items) gt 0}
 	{foreach from=$nav_items item=nav_item key=index name=linklist}
 
-		<div style="float: left; clear: both; width: 400px; margin: 0 0 8px 0; border-bottom: solid 1px silver;">
+		<div class="admin-nav-tree ui-widget" style="float: left; clear: both; width: 360px; padding: 7px 0 4px 0; border-bottom: solid 1px #555;">
 
 			<div style="float: left; margin-left: {math equation="$level * 40"}px;">
 				{if $smarty.foreach.linklist.first}

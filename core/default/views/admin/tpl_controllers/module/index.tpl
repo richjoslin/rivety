@@ -1,15 +1,20 @@
-{include file="file:$admin_theme_path/tpl_common/_header.tpl" pageTitle="Manage Modules"}
-<div id="main-column full-width">
+{capture name=pagetitle}{t}Manage Rivety Modules{/t}{/capture}
+{capture name=css_urls}
+	/core/default/views/admin/tpl_controllers/module/index.css
+{/capture}
+{include file="file:$admin_theme_path/tpl_common/_header.tpl" pagetitle=$smarty.capture.pagetitle css_urls=$smarty.capture.css_urls}
+<div id="main-column" class="full-width">
+	<h3>{$smarty.capture.pagetitle}</h3>
 	{if count($modules) gt 0}
-		<table>
+		<table class="ui-widget">
 			<thead>
-				<tr>
+				<tr class="ui-widget-header">
 					<th>{t}Module{/t}</th>
 					<th>{t}Version{/t}</th>
 					<th>{t}Status{/t}</th>
 					<th>{t}Author{/t}</th>
 					<th>{t}Description{/t}</th>
-					<th>{t}Actions{/t}</th>
+					<th class="center">{t}Actions{/t}</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -34,12 +39,11 @@
 							{/if}
 						</td>
 						<td>{$module.general.description}</td>
-						<td>
+						<td class="center">
 							{if $module.available}
 								<a class="button" href="{url}/default/module/index/id/{$module.id}/perform/install{/url}" title="{t}Install{/t}">{t}Install{/t}</a>
 							{elseif $module.is_enabled eq 1}
 								<a class="button" href="{url}/default/module/index/id/{$module.id}/perform/disable{/url}" title="{t}Disable{/t}">{t}Disable{/t}</a>
-								<a class="button" href="{url}/default/module/uninstall/id/{$module.id}{/url}" title="{t}Uninstall{/t}">{t}Uninstall{/t}</a>
 							{elseif $module.is_enabled eq 0}
 								<a class="button" href="{url}/default/module/index/id/{$module.id}/perform/enable{/url}" title="{t}Enable{/t}">{t}Enable{/t}</a>
 								<a class="button" href="{url}/default/module/uninstall/id/{$module.id}{/url}" title="{t}Uninstall{/t}">{t}Uninstall{/t}</a>

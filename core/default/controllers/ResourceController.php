@@ -19,19 +19,6 @@
 class ResourceController extends RivetyCore_Controller_Action_Admin
 {
 
-	/* Group: Instance Methods */
-
-	/*
-		Function: init
-		Invoked automatically when an instance is created.
-		Initializes the current instance.
-		Initializes the parent object (calls init() on the parent instance).
-	*/
-	function init()
-	{
-		parent::init();
-	}
-
 	/* Group: Actions */
 
 	/*
@@ -190,7 +177,7 @@ class ResourceController extends RivetyCore_Controller_Action_Admin
 				{
 					$controller_name = substr($controller_name, stripos($controller_name, '_') + 1);
 				}
-				$lines = file($controllerdir.'/'.$entry);
+				$lines = file($controllerdir . DIRECTORY_SEPARATOR . $entry);
 				foreach ($lines as $line)
 				{
 					if (preg_match('/function.*Action.*\(.*\).*\{?/', $line))
@@ -246,9 +233,9 @@ class ResourceController extends RivetyCore_Controller_Action_Admin
 		$this->view->extra_resources = $extra_resources;
 
 		$this->view->breadcrumbs = array(
-			array('text' => 'Roles', 'url' => '/default/role/index'),
-			array('text' => $role['shortname'], 'url' => '/default/role/edit/id/' . $role['id']),
-			array('text' => 'Resources'),
+			'Roles' => '/default/role/index',
+			$role['shortname'] => '/default/role/edit/id/' . $role['id'],
+			'Resources' => null,
 		);
 	}
 

@@ -1,0 +1,21 @@
+
+table
+{
+	float: left;
+	width: 100%;
+}
+
+table th
+{
+	padding: 10px;
+}
+
+table td
+{
+	padding: 9px 10px 6px 10px;
+}
+
+tr.even
+{
+	background: #44352B;
+}

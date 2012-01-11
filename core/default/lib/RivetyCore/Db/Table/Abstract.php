@@ -4,7 +4,10 @@
 	Class: RivetyCore_Db_Table_Abstract
 
 	About: Author
-		Jaybill McCarthy and Rich Joslin
+		Jaybill McCarthy
+
+	About: Contributors
+		Rich Joslin
 
 	About: License
 		<http://rivety.com/docs/license>
@@ -352,9 +355,20 @@ abstract class RivetyCore_Db_Table_Abstract extends Zend_Db_Table
 
 		Returns: void
 	*/
-	function deleteById($id, $pk_field_name = 'id') // TODO: account for tables with compound primary keys by being able to pass in an array of column name strings
+	// TODO: account for tables with compound primary keys by being able to pass in an array of column name strings
+	function deleteById($id, $pk_field_name = 'id')
 	{
 		$this->delete($this->getAdapter()->quoteInto($pk_field_name . ' = ?', $id));
+	}
+
+	/*
+		Function: updateById
+			Update the row in the database based on the ID that is already present in the data array.
+	*/
+	// TODO: account for tables with compound primary keys by being able to pass in an array of column name strings
+	function updateById($data, $pk_field_name = 'id')
+	{
+		$this->update($data, $this->getAdapter()->quoteInto('id = ?', $data['id']));
 	}
 
 	/* Group: Private or Protected Methods */
@@ -412,6 +426,21 @@ abstract class RivetyCore_Db_Table_Abstract extends Zend_Db_Table
 			$html_options[$record[$id_field_name]] = $record[$label_field_name];
 		}
 		return $html_options;
+	}
+
+	/*
+		Function: emptyRowArray
+			Return an array that has all the right column names but no values.
+	*/
+	public function emptyRowArray()
+	{
+		$columns = $this->getAdapter()->describeTable($this->_name);
+		$output = array();
+		foreach ($columns as $key => $column)
+		{
+			$output[$key] = null;
+		}
+		return $output;
 	}
 
 }

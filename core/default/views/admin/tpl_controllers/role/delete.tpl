@@ -1,17 +1,12 @@
-{include file="file:$admin_theme_path/tpl_common/_header.tpl" pageTitle="Delete Role"}
-<div class="grid_4 sidenav">
-	<h3>{t}Options{/t}</h3>
-	<ul>		
-		<li><a href="{url}/default/role/index{/url}">{t}Back{/t}</a></li>
-	</ul>
-</div>
-<div class="grid_12">
-	{if !isset($success) and !isset($errors)}
-		<p><b>{t}You are about to delete the role{/t} "{$role.shortname}"</b></p>
-		{capture name="d_url"}
-			{url}/default/role/delete/id/{$role.id}{/url}
-		{/capture}
-		{include file="file:$admin_theme_path/tpl_common/_deleteform.tpl" d_url=$smarty.capture.d_url}
-	{/if}
-</div>
-{include file="file:$admin_theme_path/tpl_common/_footer.tpl"}
+{capture name=pagetitle}{t}Delete Role{/t}: {$role.name}{/capture}
+{capture name=delete_form_warning}{t}You're about to delete this role.{/t}{/capture}
+{capture name=delete_form_action_url}{url}/default/role/delete/id/{$role.id}{/url}{/capture}
+{capture name=delete_form_cancel_url}{url}/default/role/edit/id/{$role.id}{/url}{/capture}
+{* no need to edit below this *}
+{include
+	file="file:$admin_theme_global_path/_delete.tpl"
+	pagetitle=$smarty.capture.pagetitle
+	delete_form_warning=$smarty.capture.delete_form_warning
+	delete_form_action_url=$smarty.capture.delete_form_action_url
+	delete_form_cancel_url=$smarty.capture.delete_form_cancel_url
+}

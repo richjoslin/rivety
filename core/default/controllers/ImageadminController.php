@@ -2,7 +2,6 @@
 
 class ImageadminController extends RivetyCore_Controller_Action_Admin
 {
-
 	var $_allowed_extensions;
 
 	public function init()
@@ -129,21 +128,20 @@ class ImageadminController extends RivetyCore_Controller_Action_Admin
 				}
 			}
 		}
+		$params = array('uploads' => $uploads);
+		$params = $this->_rivety_plugin->doFilter("default_imageadmin_index_upload_tree", $params); // FILTER HOOK
+		$uploads = $params['uploads'];
 		$this->view->uploads = $uploads;
 
 		// $this->view->notice = 'Warning: Photos uploaded with the same filename as an existing photo will automatically overwrite the old photo.';
 
-		$this->view->breadcrumbs = array(array('text' => 'Manage Photos'));
+		$this->view->breadcrumbs = array('Manage Photos' => null);
 	}
 
 	public function listAction()
 	{
-		// default is json but more formats could be added
 		$request = new RivetyCore_Request($this->getRequest());
-
-		// $base_path = RivetyCore_Registry::get('upload_path') . "/" . $this->_identity->username;
 		$base_path = RivetyCore_Registry::get('upload_path') . "/rivetycommon";
-
 		if (!$request->has("folder") || empty($request->folder)) die("error - folder is empty or doesn't exist");
 		$photos = array();
 		$dir = new DirectoryIterator($base_path . "/" . $request->folder);
