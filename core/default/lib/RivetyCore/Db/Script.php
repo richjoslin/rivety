@@ -91,7 +91,14 @@ class RivetyCore_Db_Script
 	{
 		$obj_type = get_class($this->_db);
 		$db_type = strtoupper(substr($obj_type, strlen("Zend_Db_Adapter_")));
-		return Zend_Registry::get("basepath")."/modules/".$module."/sql/".$db_type;
+		if ($module == 'default')
+		{
+			return Zend_Registry::get("basepath") . "/core/default/sql/" . $db_type;
+		}
+		else
+		{
+			return Zend_Registry::get("basepath") . "/modules/" . $module . "/sql/" . $db_type;
+		}
 	}
 
 }

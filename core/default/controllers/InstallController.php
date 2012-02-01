@@ -82,7 +82,7 @@ class InstallController extends Zend_Controller_Action
 		{
 			$user->password = $password;
 			$user->save();
-			$users_table->setMetaData($username, "is_installer", 1);
+			// $users_table->setMetaData($username, "is_installer", 1);
 			$appNamespace->autoLogin = true;
        		$appNamespace->autoLoginUsername = $username;
        		$appNamespace->autoLoginPassword = $password;
@@ -149,10 +149,10 @@ class InstallController extends Zend_Controller_Action
 		HTTP GET or POST Parameters:
 			admin_email - email address of the admin user (if chosen)
 			admin_username - username of the admin user (if chosen)
-			RivetyCore_asido_path - path to Asido image processing library
-			RivetyCore_smarty_path - path to Smarty template engine
-			RivetyCore_timezone - application default timezone
-			RivetyCore_zf_path - path to the Zend Framework
+			asido_path - path to Asido image processing library
+			smarty_path - path to Smarty template engine
+			timezone - application default timezone
+			zf_path - path to the Zend Framework
 			db_host - database hostname
 			db_name - database name
 			db_user - database username
@@ -166,10 +166,10 @@ class InstallController extends Zend_Controller_Action
 		View Variables:
 			admin_email - email address of the admin user (if chosen)
 			admin_username - username of the admin user (if chosen)
-			RivetyCore_asido_path - path to Asido image processing library
-			RivetyCore_smarty_path - path to Smarty template engine
-			RivetyCore_timezone - application default timezone
-			RivetyCore_zf_path - path to the Zend Framework
+			asido_path - path to Asido image processing library
+			smarty_path - path to Smarty template engine
+			timezone - application default timezone
+			zf_path - path to the Zend Framework
 			db_host - database hostname
 			db_name - database name
 			db_user - database username
@@ -200,9 +200,9 @@ class InstallController extends Zend_Controller_Action
 				$errors[] = $this->_T("Missing .htaccess file in %s. Be sure to copy %s/template.htaccess and remove the word template from the filename.", array($basepath, $basepath));
 			}
 
-			$zf_version_class   = $request->RivetyCore_zf_path . "/Zend/Version.php";
-			$smarty_class_file  = $request->RivetyCore_smarty_path . "/Smarty.class.php";
-			$asido_class_file   = $request->RivetyCore_asido_path . "/class.asido.php";
+			$zf_version_class   = $request->zf_path . "/Zend/Version.php";
+			$smarty_class_file  = $request->smarty_path . "/Smarty.class.php";
+			$asido_class_file   = $request->asido_path . "/class.asido.php";
 			$etc_dir            = $basepath . "/etc";
 			$config_filename    = $etc_dir . "/config.ini";
 			$tmp_path           = $request->tmp_path;
@@ -215,7 +215,7 @@ class InstallController extends Zend_Controller_Action
 
 			if (!file_exists($zf_version_class))
 			{
-				$errors[] = $this->_T("Can't find Zend Framework in %s", $request->RivetyCore_zf_path);
+				$errors[] = $this->_T("Can't find Zend Framework in %s", $request->zf_path);
 			}
 			else
 			{
@@ -372,9 +372,9 @@ class InstallController extends Zend_Controller_Action
 					"launched"        => "1",
 					"prelaunch_url"   => "http://google.com",
 					"allowed_ips"     => "127.0.0.1",
-					"zf_path"         => $request->RivetyCore_zf_path,
-					"smarty_path"     => $request->RivetyCore_smarty_path,
-					"asido_path"      => $request->RivetyCore_asido_path,
+					"zf_path"         => $request->zf_path,
+					"smarty_path"     => $request->smarty_path,
+					"asido_path"      => $request->asido_path,
 					"image_cache_dir" => $image_cache_dir,
 					"log_filename"    => $log_path."/RivetyCore_log",
 					"log_level"       => "6",
@@ -428,10 +428,10 @@ class InstallController extends Zend_Controller_Action
 				$this->view->db_sock         = $request->db_sock;
 				$this->view->admin_username  = $request->admin_username;
 				$this->view->admin_email     = $request->admin_email;
-				$this->view->RivetyCore_timezone    = $request->RivetyCore_timezone;
-				$this->view->RivetyCore_zf_path     = $request->RivetyCore_zf_path;
-				$this->view->RivetyCore_smarty_path = $request->RivetyCore_smarty_path;
-				$this->view->RivetyCore_asido_path  = $request->RivetyCore_asido_path;
+				$this->view->timezone        = $request->timezone;
+				$this->view->zf_path         = $request->zf_path;
+				$this->view->smarty_path     = $request->smarty_path;
+				$this->view->asido_path      = $request->asido_path;
 				$this->view->tmp_path        = $request->tmp_path;
 				$this->view->log_path        = $request->log_path;
 			}
@@ -445,10 +445,10 @@ class InstallController extends Zend_Controller_Action
 			$this->view->db_port         = "3306";
 			$this->view->db_sock         = "";
 			$this->view->admin_username  = "admin";
-			$this->view->RivetyCore_timezone    = "America/Los_Angeles";
-			$this->view->RivetyCore_zf_path     = $basepath . "/lib/ZendFramework/library";
-			$this->view->RivetyCore_smarty_path = $basepath . "/lib/Smarty/libs";
-			$this->view->RivetyCore_asido_path  = $basepath . "/lib/Asido";
+			$this->view->timezone        = "America/Los_Angeles";
+			$this->view->zf_path         = $basepath . "/lib/ZendFramework/library";
+			$this->view->smarty_path     = $basepath . "/lib/Smarty/libs";
+			$this->view->asido_path      = $basepath . "/lib/Asido";
 			$this->view->tmp_path        = $basepath . "/tmp";
 			$this->view->log_path        = $basepath . "/logs";
 		}

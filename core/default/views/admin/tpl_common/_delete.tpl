@@ -1,9 +1,9 @@
 {include file="file:$admin_theme_global_path/_header.tpl" pagetitle=$pagetitle}
 <div id="main-column">
 	<h3>{$pagetitle}</h3>
-	<p><b>{$delete_form_warning}</b></p>
-	<p>{t}This can't be undone.{/t}</p>
-	<p>{t}Are you sure you want to do this?{/t}</p>
+	<div>
+		{$delete_form_warning}
+	</div>
 	<form id="rivety-admin-form" method="post"
 		action="{$delete_form_action_url}">
 		<input type="hidden" name="delete" value="{t}Yes{/t}" />
@@ -18,7 +18,7 @@
 		</li>
 		<li>
 			<a href="{$delete_form_cancel_url}" class="button">
-				<span class="ui-icon ui-icon-close" style="float: left; margin: 0 10px 0 0;"></span>
+				<span class="rivety-button-icon ui-icon ui-icon-close"></span>
 				{t}Cancel{/t}
 			</a>
 		</li>

@@ -38,9 +38,11 @@ abstract class RivetyCore_Controller_Action_Admin extends RivetyCore_Controller_
 	    parent::init();
 		$this->view->isAdminController = true;
 
-		$template_path = $this->_theme_locations['admin']['current_theme']['path']."/tpl_controllers/".$this->getRequest()->getModuleName();
+		$template_path = $this->_theme_locations['admin']['current_theme']['path'] . "/tpl_controllers/" . $this->getRequest()->getModuleName();
 
 		$this->view->setScriptPath($template_path);
+
+		$this->view->base_path = substr($_SERVER['SCRIPT_FILENAME'], 0, strrpos($_SERVER['SCRIPT_FILENAME'], "/"));
 
 		$this->view->admin_theme_path                     = $this->_theme_locations['admin']['current_theme']['path'];
 		$this->view->admin_theme_url                      = $this->_theme_locations['admin']['current_theme']['url'];

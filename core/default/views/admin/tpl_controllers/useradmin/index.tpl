@@ -42,7 +42,7 @@
 	<ul>
 		<li>
 			<a href="{url}/default/useradmin/edit{/url}" class="button">
-				<span class="ui-icon ui-icon-plus" style="float: left; margin: 0 10px 0 0;">{t}Add{/t}</span>
+				<span class="rivety-button-icon ui-icon ui-icon-plus">{t}Add{/t}</span>
 				{t}User{/t}
 			</a>
 		</li>

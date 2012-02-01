@@ -356,8 +356,8 @@ class Modules extends RivetyCore_Db_Table_Abstract
 				$change_scripts = array();
 				$all_scripts = $script->getScripts($module_id);
 				foreach ($all_scripts as $script) {
-					if (strpos($script,"change_") !== false) {
-						$change_num = (int)substr($script, strlen("change_"));
+					if (strpos($script,"dbupgrade_") !== false) {
+						$change_num = (int)substr($script, strlen("dbupgrade_"));
 						$change_scripts[$change_num] = $script;
 					}
 				}

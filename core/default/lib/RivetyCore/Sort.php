@@ -29,8 +29,7 @@ class RivetyCore_Sort
 
 	static function reNumber($class_name, $where = '', $id_column_name = 'id', $sort_column_name = 'sort_order', $multiplier = 10, $params = null)
 	{
-		if (is_array($params)) $params = implode(",",$params);
-		
+		if (is_array($params)) $params = implode(",", $params);
 		$table = new $class_name($params);
 		$items_temp = $table->fetchAll($where, $sort_column_name);
 		if (!is_null($items_temp))
@@ -54,10 +53,11 @@ class RivetyCore_Sort
 			// update the database for each record with the new sort order
 			foreach ($sort_values as $sort_value) {
 				$where = $table->getAdapter()->quoteInto($id_column_name . ' = ?', $sort_value[$id_column_name]);
-
-				$table->update(array($sort_column_name => $sort_value[$sort_column_name]), $where);
+				$table->update(array('modified' => date(DB_DATETIME_FORMAT), $sort_column_name => $sort_value[$sort_column_name]), $where);
 			}
-		} else {
+		}
+		else
+		{
 			die('Where clause returned no results when trying to re-number items.');
 		}
 	}

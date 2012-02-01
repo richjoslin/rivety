@@ -346,6 +346,31 @@ abstract class RivetyCore_Db_Table_Abstract extends Zend_Db_Table
 		return $output;
 	}
 
+	public function flagAsDeleted($where, $deleted_column_name = 'deleted', $modified_column_name = 'modified')
+	{
+		$this->update(array($modified_column_name => date(DB_DATETIME_FORMAT), $deleted_column_name => date(DB_DATETIME_FORMAT)), $where);
+	}
+
+	public function flagAsDeletedById($id, $pk_field_name = 'id', $deleted_column_name = 'deleted', $modified_column_name = 'modified')
+	{
+		$this->update(array($modified_column_name => date(DB_DATETIME_FORMAT), $deleted_column_name => date(DB_DATETIME_FORMAT)), $this->getAdapter()->quoteInto($pk_field_name . ' = ?', $id));
+	}
+
+	/*
+		Function: fetchArrayById
+			Fetches one row using only a value for the primary key field.
+
+		Arguments:
+			id - The ID of the row to fetch.
+
+		Returns: array
+	*/
+	// TODO: account for tables with compound primary keys by being able to pass in an array of column name strings
+	function fetchRowArrayById($id, $pk_field_name = 'id')
+	{
+		return $this->fetchRowArray($this->getAdapter()->quoteInto($pk_field_name . ' = ?', $id));
+	}
+
 	/*
 		Function: deleteById
 			Deletes one row using an ID, assuming the table's ID is a single column named "id".
@@ -419,7 +444,7 @@ abstract class RivetyCore_Db_Table_Abstract extends Zend_Db_Table
 	*/
 	function fetchAllAsSmartyHtmlOptionsArray($default_option = array('' => ''), $id_field_name = 'id', $label_field_name = 'name')
 	{
-		$record_array = $this->fetchAllArray();
+		$record_array = $this->fetchAllArray('deleted is null');
 		$html_options = $default_option;
 		foreach ($record_array as $record)
 		{
@@ -441,6 +466,19 @@ abstract class RivetyCore_Db_Table_Abstract extends Zend_Db_Table
 			$output[$key] = null;
 		}
 		return $output;
+	}
+
+	/*
+		Function: checkOwnership
+			See if a given primary key value and username generate a row.
+			If they do, then that username owns this row.
+	*/
+	public function checkOwnership($pk_value, $username, $pk_column_name = 'id')
+	{
+		$where = $this->getAdapter()->quoteInto($pk_column_name . ' = ?', $pk_value);
+		$where .= $this->getAdapter()->quoteInto(' and username = ?', $username);
+		$row = $this->fetchRow($where);
+		return !empty($row);
 	}
 
 }

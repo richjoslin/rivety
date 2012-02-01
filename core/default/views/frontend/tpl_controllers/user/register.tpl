@@ -47,7 +47,7 @@
 	<ul>
 		<li>
 			<a id="rivety-save-button" href="#" class="button" style="width: 158px;">
-				<span class="ui-icon ui-icon-plus" style="float: left; margin: 0 10px 0 0;"></span>
+				<span class="rivety-button-icon ui-icon ui-icon-plus"></span>
 				{t}Submit{/t}
 			</a>
 		</li>

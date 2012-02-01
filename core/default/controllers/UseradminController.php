@@ -478,13 +478,13 @@ class UseradminController extends RivetyCore_Controller_Action_Admin
 
 				$old_users = $users_table->fetchAll();
 
-				foreach ($old_users as $old_user) {
-					if ($users_table->getMetaData($old_user->username, "is_test_user") == "true") {
-						$where = $users_table->getAdapter()->quoteInto("username = ?", $old_user->username);
-						$users_table->delete($where);
-						$users_roles_table->delete($where);
-					}
-				}
+				// foreach ($old_users as $old_user) {
+				// 	if ($users_table->getMetaData($old_user->username, "is_test_user") == "true") {
+				// 		$where = $users_table->getAdapter()->quoteInto("username = ?", $old_user->username);
+				// 		$users_table->delete($where);
+				// 		$users_roles_table->delete($where);
+				// 	}
+				// }
 
 				$count = 0;
 				foreach ($users as $user) {
@@ -513,7 +513,7 @@ class UseradminController extends RivetyCore_Controller_Action_Admin
 					$users_roles_table->insert($role_data);
 					unset($tmp_user['role_id']);
 					$users_table->insert($tmp_user);
-					$users_table->setMetaData($tmp_user['username'], "is_test_user", "true");
+					// $users_table->setMetaData($tmp_user['username'], "is_test_user", "true");
 					$save_users[] = $user;
 					$count++;
 				}

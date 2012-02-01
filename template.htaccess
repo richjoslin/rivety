@@ -6,10 +6,25 @@ RewriteEngine on
   Deny from all
 </FilesMatch>
 
-ErrorDocument 403 /errordocuments/error_403.html
-ErrorDocument 500 /errordocuments/error_500.html
+ErrorDocument 403 /errordocuments/template.403.html
+ErrorDocument 500 /errordocuments/template.500.html
 
+# optionally force HTTPS sitewide
+#RewriteCond %{HTTPS} !=on
+#RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Rivety core image generation script
 RewriteRule ^displayimage/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)$ modules/default/direct/images.php?username=$1&type=$2&max_width=$3&max_height=$4&crop=$5&format=$6&filename=$7 [L]
+
+# optional custom image generation scripts
+#RewriteRule ^displayspecialimage/(.*)/(.*)/(.*)/(.*)$ modules/mymodule/direct/special_images.php?type=$1&max_width=$2&max_height=$3&filename=$4 [L]
+
+# optional custom theme pass-through rewrite
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule themes/mycustomtheme/(.*) $1 [L]
+
+# Rivety core bootstrap
 RewriteCond %{SCRIPT_FILENAME} !-f
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteRule ^(.+) /index.php [L]

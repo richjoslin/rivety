@@ -501,15 +501,23 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 
 	function preDispatch()
 	{
+		$request = new RivetyCore_Request($this->getRequest());
+		$params = array(
+			'request' => $request,
+			'username' => $this->_auth->hasIdentity() ? $this->_identity->username : null,
+		);
+		$params = $this->_rivety_plugin->doFilter('mca_predispatch_begin', $params); // FILTER HOOK
+
 		// RESPONSE FORMAT
-		$this->format = 'default';
-		if ($this->_request->has('format') && !empty($this->_request->format)) $this->format = $this->_request->format;
+		$this->format = ($request->has('format') && !empty($request->format)) ? $request->format : 'default';
 
 		// SCREEN ALERTS
 		$this->screen_alerts = array();
 
 		// DEBUG MODE
 		$this->_debug_mode = ($this->_request->has('debug') && $this->_request->debug == 'dump');
+
+		$this->_rivety_plugin->doAction('mca_predispatch_end', $params); // ACTION HOOK
 	}
 
 	/*
@@ -517,6 +525,13 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 	*/
 	function postDispatch()
 	{
+		$request = new RivetyCore_Request($this->getRequest());
+		$params = array(
+			'request' => $request,
+			'username' => $this->_auth->hasIdentity() ? $this->_identity->username : null,
+		);
+		$params = $this->_rivety_plugin->doFilter('mca_postdispatch_begin', $params); // FILTER HOOK
+
 		// SCREEN ALERTS
 		$screen_alerts_dbtable = new ScreenAlerts();
 
@@ -538,6 +553,10 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 			$this->screen_alerts = array_merge($this->screen_alerts, $screen_alert_records);
 		}
 		$this->view->screen_alerts = $this->screen_alerts;
+
+		$params['screen_alerts'] = $this->screen_alerts;
+		$params['view'] = $this->view;
+		$this->_rivety_plugin->doAction('mca_postdispatch_end', $params); // ACTION HOOK
 
 		// DEBUG MODE
 		if ($this->_debug_mode) die("debug mode output complete");
@@ -663,6 +682,15 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 			echo("\$" . $var_name . " =");
 			d($var);
 		}
+	}
+
+	protected function getDefaultPluginData()
+	{
+		return array(
+			'mca' => $this->_mca,
+			'request' => new RivetyCore_Request($this->getRequest()),
+			'username' => $this->_auth->hasIdentity() ? $this->_identity->username : null,
+		);
 	}
 
 }

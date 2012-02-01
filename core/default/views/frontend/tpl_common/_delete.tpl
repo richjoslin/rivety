@@ -17,7 +17,7 @@
 		</li>
 		<li>
 			<a href="{$delete_form_cancel_url}" class="button">
-				<span class="ui-icon ui-icon-close" style="float: left; margin: 0 10px 0 0;"></span>
+				<span class="rivety-button-icon ui-icon ui-icon-close"></span>
 				{t}Cancel{/t}
 			</a>
 		</li>

@@ -44,21 +44,21 @@
 	<ul>
 		<li>
 			<a id="rivety-save-button" href="#" class="button" style="width: 158px;">
-				<span class="ui-icon ui-icon-disk" style="float: left; margin: 0 10px 0 0;"></span>
+				<span class="rivety-button-icon ui-icon ui-icon-disk"></span>
 				{t}Save{/t}
 			</a>
 		</li>
 		{if !empty($role) && isset($role.id)}
 			<li>
 				<a class="button" href="{url}/default/role/delete/id/{$role.id}{/url}">
-					<span class="ui-icon ui-icon-trash" style="float: left; margin: 0 10px 0 0;"></span>
+					<span class="rivety-button-icon ui-icon ui-icon-trash"></span>
 					{t}Delete{/t}
 				</a>
 			</li>
 		{/if}
 		<li>
 			<a class="button" href="{url}/default/role/index{/url}">
-				<span class="ui-icon ui-icon-close" style="float: left; margin: 0 10px 0 0;"></span>
+				<span class="rivety-button-icon ui-icon ui-icon-close"></span>
 				{t}Cancel{/t}
 			</a>
 		</li>

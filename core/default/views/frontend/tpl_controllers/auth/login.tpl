@@ -40,7 +40,7 @@
 		</li>
 		<li>
 			<a id="rivety-save-button" href="#" class="button" style="width: 158px;">
-				<span class="ui-icon ui-icon-key" style="float: left; margin: 0 10px 0 0;"></span>
+				<span class="rivety-button-icon ui-icon ui-icon-key"></span>
 				{t}Log In{/t}
 			</a>
 		</li>

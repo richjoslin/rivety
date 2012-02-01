@@ -10,7 +10,7 @@
 	<ul>
 		<li>
 			<a title="{t}Add New Link{/t}" href="{url}/default/navigation/edit/nav_id/0/role_id/{$role.id}{/url}" class="button">
-				<span class="ui-icon ui-icon-plus" style="float: left; margin: 0 10px 0 0;">+</span>
+				<span class="rivety-button-icon ui-icon ui-icon-plus">+</span>
 				{t}Add Link{/t}
 			</a>
 		</li>

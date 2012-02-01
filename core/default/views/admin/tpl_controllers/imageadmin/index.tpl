@@ -37,9 +37,6 @@
 </div>
 
 <div id="upload-photos-modal-form" title="Upload photos..." style="display: none;">
-	<!--
-		TODO: change out the anchor for the proper folder name
-	-->
 	<form action="/default/imageadmin/index/" method="POST" enctype="multipart/form-data">
 		<fieldset>
 			<input type="hidden" name="upload_to_folder" id="upload_to_folder" value="" />
@@ -49,9 +46,6 @@
 </div>
 
 <div id="delete-photos-modal-form" title="Delete photos..." style="display: none;">
-	<!--
-		TODO: change out the anchor for the proper folder name
-	-->
 	<p>
 		Click on each photo you wish to delete and then click the Delete Photos button to permanently delete them. This action cannot be undone.
 	</p>
