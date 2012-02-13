@@ -13,7 +13,7 @@ else
 	$module_name_uc = ucfirst($module_name);
 }
 
-if (!preg_match('/^\p{Ll}*$/', $module_name)) die("Module name must only contain lowercase letters and nothing else.");
+if (!preg_match('/^\p{Ll}*$/', $module_name)) die("Module name must only contain lowercase letters and nothing else.\n");
 
 echo("Module Name: " . $module_name . "\n");
 
@@ -22,7 +22,7 @@ $module_dir = $basepath . "/modules/" . $module_name;
 $frontend_theme_dir = $basepath . "/modules/" . $module_name . "/views/frontend/tpl_controllers";
 $admin_theme_dir = $basepath . "/modules/" . $module_name . "/views/admin/tpl_controllers";
 
-if (is_dir($module_dir)) die("This module already exists! I'm not just gonna overwrite it, all willy-nilly.");
+if (is_dir($module_dir)) die("This module already exists. To replace it, delete or rename the old directory before running this script.\n");
 
 // COMPLETE FOLDER STRUCTURE
 mkdir($module_dir, 0777, true);

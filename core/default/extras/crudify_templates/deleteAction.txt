@@ -1,26 +1,26 @@
-$errors = array();
-$TABLE_OBJECT_VAR = new TABLE_CLASSNAME();
 $request = new RivetyCore_Request($this->getRequest());
-if ($this->getRequest()->isPost())
+if ($request->has('ENTITY_NAME_ID_COLUMN_NAME') && !empty($request->ENTITY_NAME_ID_COLUMN_NAME))
 {
-	if ($request->has('delete'))
+	$ENTITY_NAME_dbtable = new MODEL_CLASS_NAME();
+	$ENTITY_NAME = $ENTITY_NAME_dbtable->fetchRow($ENTITY_NAME_dbtable->getAdapter()->quoteInto('ID_COLUMN_NAME = ?', $request->ENTITY_NAME_ID_COLUMN_NAME));
+	if (!empty($ENTITY_NAME))
 	{
-		if ($request->delete == "Yes")
+		// this would be a great place to confirm that the current user is allowed to delete this record
+
+		if ($this->getRequest()->isPost() && $request->has('delete') && $request->delete == 'Yes')
 		{
-			if ($request->has('THE_ID'))
-			{
-				$ROW_OBJECT_VAR = $TABLE_OBJECT_VAR->fetchRow($TABLE_OBJECT_VAR->select()->where('THE_ID = ?', $request->THE_ID));
-				if (!is_null($ROW_OBJECT_VAR))
-				{
-					// this would be a great place to check if the current user is allowed to delete this record.
-					$ROW_OBJECT_VAR->delete();
-				}
-			}
+			$ENTITY_NAME->delete();
+			$this->screenAlertQueued('success', 'The ENTITY_NICENAME_LOWERCASE was successfully deleted.', date(DB_DATETIME_FORMAT, time() + 30), 'INDEX_MCA');
+			$this->_redirect('INDEX_URL');
 		}
+		$this->view->ENTITY_NAME = $ENTITY_NAME->toArray();
 	}
-	$this->_redirect('INDEX_URL');
+	else
+	{
+		$this->screenAlert('error', 'A(n) ENTITY_NICENAME_LOWERCASE with the provided ID could not be found.');
+	}
 }
 else
 {
-	$this->view->THE_ID = $request->THE_ID;
+	$this->screenAlert('error', 'ENTITY_NICENAME ID_COLUMN_NAME is a required URL parameter.');
 }

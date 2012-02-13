@@ -1,0 +1,11 @@
+$request = new RivetyCore_Request($this->getRequest());
+if ($request->has('ENTITY_NAME_ID_COLUMN_NAME') && !empty($request->ENTITY_NAME_ID_COLUMN_NAME))
+{
+	$ENTITY_NAME_dbtable = new MODEL_CLASS_NAME();
+	$ENTITY_NAME = $ENTITY_NAME_dbtable->fetchRowArray($ENTITY_NAME_dbtable->getAdapter()->quoteInto('ID_COLUMN_NAME = ?', $request->ENTITY_NAME_ID_COLUMN_NAME));
+	$this->view->ENTITY_NAME = $ENTITY_NAME;
+}
+else
+{
+	$this->screenAlert('error', 'ENTITY_NICENAME ID_COLUMN_NAME is a required URL parameter.');
+}

@@ -1,25 +1,38 @@
-{capture name=pagetitle}{if isset($id)}{t}Edit{/t}{else}{t}New{/t}{/if}{/capture}
+{capture name=pagetitle}{if !empty($ENTITY_NAME.ID_COLUMN_NAME)}{t}Edit{/t}{else}{t}New{/t}{/if} ENTITY_NICENAME{/capture}
 {include file="file:$THEME_GLOBAL_PATH_VAR_NAME/_header.tpl" pagetitle=$smarty.capture.pagetitle}
+<div id="main-column">
+	<h3>{$smarty.capture.pagetitle}</h3>
+	<form id="FORM_ID" method="post">
+		{if isset($ENTITY_NAME.ID_COLUMN_NAME)}
+			<input type="hidden" name="ID_COLUMN_NAME" value="{$ENTITY_NAME.ID_COLUMN_NAME}" />
+		{/if}
+FORM_FIELDS
+		<input type="submit" value="{t}Submit{/t}" />
+	</form>
+</div>
 <div id="options">
 	<h3>{t}Options{/t}</h3>
 	<ul>
-		<li><a href="{url}INDEX_URL{/url}">{t}Back to List{/t}</a></li>
-		{if isset($THE_ID)}
-			<li><a href="{url}DELETE_URL/THE_ID/{$THE_ID}/{/url}">{t}Delete{/t}</a></li>
-			<li><a href="{url}CREATE_NEW_URL/{/url}">{t}Create Another{/t}</a></li>
+		<li>
+			<a id="rivety-save-button" href="#" class="button">
+				<span class="rivety-button-icon ui-icon ui-icon-disk"></span>
+				{t}Save{/t}
+			</a>
+		</li>
+		{if isset($ID_COLUMN_NAME)}
+			<li>
+				<a href="{url}DELETE_URL{/url}" class="button">
+					<span class="rivety-button-icon ui-icon ui-icon-trash"></span>
+					{t}Delete{/t}
+				</a>
+			</li>
 		{/if}
+		<li>
+			<a href="{url}INDEX_URL{/url}" class="button">
+				<span class="rivety-button-icon ui-icon ui-icon-close"></span>
+				{t}Cancel{/t}
+			</a>
+		</li>
 	</ul>
-</div>
-<div id="main-column">
-	<h3>{if isset($id)}{t}Edit{/t}{else}{t}New{/t}{/if}</h3>
-	<form method="post" action="{url}FORM_ACTION{/url}" enctype="multipart/form-data">
-		{if isset($THE_ID)}
-			<input type="hidden" name="THE_ID" value="{$THE_ID}" />
-		{/if}
-		FORM_FIELDS
-		<p>
-			<input type="submit" class="button" value="{t}Save{/t}" />
-		</p>
-	</form>
 </div>
 {include file="file:$THEME_GLOBAL_PATH_VAR_NAME/_footer.tpl"}
