@@ -1,52 +1,35 @@
-$errors = array();
-$TABLE_OBJECT_VAR = new TABLE_CLASSNAME();
 $request = new RivetyCore_Request($this->getRequest());
-$THE_ID = null;
-if ($request->has('THE_ID'))
+$ENTITY_NAME_dbtable = new MODEL_CLASS_NAME();
+$ROW_VAR_NAME = $ENTITY_NAME_dbtable->emptyRowArray();
+if ($request->has('ENTITY_NAME_ID_COLUMN_NAME') && !empty($request->ENTITY_NAME_ID_COLUMN_NAME))
 {
-	$THE_ID = $request->THE_ID;
+	$ROW_VAR_NAME = $ENTITY_NAME_dbtable->fetchRowArray($ENTITY_NAME_dbtable->getAdapter()->quoteInto('ID_COLUMN_NAME = ?', $request->ENTITY_NAME_ID_COLUMN_NAME));
 }
 if ($this->getRequest()->isPost())
 {
-	// data validation
-	DATA_VALIDATION
-	if (!$request->isValid())
+	POST_VALUE_ASSIGNMENT
+	REQUEST_VALIDATION
+	if ($request->isValid())
 	{
-		$errors = array_merge($errors, $request->getValidationErrors());
-	}
-	if (count($errors) == 0)
-	{
-		$data = array(
-			DATA_ARRAY_STRING
-		);
-		if (!is_null($THE_ID))
+		$ROW_VAR_NAME['modified_on'] = date(DB_DATETIME_FORMAT);
+		if (empty($ROW_VAR_NAME['ID_COLUMN_NAME']))
 		{
-			// this is an update
-			$where = $TABLE_OBJECT_VAR->getAdapter()->quoteInto('THE_ID = ?', $THE_ID);
-			$TABLE_OBJECT_VAR->update($data, $where);
+			$ROW_VAR_NAME['created_on'] = date(DB_DATETIME_FORMAT);
+			$ENTITY_NAME_dbtable->insert($ROW_VAR_NAME);
 		}
 		else
 		{
-			// this is an insert
-			$THE_ID = $TABLE_OBJECT_VAR->insert($data);
+			$ENTITY_NAME_dbtable->updateById($ROW_VAR_NAME);
 		}
-		$this->view->success = $this->_T("Saved.");
+		$this->screenAlertQueued('success', 'The ENTITY_NICENAME_LOWERCASE was saved successfully.', date(DB_DATETIME_FORMAT, time() + 30), 'INDEX_MCA');
+		$this->_redirect('INDEX_URL');
 	}
 	else
 	{
-		$this->view->errors = $errors;
-		if (!is_null($THE_ID))
+		foreach ($request->getValidationErrors() as $error)
 		{
-			$this->view->THE_ID = $THE_ID;
+			$this->screenAlert('error', $error);
 		}
-		ERROR_VIEW_VARIABLES
 	}
 }
-if (!is_null($THE_ID) and count($errors) == 0)
-{
-	$ROW_OBJECT_VAR = $TABLE_OBJECT_VAR->fetchRow($TABLE_OBJECT_VAR->select()->where('THE_ID = ?', $THE_ID));
-	if (!is_null($ROW_OBJECT_VAR))
-	{
-		VIEW_VARIABLES
-	}
-}
+$this->view->ENTITY_NAME = $ROW_VAR_NAME;

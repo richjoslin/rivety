@@ -234,7 +234,7 @@ catch (Exception $ex)
 		default:
 			if ($isInstalled)
 			{
-				header("Location: /errordocuments/error_500.html");
+				header("Location: /errordocuments/500.html");
 				RivetyCore_Log::report("Frontcontroller Error", $ex, Zend_Log::EMERG);
 			}
 			else
