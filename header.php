@@ -19,7 +19,7 @@ error_reporting(E_ALL | E_STRICT);
 	Arguments:
 		class_name - The name of the class to load (not a filename).
 */
-function __autoload($class_name)
+function autoload($class_name)
 {
 	try
 	{
@@ -59,6 +59,9 @@ function __autoload($class_name)
 		dd($e);
 	}
 }
+
+spl_autoload_register("autoload");
+
 /*
 	Function: d
 		Dump the contents of a variable into the HTTP Response. Stands for "dump".
@@ -132,6 +135,9 @@ function canDebug($ip, $config)
 	if (in_array($ip, $debug_ips)) return true;
 	else return false;
 }
+if(empty($basepath)){
+	$basepath = dirname(__FILE__);
+}
 $config_file = $basepath . '/etc/config.ini';
 $routes_file = $basepath . '/etc/routes.ini';
 $isInstalled = false;
@@ -167,6 +173,7 @@ set_include_path(get_include_path() . PATH_SEPARATOR . $zf_path);
 set_include_path(get_include_path() . PATH_SEPARATOR . $smarty_path);
 set_include_path(get_include_path() . PATH_SEPARATOR . $asido_path);
 require_once ('Zend/Loader.php');
+
 Zend_Registry::set('basepath', $basepath);
 $tmp_inculde_path = "";
 $RivetyCore_module_dir = $basepath . "/core";
