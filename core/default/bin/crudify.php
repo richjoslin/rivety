@@ -8,26 +8,51 @@
 
 require_once('cli_header.php');
 
+function file_write($filename,$contents){
+	echo($filename."\n");
+	file_put_contents($filename,$contents);
+}
+
 $is_admin = false;
 
 if (!array_key_exists("1", $argv))
 {
-	die("Usage: crudify.php [table_name] [optional bool is_admin, default false]\n");
+	die("Usage: crudify.php [table_name] [optional bool is_admin, default false] [optional template_path] [optional output_basedir]\n");
 }
 else
 {
 	$table_name = $argv[1];
+	// is_admin flag
 	if (array_key_exists("2", $argv) && !empty($argv[2])) $is_admin = (bool)$argv[2];
+	
+	// template_path	
+	if (array_key_exists("3", $argv) && !empty($argv[3])) $crud_template_path = trim($argv[3]);
+	
+	// output basedir	
+	if (array_key_exists("4", $argv) && !empty($argv[4])) $output_basedir = trim($argv[4]);
+		
 }
 
 echo("Table Name: ".$table_name."\n");
 
 $module_name = substr($table_name, 0, strpos($table_name, "_"));
 $module_name_uc = ucfirst($module_name);
+
+echo("Module Name: ".$module_name."\n");
+
 $name = ucfirst(substr($table_name, strpos($table_name, "_") + 1));
 $name = str_replace("_", "", $name);
 $object_name = $module_name_uc.$name;
 $abstract_table_object_name = $module_name_uc."_Db_Table";
+
+if(empty($output_basedir)){
+	$output_basedir = $basedir;
+}
+echo("Basedir: ".$output_basedir."\n");
+if(empty($crud_template_path)){
+	$basepath."/core/default/extras/crudify_templates";
+}
+echo("CRUD template dir: ".$crud_template_path."\n");
 
 $controller_name = $module_name_uc . "_" . $name;
 $controller_name .= $is_admin ? "adminController" : "Controller";
@@ -39,8 +64,8 @@ $registry = Zend_Registry::getInstance();
 
 // $theme = 'default';
 // echo("Theme:" . $theme . "\n");
-
-$theme_dir = $basepath . "/modules/" . $module_name . "/views/admin/tpl_controllers/" . strtolower($name);
+if($is_admin){$place="admin";}else{$place="frontend";}
+$theme_dir = $output_basedir . "/modules/" . $module_name . "/views/".$place."/tpl_controllers/" . strtolower($name);
 
 if ($is_admin) $theme_dir .= 'admin';
 
@@ -131,7 +156,7 @@ if (!is_array($pk))
 
 	// edit action
 	$edit_method = new Zend_CodeGenerator_Php_Method();
-	$edit_method_body = file_get_contents($basepath."/core/default/extras/crudify_templates/editAction.txt");
+	$edit_method_body = file_get_contents($crud_template_path."/editAction.txt");
 	$data_array_string = "";
 	$data_validation_string = "";
 	$error_view_variables ="";
@@ -165,9 +190,9 @@ if (!is_array($pk))
 	$controller_class->setMethod($edit_method);
 
 	// load edit template
-	$edit_template = file_get_contents($basepath . "/core/default/extras/crudify_templates/edit.tpl");
+	$edit_template = file_get_contents($crud_template_path . "/edit.tpl");
 	$form_fields = "";
-	$form_field_template = file_get_contents($basepath . "/core/default/extras/crudify_templates/editTextInput.tpl");
+	$form_field_template = file_get_contents($crud_template_path . "/editTextInput.tpl");
 	foreach ($columns as $colname => $column)
 	{
 		$field_string = $form_field_template;
@@ -205,11 +230,11 @@ if (!is_array($pk))
 	);
 	$edit_template = RivetyCore_Common::replaceWithArray($edit_template, $edit_template_replacements);
 
-	file_put_contents($theme_dir."/edit.tpl", $edit_template);
+	file_write($theme_dir."/edit.tpl", $edit_template);
 
 	// add index action
 	$index_method = new Zend_CodeGenerator_Php_Method();
-	$index_method_body = file_get_contents($basepath . "/core/default/extras/crudify_templates/indexAction.txt");
+	$index_method_body = file_get_contents($crud_template_path . "/indexAction.txt");
 	$index_action_replacements = array(
 		"TABLE_OBJECT_VAR" => $table_object_var,
 		"TABLE_CLASSNAME"  => $object_name,
@@ -224,7 +249,7 @@ if (!is_array($pk))
 	$controller_class->setMethod($index_method);
 
 	// load index template
-	$index_template = file_get_contents($basepath . "/core/default/extras/crudify_templates/index.tpl");
+	$index_template = file_get_contents($crud_template_path . "/index.tpl");
 	if ($is_admin)
 	{
 		$index_template_replacements = array(
@@ -249,11 +274,11 @@ if (!is_array($pk))
 	}
 	$index_template = RivetyCore_Common::replaceWithArray($index_template, $index_template_replacements);
 
-	file_put_contents($theme_dir."/index.tpl", $index_template);
+	file_write($theme_dir."/index.tpl", $index_template);
 
 	// add delete method
 	$delete_method = new Zend_CodeGenerator_Php_Method();
-	$delete_method_body = file_get_contents($basepath."/core/default/extras/crudify_templates/deleteAction.txt");
+	$delete_method_body = file_get_contents($crud_template_path."/deleteAction.txt");
 	$delete_action_replacements = array(
 		"TABLE_OBJECT_VAR" 	=> $table_object_var,
 		"TABLE_CLASSNAME" 	=> $object_name,
@@ -269,7 +294,7 @@ if (!is_array($pk))
 	$controller_class->setMethod($delete_method);
 
 	// load delete template
-	$delete_template = file_get_contents($basepath . "/core/default/extras/crudify_templates/delete.tpl");
+	$delete_template = file_get_contents($crud_template_path . "/delete.tpl");
 	if ($is_admin)
 	{
 		$delete_template_replacements = array(
@@ -296,20 +321,20 @@ if (!is_array($pk))
 	}
 	$delete_template = RivetyCore_Common::replaceWithArray($delete_template, $delete_template_replacements);
 
-	file_put_contents($theme_dir . "/delete.tpl", $delete_template);
+	file_write($theme_dir . "/delete.tpl", $delete_template);
 
 	$controller_file = new Zend_CodeGenerator_Php_File();
 	$controller_file->setClass($controller_class);
 }
 
 // Render the generated files
-file_put_contents($basepath . "/modules/" . $module_name . "/models/" . $object_name . ".php", $model_file->generate());
+file_write($output_basedir . "/modules/" . $module_name . "/models/" . $object_name . ".php", $model_file->generate());
 
 if ($is_admin)
 {
-	file_put_contents($basepath . "/modules/" . $module_name . "/controllers/" . $name . "adminController.php", $controller_file->generate());
+	file_write($output_basedir . "/modules/" . $module_name . "/controllers/" . $name . "adminController.php", $controller_file->generate());
 }
 else
 {
-	file_put_contents($basepath . "/modules/" . $module_name . "/controllers/" . $name . "Controller.php", $controller_file->generate());
+	file_write($output_basedir . "/modules/" . $module_name . "/controllers/" . $name . "Controller.php", $controller_file->generate());
 }
