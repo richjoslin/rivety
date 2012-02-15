@@ -1,2 +1,2 @@
-ALTER TABLE default_navigation ADD COLUMN modified DATETIME  AFTER sort_order;
 
+ALTER TABLE `default_users` ADD `hardware_id` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL AFTER `ip`;
