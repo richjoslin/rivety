@@ -197,6 +197,8 @@ if ($isInstalled)
 	if (is_null(@$config['application']['host_id'])) $host_id = null;
 	else $host_id = $config['application']['host_id'];
 
+	if(empty($is_cli))$is_cli=false;
+
 	if ($is_cli) $log_filename = $config['application']['log_filename_cli'];
 	else $log_filename = $config['application']['log_filename'];
 
