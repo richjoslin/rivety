@@ -36,7 +36,7 @@ class RivetyCore_Plugin {
   }
  
   public function __wakeup() {
-    trigger_error('Deserializing is not allowed.', E_USER_ERROR);
+    //trigger_error('Deserializing is not allowed.', E_USER_ERROR);
   }
  
   //This method must be static, and must return an instance of the object if the object
