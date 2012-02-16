@@ -39,18 +39,31 @@ function autoload($class_name)
 				$found = false;
 				foreach ($places_to_look as $place_to_look)
 				{
-					$filename = $place_to_look . DIRECTORY_SEPARATOR . $class_name . ".php";
-					if (file_exists($filename))
-					{
-						require_once $filename;
-						$found = true;
-						break;
-					}
-					if (!$found)
-					{
-						throw (new Exception("Can't find a class called '" . $class_name . "'. Here's a backtrace: " . print_r(debug_backtrace(), true)));
-					}
+					$filenames = array(
+						$place_to_look . DIRECTORY_SEPARATOR . $class_name . ".php",
+						$place_to_look . DIRECTORY_SEPARATOR . $class_name . ".inc.php"
+					);
+					foreach($filenames as $filename){
+					
+						if (file_exists($filename))
+						{
+							require_once $filename;
+							$found = true;
+							break;
+						}
+						
+						if($found){
+							break;
+						}
+					}					
+					
 				}
+				
+				if (!$found)
+				{
+					throw (new Exception("Can't find a class called '" . $class_name . "'. Here's a backtrace: " . print_r(debug_backtrace(), true)));
+				}
+				
 			}
 		}
 	}
