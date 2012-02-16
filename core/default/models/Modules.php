@@ -212,7 +212,7 @@ class Modules extends RivetyCore_Db_Table_Abstract
 	function install($module_id) {
 		$this->setup($module_id);
 		if ($this->runFilter($module_id."_install")) {
-			$data = array("id" => $module_id);
+			$data = array(	"id" =>	$module_id);			
 			$this->insert($data);
 			return true;
 		} else {
@@ -230,10 +230,12 @@ class Modules extends RivetyCore_Db_Table_Abstract
 		Returns: boolean indicating whether the filter was successfully executed
 	*/
 	function uninstall($module_id) {
+		$db_versions_table = new DatabaseVersions();
 		$this->setup($module_id);
 		if ($this->runFilter($module_id."_uninstall")) {
 			$where = $this->getAdapter()->quoteInto("id = ?", $module_id);
 			$this->delete($where);
+			$db_versions_table->delete($where);			
 			return true;
 		} else {
 			return false;
@@ -362,10 +364,10 @@ class Modules extends RivetyCore_Db_Table_Abstract
 					}
 				}
 				ksort($change_scripts);
-
+				RivetyCore_Log::report("Upgrading db for ".$module_id, print_r($change_scripts,true), Zend_Log::DEBUG);
 				foreach ($change_scripts as $num => $script_name) {
-					if ($num > $current_version and $num <= $required_version) {
-
+					if (($num > $current_version and $num <= $required_version) && $this->isInstalled($module_id)) {
+						RivetyCore_Log::report("Upgrading db for ".$module_id." from version ".$current_version." to ".$required_version, null, Zend_Log::INFO);
 						$change_script = new RivetyCore_Db_Script($module_id, $script_name);
 
 						if ($change_script === false) {

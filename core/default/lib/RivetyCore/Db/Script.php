@@ -58,6 +58,7 @@ class RivetyCore_Db_Script
 	{
 		$success = false;
 		$ddl_file = $this->getScriptPath($module)."/".$scriptname.".sql";
+		RivetyCore_Log::report($module.": ".$ddl_file, Zend_Log::DEBUG);
 		if (file_exists($ddl_file))
 		{
 			$queries = preg_split('/;[\r\n]+/', file_get_contents($ddl_file), -1, PREG_SPLIT_NO_EMPTY);
@@ -67,6 +68,7 @@ class RivetyCore_Db_Script
 				{
 					if (trim($query) != "")
 					{
+						RivetyCore_Log::report($module.": ".$query, Zend_Log::DEBUG);
 						$this->_db->query($query);
 					}
 				}

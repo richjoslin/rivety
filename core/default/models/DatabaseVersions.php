@@ -79,5 +79,11 @@ class DatabaseVersions extends RivetyCore_Db_Table_Abstract {
 			return $db_version->db_version;
 		}
 	}
+	
+	function deleteForModule($module_id) {
+		$delete_where = $this->getAdapter()->quoteInto('id = ?', $module_id);
+		return parent::delete($delete_where);		
+	}
+	
 
 }
