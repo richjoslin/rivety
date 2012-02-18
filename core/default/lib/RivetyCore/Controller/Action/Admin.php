@@ -37,30 +37,62 @@ abstract class RivetyCore_Controller_Action_Admin extends RivetyCore_Controller_
 	{
 	    parent::init();
 		$this->view->isAdminController = true;
+		
+		$this->view->basepath = RivetyCore_Registry::get("basepath");		
+		$admin_theme = RivetyCore_Registry::get("admin_theme");
+		
+		/* template location structure 
+		 * 
+		 * /themes/theme_name/module_name/front_end_or_admin_/tpl_controllers/controller_name/action_name.tpl		 * 
+		 * 
+		 */
+		
 
-		$template_path = $this->_theme_locations['admin']['current_theme']['path'] . "/tpl_controllers/" . $this->getRequest()->getModuleName();
+		
+		$this->view->theme_path = $this->view->basepath . _DS . "themes" . _DS . $admin_theme . _DS . "admin";		
+			
+		if($admin_theme == "default" && !is_dir($this->view->theme_path)){
+			$this->view->theme_url = "/core/default/views/admin";
+		} else {
+			$this->view->theme_url = "/themes/" . $admin_theme ."/admin";	
+		}			
+			
+		
+		$this->view->theme_global_path = $this->view->theme_path . _DS . "tpl_common";
+		$this->view->theme_global = $this->view->theme_global_path;
+		$this->view->theme_controller_path = $this->view->theme_path . _DS . 'tpl_modules' . _DS . $this->module_name ;
+		$this->view->theme_this_controller_path = $this->view->theme_controller_path . _DS . $this->view->controller_name;
+		
+		// for legacy things that still use "admin_path"
+		$this->view->admin_theme_path = $this->view->theme_path;
+		$this->view->admin_theme_url = $this->view->theme_url;
+		$this->view->admin_theme_global_path = $this->view->theme_global_path;
+		
+		$this->view->setScriptPath($this->view->theme_controller_path);
+		
+		if($this->getRequest()->getModuleName() == "default")
+		{
+			$module_path = "core" . _DS . "default";
+			$module_url = "core/default";
+		} else { 
+			$module_path = 	"modules" . _DS . $this->module_name;
+			$module_url = "modules/".$this->module_name;
+		}		
+			
+		$this->view->module_views_path 	= $this->view->basepath . _DS . $module_path . _DS . "views" . _DS . "admin";
+		$this->view->module_views_url 	= "/". $module_url ."/views/admin";
+		$this->view->module_views_global_path = $this->view->module_views_path . _DS . "tpl_common";		
+		$this->view->module_views_controller_path = $this->view->module_views_path . _DS . 'tpl_controllers' ;
+		$this->view->module_views_this_controller_path = $this->view->module_views_controller_path . _DS . $this->view->controller_name; 
 
-		$this->view->setScriptPath($template_path);
+		$this->view->default_global_path =  $this->view->basepath . _DS . "core/default" . _DS . "views" . _DS . "admin" . _DS . "tpl_common";
 
-		$this->view->base_path = substr($_SERVER['SCRIPT_FILENAME'], 0, strrpos($_SERVER['SCRIPT_FILENAME'], "/"));
+		
 
-		$this->view->admin_theme_path                     = $this->_theme_locations['admin']['current_theme']['path'];
-		$this->view->admin_theme_url                      = $this->_theme_locations['admin']['current_theme']['url'];
-		$this->view->admin_theme_global_path              = $this->_theme_locations['admin']['current_theme']['path']."/tpl_common";
-		$this->view->admin_theme_controller_path          = $this->_theme_locations['admin']['current_theme']['path'].'/tpl_controllers/'.$this->getRequest()->getControllerName();
-		$this->view->admin_theme_module_path              = $this->_theme_locations['admin']['current_theme']['path'].'/tpl_controllers';
-
-		$this->view->default_admin_theme_path             = $this->_theme_locations['admin']['default_theme']['path'];
-		$this->view->default_admin_theme_url              = $this->_theme_locations['admin']['default_theme']['url'];
-		$this->view->default_admin_theme_global_path      = $this->_theme_locations['admin']['default_theme']['path']."/tpl_common";
-		$this->view->default_admin_theme_controller_path  = $this->_theme_locations['admin']['default_theme']['path'].'/tpl_controllers/'.$this->getRequest()->getControllerName();
-		$this->view->default_admin_theme_module_path      = $this->_theme_locations['admin']['default_theme']['path'].'/tpl_controllers';
 
 		$request = $this->getRequest();
 
 		if ($request->has('dev') && $request->dev == true) $this->view->isDeveloper = true;
-
-		$this->view->current_path = $this->_theme_locations['admin']['current_theme']['path'] . "/tpl_controllers/" . $this->getRequest()->getControllerName();
 
 		$roles_table = new Roles();
 		$locale_table = new Locales();
