@@ -102,6 +102,13 @@ abstract class RivetyCore_Db_Table_Abstract extends Zend_Db_Table
 				$data['updated_on'] = $timestamp;
 			}
 		}
+				if (in_array('modified_on', $columns))
+		{
+			if (!in_array('modified_on', $data))
+			{
+				$data['modified_on'] = $timestamp;
+			}
+		}
 		$params = array(
 			"data" => $data,
 			"where" => $where,
@@ -163,6 +170,24 @@ abstract class RivetyCore_Db_Table_Abstract extends Zend_Db_Table
 		}
 		if (count($params['errors']) == 0)
 		{
+			$metadata = $this->info();
+			$columns = $metadata['cols'];
+			$timestamp = date("Y-m-d H:i:s") ;
+			if (in_array('updated_on', $columns))
+			{
+				if (!in_array('updated_on', $params['data']))
+				{
+					$params['data']['updated_on'] = $timestamp;
+				}
+			}
+			
+			if (in_array('created_on', $columns))
+			{
+				if (!in_array('created_on', $params['data']))
+				{
+					$params['data']['created_on'] = $timestamp;
+				}
+			}			
 			$params['insert_id'] = parent::insert($params['data']);
 			RivetyCore_Plugin::getInstance()->doAction('db_table_post_insert', $params);
 			return $params['insert_id'];
@@ -340,6 +365,9 @@ abstract class RivetyCore_Db_Table_Abstract extends Zend_Db_Table
 		$params['where'] = $where;
 		$params = $this->_rivety_plugin->doFilter('rivetycore_db_table_abstract_before_delete', $params); // FILTER HOOK
 		$where = $params['where'];
+		
+		// TODO add soft delete
+		
 		$output = parent::delete($where);
 		$params['output'] = $output;
 		$this->_rivety_plugin->doAction('rivetycore_db_table_abstract_after_delete', $params); // ACTION HOOK

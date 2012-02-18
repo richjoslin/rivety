@@ -11,10 +11,9 @@ if ($this->getRequest()->isPost())
 	REQUEST_VALIDATION
 	if ($request->isValid())
 	{
-		$ROW_VAR_NAME['modified_on'] = date(DB_DATETIME_FORMAT);
+		
 		if (empty($ROW_VAR_NAME['ID_COLUMN_NAME']))
 		{
-			$ROW_VAR_NAME['created_on'] = date(DB_DATETIME_FORMAT);
 			$ENTITY_NAME_dbtable->insert($ROW_VAR_NAME);
 		}
 		else

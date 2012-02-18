@@ -110,7 +110,7 @@ $db = Zend_Db_Table::getDefaultAdapter();
 $all_tables = $db->listTables();
 $columns = array();
 $pk = null;
-$reserved = array('id', 'sort_order', 'created_on', 'modified_on', 'deleted_on');
+$reserved = array('id', 'sort_order', 'created_on', 'modified_on','updated_on', 'deleted_on');
 $required = array();
 $id_column_name = null;
 if (in_array($table_name, $all_tables))
