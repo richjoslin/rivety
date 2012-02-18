@@ -165,46 +165,50 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 
 		$this->_rivety_plugin = RivetyCore_Plugin::getInstance();
 
-		$this->_theme_locations = Zend_Registry::get('theme_locations');
 
-		// Theme filter block: Allow plugins to alter the current theme based on request, locale, etc.
-		$theme_params = array(
-			'request' => $this->_request,
-			'admin' => array(
-				'current_theme' => $this->_theme_locations['admin']['current_theme'],
-			),
-			'frontend' => array(
-				'current_theme' => $this->_theme_locations['frontend']['current_theme'],
-			)
-		);
-		$theme_params = $this->_rivety_plugin->doFilter('current_themes', $theme_params); // FILTER HOOK
-		if (file_exists($theme_params['admin']['current_theme']['path']))
-		{
-			$this->_theme_locations['admin']['current_theme'] = $theme_params['admin']['current_theme'];
-		}
-		if (file_exists($theme_params['frontend']['current_theme']['path']))
-		{
-			$this->_theme_locations['frontend']['current_theme'] = $theme_params['frontend']['current_theme'];
-			$template_path = $this->_theme_locations['frontend']['current_theme']['path'] . "/tpl_controllers/" . $this->module_name;
-
-			$this->view->setScriptPath($template_path);
-
-		}
-		// Theme filter block: End.
-
-		$this->view->theme_path = $this->_theme_locations['frontend']['current_theme']['path'];
-		$this->view->theme_url = $this->_theme_locations['frontend']['current_theme']['url'];
-		$this->view->theme_global_path = $this->_theme_locations['frontend']['current_theme']['path'] . "/tpl_common";
+		$this->view->basepath = RivetyCore_Registry::get("basepath");
+		$frontend_theme = RivetyCore_Registry::get("frontend_theme");
+		$admin_theme = RivetyCore_Registry::get("frontend_theme");
+		
+		/* template location structure 
+		 * 
+		 * /themes/theme_name/module_name/front_end_or_admin_/tpl_controllers/controller_name/action_name.tpl		 * 
+		 * 
+		 */
+		
+		$this->view->theme_path = $this->view->basepath . _DS . "themes" . _DS . $frontend_theme . _DS . "frontend";
+		
+		
+		if($frontend_theme == "default" && !is_dir($this->view->theme_path)){
+			$this->view->theme_url = "/core/default/views/frontend";
+		} else {
+			$this->view->theme_url = "/themes/" . $frontend_theme ."/frontend";
+		}	
+		
+		
+		$this->view->theme_global_path = $this->view->theme_path . _DS . "tpl_common";
 		$this->view->theme_global = $this->view->theme_global_path;
-		$this->view->theme_controller_path = $this->_theme_locations['frontend']['current_theme']['path'] . '/tpl_controllers/' . $this->getRequest()->getControllerName();
-		$this->view->theme_module_path = $this->_theme_locations['frontend']['current_theme']['path'] . '/tpl_controllers';
+		$this->view->theme_controller_path = $this->view->theme_path . _DS . 'tpl_modules' . _DS . $this->module_name ;
+		$this->view->theme_this_controller_path = $this->view->theme_controller_path . _DS . $this->view->controller_name;
+		$this->view->setScriptPath($this->view->theme_controller_path);
+		
+		if($this->getRequest()->getModuleName() == "default")
+		{
+			$module_path = "core" . _DS . "default";
+			$module_url = "core/default";
+		} else { 
+			$module_path = 	"modules" . _DS . $this->module_name;
+			$module_url = "modules/".$this->module_name;
+		}		
+			
+		$this->view->module_views_path 	= $this->view->basepath . _DS . $module_path . _DS . "views" . _DS . "frontend";
+		$this->view->module_views_url 	= "/". $module_url ."/views/frontend";
+		$this->view->module_views_global_path = $this->view->module_views_path . _DS . "tpl_common";		
+		$this->view->module_views_controller_path = $this->view->module_views_path . _DS . 'tpl_controllers' ;
+		$this->view->module_views_this_controller_path = $this->view->module_views_controller_path . _DS . $this->view->controller_name; 
 
-		$this->view->default_theme_path = $this->_theme_locations['frontend']['default_theme']['path'];
-		$this->view->default_theme_url = $this->_theme_locations['frontend']['default_theme']['url'];
-		$this->view->default_theme_global_path = $this->_theme_locations['frontend']['default_theme']['path'] . "/tpl_common";
-		$this->view->default_theme_controller_path = $this->_theme_locations['frontend']['default_theme']['path'] . '/tpl_controllers/' . $this->module_name . "/" . $this->getRequest()->getControllerName();
-		$this->view->default_theme_module_path = $this->_theme_locations['frontend']['default_theme']['path'] . '/tpl_controllers/' . $this->module_name;
-
+		$this->view->default_global_path =  $this->view->basepath . _DS . "core/default" . _DS . "views" . _DS . "frontend" . _DS . "tpl_common";
+		
 		RivetyCore_Log::report("Current path " . $this->_mca, null, Zend_Log::INFO);
 
 		$this->view->isAdminController = false;

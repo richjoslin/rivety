@@ -257,27 +257,25 @@ class RivetyCore_View_Renderer implements Zend_View_Interface
 	*/
 	public function render($name)
 	{
-		$basepath = Zend_Registry::get("basepath");
-
-		$front = Zend_Controller_Front::getInstance();
-		$request = $front->getRequest();
-		$module_name = $request->getModuleName();
-		$module_views_root = "";
-
-		if ($module_name == "default") $module_views_root = $basepath . "/core/default/views";
-		else $module_views_root = $basepath . "/modules/" . $module_name . "/views";
-
-		if ($this->_smarty->_tpl_vars['isAdminController']) $fallback_path = $module_views_root."/admin/tpl_controllers";
-		else $fallback_path = $module_views_root."/frontend/tpl_controllers";
-
-		$template_filename = $this->_smarty->template_dir . "/" . $name;
-
-		if (!file_exists($template_filename))
+		
+		// theme template file
+		$template_file = $this->_smarty->template_dir . _DS . $name;
+		
+		// module views template
+		$module_template_file = $this->_smarty->_tpl_vars['module_views_controller_path'] . _DS . $name;
+		
+		
+		RivetyCore_Log::debug("Looking for " . $template_file);
+		
+		if (!file_exists($template_file))
 		{
-			if (is_readable($fallback_path))
+			
+			RivetyCore_Log::debug("Falling back to " . $module_template_file);
+			if (is_readable($module_template_file))
 			{
-					$template_filename = $fallback_path . "/" . $name;
-					//dd($template_filename);
+					// fall back to looking in module's views folder					
+					$template_file =  $module_template_file;
+
 			}
 			else
 			{
@@ -290,7 +288,7 @@ class RivetyCore_View_Renderer implements Zend_View_Interface
 			$mca = $this->_smarty->_tpl_vars['mca'];
 			$this->_smarty->compile_id = $mca;
 		}
-		return $this->_smarty->fetch($template_filename);
+		return $this->_smarty->fetch($template_file);
 	}
 
 	/*
