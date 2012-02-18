@@ -32,10 +32,10 @@ else
 	if (array_key_exists("3", $argv) && !empty($argv[3])) $dry_run = (bool)$argv[3];
 
 	// template_path
-	if (array_key_exists("4", $argv) && !empty($argv[4])) $crud_template_path = trim($argv[3]);
+	if (array_key_exists("4", $argv) && !empty($argv[4])) $crud_template_path = trim($argv[4]);
 
 	// output basedir
-	if (array_key_exists("5", $argv) && !empty($argv[5])) $output_basedir = trim($argv[4]);
+	if (array_key_exists("5", $argv) && !empty($argv[5])) $output_basedir = trim($argv[5]);
 }
 
 if ($dry_run) echo("Executing dry run...\n\n");
