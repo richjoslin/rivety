@@ -163,7 +163,7 @@ class RivetyCore_Request {
 				case "required":
 					if (!$this->has($validator['field_name']) || trim($this->{$validator['field_name']}) == "")
 					{
-						$this->_validation_errors[] = $validator['message'];
+						$this->_validation_errors[$validator['field_name']] = $validator['message'];
 					}
 					break;
 				default:
