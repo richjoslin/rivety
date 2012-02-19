@@ -19,7 +19,7 @@ FORM_FIELDS
 				{t}Save{/t}
 			</a>
 		</li>
-		{if isset($ID_COLUMN_NAME)}
+		{if isset($ENTITY_NAME.ID_COLUMN_NAME)}
 			<li>
 				<a href="{url}DELETE_URL{/url}" class="button">
 					<span class="rivety-button-icon ui-icon ui-icon-trash"></span>
