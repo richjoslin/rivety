@@ -621,9 +621,17 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 	  		$total_pages = 1;
 	  	}
 		$start = ($per_page * $page);
-		$end = $start + count($total);
+		
+		if($page + 1 == $total_pages){
+			$end = $total;
+		} else {
+			$end = $start + $per_page;
+		}
 		$start++;
-		$this->view->page_info = "$start to $end of $total";
+		
+
+		$this->view->start_row = $start;
+		$this->view->end_row	= $end;
 
 		if ($page < $total_pages - 1) {
 			$this->view->next = $page + 1;
@@ -639,6 +647,7 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 		$this->view->page = $page;
 		$this->view->display_page = $page + 1;
 		$this->view->total_pages = $total_pages;
+		
 		$pages = array();
 		for ($x = 0; $x < $total_pages; $x++ ) {
 			$pages[] = $x;
