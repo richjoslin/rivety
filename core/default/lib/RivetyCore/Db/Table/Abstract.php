@@ -102,7 +102,8 @@ abstract class RivetyCore_Db_Table_Abstract extends Zend_Db_Table
 				$data['updated_on'] = $timestamp;
 			}
 		}
-				if (in_array('modified_on', $columns))
+		
+		if (in_array('modified_on', $columns))
 		{
 			if (!in_array('modified_on', $data))
 			{
@@ -178,6 +179,14 @@ abstract class RivetyCore_Db_Table_Abstract extends Zend_Db_Table
 				if (!in_array('updated_on', $params['data']))
 				{
 					$params['data']['updated_on'] = $timestamp;
+				}
+			}
+			
+			if (in_array('modified_on', $columns))
+			{
+				if (!in_array('modified_on', $params['data']))
+				{
+					$params['data']['modified_on'] = $timestamp;
 				}
 			}
 			
