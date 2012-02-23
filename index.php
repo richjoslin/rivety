@@ -184,8 +184,10 @@ catch (Exception $ex)
 			}
 			else
 			{
+				echo("<pre>");
 				d($ex->getMessage());
 				dd($ex);
+				echo("</pre>");
 			}
 		break;
 		}

@@ -114,9 +114,11 @@ function d($a_var)
 			- Zend_Debug::dump()
 			- die()
 */
-function dd($a_var)
+function dd($a_var,$for_web=false)
 {
+	if($for_web) echo("<pre>");	
 	d($a_var);
+	if($for_web) echo("</pre>");
 	die();
 }
 /*
