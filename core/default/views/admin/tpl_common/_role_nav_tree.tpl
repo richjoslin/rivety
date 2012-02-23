@@ -46,6 +46,6 @@
 			</div>
 
 		</div>
-		{include file="file:$current_path/_role_nav_tree.tpl" nav_items=$nav_item.children level=$level+1}
+		{include file="file:$admin_theme_path/tpl_common/_role_nav_tree.tpl" nav_items=$nav_item.children level=$level+1}
 	{/foreach}
 {/if}

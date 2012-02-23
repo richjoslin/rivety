@@ -3,7 +3,7 @@
 <div id="main-column">
 	<h3>{$smarty.capture.pagetitle}</h3>
 	{* Notice: The next statement is including a recursive template. *}
-	{include file="file:$current_path/_role_nav_tree.tpl" nav_items=$nav_items_to_edit}
+	{include file="file:$admin_theme_path/tpl_common/_role_nav_tree.tpl" nav_items=$nav_items_to_edit}
 </div>
 <div id="options">
 	<h3>{t}Options{/t}</h3>

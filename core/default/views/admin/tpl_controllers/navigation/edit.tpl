@@ -10,7 +10,7 @@
 			<label for="parent_id">{t}Parent Item{/t}</label>
 			<select name="parent_id" id="parent_id" class="chzn-select">
 				<option value="0">{t}None{/t}</option>
-				{include file="file:$current_path/_role_option.tpl" items=$parent_choices}
+				{include file="file:$admin_theme_path/tpl_common/_role_option.tpl" items=$parent_choices}
 			</select>
 		</div>
 

@@ -62,6 +62,8 @@ abstract class RivetyCore_Controller_Action_Admin extends RivetyCore_Controller_
 		$this->view->theme_global = $this->view->theme_global_path;
 		$this->view->theme_controller_path = $this->view->theme_path . _DS . 'tpl_modules' . _DS . $this->module_name ;
 		$this->view->theme_this_controller_path = $this->view->theme_controller_path . _DS . $this->view->controller_name;
+		$this->view->theme_current_path = $this->view->theme_this_controller_path;
+		
 		
 		// for legacy things that still use "admin_path"
 		$this->view->admin_theme_path = $this->view->theme_path;

@@ -20,10 +20,6 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 
 	/* Group: Instance Variables */
 
-	/*
-		Variable: $_theme_locations
-	*/
-	protected $_theme_locations;
 
 	/*
 		Variable:
@@ -190,6 +186,7 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 		$this->view->theme_global = $this->view->theme_global_path;
 		$this->view->theme_controller_path = $this->view->theme_path . _DS . 'tpl_modules' . _DS . $this->module_name ;
 		$this->view->theme_this_controller_path = $this->view->theme_controller_path . _DS . $this->view->controller_name;
+		$this->view->theme_current_path = $this->view->theme_this_controller_path;
 		$this->view->setScriptPath($this->view->theme_controller_path);
 		
 		if($this->getRequest()->getModuleName() == "default")
@@ -206,7 +203,8 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 		$this->view->module_views_global_path = $this->view->module_views_path . _DS . "tpl_common";		
 		$this->view->module_views_controller_path = $this->view->module_views_path . _DS . 'tpl_controllers' ;
 		$this->view->module_views_this_controller_path = $this->view->module_views_controller_path . _DS . $this->view->controller_name; 
-
+		$this->view->module_current_path = $this->view->module_views_this_controller_path;
+		
 		$this->view->default_global_path =  $this->view->basepath . _DS . "core/default" . _DS . "views" . _DS . "frontend" . _DS . "tpl_common";
 		
 		RivetyCore_Log::report("Current path " . $this->_mca, null, Zend_Log::INFO);
