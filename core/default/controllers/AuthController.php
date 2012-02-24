@@ -167,7 +167,8 @@ class AuthController extends RivetyCore_Controller_Action_Abstract
 			catch (Exception $e)
 			{
 				$appNamespace->last_login = null;
-				$errors = array($e->getMessage());
+				RivetyCore_Log::report("Login failure.", "Username: [". $username ."] ip: [" . $_SERVER['REMOTE_ADDR'] . "] - " . $e->getMessage() , Zend_Log::WARN);
+				$errors = array($this->_T("Login failed."));
 			}
 		}
 

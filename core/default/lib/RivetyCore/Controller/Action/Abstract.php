@@ -25,6 +25,7 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 		Variable:
 	*/
 	protected $_debug_mode;
+	
 
 	/* Group: Instance Methods */
 
@@ -110,6 +111,7 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 		$this->view->site_name = RivetyCore_Registry::get('site_name');
 		$this->registry = Zend_Registry::getInstance();
 		$this->session = new Zend_Session_Namespace('Default');
+		RivetyCore_Log::report("Controller Starting", null, Zend_Log::DEBUG);
 
 		// $this->_debug_mode = ($this->_request->has('debug') && $this->_request->debug == 'dump');
 
@@ -140,6 +142,9 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 
 			$loggedInRoleIds = $roles_table->getRoleIdsByUsername($this->_identity->username);
 			$this->view->loggedInRoleIds = $loggedInRoleIds;
+			$this->view->isAdmin = false;
+			$this->_identity->isAdmin = false;
+			
 
 			foreach ($loggedInRoleIds as $role_id)
 			{
@@ -148,7 +153,8 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 				{
 					$this->view->isAdmin = true;
 					$this->_identity->isAdmin = true;
-				}
+					
+				} 
 			}
 		}
 		else
