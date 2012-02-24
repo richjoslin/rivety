@@ -712,10 +712,21 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 	/*
 		Function: screenAlertQueued
 	*/
-	function screenAlertQueued($type, $message, $expires = null, $mca = null)
+	function screenAlertQueued($type, $message, $expires = null, $mca = null,$username = null)
 	{
-		$screen_alert = new RivetyCore_ScreenAlert($this->_identity->username, $type, $message, $expires, $mca);
-		$screen_alert->queue();
+		
+		if($this->_auth->hasIdentity()){
+			$username = $this->_identity->username; 			
+			RivetyCore_Log::debug("Identity found [".$username."].");			
+		} else {
+			RivetyCore_Log::debug("No Identity found, using [".$username."] .");	
+		}
+			
+		if(!empty($username)){
+			RivetyCore_Log::debug("Adding screen alert for [".$username."] :".$message);
+			$screen_alert = new RivetyCore_ScreenAlert($username, $type, $message, $expires, $mca);
+			$screen_alert->queue();
+		}			
 	}
 
 	/*

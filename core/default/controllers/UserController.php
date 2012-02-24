@@ -262,8 +262,13 @@ class UserController extends RivetyCore_Controller_Action_Abstract
 	*/
 	function resetpasswordAction()
 	{
+		
+		RivetyCore_Log::debug("STARTING PASSWORD RESET" ,null);
 		$request = new RivetyCore_Request($this->getRequest());
 		if ($this->_auth->hasIdentity()) $this->_redirect('/default/user/edit');
+		
+		
+		
 		
 		$code = $request->code;
  		$email = $request->email;
@@ -272,10 +277,16 @@ class UserController extends RivetyCore_Controller_Action_Abstract
 			$this->_redirect('/default/auth/missing');
 			die();	
 		}
+		RivetyCore_Log::debug("Password reset hash: " . $email . ":" . $code . ":" . $this->_checkConfirmationUrl($email, $code) );
+		
 		$field_name = RivetyCore_Registry::get('password_reset_field_name');
+		
+		
 		$this->view->field_name = $field_name;
 		$this->view->code = $code;
 		$this->view->email = $email;
+		
+		RivetyCore_Log::debug("Password reset field name: " . $field_name);
 
 		if ($this->_request->isPost())
 		{
@@ -338,6 +349,8 @@ class UserController extends RivetyCore_Controller_Action_Abstract
 				}
 
 				// SEND THE USER ON THEIR WAY
+				
+				$this->screenAlertQueued('success', $this->_T("Your password has been changed."), date(DB_DATETIME_FORMAT, time() + 30), 'default_user_profile',$user->username);
 				$this->_redirect('/default/user/postregister');
 			}
 			else
@@ -493,7 +506,8 @@ class UserController extends RivetyCore_Controller_Action_Abstract
 			// 	$countries_table = new Countries();
 			// 	$country = $countries_table->fetchRow($countries_table->getAdapter()->quoteInto('country_code = ?', $tmp_user['country_code']));
 			// 	$tmp_user['location'] = $country->country;
-			// }
+			// }		
+			
  			$params = array('user' => $tmp_user, 'request' => $this->getRequest());
 			$params = $this->_rivety_plugin->doFilter($this->_mca, $params); // FILTER HOOK
 			foreach ($params as $key => $value)

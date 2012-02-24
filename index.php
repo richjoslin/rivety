@@ -144,8 +144,10 @@ catch (Zend_Db_Statement_Exception $ex)
 {
 	if (canDebug($ip, $config))
 	{
+		echo("<pre>");
 		d($ex->getMessage());
 		dd($ex);
+		echo("</pre>");
 	}
 	else
 	{
