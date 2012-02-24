@@ -188,12 +188,16 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 		}	
 		
 		
+		
 		$this->view->theme_global_path = $this->view->theme_path . _DS . "tpl_common";
 		$this->view->theme_global = $this->view->theme_global_path;
 		$this->view->theme_controller_path = $this->view->theme_path . _DS . 'tpl_modules' . _DS . $this->module_name ;
 		$this->view->theme_this_controller_path = $this->view->theme_controller_path . _DS . $this->view->controller_name;
 		$this->view->theme_current_path = $this->view->theme_this_controller_path;
 		$this->view->setScriptPath($this->view->theme_controller_path);
+		
+		$this->theme_email_path = $this->view->theme_path . _DS . "tpl_email";
+		
 		
 		if($this->getRequest()->getModuleName() == "default")
 		{
@@ -211,7 +215,13 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 		$this->view->module_views_this_controller_path = $this->view->module_views_controller_path . _DS . $this->view->controller_name; 
 		$this->view->module_current_path = $this->view->module_views_this_controller_path;
 		
-		$this->view->default_global_path =  $this->view->basepath . _DS . "core/default" . _DS . "views" . _DS . "frontend" . _DS . "tpl_common";
+		$this->module_views_email_path = $this->view->module_views_path . _DS . "tpl_email";
+		
+		$this->view->default_module_views_path = $this->view->basepath . _DS . "core/default" . _DS . "views";
+		
+		$this->view->default_module_this_controller_path = $this->view->basepath . _DS . "core/default" . _DS . "views" . _DS . 'tpl_controllers' . _DS . $this->view->controller_name;
+		
+		$this->view->default_global_path =  $this->view->default_module_views_path . _DS . "frontend" . _DS . "tpl_common";
 		
 		RivetyCore_Log::report("Current path " . $this->_mca, null, Zend_Log::INFO);
 
@@ -658,6 +668,34 @@ abstract class RivetyCore_Controller_Action_Abstract extends Zend_Controller_Act
 		}
 		$this->view->pages = $pages;
 	}
+	
+	
+	function sendEmail($subject, $to_address,$template, $params = null, $to_name = null, $isHtml = false) {		
+		$email_template_path = null;
+		$places_to_look = array(
+			$this->view->theme_this_controller_path,
+			$this->view->module_views_this_controller_path,			
+		);
+		
+		if($this->view->module_name == "default"){
+			$places_to_look[] = $this->view->default_module_this_controller_path;
+		}
+		
+		foreach($places_to_look as $place_to_look){
+			if(file_exists($place_to_look . _DS . $template)){
+				$email_template_path = $place_to_look;
+				break;
+			}
+		}
+		if(!empty($email_template_path)){
+			$email = new RivetyCore_Email();	
+			$email->sendEmail($subject, $to_address, $template, $email_template_path,$params, $to_name, $isHtml);
+			return true;	
+		} else {
+			return false;
+		}		
+	}
+	
 
 	/*
 		Function: immediateScreenAlert

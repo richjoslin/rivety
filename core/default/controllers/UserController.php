@@ -264,9 +264,14 @@ class UserController extends RivetyCore_Controller_Action_Abstract
 	{
 		$request = new RivetyCore_Request($this->getRequest());
 		if ($this->_auth->hasIdentity()) $this->_redirect('/default/user/edit');
-		$code = $this->_request->getParam('code', null);
- 		$email = $this->_request->getParam('email', null);
-		if (!$this->_checkConfirmationUrl($email, $code)) $this->_forward('default', 'auth', 'missing'); return;
+		
+		$code = $request->code;
+ 		$email = $request->email;
+		
+		if (!$this->_checkConfirmationUrl($email, $code)){
+			$this->_redirect('/default/auth/missing');
+			die();	
+		}
 		$field_name = RivetyCore_Registry::get('password_reset_field_name');
 		$this->view->field_name = $field_name;
 		$this->view->code = $code;
@@ -338,6 +343,10 @@ class UserController extends RivetyCore_Controller_Action_Abstract
 			else
 			{
 				$this->view->errors = $errors;
+				foreach($errors as $error){
+					$this->screenAlert('error',$error);
+				}
+				
 			}
 		}
 	}
@@ -390,7 +399,7 @@ class UserController extends RivetyCore_Controller_Action_Abstract
 			{
 				// send email
 				$this->view->showForm = false;
-				$this->view->success = $this->_T("Password reset email sent. Please check your email.");
+				$this->screenAlert('success',$this->_T("Password reset email sent. Please check your email."));
 				// prepare notification email
 				$subject = $this->_T("Password Reset Link");
 				$from = trim(RivetyCore_Registry::get('site_from'));
@@ -403,12 +412,16 @@ class UserController extends RivetyCore_Controller_Action_Abstract
 					"from_email" => $from_email,
 					"locale_code" => $this->locale_code
 				);
-				$email = new RivetyCore_Email();
-				$email->sendEmail($subject, $test_user->email, "password.tpl", $email_params);
+				
+				$this->sendEmail($subject, $test_user->email, "email_resetpassword.tpl", $email_params);
 			}
 			else
 			{
-				$this->view->errors = $errors;
+				
+				foreach($errors as $error){
+					$this->screenAlert('error',$error);
+				}
+				
 				$this->view->username = $username;
 				$this->view->email = $email;
 				$this->view->showForm = true;

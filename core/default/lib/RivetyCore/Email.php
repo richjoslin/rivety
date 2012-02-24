@@ -20,7 +20,7 @@ class RivetyCore_Email {
 		Arguments:
 			template_path - An optional string to override the default template path.
 	*/
-	function RivetyCore_Email($template_path = null, $module = "default")
+	function RivetyCore_Email()
 	{
 		$this->_smarty = new RivetyCore_View_Smarty();
 		$smarty_config = Zend_Registry::get('smarty_config');
@@ -47,25 +47,7 @@ class RivetyCore_Email {
 				$this->_smarty->plugins_dir = $plugin_dirs;
 			}
 		}
-		if (is_null($template_path))
-		{
-
-			$theme_locations = Zend_Registry::get('theme_locations');
-			$email_path = "/global/email/";
-			if ($module == "default")
-			{
-				$this->_smarty->template_dir = $theme_locations['frontend']['current_theme']['path'] . $email_path;
-			}
-			else
-			{
-				$this->_smarty->template_dir = $theme_locations['frontend']['current_theme']['path'] . "/tpl_controllers/" . $module . $email_path;
-			}
-
-		}
-		else
-		{
-			$this->_smarty->template_dir = $template_path;
-		}
+		
 	}
 
 	/*
@@ -82,7 +64,10 @@ class RivetyCore_Email {
 
 		Returns: void
 	*/
-	function sendEmail($subject, $to_address, $template, $params = null, $to_name = null, $isHtml = false) {
+	function sendEmail($subject, $to_address, $template, $template_path,$params = null, $to_name = null, $isHtml = false) {
+
+		$this->_smarty->template_dir = $template_path;
+
 		$useAuth = RivetyCore_Registry::get('smtp_use_auth');
 
 		if (array_key_exists('from_email', $params)) {
