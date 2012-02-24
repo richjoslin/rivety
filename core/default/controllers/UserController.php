@@ -911,12 +911,13 @@ class UserController extends RivetyCore_Controller_Action_Abstract
 					$where = $this->_users_table->getAdapter()->quoteInto('username = ?', $this->_username);
 					$this->_users_table->update($data, $where);
 					$this->_rivety_plugin->doAction('default_user_edit_post_save', array('username' => $this->_username)); // ACTION HOOK
-					$this->view->success = $this->_T("Profile Updated.");
-
+					
+					$this->screenAlert('success',$this->_T("Profile Updated."));
 				} else {
-					$this->view->errors = $errors;
+					foreach($errors as $error){
+						$this->screenAlert('error',$error);	
+					}					
 				}
-
 			}
 			//$this->view->tags = RivetyCore_Common::makeTagString($tags);
 
