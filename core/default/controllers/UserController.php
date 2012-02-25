@@ -162,7 +162,7 @@ class UserController extends RivetyCore_Controller_Action_Abstract
 			$searchterm = $request->searchterm;
 			if ($this->_request->isPost())
 			{
-				$this->_redirect("/default/useradmin/index/searchterm/" . urlencode($searchterm) . "/");
+				$this->_redirect("/default/user/index/searchterm/" . urlencode($searchterm) . "/");
 			}
 			$whereclause = $users_table->getWhereClauseForKeywords($searchterm);
 		}
