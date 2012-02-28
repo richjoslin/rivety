@@ -36,10 +36,10 @@ try
 				header("Location: " . $config['application']['prelaunch_url']);
 			}
 		}
+		error_reporting(E_ERROR | E_WARNING | E_PARSE);
 		if (RivetyCore_Registry::get('on_screen_errors') === '1')
 		{
-			ini_set('display_errors', 1);
-			ERROR_REPORTING(E_ALL);
+			ini_set('display_errors', 1);			
 		}
 	}
 
