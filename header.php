@@ -73,7 +73,16 @@ function autoload($class_name)
 	}
 }
 
+function pearLoader($classname){
+	 // this is to take care of the PEAR style of naming classes
+    $path = str_ireplace('_', '/', $classname);
+    if(@include_once $path.'.php'){
+        return;
+    }
+}
+
 spl_autoload_register("autoload");
+spl_autoload_register("pearLoader");
 
 /*
 	Function: d

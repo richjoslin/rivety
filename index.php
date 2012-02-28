@@ -10,16 +10,6 @@
 		<http://rivety.com/docs/license>
 */
 
-if (in_array("xdebug", get_loaded_extensions()))
-{
-	$xdebug_on = true;
-	ini_set('display_errors', 1);
-}
-else
-{
-	$xdebug_on = false;
-}
-
 $basepath = substr($_SERVER['SCRIPT_FILENAME'], 0, strrpos($_SERVER['SCRIPT_FILENAME'], "/"));
 
 set_include_path(get_include_path() . PATH_SEPARATOR . $basepath);
