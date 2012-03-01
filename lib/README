@@ -1,0 +1,13 @@
+This folder should contain unpacked versions of the external dependencies.
+
+The should look like this:
+
+APP_ROOT
++lib
+--ZendFramework
+--Smarty
+--Asido
+
+You can download a tarball that can be unpacked into this folder here:
+
+https://github.com/downloads/richjoslin/rivety/rivety-external-libs.zip
