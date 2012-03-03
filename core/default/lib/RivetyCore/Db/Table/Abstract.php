@@ -340,7 +340,7 @@ abstract class RivetyCore_Db_Table_Abstract extends Zend_Db_Table
 	*/
 	function fetchAllArrayByKeywords($keywords)
 	{
-		$where = $this->getWhereClauseForKeywords($keywords, $fieldnames);
+		$where = $this->getWhereClauseForKeywords($keywords);
 		return $this->fetchAllArray($where);
 	}
 
