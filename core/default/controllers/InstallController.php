@@ -41,6 +41,31 @@ class InstallController extends Zend_Controller_Action
 	{
 		parent::init();
 		
+		if($this->getRequest()->getModuleName() == "default")
+		{
+			$module_path = "core" . _DS . "default";
+			$module_url = "core/default";
+		} else { 
+			$module_path = 	"modules" . _DS . $this->module_name;
+			$module_url = "modules/".$this->module_name;
+		}	
+		
+		$this->view->module_views_path 	= $this->view->basepath . _DS . $module_path . _DS . "views" . _DS . "frontend";
+		$this->view->module_views_url 	= "/". $module_url ."/views/frontend";
+		$this->view->module_views_global_path = $this->view->module_views_path . _DS . "tpl_common";		
+		$this->view->module_views_controller_path = $this->view->module_views_path . _DS . 'tpl_controllers' ;
+		$this->view->module_views_this_controller_path = $this->view->module_views_controller_path . _DS . $this->view->controller_name; 
+		$this->view->module_current_path = $this->view->module_views_this_controller_path;
+		
+		$this->module_views_email_path = $this->view->module_views_path . _DS . "tpl_email";
+		
+		$this->view->default_module_views_path = $this->view->basepath . _DS . "core/default" . _DS . "views";
+		
+		$this->view->default_module_this_controller_path = $this->view->basepath . _DS . "core/default" . _DS . "views" . _DS . 'tpl_controllers' . _DS . $this->view->controller_name;
+		
+		$this->view->default_global_path =  $this->view->default_module_views_path . _DS . "frontend" . _DS . "tpl_common";
+		
+		
 		$this->module_name = "default";
 		$admin_theme = "default";		
 		$this->view->theme_path = $this->view->basepath . _DS . "themes" . _DS . $admin_theme . _DS . "admin";		
