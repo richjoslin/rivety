@@ -15,4 +15,4 @@
 				</ul>
 			</div>
 			<div id="content">
-				{include file="file:$theme_global_path/tpl_common/_screen_alerts.tpl"}
+				{include file="file:$theme_global_path/_screen_alerts.tpl"}
