@@ -218,6 +218,9 @@ foreach ($subdirs as $subdir)
 }
 // set up default smarty plugins dir as a string
 $smarty_plugins_dirs = $rivety_dir . DIRECTORY_SEPARATOR . 'smarty_plugins';
+// define constants
+$constants = new Constants();
+
 if ($isInstalled)
 {
 	$log_level = null;
@@ -247,8 +250,7 @@ if ($isInstalled)
 	// Create Plugin Manager
 	$RivetyCore_plugin = RivetyCore_Plugin::getInstance();
 
-	// define constants
-	$constants = new Constants();
+
 	set_include_path(get_include_path() . PATH_SEPARATOR . $config['application']['addtl_includes']);
 	$databases = new Zend_Config_Ini($config_file, 'databases');
 	$dbAdapters = array();
