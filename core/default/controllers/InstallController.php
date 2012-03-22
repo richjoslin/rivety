@@ -49,7 +49,7 @@ class InstallController extends Zend_Controller_Action
 			$module_path = 	"modules" . _DS . $this->module_name;
 			$module_url = "modules/".$this->module_name;
 		}	
-		
+		$this->view->basepath = Zend_Registry::get("basepath");
 		$this->view->module_views_path 	= $this->view->basepath . _DS . $module_path . _DS . "views" . _DS . "frontend";
 		$this->view->module_views_url 	= "/". $module_url ."/views/frontend";
 		$this->view->module_views_global_path = $this->view->module_views_path . _DS . "tpl_common";		
