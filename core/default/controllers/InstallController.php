@@ -41,7 +41,7 @@ class InstallController extends Zend_Controller_Action
 	{
 		parent::init();
 		
-		
+		$this->module_name = "default";
 		$admin_theme = "default";		
 		$this->view->theme_path = $this->view->basepath . _DS . "themes" . _DS . $admin_theme . _DS . "admin";		
 			
