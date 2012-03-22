@@ -50,8 +50,8 @@ class InstallController extends Zend_Controller_Action
 			$module_url = "modules/".$this->module_name;
 		}	
 		$this->view->basepath = Zend_Registry::get("basepath");
-		$this->view->module_views_path 	= $this->view->basepath . _DS . $module_path . _DS . "views" . _DS . "frontend";
-		$this->view->module_views_url 	= "/". $module_url ."/views/frontend";
+		$this->view->module_views_path 	= $this->view->basepath . _DS . $module_path . _DS . "views" . _DS . "admin";
+		$this->view->module_views_url 	= "/". $module_url ."/views/admin";
 		$this->view->module_views_global_path = $this->view->module_views_path . _DS . "tpl_common";		
 		$this->view->module_views_controller_path = $this->view->module_views_path . _DS . 'tpl_controllers' ;
 		$this->view->module_views_this_controller_path = $this->view->module_views_controller_path . _DS . $this->view->controller_name; 
@@ -63,7 +63,7 @@ class InstallController extends Zend_Controller_Action
 		
 		$this->view->default_module_this_controller_path = $this->view->basepath . _DS . "core/default" . _DS . "views" . _DS . 'tpl_controllers' . _DS . $this->view->controller_name;
 		
-		$this->view->default_global_path =  $this->view->default_module_views_path . _DS . "frontend" . _DS . "tpl_common";
+		$this->view->default_global_path =  $this->view->default_module_views_path . _DS . "admin" . _DS . "tpl_common";
 		
 		
 		$this->module_name = "default";
