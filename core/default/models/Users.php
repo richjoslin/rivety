@@ -54,7 +54,7 @@ class Users extends RivetyCore_Db_Table_Abstract
 			$salt = Zend_Registry::get('password_salt');
 		}
 		$out = md5($salt . $password);
-		RivetyCore_Log::debug("Password hash:" . print_r(array("password"=>$password,"salt"=>$salt,"hash"=>$out),true));
+		d("Password hash:" . print_r(array("password"=>$password,"salt"=>$salt,"hash"=>$out),true));
 		return $out;
 	}
 
