@@ -1,4 +1,4 @@
-{include file="file:$current_path/_header.tpl"}
+{include file="file:$default_module_this_controller_path/_header.tpl"}
 
 {if isset($success)}
 	{if isset($config_file)}
@@ -101,4 +101,4 @@
 	</div>
 
 {/if}
-{include file="file:$current_path/_footer.tpl"}
+{include file="file:$default_module_this_controller_path/_footer.tpl"}
