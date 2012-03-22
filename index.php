@@ -20,10 +20,10 @@ try
 {
 	$is_cli = false;
 	require_once ('header.php');
-
+	$frontend_theme = "default";
 	if ($isInstalled)
 	{
-		dd("Installed!");
+		$frontend_theme = RivetyCore_Registry::get('frontend_theme');
 		if (!(boolean)$config['application']['launched'])
 		{
 			$allowed_ips = explode(",", $config['application']['allowed_ips']);
@@ -88,7 +88,7 @@ try
 	$view_renderer = new Zend_Controller_Action_Helper_ViewRenderer($view);
 	$view_renderer
 		->setNoController(true)
-		->setViewBasePathSpec(RivetyCore_Registry::get('frontend_theme') . ':module/tpl_controllers/')
+		->setViewBasePathSpec($frontend_theme . ':module/tpl_controllers/')
 		->setViewScriptPathSpec(':controller/:action.:suffix')
 		->setViewScriptPathNoControllerSpec(':action.:suffix')
 		->setViewSuffix('tpl');
