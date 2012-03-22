@@ -174,7 +174,7 @@ if (file_exists($config_file))
 	$zf_path = $config['application']['zf_path'];
 	$smarty_path = $config['application']['smarty_path'];
 	$asido_path = $config['application']['asido_path'];
-	$salt = $config['application']['salt'];
+	$salt = $config['application']['password_salt'];
 }
 else
 {

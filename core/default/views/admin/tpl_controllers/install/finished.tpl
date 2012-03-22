@@ -1,4 +1,4 @@
-{include file="file:$current_path/_header.tpl" pageTitle="Installed!"}
+{include file="file:$default_module_this_controller_path/_header.tpl" pageTitle="Installed!"}
 <p>
 	Congratulations! You've successfully installed Rivety!
 </p>
@@ -25,4 +25,4 @@
 	<li><a href="/">View the site.</a></li>
 </ul>
 
-{include file="file:$current_path/_footer.tpl"}
+{include file="file:$default_module_this_controller_path/_footer.tpl"}
