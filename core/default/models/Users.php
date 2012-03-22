@@ -36,7 +36,7 @@ class Users extends RivetyCore_Db_Table_Abstract
 	public function insert(array $data)
 	{
 		// md5 password if it's not blank
-		if (!empty($data['password'])) $data['password'] = md5($data['password']);
+		if (!empty($data['password'])) $data['password'] = $this->getPasswordHash($data['password']);
 		if (!empty($data['password_hash']))
 		{
 			$data['password'] = $data['password_hash'];
@@ -47,6 +47,17 @@ class Users extends RivetyCore_Db_Table_Abstract
 		$data['ip'] = $_SERVER['REMOTE_ADDR'];
 		return parent::insert($data);
 	}
+
+	public function getPasswordHash($password,$salt=null){
+	
+		if(empty($salt)){
+			$salt = Zend_Registry::get('password_salt');
+		}
+		$out = md5($salt . $password);
+		dd(array("password"=>$password,"salt"=>$salt,"hash"=>$out));
+		return $out;
+	}
+
 
 	/*
 		Function: isEmailInUse

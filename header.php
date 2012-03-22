@@ -173,6 +173,7 @@ if (file_exists($config_file))
 	$zf_path = $config['application']['zf_path'];
 	$smarty_path = $config['application']['smarty_path'];
 	$asido_path = $config['application']['asido_path'];
+	$salt = $config['application']['salt'];
 }
 else
 {
@@ -199,6 +200,11 @@ set_include_path(get_include_path() . PATH_SEPARATOR . $asido_path);
 require_once ('Zend/Loader.php');
 
 Zend_Registry::set('basepath', $basepath);
+if(!empty($salt)){
+	Zend_Registry::set('password_salt', $salt);	
+}
+
+
 $tmp_inculde_path = "";
 $RivetyCore_module_dir = $basepath . "/core";
 $module_dir = $basepath . "/modules";

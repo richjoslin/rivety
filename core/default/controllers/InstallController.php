@@ -86,7 +86,7 @@ class InstallController extends Zend_Controller_Action
 			$appNamespace->autoLogin = true;
        		$appNamespace->autoLoginUsername = $username;
        		$appNamespace->autoLoginPassword = $password;
-			$appNamespace->autoLoginPasswordHash = md5($password);
+			$appNamespace->autoLoginPasswordHash = $users_table->getPasswordHash($password);
 		}
 		else
 		{
@@ -379,6 +379,7 @@ class InstallController extends Zend_Controller_Action
 					"log_filename"    => $log_path."/RivetyCore_log",
 					"log_level"       => "6",
 					"addtl_includes"  => "",
+					"password_salt"	  => md5(uniqid(md5(time()),true)),
 				);
 
 				$config_file .= RivetyCore_ConfigFile::makeSection("application", "Application Settings", "These are the application specific settings.", $RivetyCore_config);

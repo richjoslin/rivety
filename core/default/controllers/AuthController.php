@@ -50,7 +50,8 @@ class AuthController extends RivetyCore_Controller_Action_Abstract
 	{
 		$errors = array();
 		$request = new RivetyCore_Request($this->getRequest());
-
+		$users_table = new Users();
+		
 		if ($request->has('ourl'))
 		{
 			$url_param = strip_tags($request->ourl);
@@ -90,7 +91,7 @@ class AuthController extends RivetyCore_Controller_Action_Abstract
 			{
 				$username = $filter->filter($this->_request->getPost('username'));
 				$plain_password = $filter->filter($this->_request->getPost('password'));
-				$password = md5($plain_password);
+				$password = $users_table->getPasswordHash($plain_password);
 			}
 			// setup Zend_Auth adapter for a database table
 
@@ -121,7 +122,7 @@ class AuthController extends RivetyCore_Controller_Action_Abstract
 					$defaultNamespace->setExpirationSeconds((int)RivetyCore_Registry::get('session_timeout'));
 
 					//update user last_login_on
-					$users_table = new Users();
+					
 					$where = $users_table->getAdapter()->quoteInto('username = ?', $username);
 					$users_table->update(array('last_login_on' => date(DB_DATETIME_FORMAT)), $where);
 					$params = array(
