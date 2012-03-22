@@ -49,6 +49,7 @@ class InstallController extends Zend_Controller_Action
 			$module_path = 	"modules" . _DS . $this->module_name;
 			$module_url = "modules/".$this->module_name;
 		}	
+		$this->view->controller_name = "install";
 		$this->view->basepath = Zend_Registry::get("basepath");
 		$this->view->module_views_path 	= $this->view->basepath . _DS . $module_path . _DS . "views" . _DS . "admin";
 		$this->view->module_views_url 	= "/". $module_url ."/views/admin";
