@@ -23,6 +23,7 @@ try
 
 	if ($isInstalled)
 	{
+		dd("Installed!");
 		if (!(boolean)$config['application']['launched'])
 		{
 			$allowed_ips = explode(",", $config['application']['allowed_ips']);

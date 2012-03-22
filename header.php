@@ -167,7 +167,7 @@ $routes_file = $basepath . '/etc/routes.ini';
 $isInstalled = false;
 if (file_exists($config_file))
 {
-	dd("INSTALLED");
+	
 	$isInstalled = true;
 	$config = parse_ini_file($config_file, true);
 	date_default_timezone_set("{$config['application']['timezone']}");
