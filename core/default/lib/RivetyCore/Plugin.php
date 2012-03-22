@@ -43,7 +43,7 @@ class RivetyCore_Plugin {
   //does not already exist.
   public static function getInstance() {
     if (!self::$instance instanceof self) {
-      RivetyCore_Log::info("Creating plugin manager"); 
+      //RivetyCore_Log::info("Creating plugin manager"); 
       self::$instance = new self;
     }
     return self::$instance;
