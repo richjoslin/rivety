@@ -280,7 +280,7 @@ class RivetyCore_View_Renderer implements Zend_View_Interface
 			else
 			{
 				// We're out of ideas. Sorry.
-				throw new Zend_Exception("Provided template path is not valid: ". $template_file);
+				throw new Zend_Exception("Provided template path is not valid: ". $template_file . " or " . $module_template_file);
 			}
 		}
 		if (array_key_exists("mca", $this->_smarty->_tpl_vars))
