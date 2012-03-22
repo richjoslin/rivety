@@ -40,14 +40,28 @@ class InstallController extends Zend_Controller_Action
 	function init()
 	{
 		parent::init();
+		
+		
+		$admin_theme = "default";		
+		$this->view->theme_path = $this->view->basepath . _DS . "themes" . _DS . $admin_theme . _DS . "admin";		
+			
+		if($admin_theme == "default" && !is_dir($this->view->theme_path)){
+			$this->view->theme_url = "/core/default/views/admin";
+		} else {
+			$this->view->theme_url = "/themes/" . $admin_theme ."/admin";	
+		}			
+		$this->view->theme_global_path = $this->view->theme_path . _DS . "tpl_common";
+		$this->view->theme_global = $this->view->theme_global_path;
+		$this->view->theme_controller_path = $this->view->theme_path . _DS . 'tpl_modules' . _DS . $this->module_name ;
+		$this->view->theme_this_controller_path = $this->view->theme_controller_path . _DS . $this->view->controller_name;
+		$this->view->theme_current_path = $this->view->theme_this_controller_path;		
 
-		$theme_locations = Zend_Registry::get("theme_locations");
-		$template_path = $theme_locations['admin']['default_theme']['path'] . '/tpl_controllers';
-		$this->view->setScriptPath($template_path);
-		$this->view->default_admin_theme_path = $theme_locations['admin']['default_theme']['path'];
-		$this->view->default_admin_global_path = $theme_locations['admin']['default_theme']['path'] . '/tpl_common';
-		$this->view->default_admin_theme_url = $theme_locations['admin']['default_theme']['url'];
-		$this->view->current_path = $template_path . "/" . $this->getRequest()->getControllerName();
+		// for legacy things that still use "admin_path"
+		$this->view->admin_theme_path = $this->view->theme_path;
+		$this->view->admin_theme_url = $this->view->theme_url;
+		$this->view->admin_theme_global_path = $this->view->theme_global_path;
+		
+		$this->view->setScriptPath($this->view->theme_controller_path);
         $this->view->isAdminController = true;
 		$this->view->site_name = "Rivety";
 	}
