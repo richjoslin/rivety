@@ -78,6 +78,7 @@ class AuthController extends RivetyCore_Controller_Action_Abstract
 			$appNamespace = new Zend_Session_Namespace('RivetyCore_Temp');
 			if ($appNamespace->autoLogin)
 			{
+				
 				$autologin = true;
 				$username = $appNamespace->autoLoginUsername;
 				$plain_password = $appNamespace->autoLoginPassword;

@@ -1,3 +1,6 @@
 .htaccess
 robots.txt
 .project
+lib/Asido
+lib/Smarty
+lib/ZendFramework

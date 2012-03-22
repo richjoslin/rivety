@@ -266,7 +266,7 @@ if ($isInstalled)
 	$registry = Zend_Registry::getInstance();
 	$registry->set('dbAdapters', $dbAdapters);
 	// check for database changes
-	$modules_table = new Modules('core');
+	$modules_table = new Modules('core');	
 	$modules_table->upgradeDatabase("default");
 	$modules_table->setDefaultConfig("default");
 	$config_table = new Config();

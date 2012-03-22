@@ -51,10 +51,14 @@ class Users extends RivetyCore_Db_Table_Abstract
 	public function getPasswordHash($password,$salt=null){
 	
 		if(empty($salt)){
+			
 			$salt = Zend_Registry::get('password_salt');
+			
+			if(empty($salt)){
+				throw new Exception("Salt is null.");
+			}
 		}
-		$out = md5($salt . $password);
-		RivetyCore_Log::debug("Password hash:" . print_r(array("password"=>$password,"salt"=>$salt,"hash"=>$out),true));
+		$out = md5($salt . $password);		
 		return $out;
 	}
 
@@ -148,7 +152,7 @@ class Users extends RivetyCore_Db_Table_Abstract
 	public function update(array $data, $where)
 	{
 		// md5 password if it's not blank
-		if (!empty($data['password'])) $data['password'] = md5($data['password']);
+		if (!empty($data['password'])) $data['password'] = $this->getPasswordHash($data['password']);
 		if (!empty($data['password_hash']))
 		{
 			$data['password'] = $data['password_hash'];

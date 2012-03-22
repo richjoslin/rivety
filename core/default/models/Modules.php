@@ -347,16 +347,18 @@ class Modules extends RivetyCore_Db_Table_Abstract
 		$db_versions_table = new DatabaseVersions();
 		$module_cfg = $this->parseIni($module_id);
 		$required_versions = $module_cfg['database_versions'];
-
+		
 		foreach ($required_versions as $r_module_id => $required_version) {
 			$required_version = (int)$required_version;
 			$current_version = (int)$db_versions_table->getCurrentVersion($r_module_id);
-
+			
 			if ($current_version < $required_version) {
+				
 				// database for this module is out of date.  get scripts to run.
 				$script = new RivetyCore_Db_Script();
 				$change_scripts = array();
 				$all_scripts = $script->getScripts($module_id);
+				
 				foreach ($all_scripts as $script) {
 					if (strpos($script,"dbupgrade_") !== false) {
 						$change_num = (int)substr($script, strlen("dbupgrade_"));
@@ -364,10 +366,13 @@ class Modules extends RivetyCore_Db_Table_Abstract
 					}
 				}
 				ksort($change_scripts);
+				
 				RivetyCore_Log::report("Upgrading db for ".$module_id, print_r($change_scripts,true), Zend_Log::DEBUG);
 				foreach ($change_scripts as $num => $script_name) {
-					if (($num > $current_version and $num <= $required_version) && $this->isInstalled($module_id)) {
-						RivetyCore_Log::report("Upgrading db for ".$module_id." from version ".$current_version." to ".$required_version, null, Zend_Log::INFO);
+					
+								
+					if (($num > $current_version and $num <= $required_version) && ($this->isInstalled($module_id) || $module_id == "default")) {
+						
 						$change_script = new RivetyCore_Db_Script($module_id, $script_name);
 
 						if ($change_script === false) {
@@ -387,6 +392,7 @@ class Modules extends RivetyCore_Db_Table_Abstract
 				}
 			}
 		}
+		
 	}
 
 	/*

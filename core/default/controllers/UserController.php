@@ -334,7 +334,7 @@ class UserController extends RivetyCore_Controller_Action_Abstract
 					'autologin' => true,
 					'autologin_username' => $user->username,
 					'autologin_password' => $password,
-					'autologin_password_hash' => md5($password),
+					'autologin_password_hash' => $users_table->getPasswordHash($password),
 				);
 				$params = $this->_rivety_plugin->doFilter("default_user_resetpassword_done", $params); // FILTER HOOK
 
@@ -719,7 +719,7 @@ class UserController extends RivetyCore_Controller_Action_Abstract
 						'autologin' => true,
 						'autologin_username' => $user['username'],
 						'autologin_password' => $user['password'],
-						'autologin_password_hash' => md5($user['password']),
+						'autologin_password_hash' => $users_table->getPasswordHash($user['password']),
 						'locale_code' => $this->locale_code,
 					);
 					$params = $this->_rivety_plugin->doFilter("default_post_register", $params); // FILTER HOOK

@@ -69,6 +69,7 @@ class RivetyCore_Db_Script
 					if (trim($query) != "")
 					{
 						RivetyCore_Log::report($module.": ".$query, Zend_Log::DEBUG);
+						
 						$this->_db->query($query);
 					}
 				}

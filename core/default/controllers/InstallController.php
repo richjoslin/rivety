@@ -103,7 +103,7 @@ class InstallController extends Zend_Controller_Action
 	function secondstageAction()
 	{
 		$request = new RivetyCore_Request($this->getRequest());
-		$appNamespace = new Zend_Session_Namespace('RivetyCore_Temp');
+		
 		$basepath = Zend_Registry::get('basepath');
 		$config_table = new Config();
 		$config_table->set('default', 'upload_path', $basepath."/uploads", true);
@@ -115,22 +115,16 @@ class InstallController extends Zend_Controller_Action
 		$username = $request->username;
 		$users_table = new Users();
 		$user = $users_table->fetchByUsername($username);
-		$password = substr(md5(rand(50000, 100000)), 0, 8);
+		
 		if (!is_null($user))
 		{
-			$user->password = $password;
-			$user->save();
-			// $users_table->setMetaData($username, "is_installer", 1);
-			$appNamespace->autoLogin = true;
-       		$appNamespace->autoLoginUsername = $username;
-       		$appNamespace->autoLoginPassword = $password;
-			$appNamespace->autoLoginPasswordHash = $users_table->getPasswordHash($password);
+			$this->_redirect("/default/install/finished/username/" . $username);
 		}
 		else
 		{
 			die("Somehow the admin user didn't get created or didn't get sent with the request. This is bad. Really, really bad.");
 		}
-		$this->_redirect("/default/install/finished/username/" . $username);
+		
 	}
 
 	/*
@@ -148,10 +142,12 @@ class InstallController extends Zend_Controller_Action
 	function finishedAction()
 	{
 		$request = new RivetyCore_Request($this->getRequest());
+		$appNamespace = new Zend_Session_Namespace('RivetyCore_Temp');
 		$username = $request->username;
 		$users_table = new Users();
 		$user = $users_table->fetchByUsername($username);
 		$password = substr(md5(rand(50000, 100000)), 0, 8);
+		$users_table->update(array('password' => $password ),$users_table->getAdapter()->quoteInto("username = ?",$user->username));
 		if (!is_null($user))
 		{
 			// TODO: check the referrer !
@@ -161,6 +157,12 @@ class InstallController extends Zend_Controller_Action
 			$user->save();
 			$this->view->username = $username;
 			$this->view->password = $password;
+
+			$appNamespace->autoLogin = true;
+       		$appNamespace->autoLoginUsername = $username;
+       		$appNamespace->autoLoginPassword = $password;       		
+			$appNamespace->autoLoginPasswordHash = $users_table->getPasswordHash($password);
+
 
 			// we should never need this again, so we remove access to it.
 			$roles_resources_table = new RolesResources();
