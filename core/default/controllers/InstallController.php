@@ -60,7 +60,7 @@ class InstallController extends Zend_Controller_Action
 		
 		$this->module_views_email_path = $this->view->module_views_path . _DS . "tpl_email";		
 		$this->view->default_module_views_path = $this->view->basepath . _DS . "core/default" . _DS . "views";		
-		$this->view->default_module_this_controller_path = $this->view->basepath . _DS . "core/default" . _DS . "views" . _DS . 'tpl_controllers' . _DS . $this->view->controller_name;
+		$this->view->default_module_this_controller_path = $this->view->basepath . _DS . "core/default" . _DS . "views/admin" . _DS . 'tpl_controllers' . _DS . $this->view->controller_name;
 		
 		$this->view->default_global_path =  $this->view->default_module_views_path . _DS . "admin" . _DS . "tpl_common";
 		
