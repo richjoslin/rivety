@@ -265,12 +265,12 @@ class RivetyCore_View_Renderer implements Zend_View_Interface
 		$module_template_file = $this->_smarty->_tpl_vars['module_views_controller_path'] . _DS . $name;
 		
 		
-		RivetyCore_Log::debug("Looking for " . $template_file);
+		//RivetyCore_Log::debug("Looking for " . $template_file);
 		
 		if (!file_exists($template_file))
 		{
 			
-			RivetyCore_Log::debug("Falling back to " . $module_template_file);
+			//RivetyCore_Log::debug("Falling back to " . $module_template_file);
 			if (is_readable($module_template_file))
 			{
 					// fall back to looking in module's views folder					
@@ -280,7 +280,7 @@ class RivetyCore_View_Renderer implements Zend_View_Interface
 			else
 			{
 				// We're out of ideas. Sorry.
-				throw new Zend_Exception("Provided template path is not valid: ". $path);
+				throw new Zend_Exception("Provided template path is not valid: ". $name);
 			}
 		}
 		if (array_key_exists("mca", $this->_smarty->_tpl_vars))
