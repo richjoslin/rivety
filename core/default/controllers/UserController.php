@@ -564,7 +564,7 @@ class UserController extends RivetyCore_Controller_Action_Abstract
 
 		if ($request->has('url'))
 		{
-			$this->view->url_param = $request->url;
+			$this->view->url = $request->url;
 			$pre_register_params['return_url'] = $request->url;
 		}
 		else
@@ -586,9 +586,13 @@ class UserController extends RivetyCore_Controller_Action_Abstract
 			$request->addValidator('password', 'Password is required.');
 			$request->addValidator('confirm', 'Password confirmation is required.');
 			if (!$request->isValid()) $errors = array_merge($errors, $request->getValidationErrors());
+			$user['username'] = $request->username;
+			$user['email'] = $request->email;
+			$user['password'] = $request->password;
+			$user['confirm'] = $request->confirm;
 			if (count($errors) == 0)
 			{
-				$user['username'] = $request->username;
+				
 				// if ($request->has('full_name'))
 				// {
 				// 	if (strlen($request->full_name) < 1) $user['full_name'] = $this->_T("Anonymous");
@@ -598,9 +602,7 @@ class UserController extends RivetyCore_Controller_Action_Abstract
 				// {
 				// 	$user['full_name'] = $this->_T("Anonymous");
 				// }
-				$user['email'] = $request->email;
-				$user['password'] = $request->password;
-				$user['confirm'] = $request->confirm;
+				
 
 				// TODO: remove anything relating to birthday
 
