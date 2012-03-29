@@ -20,7 +20,7 @@
 				<div id="account-links">
 					<ul>
 						<li>
-							{t}Welcome{/t}, <a href="{url}/default/user/profile/username/{$loggedInUsername}/{/url}" title="{$loggedInUsername}">{$loggedInUsername}</a>
+							{t}Welcome{/t}, <a href="{url}/profile/{$loggedInUsername}/{/url}" title="{$loggedInUsername}">{$loggedInUsername}</a>
 						</li>
 						<li>
 							<a href="{url}/{/url}">{t}View Frontend{/t}</a>

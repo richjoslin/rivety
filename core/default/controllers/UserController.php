@@ -391,7 +391,7 @@ class UserController extends RivetyCore_Controller_Action_Abstract
 	{
 		if ($this->_auth->hasIdentity())
 		{
-			$this->_redirect('/default/user/profile/username/'.$this->_identity->username);
+			$this->_redirect('/profile/'.$this->_identity->username);
 		}
 		$this->view->pagetitle = "Forgot Password";
 		if ($this->_request->isPost())
@@ -556,7 +556,7 @@ class UserController extends RivetyCore_Controller_Action_Abstract
 		$errors = array();
 		$request = new RivetyCore_Request($this->getRequest());
 
-		if ($this->_auth->hasIdentity()) $this->_redirect('/default/user/profile/username/' . $this->_identity->username);
+		if ($this->_auth->hasIdentity()) $this->_redirect('/profile/' . $this->_identity->username);
 		$users_table = new Users();
 		$user = array();
 
