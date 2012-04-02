@@ -128,6 +128,10 @@ class RivetyCore_Request {
 		return $out;
 	}
 
+	function addValidationError($field,$message){
+		$this->_validation_errors[$field] = $message;
+	}
+
 	/*
 		Function: addValidator
 
