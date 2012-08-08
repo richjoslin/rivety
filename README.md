@@ -29,7 +29,3 @@ Template rendering (Smarty tpls)
 
 - Module Generator
 - CRUD-ifier - introspects a database table and automatically creates a model and forms to manage the data in that table (similar to Rails scaffolding).
-
-# WARNING
-
-Rivety has been dialed back to pre-alpha while I rework a few things. It's not yet fully ready for prime-time.
